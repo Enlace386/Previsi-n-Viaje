@@ -1890,8 +1890,8 @@ const CONFIG = {
    * Ejemplo:
    * https://europe-southwest1-TU_PROYECTO.cloudfunctions.net/aemetProxy
    */
-  AEMET_PROXY_URL:
-    "",
+  AEMET_ALERTS_URL:
+    "aemet-alerts.json",
 
   HYDRO_PROXY_URL:
     "",
@@ -3178,50 +3178,35 @@ async function fetchOfficialAlerts(
   analysis
 ) {
 
-  if (!CONFIG.AEMET_PROXY_URL) {
-
-    return {
-      configured: false,
-      alerts: []
-    };
-
-  }
+  /*
+   * AEMET se consulta de forma indirecta:
+   * GitHub Actions descarga los avisos oficiales con la API key
+   * guardada como secreto y publica aemet-alerts.json.
+   * El navegador nunca recibe ni contiene la API key.
+   */
 
   const response =
     await fetchWithTimeout(
-      CONFIG.AEMET_PROXY_URL,
+      CONFIG.AEMET_ALERTS_URL,
       {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          type: "aemet",
-          date: analysis.date,
-          departure: analysis.departure,
-          origin: analysis.origin,
-          destination: analysis.destination,
-          points: analysis.points.map(
-            point => ({
-              lat: point.lat,
-              lon: point.lon,
-              passTime: point.passTime,
-              distanceKm: point.distanceKm
-            })
-          )
-        })
+        cache: "no-store"
       }
     );
 
   const payload =
     await response.json();
 
+  const allAlerts =
+    normalizeOfficialItems(payload);
+
   const alerts =
-    normalizeOfficialItems(
-      payload
-    ).filter(
+    allAlerts.filter(
       alert =>
-        alertTouchesRoute(
+        alertIsActiveForTrip(
+          alert,
+          analysis
+        ) &&
+        alertTouchesRouteGeometry(
           alert,
           analysis.points
         )
@@ -3231,6 +3216,288 @@ async function fetchOfficialAlerts(
     configured: true,
     alerts
   };
+
+}
+
+
+/* ===========================================================
+   AEMET ESTÁTICO — RELEVANCIA GEOGRÁFICA Y TEMPORAL
+   =========================================================== */
+
+function parseAlertDate(value) {
+
+  if (!value) {
+    return null;
+  }
+
+  const d = new Date(value);
+
+  return Number.isNaN(d.getTime())
+    ? null
+    : d;
+
+}
+
+
+function alertIsActiveForTrip(
+  alert,
+  analysis
+) {
+
+  const tripStart =
+    parseAlertDate(
+      `${analysis.date}T${analysis.departure}:00`
+    );
+
+  if (!tripStart) {
+    return false;
+  }
+
+  const durationSeconds =
+    Number(
+      analysis.route?.duration || 0
+    );
+
+  const tripEnd =
+    new Date(
+      tripStart.getTime() +
+      durationSeconds * 1000
+    );
+
+  const effective =
+    parseAlertDate(
+      alert.effective ||
+      alert.onset ||
+      alert.sent
+    );
+
+  const expires =
+    parseAlertDate(
+      alert.expires
+    );
+
+  /*
+   * Si AEMET no aporta intervalo temporal, no inventamos
+   * que el aviso afecta al viaje.
+   */
+  if (!effective && !expires) {
+    return false;
+  }
+
+  const startsBeforeTripEnd =
+    !effective ||
+    effective.getTime() <= tripEnd.getTime();
+
+  const endsAfterTripStart =
+    !expires ||
+    expires.getTime() >= tripStart.getTime();
+
+  return startsBeforeTripEnd && endsAfterTripStart;
+
+}
+
+
+function normalizePolygonCoordinates(
+  polygon
+) {
+
+  if (!polygon) {
+    return [];
+  }
+
+  if (Array.isArray(polygon)) {
+
+    /* GeoJSON: [[lon,lat], ...] */
+    if (
+      polygon.length &&
+      Array.isArray(polygon[0]) &&
+      polygon[0].length >= 2 &&
+      typeof polygon[0][0] === "number"
+    ) {
+      return polygon.map(
+        pair => [
+          Number(pair[0]),
+          Number(pair[1])
+        ]
+      );
+    }
+
+    /* GeoJSON Polygon: [[[lon,lat], ...]] */
+    if (
+      polygon.length &&
+      Array.isArray(polygon[0]) &&
+      Array.isArray(polygon[0][0])
+    ) {
+      return normalizePolygonCoordinates(
+        polygon[0]
+      );
+    }
+
+    return [];
+  }
+
+  if (typeof polygon !== "string") {
+    return [];
+  }
+
+  const pairs =
+    polygon
+      .trim()
+      .split(/\s+/)
+      .map(token => {
+        const parts =
+          token.split(",");
+
+        if (parts.length < 2) {
+          return null;
+        }
+
+        const lon = Number(parts[0]);
+        const lat = Number(parts[1]);
+
+        return Number.isFinite(lon) &&
+          Number.isFinite(lat)
+          ? [lon, lat]
+          : null;
+      })
+      .filter(Boolean);
+
+  return pairs;
+
+}
+
+
+function pointInPolygon(
+  lat,
+  lon,
+  polygon
+) {
+
+  const pts =
+    normalizePolygonCoordinates(
+      polygon
+    );
+
+  if (pts.length < 3) {
+    return false;
+  }
+
+  let inside = false;
+
+  for (
+    let i = 0, j = pts.length - 1;
+    i < pts.length;
+    j = i++
+  ) {
+
+    const xi = pts[i][0];
+    const yi = pts[i][1];
+    const xj = pts[j][0];
+    const yj = pts[j][1];
+
+    const intersects =
+      ((yi > lat) !== (yj > lat)) &&
+      (
+        lon <
+        (xj - xi) *
+        (lat - yi) /
+        ((yj - yi) || 1e-12) +
+        xi
+      );
+
+    if (intersects) {
+      inside = !inside;
+    }
+  }
+
+  return inside;
+
+}
+
+
+function alertTouchesRouteGeometry(
+  alert,
+  points
+) {
+
+  if (
+    alert.routeRelevant === true ||
+    alert.relevant === true ||
+    alert.filteredForRoute === true
+  ) {
+    return true;
+  }
+
+  const polygons = [];
+
+  if (Array.isArray(alert.polygons)) {
+    polygons.push(...alert.polygons);
+  }
+
+  if (alert.polygon) {
+    polygons.push(alert.polygon);
+  }
+
+  if (alert.geometry?.coordinates) {
+    const coords =
+      alert.geometry.coordinates;
+
+    if (alert.geometry.type === "Polygon") {
+      polygons.push(coords);
+    }
+    else if (alert.geometry.type === "MultiPolygon") {
+      coords.forEach(
+        polygon => polygons.push(polygon)
+      );
+    }
+  }
+
+  if (polygons.length) {
+    return points.some(
+      point => polygons.some(
+        polygon =>
+          pointInPolygon(
+            point.lat,
+            point.lon,
+            polygon
+          )
+      )
+    );
+  }
+
+  const lat =
+    Number(
+      alert.lat ??
+      alert.latitude
+    );
+
+  const lon =
+    Number(
+      alert.lon ??
+      alert.longitude
+    );
+
+  if (
+    Number.isFinite(lat) &&
+    Number.isFinite(lon)
+  ) {
+    return points.some(
+      point =>
+        haversineKm(
+          lat,
+          lon,
+          point.lat,
+          point.lon
+        ) <= 50
+    );
+  }
+
+  /*
+   * Sin geometría/coordenadas no mostramos el aviso como
+   * geográficamente relevante. Así evitamos falsos positivos
+   * nacionales.
+   */
+  return false;
 
 }
 
@@ -3424,11 +3691,10 @@ function renderOfficialAlerts(
       "data-state warning";
 
     status.innerHTML = `
-      <strong>🚨 Avisos AEMET: no conectados</strong>
+      <strong>🚨 Avisos AEMET: datos no disponibles</strong>
       <span>
-        El análisis meteorológico funciona con Open-Meteo,
-        pero los avisos oficiales AEMET requieren un proxy
-        seguro con la API key fuera del navegador.
+        No se ha podido consultar el fichero público de avisos oficiales.
+        El riesgo meteorológico continúa analizándose con los datos disponibles.
       </span>
     `;
 
