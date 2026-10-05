@@ -2,10 +2,8 @@ name: Actualizar avisos AEMET
 
 on:
   schedule:
-    # Ejecutar cada 3 horas
     - cron: "15 */3 * * *"
 
-  # Permite ejecutarlo manualmente desde GitHub
   workflow_dispatch:
 
 permissions:
@@ -28,57 +26,89 @@ jobs:
           import os
           import urllib.request
           import urllib.error
+          import xml.etree.ElementTree as ET
           from datetime import datetime, timezone
 
           API_KEY = os.environ.get("AEMET_API_KEY")
 
           if not API_KEY:
-              raise SystemExit("ERROR: No existe el secreto AEMET_API_KEY")
+              raise SystemExit(
+                  "ERROR: No existe el secreto AEMET_API_KEY"
+              )
 
-          # Endpoint oficial de avisos de fenómenos meteorológicos adversos.
-          # AEMET devuelve primero una URL de datos que posteriormente se consulta.
-          endpoint = (
+          ENDPOINT = (
               "https://opendata.aemet.es/opendata/api/"
               "avisos_cap/ultimoelaborado/area/esp"
           )
 
+          print("Consultando AEMET...")
+          print("Endpoint:", ENDPOINT)
+
           request = urllib.request.Request(
-              endpoint,
+              ENDPOINT,
               headers={
                   "api_key": API_KEY,
-                  "User-Agent": "TravelSafe/1.0"
+                  "User-Agent": "TRAVEL-SAFE/1.0",
+                  "Accept": "application/json"
               }
           )
 
           try:
-              with urllib.request.urlopen(request, timeout=60) as response:
-                  raw = response.read().decode("utf-8")
-                  first_response = json.loads(raw)
+              with urllib.request.urlopen(
+                  request,
+                  timeout=60
+              ) as response:
+                  first_raw = response.read().decode(
+                      "utf-8",
+                      errors="replace"
+                  )
+
+                  print(
+                      "Respuesta inicial HTTP:",
+                      response.status
+                  )
+
           except Exception as e:
               raise SystemExit(
-                  "ERROR consultando el endpoint de AEMET: "
-                  + str(e)
+                  "ERROR consultando AEMET: " + str(e)
               )
 
-          if first_response.get("estado") != 200:
+          try:
+              first = json.loads(first_raw)
+          except Exception as e:
+              print("Respuesta recibida:")
+              print(first_raw[:2000])
+              raise SystemExit(
+                  "ERROR: La respuesta inicial de AEMET "
+                  "no es JSON: " + str(e)
+              )
+
+          estado = first.get("estado")
+
+          print("Estado AEMET:", estado)
+
+          if estado != 200:
               raise SystemExit(
                   "AEMET devolvió estado "
-                  + str(first_response.get("estado"))
+                  + str(estado)
                   + ": "
-                  + str(first_response)
+                  + str(first)
               )
 
-          data_url = first_response.get("datos")
+          data_url = first.get("datos")
 
           if not data_url:
               raise SystemExit(
-                  "AEMET no devolvió la URL de datos."
+                  "ERROR: AEMET no devolvió la URL de datos."
               )
+
+          print("URL de datos recibida correctamente.")
 
           data_request = urllib.request.Request(
               data_url,
               headers={
-                  "User-Agent": "TravelSafe/1.0"
+                  "User-Agent": "TRAVEL-SAFE/1.0",
+                  "Accept": "*/*"
               }
           )
 
@@ -87,16 +117,239 @@ jobs:
                   data_request,
                   timeout=60
               ) as response:
-                  data_raw = response.read().decode("utf-8")
-                  alerts = json.loads(data_raw)
+
+                  content_type = (
+                      response.headers.get(
+                          "Content-Type",
+                          ""
+                      )
+                  )
+
+                  raw_data = response.read()
+
+                  print(
+                      "Contenido descargado:",
+                      len(raw_data),
+                      "bytes"
+                  )
+
+                  print(
+                      "Content-Type:",
+                      content_type
+                  )
+
           except Exception as e:
               raise SystemExit(
-                  "ERROR descargando los datos de avisos AEMET: "
+                  "ERROR descargando los datos de AEMET: "
                   + str(e)
               )
 
-          if not isinstance(alerts, list):
-              alerts = [alerts]
+          text_data = raw_data.decode(
+              "utf-8",
+              errors="replace"
+          ).strip()
+
+          alerts = []
+
+          # --------------------------------------------------
+          # CASO 1: AEMET devuelve JSON
+          # --------------------------------------------------
+
+          if (
+              "json" in content_type.lower()
+              or text_data.startswith("{")
+              or text_data.startswith("[")
+          ):
+              try:
+                  parsed = json.loads(text_data)
+
+                  if isinstance(parsed, list):
+                      alerts = parsed
+
+                  elif isinstance(parsed, dict):
+                      if isinstance(
+                          parsed.get("alerts"),
+                          list
+                      ):
+                          alerts = parsed["alerts"]
+
+                      elif isinstance(
+                          parsed.get("features"),
+                          list
+                      ):
+                          alerts = parsed["features"]
+
+                      else:
+                          alerts = [parsed]
+
+                  print(
+                      "Formato detectado: JSON"
+                  )
+
+              except Exception as e:
+                  print(
+                      "El contenido parecía JSON "
+                      "pero no pudo interpretarse."
+                  )
+                  print(text_data[:2000])
+
+          # --------------------------------------------------
+          # CASO 2: AEMET devuelve XML / CAP
+          # --------------------------------------------------
+
+          if not alerts and (
+              text_data.startswith("<")
+              or "xml" in content_type.lower()
+              or "cap" in content_type.lower()
+          ):
+              print(
+                  "Formato detectado: XML/CAP"
+              )
+
+              try:
+                  root = ET.fromstring(
+                      text_data
+                  )
+
+                  namespaces = {
+                      "cap": (
+                          "urn:oasis:names:"
+                          "tc:emergency:cap:1.2"
+                      )
+                  }
+
+                  for alert_node in root.findall(
+                      ".//cap:alert",
+                      namespaces
+                  ):
+                      item = {}
+
+                      for child in list(
+                          alert_node
+                      ):
+                          tag = child.tag.split(
+                              "}"
+                          )[-1]
+
+                          if tag == "info":
+                              info = {}
+
+                              for info_child in list(
+                                  child
+                              ):
+                                  info_tag = (
+                                      info_child.tag
+                                      .split("}")[-1]
+                                  )
+
+                                  if info_tag in (
+                                      "event",
+                                      "headline",
+                                      "description",
+                                      "instruction",
+                                      "severity",
+                                      "urgency",
+                                      "certainty",
+                                      "effective",
+                                      "onset",
+                                      "expires",
+                                      "senderName",
+                                      "category",
+                                  ):
+                                      info[
+                                          info_tag
+                                      ] = (
+                                          info_child.text
+                                          or ""
+                                      )
+
+                                  elif info_tag == "area":
+                                      area = {}
+
+                                      for area_child in list(
+                                          info_child
+                                      ):
+                                          area_tag = (
+                                              area_child.tag
+                                              .split("}")[-1]
+                                          )
+
+                                          if area_tag in (
+                                              "areaDesc",
+                                              "geocode",
+                                              "polygon",
+                                              "circle",
+                                          ):
+                                              area[
+                                                  area_tag
+                                              ] = (
+                                                  area_child.text
+                                                  or ""
+                                              )
+
+                                      if area:
+                                          info.setdefault(
+                                              "areas",
+                                              []
+                                          ).append(area)
+
+                              item["info"] = info
+
+                          elif tag in (
+                              "identifier",
+                              "sender",
+                              "sent",
+                              "status",
+                              "msgType",
+                          ):
+                              item[tag] = (
+                                  child.text or ""
+                              )
+
+                      if item:
+                          alerts.append(item)
+
+                  print(
+                      "Avisos CAP/XML encontrados:",
+                      len(alerts)
+                  )
+
+              except Exception as e:
+                  print(
+                      "ERROR procesando XML/CAP:",
+                      str(e)
+                  )
+
+                  print(
+                      "Primeros 2000 caracteres:"
+                  )
+
+                  print(
+                      text_data[:2000]
+                  )
+
+                  raise SystemExit(
+                      "No se pudo interpretar "
+                      "la respuesta de avisos AEMET."
+                  )
+
+          # --------------------------------------------------
+          # CASO 3: formato desconocido
+          # --------------------------------------------------
+
+          if not alerts:
+              print(
+                  "AEMET devolvió contenido, "
+                  "pero no se encontraron avisos."
+              )
+
+              print(
+                  "Primeros 2000 caracteres:"
+              )
+
+              print(
+                  text_data[:2000]
+              )
 
           output = {
               "source": "AEMET OpenData",
@@ -120,9 +373,19 @@ jobs:
                   indent=2
               )
 
+          print()
           print(
-              "Avisos AEMET descargados:",
+              "===================================="
+          )
+          print(
+              "AEMET FINALIZADO CORRECTAMENTE"
+          )
+          print(
+              "Avisos encontrados:",
               len(alerts)
+          )
+          print(
+              "===================================="
           )
           PY
 
@@ -133,8 +396,11 @@ jobs:
             exit 1
           fi
 
-          echo "Archivo generado correctamente:"
+          echo "Archivo generado:"
           ls -lh aemet-alerts.json
+
+          echo "Primeras líneas:"
+          head -40 aemet-alerts.json
 
       - name: Guardar avisos actualizados
         run: |
