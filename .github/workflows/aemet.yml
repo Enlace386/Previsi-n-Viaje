@@ -44,147 +44,10 @@ jobs:
           print("========================================")
           print("TRAVEL SAFE - AEMET")
           print("========================================")
-          print("Consultando:", ENDPOINT)
 
-          # ---------------------------------------------------------
-          # 1. PRIMERA PETICIÓN: obtener URL 'datos'
-          # ---------------------------------------------------------
-
-          req = urllib.request.Request(
-              ENDPOINT,
-              headers={
-                  "api_key": API_KEY,
-                  "Accept": "application/json",
-                  "User-Agent": "TRAVEL-SAFE-GitHub-Actions"
-              }
-          )
-
-          with urllib.request.urlopen(req, timeout=60) as response:
-              raw = response.read()
-              http_status = response.status
-
-          text = raw.decode("utf-8", errors="replace")
-
-          print("HTTP:", http_status)
-          print("Respuesta inicial:", len(raw), "bytes")
-
-          data = json.loads(text)
-
-          if data.get("estado") != 200:
-              raise RuntimeError(
-                  "AEMET devolvió estado "
-                  + str(data.get("estado"))
-                  + ": "
-                  + str(data.get("descripcion"))
-              )
-
-          datos_url = data.get("datos")
-
-          if not datos_url:
-              raise RuntimeError(
-                  "AEMET no ha proporcionado la URL 'datos'"
-              )
-
-          print("URL de datos obtenida correctamente.")
-
-          # ---------------------------------------------------------
-          # 2. SEGUNDA PETICIÓN: descargar TAR.GZ
-          # ---------------------------------------------------------
-
-          req2 = urllib.request.Request(
-              datos_url,
-              headers={
-                  "Accept": "*/*",
-                  "User-Agent": "TRAVEL-SAFE-GitHub-Actions"
-              }
-          )
-
-          with urllib.request.urlopen(req2, timeout=60) as response2:
-              archive = response2.read()
-              content_type = response2.headers.get("Content-Type", "")
-
-          print("HTTP datos:", response2.status)
-          print("Content-Type:", content_type)
-          print("Tamaño:", len(archive), "bytes")
-
-          # Guardamos temporalmente la respuesta para diagnóstico.
-          with open("aemet-debug-archive.tar.gz", "wb") as f:
-              f.write(archive)
-
-          # ---------------------------------------------------------
-          # 3. COMPROBAR QUE ES TAR/GZIP
-          # ---------------------------------------------------------
-
-          if not tarfile.is_tarfile("aemet-debug-archive.tar.gz"):
-              print("La respuesta no parece ser un TAR válido.")
-
-              with open("aemet-debug-datos.txt", "wb") as f:
-                  f.write(archive)
-
-              raise RuntimeError(
-                  "La descarga de AEMET no es un archivo TAR válido."
-              )
-
-          # ---------------------------------------------------------
-          # 4. EXTRAER XML CAP
-          # ---------------------------------------------------------
-
-          extracted_files = []
-
-          with tempfile.TemporaryDirectory() as tmp:
-              with tarfile.open(
-                  "aemet-debug-archive.tar.gz",
-                  "r:*"
-              ) as tar:
-
-                  members = tar.getmembers()
-
-                  print(
-                      "Elementos encontrados en TAR:",
-                      len(members)
-                  )
-
-                  for member in members:
-
-                      if not member.isfile():
-                          continue
-
-                      name = member.name
-
-                      if not name.lower().endswith(".xml"):
-                          continue
-
-                      # Evitar rutas peligrosas.
-                      safe_name = os.path.basename(name)
-
-                      destination = os.path.join(
-                          tmp,
-                          safe_name
-                      )
-
-                      source = tar.extractfile(member)
-
-                      if source is None:
-                          continue
-
-                      content = source.read()
-
-                      with open(
-                          destination,
-                          "wb"
-                      ) as f:
-                          f.write(content)
-
-                      extracted_files.append(destination)
-
-          print(
-              "XML CAP encontrados:",
-              len(extracted_files)
-          )
-
-          # ---------------------------------------------------------
+          # =========================================================
           # FUNCIONES AUXILIARES
-          # ---------------------------------------------------------
+          # =========================================================
 
           def clean(value):
               if value is None:
@@ -212,6 +75,7 @@ jobs:
                   return datetime.fromisoformat(
                       value.replace("Z", "+00:00")
                   ).isoformat()
+
               except Exception:
                   return value
 
@@ -265,12 +129,9 @@ jobs:
                   try:
                       lat, lon = pair.split(",", 1)
 
-                      lat = float(lat)
-                      lon = float(lon)
-
                       points.append([
-                          lat,
-                          lon
+                          float(lat),
+                          float(lon)
                       ])
 
                   except Exception:
@@ -280,6 +141,7 @@ jobs:
 
 
           def parse_parameter(info, parameter_name):
+
               for parameter in info.findall(
                   "cap:parameter",
                   NS
@@ -291,6 +153,7 @@ jobs:
                   )
 
                   if value_name == parameter_name:
+
                       return get_text(
                           parameter,
                           "cap:value"
@@ -299,13 +162,9 @@ jobs:
               return None
 
 
-          # ---------------------------------------------------------
-          # 5. PROCESAR CADA XML CAP
-          # ---------------------------------------------------------
+          def process_xml(xml_file):
 
-          alerts = []
-
-          for xml_file in extracted_files:
+              alerts = []
 
               print(
                   "Procesando:",
@@ -315,6 +174,7 @@ jobs:
               try:
 
                   tree = ET.parse(xml_file)
+
                   root = tree.getroot()
 
                   identifier = get_text(
@@ -342,7 +202,10 @@ jobs:
                       "cap:msgType"
                   )
 
-                  # Cada XML puede tener varios <info>.
+                  # -------------------------------------------------
+                  # CADA MENSAJE PUEDE TENER VARIOS BLOQUES <info>
+                  # -------------------------------------------------
+
                   for info in root.findall(
                       "cap:info",
                       NS
@@ -353,7 +216,7 @@ jobs:
                           "cap:language"
                       )
 
-                      # Solo procesamos español.
+                      # Solo necesitamos la versión española.
                       if language and language.lower() != "es-es":
                           continue
 
@@ -417,7 +280,6 @@ jobs:
                           "cap:web"
                       )
 
-                      # Nivel AEMET.
                       level = parse_parameter(
                           info,
                           "AEMET-Meteoalerta nivel"
@@ -434,7 +296,7 @@ jobs:
                       )
 
                       # -------------------------------------------------
-                      # ÁREAS
+                      # ÁREAS GEOGRÁFICAS
                       # -------------------------------------------------
 
                       areas = []
@@ -449,7 +311,7 @@ jobs:
                               "cap:areaDesc"
                           )
 
-                          geocode = None
+                          zone_code = None
 
                           for geo in area.findall(
                               "cap:geocode",
@@ -470,7 +332,9 @@ jobs:
                                   value_name
                                   == "AEMET-Meteoalerta zona"
                               ):
-                                  geocode = value
+
+                                  zone_code = value
+
                                   break
 
                           polygons = []
@@ -489,36 +353,58 @@ jobs:
 
                           areas.append({
                               "name": area_desc,
-                              "zoneCode": geocode,
+                              "zoneCode": zone_code,
                               "polygons": polygons
                           })
 
                       alert = {
+
                           "id": identifier,
+
                           "sender": sender,
+
                           "sent": parse_iso(sent),
+
                           "status": status,
+
                           "messageType": msg_type,
 
                           "language": language,
 
                           "event": event,
+
                           "urgency": urgency,
+
                           "severity": severity,
+
                           "certainty": certainty,
 
-                          "effective": parse_iso(effective),
-                          "onset": parse_iso(onset),
-                          "expires": parse_iso(expires),
+                          "effective": parse_iso(
+                              effective
+                          ),
+
+                          "onset": parse_iso(
+                              onset
+                          ),
+
+                          "expires": parse_iso(
+                              expires
+                          ),
 
                           "senderName": sender_name,
+
                           "headline": headline,
+
                           "description": description,
+
                           "instruction": instruction,
+
                           "web": web,
 
                           "level": level,
+
                           "phenomenon": phenomenon,
+
                           "probability": parse_probability(
                               probability
                           ),
@@ -537,13 +423,216 @@ jobs:
                       repr(e)
                   )
 
-          # ---------------------------------------------------------
+              return alerts
+
+
+          # =========================================================
+          # 1. PRIMERA PETICIÓN A AEMET
+          # =========================================================
+
+          print("Consultando AEMET...")
+
+          request = urllib.request.Request(
+              ENDPOINT,
+              headers={
+                  "api_key": API_KEY,
+                  "Accept": "application/json",
+                  "User-Agent": "TRAVEL-SAFE-GitHub-Actions"
+              }
+          )
+
+          with urllib.request.urlopen(
+              request,
+              timeout=60
+          ) as response:
+
+              initial_raw = response.read()
+
+          initial_text = initial_raw.decode(
+              "utf-8",
+              errors="replace"
+          )
+
+          initial = json.loads(
+              initial_text
+          )
+
+          print(
+              "Estado AEMET:",
+              initial.get("estado")
+          )
+
+          if initial.get("estado") != 200:
+
+              raise RuntimeError(
+                  "AEMET devolvió estado "
+                  + str(initial.get("estado"))
+              )
+
+          datos_url = initial.get("datos")
+
+          if not datos_url:
+
+              raise RuntimeError(
+                  "AEMET no ha devuelto la URL datos."
+              )
+
+          print(
+              "URL datos obtenida correctamente."
+          )
+
+
+          # =========================================================
+          # 2. DESCARGAR TAR.GZ
+          # =========================================================
+
+          request2 = urllib.request.Request(
+              datos_url,
+              headers={
+                  "Accept": "*/*",
+                  "User-Agent": "TRAVEL-SAFE-GitHub-Actions"
+              }
+          )
+
+          with urllib.request.urlopen(
+              request2,
+              timeout=60
+          ) as response2:
+
+              archive = response2.read()
+
+              content_type = response2.headers.get(
+                  "Content-Type",
+                  ""
+              )
+
+          print(
+              "Content-Type:",
+              content_type
+          )
+
+          print(
+              "Tamaño descarga:",
+              len(archive),
+              "bytes"
+          )
+
+
+          # =========================================================
+          # 3. GUARDAR TEMPORALMENTE EL ARCHIVO
+          # =========================================================
+
+          with tempfile.TemporaryDirectory() as tmp:
+
+              archive_path = os.path.join(
+                  tmp,
+                  "aemet.tar.gz"
+              )
+
+              with open(
+                  archive_path,
+                  "wb"
+              ) as f:
+
+                  f.write(archive)
+
+
+              # =====================================================
+              # 4. COMPROBAR TAR
+              # =====================================================
+
+              if not tarfile.is_tarfile(
+                  archive_path
+              ):
+
+                  raise RuntimeError(
+                      "La respuesta de AEMET "
+                      "no es un TAR válido."
+                  )
+
+
+              # =====================================================
+              # 5. EXTRAER Y PROCESAR INMEDIATAMENTE
+              # =====================================================
+
+              all_alerts = []
+
+              with tarfile.open(
+                  archive_path,
+                  "r:*"
+              ) as tar:
+
+                  members = tar.getmembers()
+
+                  xml_members = [
+                      member
+                      for member in members
+                      if (
+                          member.isfile()
+                          and member.name.lower().endswith(
+                              ".xml"
+                          )
+                      )
+                  ]
+
+                  print(
+                      "XML CAP encontrados:",
+                      len(xml_members)
+                  )
+
+
+                  for member in xml_members:
+
+                      # ------------------------------------------------
+                      # MUY IMPORTANTE:
+                      # procesamos el archivo mientras el TAR/TEMP
+                      # sigue existiendo.
+                      # ------------------------------------------------
+
+                      safe_name = os.path.basename(
+                          member.name
+                      )
+
+                      xml_path = os.path.join(
+                          tmp,
+                          safe_name
+                      )
+
+                      source = tar.extractfile(
+                          member
+                      )
+
+                      if source is None:
+                          continue
+
+                      xml_content = source.read()
+
+                      with open(
+                          xml_path,
+                          "wb"
+                      ) as xml_file:
+
+                          xml_file.write(
+                              xml_content
+                          )
+
+                      # Procesar AQUÍ, dentro del TemporaryDirectory.
+                      parsed = process_xml(
+                          xml_path
+                      )
+
+                      all_alerts.extend(
+                          parsed
+                      )
+
+
+          # =========================================================
           # 6. ELIMINAR DUPLICADOS
-          # ---------------------------------------------------------
+          # =========================================================
 
           unique = {}
 
-          for alert in alerts:
+          for alert in all_alerts:
 
               key = (
                   alert.get("id"),
@@ -554,11 +643,14 @@ jobs:
 
               unique[key] = alert
 
-          alerts = list(unique.values())
+          alerts = list(
+              unique.values()
+          )
 
-          # ---------------------------------------------------------
-          # 7. ORDENAR
-          # ---------------------------------------------------------
+
+          # =========================================================
+          # 7. ORDENAR POR NIVEL
+          # =========================================================
 
           level_order = {
               "rojo": 0,
@@ -567,30 +659,37 @@ jobs:
           }
 
           alerts.sort(
-              key=lambda a: (
+              key=lambda alert: (
                   level_order.get(
-                      str(a.get("level") or "").lower(),
+                      str(
+                          alert.get("level") or ""
+                      ).lower(),
                       9
                   ),
-                  a.get("onset") or ""
+                  alert.get("onset") or ""
               )
           )
 
-          # ---------------------------------------------------------
-          # 8. GENERAR JSON FINAL
-          # ---------------------------------------------------------
 
-          resultado = {
+          # =========================================================
+          # 8. GENERAR aemet-alerts.json
+          # =========================================================
+
+          result = {
+
               "source": "AEMET OpenData",
+
               "generatedAt": datetime.now(
                   timezone.utc
               ).isoformat(),
 
               "status": "ok",
+
               "count": len(alerts),
 
               "alerts": alerts
           }
+
 
           with open(
               "aemet-alerts.json",
@@ -599,15 +698,22 @@ jobs:
           ) as f:
 
               json.dump(
-                  resultado,
+                  result,
                   f,
                   ensure_ascii=False,
                   indent=2
               )
 
+
+          # =========================================================
+          # 9. RESUMEN
+          # =========================================================
+
+          print("")
           print("========================================")
-          print("RESULTADO")
+          print("RESULTADO AEMET")
           print("========================================")
+
           print(
               "Avisos procesados:",
               len(alerts)
@@ -626,24 +732,10 @@ jobs:
 
           print("========================================")
 
-          # ---------------------------------------------------------
-          # 9. ELIMINAR DIAGNÓSTICOS GRANDES DEL REPOSITORIO
-          # ---------------------------------------------------------
 
-          try:
-              os.remove("aemet-debug-archive.tar.gz")
-          except FileNotFoundError:
-              pass
-
-          try:
-              os.remove("aemet-debug-datos.txt")
-          except FileNotFoundError:
-              pass
-
-          try:
-              os.remove("aemet-debug-inicial.json")
-          except FileNotFoundError:
-              pass
+          # =========================================================
+          # 10. GUARDAR CAMBIOS
+          # =========================================================
 
           PY
 
