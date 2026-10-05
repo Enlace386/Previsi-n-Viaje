@@ -1,0 +1,151 @@
+name: Actualizar avisos AEMET
+
+on:
+  schedule:
+    # Ejecutar cada 3 horas
+    - cron: "15 */3 * * *"
+
+  # Permite ejecutarlo manualmente desde GitHub
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  actualizar-aemet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Consultar AEMET
+        env:
+          AEMET_API_KEY: ${{ secrets.AEMET_API_KEY }}
+        run: |
+          python <<'PY'
+          import json
+          import os
+          import urllib.request
+          import urllib.error
+          from datetime import datetime, timezone
+
+          API_KEY = os.environ.get("AEMET_API_KEY")
+
+          if not API_KEY:
+              raise SystemExit("ERROR: No existe el secreto AEMET_API_KEY")
+
+          # Endpoint oficial de avisos de fenómenos meteorológicos adversos.
+          # AEMET devuelve primero una URL de datos que posteriormente se consulta.
+          endpoint = (
+              "https://opendata.aemet.es/opendata/api/"
+              "avisos_cap/ultimoelaborado/area/esp"
+          )
+
+          request = urllib.request.Request(
+              endpoint,
+              headers={
+                  "api_key": API_KEY,
+                  "User-Agent": "TravelSafe/1.0"
+              }
+          )
+
+          try:
+              with urllib.request.urlopen(request, timeout=60) as response:
+                  raw = response.read().decode("utf-8")
+                  first_response = json.loads(raw)
+          except Exception as e:
+              raise SystemExit(
+                  "ERROR consultando el endpoint de AEMET: "
+                  + str(e)
+              )
+
+          if first_response.get("estado") != 200:
+              raise SystemExit(
+                  "AEMET devolvió estado "
+                  + str(first_response.get("estado"))
+                  + ": "
+                  + str(first_response)
+              )
+
+          data_url = first_response.get("datos")
+
+          if not data_url:
+              raise SystemExit(
+                  "AEMET no devolvió la URL de datos."
+              )
+
+          data_request = urllib.request.Request(
+              data_url,
+              headers={
+                  "User-Agent": "TravelSafe/1.0"
+              }
+          )
+
+          try:
+              with urllib.request.urlopen(
+                  data_request,
+                  timeout=60
+              ) as response:
+                  data_raw = response.read().decode("utf-8")
+                  alerts = json.loads(data_raw)
+          except Exception as e:
+              raise SystemExit(
+                  "ERROR descargando los datos de avisos AEMET: "
+                  + str(e)
+              )
+
+          if not isinstance(alerts, list):
+              alerts = [alerts]
+
+          output = {
+              "source": "AEMET OpenData",
+              "generatedAt": datetime.now(
+                  timezone.utc
+              ).isoformat(),
+              "status": "ok",
+              "count": len(alerts),
+              "alerts": alerts
+          }
+
+          with open(
+              "aemet-alerts.json",
+              "w",
+              encoding="utf-8"
+          ) as f:
+              json.dump(
+                  output,
+                  f,
+                  ensure_ascii=False,
+                  indent=2
+              )
+
+          print(
+              "Avisos AEMET descargados:",
+              len(alerts)
+          )
+          PY
+
+      - name: Comprobar archivo generado
+        run: |
+          if [ ! -s aemet-alerts.json ]; then
+            echo "ERROR: No se ha generado aemet-alerts.json"
+            exit 1
+          fi
+
+          echo "Archivo generado correctamente:"
+          ls -lh aemet-alerts.json
+
+      - name: Guardar avisos actualizados
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add aemet-alerts.json
+
+          if git diff --cached --quiet; then
+            echo "No hay cambios en los avisos AEMET."
+          else
+            git commit -m "Actualización automática de avisos AEMET"
+            git push
+          fi
