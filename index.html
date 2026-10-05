@@ -1,0 +1,6376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"
+>
+
+<meta name="theme-color" content="#070a0f">
+<meta name="color-scheme" content="dark">
+
+<title>TRAVEL SAFE</title>
+
+<!-- =========================================================
+     LEAFLET
+     ========================================================= -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  crossorigin=""
+>
+
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  crossorigin=""
+></script>
+
+<style>
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  background: #070a0f;
+  color: #edf2f7;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* =========================================================
+   VARIABLES
+   ========================================================= */
+
+:root {
+  --bg: #070a0f;
+  --panel: #0d121a;
+  --panel-2: #111823;
+  --panel-3: #151d28;
+  --border: #202b38;
+
+  --text: #edf2f7;
+  --muted: #8e9bab;
+
+  --green: #35e28a;
+  --yellow: #ffd34d;
+  --orange: #ff9f43;
+  --red: #ff4d5f;
+  --extreme: #ff2e88;
+  --cyan: #3bdcff;
+
+  --radius: 18px;
+}
+
+/* =========================================================
+   APP
+   ========================================================= */
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  padding:
+    max(14px, env(safe-area-inset-top))
+    max(14px, env(safe-area-inset-right))
+    max(24px, env(safe-area-inset-bottom))
+    max(14px, env(safe-area-inset-left));
+}
+
+.container {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+  padding: 18px 4px 22px;
+}
+
+.logo-row {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.logo-icon {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #263444;
+  border-radius: 15px;
+  background:
+    linear-gradient(145deg, #15202d, #090d13);
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+  box-shadow:
+    0 10px 35px rgba(0,0,0,.35);
+}
+
+.logo-title {
+  font-size: clamp(24px, 5vw, 36px);
+  font-weight: 900;
+  letter-spacing: .04em;
+  line-height: 1;
+}
+
+.logo-title span {
+  color: var(--cyan);
+}
+
+.logo-subtitle {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   PANELS
+   ========================================================= */
+
+.panel {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18,25,35,.98),
+      rgba(10,14,20,.98)
+    );
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow:
+    0 20px 70px rgba(0,0,0,.22);
+}
+
+.panel + .panel {
+  margin-top: 16px;
+}
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+.search-panel {
+  padding: 18px;
+}
+
+.panel-title {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #cbd5df;
+  margin-bottom: 15px;
+}
+
+.form-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field label {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-weight: 800;
+}
+
+.field input {
+  width: 100%;
+  min-height: 52px;
+  padding: 13px 14px;
+  border-radius: 13px;
+  border: 1px solid #263443;
+  background: #090e15;
+  color: var(--text);
+  outline: none;
+  transition: .2s ease;
+}
+
+.field input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(59,220,255,.1);
+}
+
+.analyze-btn {
+  width: 100%;
+  min-height: 55px;
+  margin-top: 4px;
+  border: 0;
+  border-radius: 14px;
+  color: #031014;
+  background:
+    linear-gradient(135deg, #3bdcff, #58f1c7);
+  font-weight: 950;
+  letter-spacing: .03em;
+  box-shadow:
+    0 12px 35px rgba(59,220,255,.16);
+  transition: transform .15s ease, opacity .15s ease;
+}
+
+.analyze-btn:active {
+  transform: scale(.985);
+}
+
+.analyze-btn:disabled {
+  opacity: .55;
+  cursor: wait;
+}
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.status {
+  display: none;
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 13px;
+  background: #090e15;
+  border: 1px solid #1f2b38;
+}
+
+.status.visible {
+  display: block;
+}
+
+.status-main {
+  font-weight: 800;
+}
+
+.status-detail {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.error {
+  display: none;
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 13px;
+  background: rgba(255,77,95,.08);
+  border: 1px solid rgba(255,77,95,.35);
+  color: #ffadb5;
+  line-height: 1.5;
+}
+
+.error.visible {
+  display: block;
+}
+
+/* =========================================================
+   RESULTS
+   ========================================================= */
+
+#results {
+  display: none;
+}
+
+#results.visible {
+  display: block;
+}
+
+/* =========================================================
+   TRIP HEADER
+   ========================================================= */
+
+.trip-header {
+  padding: 18px;
+}
+
+.trip-route {
+  font-size: clamp(20px, 5vw, 30px);
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.trip-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.meta-item strong {
+  color: #dce4ec;
+}
+
+/* =========================================================
+   RISK
+   ========================================================= */
+
+.risk-panel {
+  padding: 18px;
+}
+
+.risk-layout {
+  display: grid;
+  gap: 18px;
+}
+
+.risk-score-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.score-circle {
+  width: 108px;
+  height: 108px;
+  min-width: 108px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at center, #0b1017 56%, transparent 57%),
+    conic-gradient(
+      var(--risk-color, var(--green))
+      var(--risk-angle, 0deg),
+      #202a35 0deg
+    );
+  position: relative;
+}
+
+.score-number {
+  font-size: 31px;
+  font-weight: 950;
+}
+
+.score-label {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.risk-name {
+  font-size: 23px;
+  font-weight: 950;
+  color: var(--risk-color, var(--green));
+}
+
+.risk-description {
+  color: var(--muted);
+  margin-top: 5px;
+  line-height: 1.45;
+  font-size: 13px;
+}
+
+.confidence {
+  margin-top: 14px;
+  padding: 11px 13px;
+  border-radius: 12px;
+  background: #090e15;
+  border: 1px solid #1e2a36;
+}
+
+.confidence strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.confidence span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* =========================================================
+   MAP
+   ========================================================= */
+
+.map-panel {
+  overflow: hidden;
+}
+
+.map-heading {
+  padding: 16px 18px 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.map-heading-title {
+  font-weight: 900;
+}
+
+.map-heading-info {
+  color: var(--muted);
+  font-size: 11px;
+  text-align: right;
+}
+
+#map {
+  width: 100%;
+  height: 430px;
+  min-height: 430px;
+  background: #dfe5ea;
+}
+
+/*
+ IMPORTANT:
+ Leaflet necesita que el contenedor tenga altura real.
+ No se utiliza ninguna imagen de mapa como sustituto.
+*/
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  font-family: inherit;
+  background: #dfe5ea;
+}
+
+.leaflet-control-attribution {
+  font-size: 9px;
+}
+
+/* =========================================================
+   MAP MARKERS
+   ========================================================= */
+
+.risk-marker {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.5);
+}
+
+.risk-marker.start {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  transform: rotate(45deg);
+}
+
+.risk-marker.start::after {
+  content: "S";
+  display: grid;
+  place-items: center;
+  height: 100%;
+  color: #07110c;
+  font-size: 12px;
+  font-weight: 950;
+  transform: rotate(-45deg);
+}
+
+.risk-marker.end {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.risk-marker.end::after {
+  content: "F";
+  display: grid;
+  place-items: center;
+  height: 100%;
+  color: #16070a;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+/* =========================================================
+   LEGEND
+   ========================================================= */
+
+.map-legend {
+  padding: 12px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 15px;
+  background: #090e15;
+  border-top: 1px solid var(--border);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* =========================================================
+   WEATHER POINTS
+   ========================================================= */
+
+.section {
+  padding: 18px;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 950;
+  margin-bottom: 13px;
+}
+
+.points-list {
+  display: grid;
+  gap: 10px;
+}
+
+.point-card {
+  border: 1px solid #202b37;
+  border-radius: 14px;
+  background: #090e15;
+  overflow: hidden;
+}
+
+.point-top {
+  padding: 13px 14px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid #18222d;
+}
+
+.point-name {
+  font-weight: 850;
+}
+
+.point-time {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.point-risk {
+  white-space: nowrap;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .05em;
+  padding: 5px 8px;
+  border-radius: 999px;
+  height: fit-content;
+}
+
+.point-body {
+  padding: 13px 14px;
+}
+
+.weather-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 9px;
+}
+
+.weather-item {
+  padding: 9px;
+  border-radius: 10px;
+  background: #0e151e;
+}
+
+.weather-label {
+  color: var(--muted);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.weather-value {
+  margin-top: 4px;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.point-risks {
+  margin-top: 12px;
+  padding-top: 11px;
+  border-top: 1px solid #1b2631;
+  color: #d8e0e8;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   SEGMENTS
+   ========================================================= */
+
+.segments {
+  display: grid;
+  gap: 10px;
+}
+
+.segment {
+  border-left: 4px solid var(--segment-color, var(--green));
+  border-radius: 12px;
+  padding: 14px;
+  background: #090e15;
+  border-top: 1px solid #1b2631;
+  border-right: 1px solid #1b2631;
+  border-bottom: 1px solid #1b2631;
+}
+
+.segment-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.segment-route {
+  font-weight: 850;
+  line-height: 1.3;
+}
+
+.segment-risk {
+  color: var(--segment-color, var(--green));
+  font-weight: 950;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.segment-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 9px;
+}
+
+.segment-chip {
+  background: #111923;
+  border: 1px solid #202d39;
+  border-radius: 999px;
+  padding: 5px 8px;
+  color: #c6d0da;
+  font-size: 11px;
+}
+
+/* =========================================================
+   RISKS
+   ========================================================= */
+
+.risks-list {
+  display: grid;
+  gap: 9px;
+}
+
+.risk-item {
+  padding: 13px;
+  border-radius: 12px;
+  background: #090e15;
+  border: 1px solid #1d2935;
+}
+
+.risk-item strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.risk-item span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+/* =========================================================
+   DATA STATUS
+   ========================================================= */
+
+.data-state {
+  padding: 14px;
+  border-radius: 13px;
+  border: 1px solid #273441;
+  background: #090e15;
+  line-height: 1.5;
+}
+
+.data-state strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.data-state span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* =========================================================
+   RECOMMENDATION
+   ========================================================= */
+
+.recommendation {
+  padding: 17px;
+  border-radius: 15px;
+  border: 1px solid #2a3845;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(59,220,255,.07),
+      rgba(255,255,255,.015)
+    );
+}
+
+.recommendation-title {
+  font-weight: 950;
+  margin-bottom: 8px;
+}
+
+.recommendation-text {
+  color: #c9d3dc;
+  line-height: 1.55;
+  font-size: 13px;
+}
+
+/* =========================================================
+   SOURCES
+   ========================================================= */
+
+.sources {
+  padding: 18px;
+}
+
+.source-list {
+  display: grid;
+  gap: 7px;
+}
+
+.source-row {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #090e15;
+  border: 1px solid #1c2733;
+  font-size: 12px;
+}
+
+.source-row strong {
+  color: #dce5ed;
+}
+
+.source-row span {
+  color: var(--muted);
+}
+
+/* =========================================================
+   SAVED TRIPS
+   ========================================================= */
+
+.saved-list {
+  display: grid;
+  gap: 9px;
+}
+
+.saved-trip {
+  padding: 12px;
+  background: #090e15;
+  border: 1px solid #1c2733;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.saved-info strong {
+  display: block;
+}
+
+.saved-info span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.saved-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.small-btn {
+  border: 1px solid #293744;
+  background: #111923;
+  color: #dce5ed;
+  border-radius: 9px;
+  padding: 8px 10px;
+  font-size: 11px;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+  padding: 24px 4px 5px;
+  color: #647180;
+  font-size: 10px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 760px) {
+
+  .form-grid {
+    grid-template-columns: 1.2fr 1.2fr .75fr .65fr;
+    align-items: end;
+  }
+
+  .analyze-field {
+    display: flex;
+  }
+
+  .analyze-btn {
+    margin-top: 0;
+  }
+
+  .risk-layout {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  .weather-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .points-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1050px) {
+
+  #map {
+    height: 540px;
+    min-height: 540px;
+  }
+
+  .points-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .weather-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+  .app {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .header {
+    padding-top: 12px;
+  }
+
+  .search-panel,
+  .risk-panel,
+  .section,
+  .sources,
+  .trip-header {
+    padding: 14px;
+  }
+
+  #map {
+    height: 390px;
+    min-height: 390px;
+  }
+
+  .score-circle {
+    width: 94px;
+    height: 94px;
+    min-width: 94px;
+  }
+
+  .score-number {
+    font-size: 27px;
+  }
+
+  .risk-name {
+    font-size: 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <div class="container">
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header class="header">
+
+      <div class="logo-row">
+
+        <div class="logo-icon">🚗</div>
+
+        <div>
+          <div class="logo-title">
+            TRAVEL <span>SAFE</span>
+          </div>
+
+          <div class="logo-subtitle">
+            análisis meteorológico de rutas
+          </div>
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         SEARCH
+         ===================================================== -->
+
+    <section class="panel search-panel">
+
+      <div class="panel-title">
+        Analiza tu viaje
+      </div>
+
+      <form id="travelForm">
+
+        <div class="form-grid">
+
+          <div class="field">
+
+            <label for="origin">
+              Origen
+            </label>
+
+            <input
+              id="origin"
+              type="text"
+              autocomplete="off"
+              placeholder="Ej. Alcorcón, Madrid"
+              required
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="destination">
+              Destino
+            </label>
+
+            <input
+              id="destination"
+              type="text"
+              autocomplete="off"
+              placeholder="Ej. Molina de Aragón"
+              required
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="travelDate">
+              Fecha
+            </label>
+
+            <input
+              id="travelDate"
+              type="date"
+              required
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="departureTime">
+              Salida
+            </label>
+
+            <input
+              id="departureTime"
+              type="time"
+              value="08:00"
+              required
+            >
+
+          </div>
+
+        </div>
+
+
+        <button
+          id="analyzeBtn"
+          class="analyze-btn"
+          type="submit"
+        >
+          🔍 ANALIZAR VIAJE
+        </button>
+
+      </form>
+
+
+      <div
+        id="status"
+        class="status"
+        aria-live="polite"
+      >
+
+        <div
+          id="statusMain"
+          class="status-main"
+        >
+          Preparando análisis...
+        </div>
+
+        <div
+          id="statusDetail"
+          class="status-detail"
+        ></div>
+
+      </div>
+
+
+      <div
+        id="error"
+        class="error"
+        aria-live="assertive"
+      ></div>
+
+    </section>
+
+
+    <!-- =====================================================
+         RESULTS
+         ===================================================== -->
+
+    <main id="results">
+
+
+      <!-- ===================================================
+           TRIP HEADER
+           =================================================== -->
+
+      <section class="panel trip-header">
+
+        <div
+          id="tripRoute"
+          class="trip-route"
+        >
+          —
+        </div>
+
+        <div
+          id="tripMeta"
+          class="trip-meta"
+        ></div>
+
+        <div class="analysis-toolbar">
+          <button
+            id="printReportBtn"
+            class="report-btn"
+            type="button"
+          >
+            🖨️ Imprimir / PDF
+          </button>
+        </div>
+
+      </section>
+
+
+      <!-- ===================================================
+           GLOBAL RISK
+           =================================================== -->
+
+      <section class="panel risk-panel">
+
+        <div class="panel-title">
+          ⚠️ Riesgo global
+        </div>
+
+        <div class="risk-layout">
+
+          <div class="risk-score-box">
+
+            <div
+              id="scoreCircle"
+              class="score-circle"
+            >
+
+              <div>
+                <div
+                  id="scoreNumber"
+                  class="score-number"
+                >
+                  —
+                </div>
+
+                <div class="score-label">
+                  / 100
+                </div>
+              </div>
+
+            </div>
+
+
+            <div>
+
+              <div
+                id="riskName"
+                class="risk-name"
+              >
+                —
+              </div>
+
+              <div
+                id="riskDescription"
+                class="risk-description"
+              >
+                —
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div
+            id="confidence"
+            class="confidence"
+          ></div>
+
+          <div
+            id="riskMethod"
+            class="risk-method"
+          ></div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ===================================================
+           MAP
+           =================================================== -->
+
+      <section class="panel map-panel">
+
+        <div class="map-heading">
+
+          <div>
+            <div class="map-heading-title">
+              🗺️ Ruta completa
+            </div>
+          </div>
+
+          <div
+            id="mapInfo"
+            class="map-heading-info"
+          >
+            Esperando ruta...
+          </div>
+
+        </div>
+
+
+        <!--
+          ESTE ES EL MAPA REAL.
+          NO ES UNA IMAGEN.
+          LEAFLET SE INICIALIZA EN JAVASCRIPT.
+        -->
+
+        <div id="map"></div>
+
+
+        <div class="map-legend">
+
+          <div class="legend-item">
+            <span
+              class="legend-dot"
+              style="background:#35e28a"
+            ></span>
+            Normal
+          </div>
+
+          <div class="legend-item">
+            <span
+              class="legend-dot"
+              style="background:#ffd34d"
+            ></span>
+            Precaución
+          </div>
+
+          <div class="legend-item">
+            <span
+              class="legend-dot"
+              style="background:#ff9f43"
+            ></span>
+            Riesgo
+          </div>
+
+          <div class="legend-item">
+            <span
+              class="legend-dot"
+              style="background:#ff4d5f"
+            ></span>
+            Riesgo elevado
+          </div>
+
+          <div class="legend-item">
+            <span
+              class="legend-dot"
+              style="background:#ff2e88"
+            ></span>
+            Extremo
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ===================================================
+           WEATHER POINTS
+           =================================================== -->
+
+      <section class="panel section">
+
+        <div class="section-title">
+          🌦️ Condiciones durante el recorrido
+        </div>
+
+        <div
+          id="pointsList"
+          class="points-list"
+        ></div>
+
+      </section>
+
+
+      <!-- ===================================================
+           SEGMENTS
+           =================================================== -->
+
+      <section class="panel section">
+
+        <div class="section-title">
+          🛣️ Riesgo por tramos
+        </div>
+
+        <div
+          id="segmentsList"
+          class="segments"
+        ></div>
+
+      </section>
+
+
+      <!-- ===================================================
+           MAIN RISKS
+           =================================================== -->
+
+      <section class="panel section">
+
+        <div class="section-title">
+          ⚠️ Principales riesgos
+        </div>
+
+        <div
+          id="risksList"
+          class="risks-list"
+        ></div>
+
+      </section>
+
+
+      <!-- ===================================================
+           FLOODING
+           =================================================== -->
+
+      <section class="panel section">
+
+        <div class="section-title">
+          🌊 Inundaciones
+        </div>
+
+        <div
+          id="floodStatus"
+          class="data-state warning"
+        >
+
+          <strong>
+            🌊 Estado: datos insuficientes
+          </strong>
+
+          <span>
+            No se dispone todavía de una fuente hidrológica oficial
+            georreferenciada conectada a TRAVEL SAFE. Esto no significa
+            que no exista riesgo de inundación.
+          </span>
+
+        </div>
+
+        <div
+          id="floodList"
+          class="official-list"
+        ></div>
+
+      </section>
+
+
+      <!-- ===================================================
+           ALERTS
+           =================================================== -->
+
+      <section class="panel section">
+
+        <div class="section-title">
+          🚨 Avisos oficiales
+        </div>
+
+        <div
+          id="alertsStatus"
+          class="data-state warning"
+        >
+
+          <strong>
+            🚨 Estado: avisos no consultados
+          </strong>
+
+          <span>
+            La consulta oficial AEMET necesita un proxy seguro
+            (por ejemplo, una Cloud Function de Firebase) para no
+            exponer la API key en este HTML público.
+          </span>
+
+        </div>
+
+        <div
+          id="alertsList"
+          class="official-list"
+        ></div>
+
+      </section>
+
+
+      <!-- ===================================================
+           RECOMMENDATION
+           =================================================== -->
+
+      <section class="panel section">
+
+        <div class="section-title">
+          🚗 Recomendación
+        </div>
+
+        <div
+          id="recommendation"
+          class="recommendation"
+        ></div>
+
+      </section>
+
+
+      <!-- ===================================================
+           SOURCES
+           =================================================== -->
+
+      <section class="panel sources">
+
+        <div class="section-title">
+          📚 Fuentes utilizadas
+        </div>
+
+        <div class="source-list">
+
+          <div class="source-row">
+            <strong>Mapa:</strong>
+            <span>
+              OpenStreetMap + Leaflet
+            </span>
+          </div>
+
+          <div class="source-row">
+            <strong>Ruta:</strong>
+            <span>
+              OSRM
+            </span>
+          </div>
+
+          <div class="source-row">
+            <strong>Geocodificación:</strong>
+            <span>
+              Nominatim / OpenStreetMap
+            </span>
+          </div>
+
+          <div class="source-row">
+            <strong>Meteorología:</strong>
+            <span>
+              Open-Meteo
+            </span>
+          </div>
+
+          <div class="source-row">
+            <strong>Avisos:</strong>
+            <span>
+              No evaluados automáticamente en esta versión
+            </span>
+          </div>
+
+          <div class="source-row">
+            <strong>Inundaciones:</strong>
+            <span>
+              Datos insuficientes / sin simulación
+            </span>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ===================================================
+           SAVED TRIPS
+           =================================================== -->
+
+      <section class="panel section">
+
+        <div class="section-title">
+          💾 Mis viajes
+        </div>
+
+        <div
+          id="savedTrips"
+          class="saved-list"
+        ></div>
+
+      </section>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="footer">
+
+      TRAVEL SAFE · Herramienta preventiva de planificación.
+
+      <br>
+
+      La información meteorológica es una previsión y puede cambiar.
+
+      <br>
+
+      No sustituye a los avisos oficiales ni a las condiciones
+      observadas durante el viaje.
+
+    </footer>
+
+  </div>
+
+</div>
+
+
+<script>
+"use strict";
+
+/* ===========================================================
+   CONFIGURACIÓN
+   =========================================================== */
+
+const CONFIG = {
+
+  NOMINATIM:
+    "https://nominatim.openstreetmap.org/search",
+
+  OSRM:
+    "https://router.project-osrm.org/route/v1/driving",
+
+  OPEN_METEO:
+    "https://api.open-meteo.com/v1/forecast",
+
+  MAP_TILE:
+    "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+
+  /*
+   * IMPORTANTE:
+   * Estas URLs NO contienen claves secretas.
+   * En producción pueden apuntar a Cloud Functions de Firebase.
+   * Ejemplo:
+   * https://europe-southwest1-TU_PROYECTO.cloudfunctions.net/aemetProxy
+   */
+  AEMET_PROXY_URL:
+    "",
+
+  HYDRO_PROXY_URL:
+    "",
+
+  ANALYSIS_DISTANCE_KM:
+    25,
+
+  MAX_ANALYSIS_POINTS:
+    18,
+
+  REQUEST_TIMEOUT:
+    25000,
+
+  MAX_WEATHER_POINTS_IN_PARALLEL:
+    3
+
+};
+
+
+/* ===========================================================
+   ESTADO
+   =========================================================== */
+
+let map = null;
+
+let routeLayer = null;
+
+let pointLayer = null;
+
+let startMarker = null;
+
+let endMarker = null;
+
+let currentAnalysis = null;
+
+
+/* ===========================================================
+   DOM
+   =========================================================== */
+
+const $ = id =>
+  document.getElementById(id);
+
+
+/* ===========================================================
+   FECHA MÍNIMA
+   =========================================================== */
+
+function setMinimumDate() {
+
+  const today = new Date();
+
+  const yyyy = today.getFullYear();
+
+  const mm = String(today.getMonth() + 1)
+    .padStart(2, "0");
+
+  const dd = String(today.getDate())
+    .padStart(2, "0");
+
+  $("travelDate").min =
+    `${yyyy}-${mm}-${dd}`;
+
+}
+
+
+/* ===========================================================
+   MAPA — INICIALIZACIÓN REAL
+   =========================================================== */
+
+function initMap() {
+
+  /*
+   Evitamos crear el mapa dos veces.
+  */
+
+  if (map) {
+
+    setTimeout(() => {
+      map.invalidateSize();
+    }, 100);
+
+    return;
+
+  }
+
+
+  /*
+   Crear mapa Leaflet REAL.
+  */
+
+  map = L.map("map", {
+
+    zoomControl: true,
+
+    attributionControl: true,
+
+    scrollWheelZoom: true,
+
+    dragging: true,
+
+    doubleClickZoom: true,
+
+    boxZoom: true,
+
+    keyboard: true,
+
+    touchZoom: true
+
+  });
+
+
+  /*
+   OpenStreetMap.
+  */
+
+  L.tileLayer(
+    CONFIG.MAP_TILE,
+    {
+      maxZoom: 19,
+
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
+
+      crossOrigin: true
+    }
+  ).addTo(map);
+
+
+  /*
+   Vista inicial España.
+  */
+
+  map.setView(
+    [40.4168, -3.7038],
+    6
+  );
+
+
+  /*
+   Capas.
+  */
+
+  routeLayer =
+    L.layerGroup().addTo(map);
+
+  pointLayer =
+    L.layerGroup().addTo(map);
+
+
+  /*
+   Leaflet necesita recalcular tamaño cuando
+   el contenedor cambia.
+  */
+
+  setTimeout(() => {
+
+    map.invalidateSize();
+
+  }, 300);
+
+}
+
+
+/* ===========================================================
+   TIMEOUT FETCH
+   =========================================================== */
+
+async function fetchWithTimeout(
+  url,
+  options = {},
+  timeout = CONFIG.REQUEST_TIMEOUT
+) {
+
+  const controller =
+    new AbortController();
+
+  const timer =
+    setTimeout(
+      () => controller.abort(),
+      timeout
+    );
+
+  try {
+
+    const response =
+      await fetch(
+        url,
+        {
+          ...options,
+          signal:
+            controller.signal
+        }
+      );
+
+    if (!response.ok) {
+
+      throw new Error(
+        `HTTP ${response.status}`
+      );
+
+    }
+
+    return response;
+
+  } finally {
+
+    clearTimeout(timer);
+
+  }
+
+}
+
+
+/* ===========================================================
+   STATUS
+   =========================================================== */
+
+function setStatus(
+  main,
+  detail = ""
+) {
+
+  $("status").classList.add("visible");
+
+  $("statusMain").textContent =
+    main;
+
+  $("statusDetail").textContent =
+    detail;
+
+}
+
+
+function hideStatus() {
+
+  $("status").classList.remove(
+    "visible"
+  );
+
+}
+
+
+function showError(message) {
+
+  $("error").textContent =
+    message;
+
+  $("error").classList.add(
+    "visible"
+  );
+
+}
+
+
+function hideError() {
+
+  $("error").classList.remove(
+    "visible"
+  );
+
+}
+
+
+/* ===========================================================
+   GEOCODIFICACIÓN
+   =========================================================== */
+
+async function geocode(place) {
+
+  const params =
+    new URLSearchParams({
+
+      q: place,
+
+      format: "json",
+
+      limit: "1",
+
+      addressdetails: "1",
+
+      countrycodes: "es"
+
+    });
+
+
+  const response =
+    await fetchWithTimeout(
+      `${CONFIG.NOMINATIM}?${params}`
+    );
+
+
+  const data =
+    await response.json();
+
+
+  if (!Array.isArray(data) ||
+      !data.length) {
+
+    throw new Error(
+      `No se ha encontrado: ${place}`
+    );
+
+  }
+
+
+  const item =
+    data[0];
+
+
+  return {
+
+    lat:
+      Number(item.lat),
+
+    lon:
+      Number(item.lon),
+
+    displayName:
+      item.display_name
+
+  };
+
+}
+
+
+/* ===========================================================
+   RUTA OSRM
+   =========================================================== */
+
+async function getRoute(
+  origin,
+  destination
+) {
+
+  /*
+   OSRM utiliza:
+   longitud,latitud
+  */
+
+  const coordinates =
+    `${origin.lon},${origin.lat};` +
+    `${destination.lon},${destination.lat}`;
+
+
+  const params =
+    new URLSearchParams({
+
+      overview: "full",
+
+      geometries: "geojson",
+
+      steps: "true",
+
+      annotations: "true",
+
+      alternatives: "false"
+
+    });
+
+
+  const url =
+    `${CONFIG.OSRM}/${coordinates}?${params}`;
+
+
+  const response =
+    await fetchWithTimeout(url);
+
+
+  const data =
+    await response.json();
+
+
+  if (!data ||
+      data.code !== "Ok" ||
+      !data.routes ||
+      !data.routes.length) {
+
+    throw new Error(
+      "No se ha podido calcular una ruta entre los puntos indicados."
+    );
+
+  }
+
+
+  return data.routes[0];
+
+}
+
+
+/* ===========================================================
+   DISTANCIA ENTRE COORDENADAS
+   =========================================================== */
+
+function haversineKm(
+  lat1,
+  lon1,
+  lat2,
+  lon2
+) {
+
+  const R =
+    6371;
+
+
+  const dLat =
+    (lat2 - lat1) *
+    Math.PI / 180;
+
+
+  const dLon =
+    (lon2 - lon1) *
+    Math.PI / 180;
+
+
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+
+    Math.cos(lat1 * Math.PI / 180) *
+    Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLon / 2) ** 2;
+
+
+  return (
+    2 *
+    R *
+    Math.atan2(
+      Math.sqrt(a),
+      Math.sqrt(1 - a)
+    )
+  );
+
+}
+
+
+/* ===========================================================
+   DISTANCIAS ACUMULADAS
+   =========================================================== */
+
+function buildRouteMetrics(
+  coordinates
+) {
+
+  const distances = [0];
+
+  let total = 0;
+
+
+  for (
+    let i = 1;
+    i < coordinates.length;
+    i++
+  ) {
+
+    const [
+      lon1,
+      lat1
+    ] =
+      coordinates[i - 1];
+
+
+    const [
+      lon2,
+      lat2
+    ] =
+      coordinates[i];
+
+
+    const d =
+      haversineKm(
+        lat1,
+        lon1,
+        lat2,
+        lon2
+      );
+
+
+    total += d;
+
+    distances.push(total);
+
+  }
+
+
+  return {
+    distances,
+    total
+  };
+
+}
+
+
+/* ===========================================================
+   PUNTO A LO LARGO DE LA RUTA
+   =========================================================== */
+
+function coordinateAtDistance(
+  coordinates,
+  cumulative,
+  targetKm
+) {
+
+  if (targetKm <= 0) {
+
+    return coordinates[0];
+
+  }
+
+
+  const total =
+    cumulative[cumulative.length - 1];
+
+
+  if (targetKm >= total) {
+
+    return coordinates[
+      coordinates.length - 1
+    ];
+
+  }
+
+
+  for (
+    let i = 1;
+    i < cumulative.length;
+    i++
+  ) {
+
+    if (
+      cumulative[i] >= targetKm
+    ) {
+
+      const previous =
+        cumulative[i - 1];
+
+      const segment =
+        cumulative[i] -
+        previous;
+
+      const ratio =
+        segment === 0
+          ? 0
+          : (targetKm - previous) /
+            segment;
+
+
+      const [
+        lon1,
+        lat1
+      ] =
+        coordinates[i - 1];
+
+
+      const [
+        lon2,
+        lat2
+      ] =
+        coordinates[i];
+
+
+      return [
+
+        lon1 +
+          (lon2 - lon1) * ratio,
+
+        lat1 +
+          (lat2 - lat1) * ratio
+
+      ];
+
+    }
+
+  }
+
+
+  return coordinates[
+    coordinates.length - 1
+  ];
+
+}
+
+
+/* ===========================================================
+   CREAR PUNTOS DE ANÁLISIS
+   =========================================================== */
+
+function createAnalysisPoints(
+  route
+) {
+
+  const coordinates =
+    route.geometry.coordinates;
+
+
+  const metrics =
+    buildRouteMetrics(
+      coordinates
+    );
+
+
+  const totalKm =
+    metrics.total;
+
+
+  let count =
+    Math.ceil(
+      totalKm /
+      CONFIG.ANALYSIS_DISTANCE_KM
+    ) + 1;
+
+
+  count =
+    Math.max(
+      3,
+      Math.min(
+        count,
+        CONFIG.MAX_ANALYSIS_POINTS
+      )
+    );
+
+
+  const points = [];
+
+
+  for (
+    let i = 0;
+    i < count;
+    i++
+  ) {
+
+    const fraction =
+      count === 1
+        ? 0
+        : i / (count - 1);
+
+
+    const distanceKm =
+      totalKm * fraction;
+
+
+    const [
+      lon,
+      lat
+    ] =
+      coordinateAtDistance(
+        coordinates,
+        metrics.distances,
+        distanceKm
+      );
+
+
+    const timeOffsetSeconds =
+      route.duration *
+      fraction;
+
+
+    points.push({
+
+      index: i,
+
+      lat,
+
+      lon,
+
+      distanceKm,
+
+      fraction,
+
+      timeOffsetSeconds
+
+    });
+
+  }
+
+
+  return {
+
+    points,
+
+    totalKm,
+
+    coordinates
+
+  };
+
+}
+
+
+/* ===========================================================
+   HORA ESTIMADA DE PASO
+   =========================================================== */
+
+function estimatedPassTime(
+  date,
+  time,
+  seconds
+) {
+
+  /*
+   Fecha local española.
+   La previsión de Open-Meteo devuelve horas locales
+   cuando se solicita timezone=auto.
+  */
+
+  const [year, month, day] =
+    date.split("-").map(Number);
+
+
+  const [hour, minute] =
+    time.split(":").map(Number);
+
+
+  const base =
+    new Date(
+      year,
+      month - 1,
+      day,
+      hour,
+      minute,
+      0,
+      0
+    );
+
+
+  const result =
+    new Date(
+      base.getTime() +
+      seconds * 1000
+    );
+
+
+  return {
+
+    date: result,
+
+    time:
+      result.toLocaleTimeString(
+        "es-ES",
+        {
+          hour: "2-digit",
+          minute: "2-digit"
+        }
+      )
+
+  };
+
+}
+
+
+/* ===========================================================
+   WEATHER QUERY
+   =========================================================== */
+
+async function getWeather(
+  point
+) {
+
+  const hourly = [
+
+    "temperature_2m",
+
+    "apparent_temperature",
+
+    "dew_point_2m",
+
+    "precipitation_probability",
+
+    "precipitation",
+
+    "rain",
+
+    "showers",
+
+    "snowfall",
+
+    "snow_depth",
+
+    "freezing_level_height",
+
+    "weather_code",
+
+    "cloud_cover",
+
+    "visibility",
+
+    "pressure_msl",
+
+    "surface_pressure",
+
+    "wind_speed_10m",
+
+    "wind_direction_10m",
+
+    "wind_gusts_10m",
+
+    "relative_humidity_2m",
+
+    "cape"
+
+  ].join(",");
+
+
+  const params =
+    new URLSearchParams({
+
+      latitude:
+        point.lat.toFixed(5),
+
+      longitude:
+        point.lon.toFixed(5),
+
+      hourly,
+
+      forecast_days: "16",
+
+      timezone: "auto",
+
+      wind_speed_unit: "kmh",
+
+      precipitation_unit: "mm"
+
+    });
+
+
+  const response =
+    await fetchWithTimeout(
+      `${CONFIG.OPEN_METEO}?${params}`
+    );
+
+
+  const data =
+    await response.json();
+
+
+  if (!data ||
+      !data.hourly ||
+      !Array.isArray(data.hourly.time)) {
+
+    throw new Error(
+      "La fuente meteorológica no ha devuelto datos válidos."
+    );
+
+  }
+
+
+  return data;
+
+}
+
+
+/* ===========================================================
+   BUSCAR HORA METEO MÁS PRÓXIMA
+   =========================================================== */
+
+function findWeatherIndex(
+  weather,
+  targetDate
+) {
+
+  const times =
+    weather.hourly.time;
+
+
+  let bestIndex = -1;
+
+  let bestDiff = Infinity;
+
+
+  for (
+    let i = 0;
+    i < times.length;
+    i++
+  ) {
+
+    const t =
+      new Date(times[i]);
+
+
+    const diff =
+      Math.abs(
+        t.getTime() -
+        targetDate.getTime()
+      );
+
+
+    if (
+      diff < bestDiff
+    ) {
+
+      bestDiff =
+        diff;
+
+      bestIndex =
+        i;
+
+    }
+
+  }
+
+
+  return {
+
+    index: bestIndex,
+
+    differenceMinutes:
+      bestDiff / 60000
+
+  };
+
+}
+
+
+/* ===========================================================
+   WEATHER CODE
+   =========================================================== */
+
+function weatherDescription(
+  code
+) {
+
+  const c =
+    Number(code);
+
+
+  if (c === 0)
+    return "Cielo despejado";
+
+  if ([1,2,3].includes(c))
+    return "Nubosidad variable";
+
+  if ([45,48].includes(c))
+    return "Niebla";
+
+  if ([51,53,55].includes(c))
+    return "Llovizna";
+
+  if ([56,57].includes(c))
+    return "Llovizna helada";
+
+  if ([61,63,65].includes(c))
+    return "Lluvia";
+
+  if ([66,67].includes(c))
+    return "Lluvia helada";
+
+  if ([71,73,75].includes(c))
+    return "Nieve";
+
+  if (c === 77)
+    return "Granos de nieve";
+
+  if ([80,81,82].includes(c))
+    return "Chubascos";
+
+  if ([85,86].includes(c))
+    return "Chubascos de nieve";
+
+  if ([95].includes(c))
+    return "Tormenta";
+
+  if ([96,99].includes(c))
+    return "Tormenta con granizo";
+
+  return "Condición meteorológica no identificada";
+
+}
+
+
+/* ===========================================================
+   EXTRAER DATOS HORARIOS
+   =========================================================== */
+
+function extractWeatherAt(
+  weather,
+  index
+) {
+
+  const h =
+    weather.hourly;
+
+
+  return {
+
+    temperature:
+      h.temperature_2m?.[index],
+
+    apparent:
+      h.apparent_temperature?.[index],
+
+    dewPoint:
+      h.dew_point_2m?.[index],
+
+    precipitationProbability:
+      h.precipitation_probability?.[index],
+
+    precipitation:
+      h.precipitation?.[index],
+
+    rain:
+      h.rain?.[index],
+
+    showers:
+      h.showers?.[index],
+
+    snowfall:
+      h.snowfall?.[index],
+
+    snowDepth:
+      h.snow_depth?.[index],
+
+    freezingLevel:
+      h.freezing_level_height?.[index],
+
+    weatherCode:
+      h.weather_code?.[index],
+
+    cloudCover:
+      h.cloud_cover?.[index],
+
+    visibility:
+      h.visibility?.[index],
+
+    pressure:
+      h.pressure_msl?.[index],
+
+    surfacePressure:
+      h.surface_pressure?.[index],
+
+    wind:
+      h.wind_speed_10m?.[index],
+
+    windDirection:
+      h.wind_direction_10m?.[index],
+
+    gusts:
+      h.wind_gusts_10m?.[index],
+
+    humidity:
+      h.relative_humidity_2m?.[index],
+
+    cape:
+      h.cape?.[index],
+
+    elevation:
+      weather.elevation
+
+  };
+
+}
+
+
+/* ===========================================================
+   DETECCIÓN DE TORMENTA
+   =========================================================== */
+
+function isStorm(
+  weather
+) {
+
+  return [
+    95,
+    96,
+    99
+  ].includes(
+    Number(weather.weatherCode)
+  );
+
+}
+
+
+/* ===========================================================
+   DETECCIÓN DE NIEVE
+   =========================================================== */
+
+function hasSnow(
+  weather
+) {
+
+  return (
+    Number(weather.snowfall || 0) > 0 ||
+    [71,73,75,77,85,86]
+      .includes(
+        Number(weather.weatherCode)
+      )
+  );
+
+}
+
+
+
+/* ===========================================================
+   TOPOGRAFÍA Y CONTEXTO DEL RECORRIDO
+   =========================================================== */
+
+function detectTerrainRisk(
+  point,
+  previousPoint
+) {
+
+  const risks = [];
+
+  const elevation =
+    Number(point.weather?.elevation);
+
+  if (
+    Number.isFinite(elevation) &&
+    elevation >= 1200
+  ) {
+
+    risks.push(
+      "Zona de alta montaña / gran altitud"
+    );
+
+  }
+  else if (
+    Number.isFinite(elevation) &&
+    elevation >= 800
+  ) {
+
+    risks.push(
+      "Zona de altitud elevada"
+    );
+
+  }
+
+  if (
+    previousPoint &&
+    Number.isFinite(elevation) &&
+    Number.isFinite(Number(previousPoint.weather?.elevation))
+  ) {
+
+    const delta =
+      elevation -
+      Number(previousPoint.weather.elevation);
+
+    if (Math.abs(delta) >= 500) {
+
+      risks.push(
+        `Cambio de altitud aproximado de ${Math.round(Math.abs(delta))} m`
+      );
+
+    }
+
+  }
+
+  return risks;
+}
+
+
+function enrichPointWithTerrain(
+  point,
+  previousPoint
+) {
+
+  const terrainRisks =
+    detectTerrainRisk(
+      point,
+      previousPoint
+    );
+
+  point.terrainRisks =
+    terrainRisks;
+
+  if (terrainRisks.length) {
+
+    point.risk.risks =
+      Array.from(
+        new Set([
+          ...point.risk.risks,
+          ...terrainRisks
+        ])
+      );
+
+    /*
+     * La topografía es un modificador preventivo,
+     * no una afirmación de peligro. Solo eleva
+     * moderadamente el score.
+     */
+    point.risk.score =
+      Math.min(
+        100,
+        point.risk.score +
+        Math.min(8, terrainRisks.length * 4)
+      );
+
+  }
+
+}
+
+
+/* ===========================================================
+   AVISOS OFICIALES — PROXY SEGURO
+   =========================================================== */
+
+function normalizeOfficialItems(
+  payload
+) {
+
+  if (!payload) {
+    return [];
+  }
+
+  if (Array.isArray(payload)) {
+    return payload;
+  }
+
+  if (Array.isArray(payload.alerts)) {
+    return payload.alerts;
+  }
+
+  if (Array.isArray(payload.avisos)) {
+    return payload.avisos;
+  }
+
+  if (Array.isArray(payload.data)) {
+    return payload.data;
+  }
+
+  return [];
+}
+
+
+function alertTouchesRoute(
+  alert,
+  points
+) {
+
+  /*
+   * Un proxy puede devolver directamente
+   * only route-relevant alerts. Si además entrega
+   * coordenadas simples, hacemos una comprobación
+   * aproximada para evitar mostrar avisos nacionales
+   * sin relación geográfica.
+   */
+
+  if (
+    alert.routeRelevant === true ||
+    alert.relevant === true
+  ) {
+
+    return true;
+
+  }
+
+  const lat =
+    Number(
+      alert.lat ??
+      alert.latitude
+    );
+
+  const lon =
+    Number(
+      alert.lon ??
+      alert.longitude
+    );
+
+  if (
+    !Number.isFinite(lat) ||
+    !Number.isFinite(lon)
+  ) {
+
+    /*
+     * Sin coordenadas no inventamos relevancia.
+     * El proxy debe haber filtrado previamente.
+     */
+    return alert.filteredForRoute === true;
+
+  }
+
+  return points.some(
+    point =>
+      haversineKm(
+        lat,
+        lon,
+        point.lat,
+        point.lon
+      ) <= 50
+  );
+
+}
+
+
+async function fetchOfficialAlerts(
+  analysis
+) {
+
+  if (!CONFIG.AEMET_PROXY_URL) {
+
+    return {
+      configured: false,
+      alerts: []
+    };
+
+  }
+
+  const response =
+    await fetchWithTimeout(
+      CONFIG.AEMET_PROXY_URL,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          type: "aemet",
+          date: analysis.date,
+          departure: analysis.departure,
+          origin: analysis.origin,
+          destination: analysis.destination,
+          points: analysis.points.map(
+            point => ({
+              lat: point.lat,
+              lon: point.lon,
+              passTime: point.passTime,
+              distanceKm: point.distanceKm
+            })
+          )
+        })
+      }
+    );
+
+  const payload =
+    await response.json();
+
+  const alerts =
+    normalizeOfficialItems(
+      payload
+    ).filter(
+      alert =>
+        alertTouchesRoute(
+          alert,
+          analysis.points
+        )
+    );
+
+  return {
+    configured: true,
+    alerts
+  };
+
+}
+
+
+/* ===========================================================
+   INUNDACIONES — FUENTE OFICIAL OPCIONAL
+   =========================================================== */
+
+async function fetchHydrologicalStatus(
+  analysis
+) {
+
+  if (!CONFIG.HYDRO_PROXY_URL) {
+
+    return {
+      configured: false,
+      items: []
+    };
+
+  }
+
+  const response =
+    await fetchWithTimeout(
+      CONFIG.HYDRO_PROXY_URL,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          type: "hydrology",
+          date: analysis.date,
+          departure: analysis.departure,
+          points: analysis.points.map(
+            point => ({
+              lat: point.lat,
+              lon: point.lon,
+              passTime: point.passTime,
+              distanceKm: point.distanceKm
+            })
+          )
+        })
+      }
+    );
+
+  const payload =
+    await response.json();
+
+  return {
+    configured: true,
+    items:
+      normalizeOfficialItems(payload)
+  };
+
+}
+
+
+function applyOfficialAlertsToRisk(
+  analysis
+) {
+
+  const alerts =
+    analysis.officialAlerts || [];
+
+  if (!alerts.length) {
+    return;
+  }
+
+  alerts.forEach(
+    alert => {
+
+      const severity =
+        String(
+          alert.severity ||
+          alert.nivel ||
+          alert.level ||
+          ""
+        ).toLowerCase();
+
+      let bonus = 8;
+
+      if (
+        severity.includes("rojo") ||
+        severity.includes("extreme") ||
+        severity.includes("extremo")
+      ) {
+        bonus = 30;
+      }
+      else if (
+        severity.includes("naranja") ||
+        severity.includes("orange") ||
+        severity.includes("muy alto")
+      ) {
+        bonus = 20;
+      }
+      else if (
+        severity.includes("amarillo") ||
+        severity.includes("yellow")
+      ) {
+        bonus = 10;
+      }
+
+      const lat =
+        Number(
+          alert.lat ??
+          alert.latitude
+        );
+
+      const lon =
+        Number(
+          alert.lon ??
+          alert.longitude
+        );
+
+      analysis.points.forEach(
+        point => {
+
+          const relevant =
+            (
+              Number.isFinite(lat) &&
+              Number.isFinite(lon)
+            )
+              ? haversineKm(
+                  lat,
+                  lon,
+                  point.lat,
+                  point.lon
+                ) <= 50
+              : alert.routeRelevant === true ||
+                alert.relevant === true;
+
+          if (!relevant) {
+            return;
+          }
+
+          point.risk.score =
+            Math.min(
+              100,
+              point.risk.score + bonus
+            );
+
+          const label =
+            alert.title ||
+            alert.event ||
+            alert.fenomeno ||
+            "Aviso meteorológico oficial";
+
+          point.risk.risks =
+            Array.from(
+              new Set([
+                ...point.risk.risks,
+                `Aviso oficial: ${label}`
+              ])
+            );
+
+        }
+      );
+
+    }
+  );
+
+  analysis.globalScore =
+    calculateGlobalScore(
+      analysis.points
+    );
+
+}
+
+
+/* ===========================================================
+   RENDER AVISOS E INUNDACIONES
+   =========================================================== */
+
+function renderOfficialAlerts(
+  analysis
+) {
+
+  const status =
+    $("alertsStatus");
+
+  const list =
+    $("alertsList");
+
+  list.innerHTML = "";
+
+  if (
+    !analysis.officialAlertsConfigured
+  ) {
+
+    status.className =
+      "data-state warning";
+
+    status.innerHTML = `
+      <strong>🚨 Avisos AEMET: no conectados</strong>
+      <span>
+        El análisis meteorológico funciona con Open-Meteo,
+        pero los avisos oficiales AEMET requieren un proxy
+        seguro con la API key fuera del navegador.
+      </span>
+    `;
+
+    return;
+
+  }
+
+  const alerts =
+    analysis.officialAlerts || [];
+
+  if (!alerts.length) {
+
+    status.className =
+      "data-state success";
+
+    status.innerHTML = `
+      <strong>✅ No se han recibido avisos oficiales relevantes para la ruta</strong>
+      <span>
+        Esto significa que el proxy oficial no ha devuelto
+        avisos geográficamente relevantes para los puntos
+        analizados. No equivale a garantía de ausencia de peligro.
+      </span>
+    `;
+
+    return;
+
+  }
+
+  status.className =
+    "data-state danger";
+
+  status.innerHTML = `
+    <strong>🚨 ${alerts.length} aviso(s) oficial(es) relevante(s)</strong>
+    <span>
+      Los avisos oficiales relevantes incrementan el riesgo
+      de los puntos afectados.
+    </span>
+  `;
+
+  alerts.forEach(
+    alert => {
+
+      const item =
+        document.createElement("div");
+
+      item.className =
+        "official-alert";
+
+      item.innerHTML = `
+        <strong>
+          ${escapeHtml(
+            alert.title ||
+            alert.event ||
+            alert.fenomeno ||
+            "Aviso meteorológico oficial"
+          )}
+        </strong>
+
+        <span>
+          Nivel:
+          ${escapeHtml(
+            alert.severity ||
+            alert.nivel ||
+            alert.level ||
+            "No indicado"
+          )}
+          <br>
+          ${escapeHtml(
+            alert.description ||
+            alert.descripcion ||
+            alert.text ||
+            "Sin descripción adicional."
+          )}
+        </span>
+      `;
+
+      list.appendChild(item);
+
+    }
+  );
+
+}
+
+
+function renderHydrologicalStatus(
+  analysis
+) {
+
+  const status =
+    $("floodStatus");
+
+  const list =
+    $("floodList");
+
+  list.innerHTML = "";
+
+  if (
+    !analysis.hydroConfigured
+  ) {
+
+    status.className =
+      "data-state warning";
+
+    status.innerHTML = `
+      <strong>🌊 Inundaciones: datos insuficientes</strong>
+      <span>
+        No hay una fuente hidrológica oficial georreferenciada
+        conectada. TRAVEL SAFE no transforma esta ausencia
+        de datos en "sin riesgo".
+      </span>
+    `;
+
+    return;
+
+  }
+
+  const items =
+    analysis.hydroItems || [];
+
+  if (!items.length) {
+
+    status.className =
+      "data-state success";
+
+    status.innerHTML = `
+      <strong>✅ Sin incidencias hidrológicas relevantes devueltas por la fuente conectada</strong>
+      <span>
+        La fuente oficial consultada no ha devuelto incidencias
+        para los puntos enviados. Comprueba siempre los avisos
+        locales antes de salir.
+      </span>
+    `;
+
+    return;
+
+  }
+
+  status.className =
+    "data-state danger";
+
+  status.innerHTML = `
+    <strong>🌊 Incidencias hidrológicas relevantes detectadas</strong>
+    <span>
+      La fuente oficial conectada ha devuelto información
+      compatible con riesgo hidrológico en el recorrido.
+    </span>
+  `;
+
+  items.forEach(
+    item => {
+
+      const el =
+        document.createElement("div");
+
+      el.className =
+        "official-alert";
+
+      el.innerHTML = `
+        <strong>
+          ${escapeHtml(
+            item.title ||
+            item.event ||
+            item.fenomeno ||
+            "Incidencia hidrológica"
+          )}
+        </strong>
+
+        <span>
+          ${escapeHtml(
+            item.description ||
+            item.descripcion ||
+            item.text ||
+            "Sin descripción adicional."
+          )}
+        </span>
+      `;
+
+      list.appendChild(el);
+
+    }
+  );
+
+}
+
+
+/* ===========================================================
+   EXPORTACIÓN / IMPRESIÓN
+   =========================================================== */
+
+function printReport() {
+
+  if (!currentAnalysis) {
+    return;
+  }
+
+  window.print();
+
+}
+
+
+/* ===========================================================
+   RIESGO METEOROLÓGICO
+   =========================================================== */
+
+function calculatePointRisk(
+  weather
+) {
+
+  let score = 0;
+
+  const risks = [];
+
+
+  const temp =
+    Number(weather.temperature);
+
+
+  const rainProb =
+    Number(
+      weather.precipitationProbability || 0
+    );
+
+
+  const rain =
+    Number(
+      weather.precipitation || 0
+    );
+
+
+  const wind =
+    Number(
+      weather.wind || 0
+    );
+
+
+  const gusts =
+    Number(
+      weather.gusts || 0
+    );
+
+
+  const visibility =
+    Number(
+      weather.visibility || 99999
+    );
+
+
+  /* ---------------------------------------------------------
+     PROBABILIDAD / LLUVIA
+     --------------------------------------------------------- */
+
+  if (rainProb >= 40) {
+
+    score += 4;
+
+    risks.push(
+      "Probabilidad de precipitación elevada"
+    );
+
+  }
+
+  if (rainProb >= 70) {
+
+    score += 4;
+
+  }
+
+
+  /* ---------------------------------------------------------
+     INTENSIDAD DE LLUVIA
+     --------------------------------------------------------- */
+
+  if (rain >= 2) {
+
+    score += 5;
+
+    risks.push(
+      "Precipitación prevista"
+    );
+
+  }
+
+  if (rain >= 5) {
+
+    score += 5;
+
+    risks.push(
+      "Lluvia intensa"
+    );
+
+  }
+
+
+  /* ---------------------------------------------------------
+     TORMENTA
+     --------------------------------------------------------- */
+
+  if (isStorm(weather)) {
+
+    score += 15;
+
+    risks.push(
+      "Tormenta prevista"
+    );
+
+  }
+
+
+  /* ---------------------------------------------------------
+     NIEVE
+     --------------------------------------------------------- */
+
+  if (hasSnow(weather)) {
+
+    score += 15;
+
+    risks.push(
+      "Posible nieve"
+    );
+
+  }
+
+
+  /* ---------------------------------------------------------
+     HIELO
+     --------------------------------------------------------- */
+
+  if (
+    Number.isFinite(temp) &&
+    temp <= 0
+  ) {
+
+    score += 12;
+
+    risks.push(
+      "Temperatura igual o inferior a 0 °C"
+    );
+
+  }
+  else if (
+    Number.isFinite(temp) &&
+    temp <= 3
+  ) {
+
+    score += 6;
+
+    risks.push(
+      "Temperatura próxima a 0 °C"
+    );
+
+  }
+
+
+  /* ---------------------------------------------------------
+     VIENTO
+     --------------------------------------------------------- */
+
+  if (wind >= 35) {
+
+    score += 5;
+
+    risks.push(
+      "Viento fuerte"
+    );
+
+  }
+
+  if (gusts >= 55) {
+
+    score += 5;
+
+    risks.push(
+      `Rachas de hasta ${Math.round(gusts)} km/h`
+    );
+
+  }
+
+  if (gusts >= 75) {
+
+    score += 7;
+
+    risks.push(
+      "Rachas muy fuertes"
+    );
+
+  }
+
+
+  /* ---------------------------------------------------------
+     NIEBLA / VISIBILIDAD
+     --------------------------------------------------------- */
+
+  if (
+    visibility > 0 &&
+    visibility < 2000
+  ) {
+
+    score += 7;
+
+    risks.push(
+      "Visibilidad reducida"
+    );
+
+  }
+
+  if (
+    visibility > 0 &&
+    visibility < 1000
+  ) {
+
+    score += 5;
+
+    risks.push(
+      "Visibilidad muy reducida"
+    );
+
+  }
+
+
+  /* ---------------------------------------------------------
+     NIEVE / HIELO — COMBINACIÓN METEOROLÓGICA
+     --------------------------------------------------------- */
+
+  const freezingLevel =
+    Number(weather.freezingLevel);
+
+  const snowDepth =
+    Number(weather.snowDepth);
+
+  if (
+    Number.isFinite(freezingLevel) &&
+    Number.isFinite(weather.elevation) &&
+    weather.elevation >= freezingLevel - 250
+  ) {
+
+    score += 8;
+
+    risks.push(
+      "Cota de congelación cercana a la altitud del punto"
+    );
+
+  }
+
+  if (
+    Number.isFinite(snowDepth) &&
+    snowDepth > 0
+  ) {
+
+    score += 8;
+
+    risks.push(
+      "Nieve acumulada prevista en el entorno"
+    );
+
+  }
+
+  if (
+    Number.isFinite(temp) &&
+    temp <= 2 &&
+    (rain > 0 || Number(weather.snowfall || 0) > 0)
+  ) {
+
+    score += 8;
+
+    risks.push(
+      "Precipitación con temperatura próxima a congelación"
+    );
+
+  }
+
+  /* ---------------------------------------------------------
+     CAPE / TORMENTA
+     --------------------------------------------------------- */
+
+  const cape =
+    Number(weather.cape);
+
+  if (
+    Number.isFinite(cape) &&
+    cape >= 800 &&
+    !isStorm(weather)
+  ) {
+
+    score += 4;
+
+    risks.push(
+      "Entorno convectivo potencialmente inestable"
+    );
+
+  }
+
+
+  score =
+    Math.min(
+      100,
+      Math.round(score)
+    );
+
+
+  return {
+
+    score,
+
+    risks
+
+  };
+
+}
+
+
+/* ===========================================================
+   NIVEL DE RIESGO
+   =========================================================== */
+
+function getRiskLevel(
+  score
+) {
+
+  if (score <= 20) {
+
+    return {
+
+      name: "BAJO",
+
+      color: "#35e28a",
+
+      description:
+        "No se han detectado condiciones meteorológicas relevantes para la conducción con los datos disponibles."
+
+    };
+
+  }
+
+
+  if (score <= 40) {
+
+    return {
+
+      name: "MODERADO",
+
+      color: "#ffd34d",
+
+      description:
+        "Se han detectado algunas condiciones que aconsejan mantener una precaución adicional."
+
+    };
+
+  }
+
+
+  if (score <= 60) {
+
+    return {
+
+      name: "ALTO",
+
+      color: "#ff9f43",
+
+      description:
+        "Existen varias condiciones meteorológicas que pueden afectar a la conducción."
+
+    };
+
+  }
+
+
+  if (score <= 80) {
+
+    return {
+
+      name: "MUY ALTO",
+
+      color: "#ff4d5f",
+
+      description:
+        "Se han detectado condiciones adversas importantes en parte del recorrido."
+
+    };
+
+  }
+
+
+  return {
+
+    name: "EXTREMO",
+
+    color: "#ff2e88",
+
+    description:
+      "Se han detectado condiciones meteorológicas potencialmente muy adversas. Consulte siempre las fuentes oficiales antes de viajar."
+
+  };
+
+}
+
+
+/* ===========================================================
+   FIABILIDAD
+   =========================================================== */
+
+function getConfidence(
+  travelDate
+) {
+
+  const now =
+    new Date();
+
+
+  const [y,m,d] =
+    travelDate
+      .split("-")
+      .map(Number);
+
+
+  const target =
+    new Date(
+      y,
+      m - 1,
+      d,
+      12,
+      0,
+      0
+    );
+
+
+  const diffDays =
+    Math.ceil(
+      (
+        target.getTime() -
+        now.getTime()
+      ) /
+      86400000
+    );
+
+
+  if (diffDays <= 1) {
+
+    return {
+
+      name: "ALTA",
+
+      color: "#35e28a",
+
+      text:
+        "La previsión está relativamente próxima al viaje, aunque puede cambiar."
+
+    };
+
+  }
+
+
+  if (diffDays <= 3) {
+
+    return {
+
+      name: "MEDIA-ALTA",
+
+      color: "#35e28a",
+
+      text:
+        "La previsión es razonablemente útil, pero puede experimentar cambios."
+
+    };
+
+  }
+
+
+  if (diffDays <= 5) {
+
+    return {
+
+      name: "MEDIA",
+
+      color: "#ffd34d",
+
+      text:
+        "La previsión es orientativa y conviene revisarla antes de salir."
+
+    };
+
+  }
+
+
+  if (diffDays <= 8) {
+
+    return {
+
+      name: "BAJA",
+
+      color: "#ff9f43",
+
+      text:
+        "La distancia temporal reduce la fiabilidad de la previsión."
+
+    };
+
+  }
+
+
+  return {
+
+    name: "MUY BAJA",
+
+    color: "#ff4d5f",
+
+    text:
+      "La previsión está muy alejada del viaje y debe considerarse únicamente orientativa."
+
+  };
+
+}
+
+
+/* ===========================================================
+   FORMATEADORES
+   =========================================================== */
+
+function fmt(
+  value,
+  suffix = "",
+  decimals = 0
+) {
+
+  if (
+    value === undefined ||
+    value === null ||
+    !Number.isFinite(Number(value))
+  ) {
+
+    return "Sin datos";
+
+  }
+
+
+  return (
+    Number(value).toFixed(decimals) +
+    suffix
+  );
+
+}
+
+
+function formatDistance(
+  km
+) {
+
+  if (km < 1) {
+
+    return `${Math.round(km * 1000)} m`;
+
+  }
+
+
+  return `${Math.round(km)} km`;
+
+}
+
+
+function formatDuration(
+  seconds
+) {
+
+  const minutes =
+    Math.round(
+      seconds / 60
+    );
+
+
+  const hours =
+    Math.floor(
+      minutes / 60
+    );
+
+
+  const mins =
+    minutes % 60;
+
+
+  if (!hours) {
+
+    return `${mins} min`;
+
+  }
+
+
+  return `${hours} h ${String(mins).padStart(2,"0")} min`;
+
+}
+
+
+/* ===========================================================
+   PINTAR RUTA
+   =========================================================== */
+
+function renderRoute(
+  route,
+  analysis
+) {
+
+  initMap();
+
+
+  routeLayer.clearLayers();
+
+  pointLayer.clearLayers();
+
+
+  if (startMarker) {
+
+    map.removeLayer(
+      startMarker
+    );
+
+    startMarker = null;
+
+  }
+
+
+  if (endMarker) {
+
+    map.removeLayer(
+      endMarker
+    );
+
+    endMarker = null;
+
+  }
+
+
+  /*
+   ==========================================================
+   RUTA REAL GEOJSON
+   ==========================================================
+
+   Esta es la corrección principal.
+
+   OSRM devuelve:
+   route.geometry
+
+   como:
+
+   {
+     type: "LineString",
+     coordinates: [...]
+   }
+
+   Leaflet la pinta directamente mediante L.geoJSON().
+  */
+
+  const routeGeoJson = {
+
+    type: "Feature",
+
+    properties: {},
+
+    geometry:
+      route.geometry
+
+  };
+
+
+  const routeGeoLayer =
+    L.geoJSON(
+      routeGeoJson,
+      {
+
+        style: {
+
+          color: "#35d7ff",
+
+          weight: 6,
+
+          opacity: .92,
+
+          lineCap: "round",
+
+          lineJoin: "round"
+
+        }
+
+      }
+    );
+
+
+  routeGeoLayer.addTo(
+    routeLayer
+  );
+
+
+  /*
+   Borde oscuro debajo para mejorar visibilidad.
+  */
+
+  const routeShadow =
+    L.geoJSON(
+      routeGeoJson,
+      {
+
+        style: {
+
+          color: "#071018",
+
+          weight: 10,
+
+          opacity: .55,
+
+          lineCap: "round",
+
+          lineJoin: "round"
+
+        }
+
+      }
+    );
+
+
+  routeShadow.addTo(
+    routeLayer
+  );
+
+
+  /*
+   Volvemos a poner la ruta encima del borde.
+  */
+
+  routeGeoLayer.bringToFront();
+
+
+  /*
+   ==========================================================
+   START / END
+   ==========================================================
+  */
+
+  const first =
+    route.geometry.coordinates[0];
+
+  const last =
+    route.geometry.coordinates[
+      route.geometry.coordinates.length - 1
+    ];
+
+
+  startMarker =
+    L.marker(
+      [first[1], first[0]],
+      {
+        icon:
+          L.divIcon({
+
+            className: "",
+
+            html:
+              '<div class="risk-marker start" style="background:#35e28a"></div>',
+
+            iconSize: [28,28],
+
+            iconAnchor: [14,14]
+
+          })
+      }
+    )
+    .addTo(map)
+    .bindPopup(
+      `<strong>Salida</strong><br>${escapeHtml(
+        analysis.origin.displayName
+      )}`
+    );
+
+
+  endMarker =
+    L.marker(
+      [last[1], last[0]],
+      {
+        icon:
+          L.divIcon({
+
+            className: "",
+
+            html:
+              '<div class="risk-marker end" style="background:#ff4d5f"></div>',
+
+            iconSize: [28,28],
+
+            iconAnchor: [14,14]
+
+          })
+      }
+    )
+    .addTo(map)
+    .bindPopup(
+      `<strong>Destino</strong><br>${escapeHtml(
+        analysis.destination.displayName
+      )}`
+    );
+
+
+  /*
+   ==========================================================
+   PUNTOS METEOROLÓGICOS
+   ==========================================================
+  */
+
+  analysis.points
+    .forEach(
+      (point, index) => {
+
+        if (!point.weather) {
+          return;
+        }
+
+
+        const risk =
+          getRiskLevel(
+            point.risk.score
+          );
+
+
+        const marker =
+          L.marker(
+            [
+              point.lat,
+              point.lon
+            ],
+            {
+
+              icon:
+                L.divIcon({
+
+                  className: "",
+
+                  html:
+                    `<div
+                      class="risk-marker"
+                      style="background:${risk.color}"
+                    ></div>`,
+
+                  iconSize: [22,22],
+
+                  iconAnchor: [11,11]
+
+                })
+
+            }
+          );
+
+
+        marker
+          .bindPopup(
+            createPointPopup(
+              point,
+              risk,
+              index
+            )
+          )
+          .addTo(
+            pointLayer
+          );
+
+      }
+    );
+
+
+  /*
+   ==========================================================
+   AJUSTAR MAPA A LA RUTA
+   ==========================================================
+  */
+
+  const bounds =
+    routeGeoLayer.getBounds();
+
+
+  if (
+    bounds &&
+    bounds.isValid()
+  ) {
+
+    map.fitBounds(
+      bounds,
+      {
+        padding:
+          [30,30],
+
+        maxZoom:
+          11
+
+      }
+    );
+
+  }
+
+
+  /*
+   Aseguramos render después del layout.
+  */
+
+  setTimeout(
+    () => map.invalidateSize(),
+    200
+  );
+
+
+  $("mapInfo").textContent =
+    `${formatDistance(route.distance / 1000)} · ${formatDuration(route.duration)} · ${analysis.points.length} puntos de análisis`;
+
+}
+
+
+/* ===========================================================
+   POPUP MAPA
+   =========================================================== */
+
+function createPointPopup(
+  point,
+  risk,
+  index
+) {
+
+  const w =
+    point.weather;
+
+
+  const risks =
+    point.risk.risks.length
+      ? point.risk.risks
+          .map(
+            x =>
+              `• ${escapeHtml(x)}`
+          )
+          .join("<br>")
+      : "No se han detectado riesgos meteorológicos relevantes";
+
+
+  return `
+
+    <div style="min-width:220px">
+
+      <strong>
+        Punto de análisis ${index + 1}
+      </strong>
+
+      <br>
+
+      <span style="color:#666">
+        Hora estimada:
+      </span>
+
+      <strong>
+        ${point.passTime}
+      </strong>
+
+      <br><br>
+
+      <strong style="color:${risk.color}">
+        ${risk.name}
+      </strong>
+
+      · ${point.risk.score}/100
+
+      <hr>
+
+      🌡️ ${fmt(w.temperature," °C",1)}
+      <br>
+
+      🌧️ ${fmt(w.precipitationProbability," %")}
+      <br>
+
+      💧 ${fmt(w.precipitation," mm",1)}
+      <br>
+
+      💨 ${fmt(w.wind," km/h")}
+      <br>
+
+      💨 Rachas ${fmt(w.gusts," km/h")}
+      <br>
+
+      👁️ ${formatVisibility(w.visibility)}
+      <br>
+
+      ☁️ ${fmt(w.cloudCover," %")}
+      <br>
+
+      ${escapeHtml(
+        weatherDescription(w.weatherCode)
+      )}
+
+      <hr>
+
+      ${risks}
+
+      <br><br>
+
+      <small>
+        Fuente: Open-Meteo
+      </small>
+
+    </div>
+
+  `;
+
+}
+
+
+/* ===========================================================
+   VISIBILIDAD
+   =========================================================== */
+
+function formatVisibility(
+  meters
+) {
+
+  if (
+    meters === undefined ||
+    meters === null ||
+    !Number.isFinite(
+      Number(meters)
+    )
+  ) {
+
+    return "Sin datos";
+
+  }
+
+
+  const km =
+    Number(meters) / 1000;
+
+
+  if (km < 1) {
+
+    return `${Math.round(meters)} m`;
+
+  }
+
+
+  return `${km.toFixed(1)} km`;
+
+}
+
+
+/* ===========================================================
+   ESCAPE HTML
+   =========================================================== */
+
+function escapeHtml(
+  value
+) {
+
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
+/* ===========================================================
+   RENDER TRIP
+   =========================================================== */
+
+function renderTripHeader(
+  analysis
+) {
+
+  $("tripRoute").textContent =
+    `${analysis.origin.displayName.split(",")[0]} → ${analysis.destination.displayName.split(",")[0]}`;
+
+
+  $("tripMeta").innerHTML = `
+
+    <div class="meta-item">
+      📅 <strong>${formatDateEs(
+        analysis.date
+      )}</strong>
+    </div>
+
+    <div class="meta-item">
+      🕐 Salida:
+      <strong>${analysis.departure}</strong>
+    </div>
+
+    <div class="meta-item">
+      📏
+      <strong>${formatDistance(
+        analysis.route.distance / 1000
+      )}</strong>
+    </div>
+
+    <div class="meta-item">
+      ⏱️
+      <strong>${formatDuration(
+        analysis.route.duration
+      )}</strong>
+    </div>
+
+  `;
+
+}
+
+
+/* ===========================================================
+   FORMATO FECHA
+   =========================================================== */
+
+function formatDateEs(
+  dateString
+) {
+
+  const [
+    y,
+    m,
+    d
+  ] =
+    dateString
+      .split("-")
+      .map(Number);
+
+
+  return new Date(
+    y,
+    m - 1,
+    d
+  )
+  .toLocaleDateString(
+    "es-ES",
+    {
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    }
+  );
+
+}
+
+
+/* ===========================================================
+   RENDER RISK
+   =========================================================== */
+
+function renderGlobalRisk(
+  analysis
+) {
+
+  const score =
+    analysis.globalScore;
+
+
+  const risk =
+    getRiskLevel(score);
+
+
+  $("scoreNumber").textContent =
+    score;
+
+
+  $("riskName").textContent =
+    risk.name;
+
+
+  $("riskDescription").textContent =
+    risk.description;
+
+
+  $("scoreCircle").style
+    .setProperty(
+      "--risk-color",
+      risk.color
+    );
+
+
+  $("scoreCircle").style
+    .setProperty(
+      "--risk-angle",
+      `${Math.min(score,100) * 3.6}deg`
+    );
+
+
+  const confidence =
+    getConfidence(
+      analysis.date
+    );
+
+
+  $("confidence").innerHTML = `
+
+    <strong style="color:${confidence.color}">
+      Fiabilidad: ${confidence.name}
+    </strong>
+
+    <span>
+      ${confidence.text}
+      ${
+        analysis.weatherFailureCount
+          ? ` · ${analysis.weatherFailureCount} punto(s) sin previsión compatible.`
+          : " · Todos los puntos tienen una previsión compatible."
+      }
+    </span>
+
+  `;
+
+  const riskMethod =
+    document.getElementById("riskMethod");
+
+  if (riskMethod) {
+
+    riskMethod.innerHTML = `
+      <strong>Cómo se calcula:</strong>
+      0–20 bajo · 21–40 moderado · 41–60 alto ·
+      61–80 muy alto · 81–100 extremo.
+      El resultado combina la media de los puntos (45%)
+      y el peor punto (55%). Los avisos oficiales relevantes
+      pueden elevar el resultado.
+    `;
+
+  }
+
+}
+
+
+/* ===========================================================
+   RENDER POINTS
+   =========================================================== */
+
+function renderPoints(
+  analysis
+) {
+
+  $("pointsList").innerHTML = "";
+
+
+  analysis.points
+    .forEach(
+      (point, index) => {
+
+        const card =
+          document.createElement("article");
+
+
+        card.className =
+          "point-card";
+
+
+        if (!point.weather) {
+
+          card.innerHTML = `
+
+            <div class="point-top">
+
+              <div>
+
+                <div class="point-name">
+                  Punto ${index + 1}
+                </div>
+
+                <div class="point-time">
+                  ${point.passTime}
+                </div>
+
+              </div>
+
+              <div
+                class="point-risk"
+                style="
+                  background:#202833;
+                  color:#aab5c0
+                "
+              >
+                DATOS INSUFICIENTES
+              </div>
+
+            </div>
+
+            <div class="point-body">
+
+              <div class="data-state">
+
+                <strong>
+                  ⚪ Sin datos meteorológicos
+                </strong>
+
+                <span>
+                  No se dispone de información suficiente
+                  para evaluar este punto.
+                </span>
+
+              </div>
+
+            </div>
+
+          `;
+
+          $("pointsList")
+            .appendChild(card);
+
+          return;
+
+        }
+
+
+        const w =
+          point.weather;
+
+
+        const risk =
+          getRiskLevel(
+            point.risk.score
+          );
+
+
+        const risks =
+          point.risk.risks.length
+            ? point.risk.risks
+                .map(
+                  r =>
+                    `• ${escapeHtml(r)}`
+                )
+                .join("<br>")
+            : "No se han detectado riesgos meteorológicos relevantes.";
+
+
+        card.innerHTML = `
+
+          <div class="point-top">
+
+            <div>
+
+              <div class="point-name">
+                Punto ${index + 1}
+              </div>
+
+              <div class="point-time">
+                ${formatDistance(point.distanceKm)}
+                · paso estimado ${point.passTime}
+              </div>
+
+            </div>
+
+            <div
+              class="point-risk"
+              style="
+                color:${risk.color};
+                background:${hexToRgba(
+                  risk.color,
+                  .10
+                )}
+              "
+            >
+              ${risk.name}
+            </div>
+
+          </div>
+
+
+          <div class="point-body">
+
+            <div class="weather-grid">
+
+              <div class="weather-item">
+                <div class="weather-label">
+                  Temperatura
+                </div>
+                <div class="weather-value">
+                  ${fmt(w.temperature," °C",1)}
+                </div>
+              </div>
+
+              <div class="weather-item">
+                <div class="weather-label">
+                  Sensación
+                </div>
+                <div class="weather-value">
+                  ${fmt(w.apparent," °C",1)}
+                </div>
+              </div>
+
+              <div class="weather-item">
+                <div class="weather-label">
+                  Lluvia
+                </div>
+                <div class="weather-value">
+                  ${fmt(w.precipitationProbability," %")}
+                </div>
+              </div>
+
+              <div class="weather-item">
+                <div class="weather-label">
+                  Precipitación
+                </div>
+                <div class="weather-value">
+                  ${fmt(w.precipitation," mm",1)}
+                </div>
+              </div>
+
+              <div class="weather-item">
+                <div class="weather-label">
+                  Viento
+                </div>
+                <div class="weather-value">
+                  ${fmt(w.wind," km/h")}
+                </div>
+              </div>
+
+              <div class="weather-item">
+                <div class="weather-label">
+                  Rachas
+                </div>
+                <div class="weather-value">
+                  ${fmt(w.gusts," km/h")}
+                </div>
+              </div>
+
+              <div class="weather-item">
+                <div class="weather-label">
+                  Visibilidad
+                </div>
+                <div class="weather-value">
+                  ${formatVisibility(w.visibility)}
+                </div>
+              </div>
+
+              <div class="weather-item">
+                <div class="weather-label">
+                  Estado
+                </div>
+                <div class="weather-value">
+                  ${escapeHtml(
+                    weatherDescription(
+                      w.weatherCode
+                    )
+                  )}
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="point-risks">
+
+              ${risks}
+
+              ${
+                point.terrainRisks?.length
+                  ? `<br><br><strong>⛰️ Relieve:</strong><br>${
+                      point.terrainRisks
+                        .map(x => `• ${escapeHtml(x)}`)
+                        .join("<br>")
+                    }`
+                  : ""
+              }
+
+              <br><br>
+
+              <span style="color:#748190">
+                Fuente: Open-Meteo · Hora meteorológica más próxima:
+                ${fmt(w.forecastDifferenceMinutes," min")}
+              </span>
+
+            </div>
+
+          </div>
+
+        `;
+
+
+        $("pointsList")
+          .appendChild(card);
+
+      }
+    );
+
+}
+
+
+/* ===========================================================
+   RENDER SEGMENTS
+   =========================================================== */
+
+function renderSegments(
+  analysis
+) {
+
+  $("segmentsList").innerHTML = "";
+
+
+  for (
+    let i = 0;
+    i < analysis.points.length - 1;
+    i++
+  ) {
+
+    const a =
+      analysis.points[i];
+
+    const b =
+      analysis.points[i + 1];
+
+
+    const score =
+      Math.round(
+        (
+          a.risk.score +
+          b.risk.score
+        ) / 2
+      );
+
+
+    const risk =
+      getRiskLevel(score);
+
+
+    const segment =
+      document.createElement("article");
+
+
+    segment.className =
+      "segment";
+
+
+    segment.style
+      .setProperty(
+        "--segment-color",
+        risk.color
+      );
+
+
+    const fromTime =
+      a.passTime;
+
+
+    const toTime =
+      b.passTime;
+
+
+    const weatherA =
+      a.weather;
+
+
+    const weatherB =
+      b.weather;
+
+
+    const chips = [];
+
+
+    if (weatherA) {
+
+      chips.push(
+        `🌡️ ${fmt(
+          weatherA.temperature,
+          " °C",
+          1
+        )}`
+      );
+
+      chips.push(
+        `🌧️ ${fmt(
+          weatherA.precipitationProbability,
+          " %"
+        )}`
+      );
+
+      chips.push(
+        `💨 ${fmt(
+          weatherA.wind,
+          " km/h"
+        )}`
+      );
+
+    }
+
+
+    if (weatherB) {
+
+      if (
+        Number(weatherB.temperature) <= 3
+      ) {
+
+        chips.push(
+          "🧊 Temperatura baja"
+        );
+
+      }
+
+      if (
+        Number(weatherB.precipitationProbability) >= 70
+      ) {
+
+        chips.push(
+          "🌧️ Lluvia probable"
+        );
+
+      }
+
+    }
+
+
+    segment.innerHTML = `
+
+      <div class="segment-head">
+
+        <div class="segment-route">
+
+          ${formatDistance(a.distanceKm)}
+          →
+          ${formatDistance(b.distanceKm)}
+
+        </div>
+
+        <div class="segment-risk">
+          ${risk.name}
+        </div>
+
+      </div>
+
+
+      <div
+        style="
+          color:#82909e;
+          font-size:11px;
+          margin-top:4px
+        "
+      >
+
+        ${fromTime}
+        –
+        ${toTime}
+
+      </div>
+
+
+      <div class="segment-meta">
+
+        ${chips
+          .map(
+            c =>
+              `<span class="segment-chip">
+                ${escapeHtml(c)}
+              </span>`
+          )
+          .join("")}
+
+      </div>
+
+    `;
+
+
+    $("segmentsList")
+      .appendChild(segment);
+
+  }
+
+}
+
+
+/* ===========================================================
+   RENDER RISKS
+   =========================================================== */
+
+function renderRisks(
+  analysis
+) {
+
+  $("risksList").innerHTML = "";
+
+
+  const allRisks =
+    new Map();
+
+
+  analysis.points
+    .forEach(
+      point => {
+
+        point.risk.risks
+          .forEach(
+            risk => {
+
+              if (
+                !allRisks.has(risk)
+              ) {
+
+                allRisks.set(
+                  risk,
+                  1
+                );
+
+              }
+              else {
+
+                allRisks.set(
+                  risk,
+                  allRisks.get(risk) + 1
+                );
+
+              }
+
+            }
+          );
+
+      }
+    );
+
+
+  if (!allRisks.size) {
+
+    $("risksList").innerHTML = `
+
+      <div class="risk-item">
+
+        <strong style="color:#35e28a">
+          🟢 No se han detectado riesgos meteorológicos relevantes
+        </strong>
+
+        <span>
+          Esto significa que los datos meteorológicos disponibles
+          no han superado los umbrales preventivos utilizados por
+          TRAVEL SAFE. No equivale a una garantía de ausencia
+          de riesgo.
+        </span>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  Array.from(allRisks.entries())
+    .sort(
+      (a,b) => b[1] - a[1]
+    )
+    .slice(0,8)
+    .forEach(
+      ([risk, count]) => {
+
+        const item =
+          document.createElement("div");
+
+
+        item.className =
+          "risk-item";
+
+
+        item.innerHTML = `
+
+          <strong>
+            ⚠️ ${escapeHtml(risk)}
+          </strong>
+
+          <span>
+            Detectado en ${count}
+            punto${count === 1 ? "" : "s"}
+            de análisis.
+          </span>
+
+        `;
+
+
+        $("risksList")
+          .appendChild(item);
+
+      }
+    );
+
+}
+
+
+/* ===========================================================
+   RECOMMENDATION
+   =========================================================== */
+
+function renderRecommendation(
+  analysis
+) {
+
+  const score =
+    analysis.globalScore;
+
+
+  const risks =
+    [];
+
+
+  analysis.points
+    .forEach(
+      point => {
+
+        point.risk.risks
+          .forEach(
+            risk => {
+
+              if (!risks.includes(risk)) {
+
+                risks.push(risk);
+
+              }
+
+            }
+          );
+
+      }
+    );
+
+
+  let text;
+
+
+  if (score <= 20) {
+
+    text =
+      "Con los datos meteorológicos disponibles no se han detectado condiciones relevantes que eleven significativamente el riesgo de conducción. Mantén la precaución habitual y revisa las previsiones antes de salir.";
+
+  }
+  else if (score <= 40) {
+
+    text =
+      `Se recomienda mantener una precaución adicional durante el recorrido. ${
+        risks.length
+          ? "Los principales factores detectados son: " +
+            risks.slice(0,3).join(", ") +
+            "."
+          : ""
+      }`;
+
+  }
+  else if (score <= 60) {
+
+    text =
+      `Se recomienda extremar la atención durante las zonas afectadas por las condiciones meteorológicas detectadas. ${
+        risks.length
+          ? "Principales factores: " +
+            risks.slice(0,4).join(", ") +
+            "."
+          : ""
+      }`;
+
+  }
+  else {
+
+    text =
+      `Se han detectado condiciones meteorológicas potencialmente adversas en parte del recorrido. ${
+        risks.length
+          ? "Factores principales: " +
+            risks.slice(0,5).join(", ") +
+            "."
+          : ""
+      } Consulta los avisos oficiales y vuelve a analizar el viaje antes de salir.`;
+
+  }
+
+
+  $("recommendation").innerHTML = `
+
+    <div class="recommendation-title">
+      🚗 Recomendación preventiva
+    </div>
+
+    <div class="recommendation-text">
+      ${escapeHtml(text)}
+    </div>
+
+  `;
+
+}
+
+
+/* ===========================================================
+   GLOBAL SCORE
+   =========================================================== */
+
+function calculateGlobalScore(
+  points
+) {
+
+  const scores =
+    points
+      .filter(
+        p => p.weather
+      )
+      .map(
+        p => p.risk.score
+      );
+
+
+  if (!scores.length) {
+
+    return 0;
+
+  }
+
+
+  /*
+   No usamos únicamente la media.
+
+   El peor punto tiene más peso para evitar
+   que una zona problemática quede diluida
+   por muchos puntos con buen tiempo.
+  */
+
+  const average =
+    scores.reduce(
+      (a,b) => a+b,
+      0
+    ) / scores.length;
+
+
+  const maximum =
+    Math.max(...scores);
+
+
+  const weighted =
+    average * .45 +
+    maximum * .55;
+
+
+  return Math.min(
+    100,
+    Math.round(weighted)
+  );
+
+}
+
+
+/* ===========================================================
+   LOCAL STORAGE
+   =========================================================== */
+
+const STORAGE_KEY =
+  "travelSafeSavedTrips";
+
+
+function getSavedTrips() {
+
+  try {
+
+    const raw =
+      localStorage.getItem(
+        STORAGE_KEY
+      );
+
+
+    if (!raw) {
+
+      return [];
+
+    }
+
+
+    const parsed =
+      JSON.parse(raw);
+
+
+    return Array.isArray(parsed)
+      ? parsed
+      : [];
+
+  }
+  catch {
+
+    return [];
+
+  }
+
+}
+
+
+function saveTrip(
+  analysis
+) {
+
+  const trips =
+    getSavedTrips();
+
+
+  const item = {
+
+    id:
+      Date.now(),
+
+    origin:
+      analysis.originInput,
+
+    destination:
+      analysis.destinationInput,
+
+    date:
+      analysis.date,
+
+    departure:
+      analysis.departure
+
+  };
+
+
+  trips.unshift(item);
+
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(
+      trips.slice(0,20)
+    )
+  );
+
+
+  renderSavedTrips();
+
+}
+
+
+function deleteSavedTrip(
+  id
+) {
+
+  const trips =
+    getSavedTrips()
+      .filter(
+        x => x.id !== id
+      );
+
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(trips)
+  );
+
+
+  renderSavedTrips();
+
+}
+
+
+function loadSavedTrip(
+  trip
+) {
+
+  $("origin").value =
+    trip.origin;
+
+  $("destination").value =
+    trip.destination;
+
+  $("travelDate").value =
+    trip.date;
+
+  $("departureTime").value =
+    trip.departure;
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+function renderSavedTrips() {
+
+  const trips =
+    getSavedTrips();
+
+
+  $("savedTrips").innerHTML = "";
+
+
+  if (!trips.length) {
+
+    $("savedTrips").innerHTML = `
+
+      <div class="data-state">
+
+        <strong>
+          No hay viajes guardados
+        </strong>
+
+        <span>
+          Cuando realices un análisis podrás
+          guardar el viaje en este dispositivo.
+        </span>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  trips.forEach(
+    trip => {
+
+      const item =
+        document.createElement("div");
+
+
+      item.className =
+        "saved-trip";
+
+
+      item.innerHTML = `
+
+        <div class="saved-info">
+
+          <strong>
+            ${escapeHtml(
+              trip.origin
+            )}
+            →
+            ${escapeHtml(
+              trip.destination
+            )}
+          </strong>
+
+          <span>
+            ${formatDateEs(
+              trip.date
+            )}
+            ·
+            ${escapeHtml(
+              trip.departure
+            )}
+          </span>
+
+        </div>
+
+
+        <div class="saved-actions">
+
+          <button
+            class="small-btn"
+            data-action="load"
+            data-id="${trip.id}"
+          >
+            Abrir
+          </button>
+
+          <button
+            class="small-btn"
+            data-action="delete"
+            data-id="${trip.id}"
+          >
+            Eliminar
+          </button>
+
+        </div>
+
+      `;
+
+
+      $("savedTrips")
+        .appendChild(item);
+
+    }
+  );
+
+}
+
+
+/* ===========================================================
+   HEX -> RGBA
+   =========================================================== */
+
+function hexToRgba(
+  hex,
+  alpha
+) {
+
+  const clean =
+    hex.replace("#","");
+
+
+  const r =
+    parseInt(
+      clean.substring(0,2),
+      16
+    );
+
+
+  const g =
+    parseInt(
+      clean.substring(2,4),
+      16
+    );
+
+
+  const b =
+    parseInt(
+      clean.substring(4,6),
+      16
+    );
+
+
+  return `rgba(${r},${g},${b},${alpha})`;
+
+}
+
+
+/* ===========================================================
+   ANALIZAR VIAJE
+   =========================================================== */
+
+async function analyzeTravel() {
+
+  hideError();
+
+
+  const originInput =
+    $("origin").value.trim();
+
+
+  const destinationInput =
+    $("destination").value.trim();
+
+
+  const date =
+    $("travelDate").value;
+
+
+  const departure =
+    $("departureTime").value;
+
+
+  if (
+    !originInput ||
+    !destinationInput ||
+    !date ||
+    !departure
+  ) {
+
+    showError(
+      "Completa origen, destino, fecha y hora de salida."
+    );
+
+    return;
+
+  }
+
+
+  /*
+   Validación fecha.
+  */
+
+  const now =
+    new Date();
+
+
+  const [
+    y,m,d
+  ] =
+    date
+      .split("-")
+      .map(Number);
+
+
+  const travelDate =
+    new Date(
+      y,
+      m - 1,
+      d,
+      23,
+      59,
+      59
+    );
+
+
+  const todayStart =
+    new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate()
+    );
+
+
+  if (
+    travelDate < todayStart
+  ) {
+
+    showError(
+      "La fecha del viaje no puede ser anterior a hoy."
+    );
+
+    return;
+
+  }
+
+
+  /*
+   Open-Meteo forecast_days permite previsión
+   hasta 16 días en esta consulta.
+  */
+
+  const daysAhead =
+    Math.ceil(
+      (
+        new Date(
+          y,
+          m - 1,
+          d
+        ).getTime() -
+        todayStart.getTime()
+      ) /
+      86400000
+    );
+
+
+  if (daysAhead > 16) {
+
+    showError(
+      "El viaje está fuera del horizonte de previsión meteorológica disponible. No se mostrarán datos meteorológicos inventados."
+    );
+
+    return;
+
+  }
+
+
+  $("analyzeBtn").disabled =
+    true;
+
+
+  $("results")
+    .classList.remove(
+      "visible"
+    );
+
+
+  try {
+
+    /* -------------------------------------------------------
+       1. GEOCODIFICACIÓN
+       ------------------------------------------------------- */
+
+    setStatus(
+      "⏳ BUSCANDO ORIGEN...",
+      "Geocodificando la ubicación de salida."
+    );
+
+
+    const origin =
+      await geocode(
+        originInput
+      );
+
+
+    setStatus(
+      "⏳ BUSCANDO DESTINO...",
+      "Geocodificando la ubicación de llegada."
+    );
+
+
+    const destination =
+      await geocode(
+        destinationInput
+      );
+
+
+    /* -------------------------------------------------------
+       2. RUTA
+       ------------------------------------------------------- */
+
+    setStatus(
+      "⏳ CALCULANDO RUTA...",
+      "Obteniendo una ruta real para automóvil."
+    );
+
+
+    const route =
+      await getRoute(
+        origin,
+        destination
+      );
+
+
+    /* -------------------------------------------------------
+       3. PUNTOS
+       ------------------------------------------------------- */
+
+    setStatus(
+      "⏳ OBTENIENDO PUNTOS DEL RECORRIDO...",
+      "Generando puntos meteorológicos aproximadamente cada 25 km."
+    );
+
+
+    const pointData =
+      createAnalysisPoints(
+        route
+      );
+
+
+    /* -------------------------------------------------------
+       4. CONSTRUIR PUNTOS
+       ------------------------------------------------------- */
+
+    const points =
+      pointData.points.map(
+        p => {
+
+          const pass =
+            estimatedPassTime(
+              date,
+              departure,
+              p.timeOffsetSeconds
+            );
+
+
+          return {
+
+            ...p,
+
+            passDate:
+              pass.date,
+
+            passTime:
+              pass.time,
+
+            weather:
+              null,
+
+            risk: {
+
+              score: 0,
+
+              risks: []
+
+            }
+
+          };
+
+        }
+      );
+
+
+    /* -------------------------------------------------------
+       5. METEOROLOGÍA
+       ------------------------------------------------------- */
+
+    let weatherFailureCount =
+      0;
+
+
+    for (
+      let i = 0;
+      i < points.length;
+      i++
+    ) {
+
+      const point =
+        points[i];
+
+
+      setStatus(
+        "⏳ CONSULTANDO PREVISIÓN...",
+        `Punto ${i + 1} de ${points.length} · ${point.passTime}`
+      );
+
+
+      try {
+
+        const weatherData =
+          await getWeather(
+            point
+          );
+
+
+        const selection =
+          findWeatherIndex(
+            weatherData,
+            point.passDate
+          );
+
+
+        if (
+          selection.index < 0
+        ) {
+
+          throw new Error(
+            "No existe una hora meteorológica compatible."
+          );
+
+        }
+
+
+        /*
+         Si la hora más próxima está excesivamente
+         alejada, no fingimos precisión.
+        */
+
+        if (
+          selection.differenceMinutes > 90
+        ) {
+
+          point.weather =
+            null;
+
+          point.risk = {
+
+            score: 0,
+
+            risks: []
+
+          };
+
+          weatherFailureCount++;
+
+          continue;
+
+        }
+
+
+        point.weather =
+          extractWeatherAt(
+            weatherData,
+            selection.index
+          );
+
+
+        point.weather
+          .sourceHour =
+            weatherData
+              .hourly
+              .time[
+                selection.index
+              ];
+
+
+        point.weather
+          .forecastDifferenceMinutes =
+            selection
+              .differenceMinutes;
+
+
+        point.risk =
+          calculatePointRisk(
+            point.weather
+          );
+
+      }
+      catch (error) {
+
+        console.warn(
+          "Weather error",
+          error
+        );
+
+
+        point.weather =
+          null;
+
+
+        point.risk = {
+
+          score: 0,
+
+          risks: []
+
+        };
+
+
+        weatherFailureCount++;
+
+      }
+
+    }
+
+
+    /* -------------------------------------------------------
+       6. TOPOGRAFÍA Y CONTEXTO
+       ------------------------------------------------------- */
+
+    setStatus(
+      "⏳ EVALUANDO TOPOGRAFÍA...",
+      "Comprobando altitud, cambios de relieve y condiciones de montaña."
+    );
+
+    for (
+      let i = 0;
+      i < points.length;
+      i++
+    ) {
+
+      enrichPointWithTerrain(
+        points[i],
+        i > 0 ? points[i - 1] : null
+      );
+
+    }
+
+    /* -------------------------------------------------------
+       7. FUENTES OFICIALES
+       ------------------------------------------------------- */
+
+    setStatus(
+      "⏳ CONSULTANDO FUENTES OFICIALES...",
+      "Comprobando avisos AEMET y, si están configurados, datos hidrológicos."
+    );
+
+    let officialAlertResult = {
+      configured: false,
+      alerts: []
+    };
+
+    let hydroResult = {
+      configured: false,
+      items: []
+    };
+
+    try {
+
+      officialAlertResult =
+        await fetchOfficialAlerts({
+          origin,
+          destination,
+          date,
+          departure,
+          points,
+          route
+        });
+
+    }
+    catch (officialError) {
+
+      console.warn(
+        "AEMET proxy error",
+        officialError
+      );
+
+    }
+
+    try {
+
+      hydroResult =
+        await fetchHydrologicalStatus({
+          origin,
+          destination,
+          date,
+          departure,
+          points,
+          route
+        });
+
+    }
+    catch (hydroError) {
+
+      console.warn(
+        "Hydrological proxy error",
+        hydroError
+      );
+
+    }
+
+    const analysisForOfficialData = {
+      origin,
+      destination,
+      date,
+      departure,
+      points,
+      route,
+      officialAlerts:
+        officialAlertResult.alerts
+    };
+
+    applyOfficialAlertsToRisk(
+      analysisForOfficialData
+    );
+
+    /* -------------------------------------------------------
+       8. SCORE
+       ------------------------------------------------------- */
+
+    setStatus(
+      "⏳ EVALUANDO RIESGOS...",
+      "Calculando el riesgo global con el peor tramo y los factores críticos."
+    );
+
+
+    const globalScore =
+      calculateGlobalScore(
+        points
+      );
+
+
+    /* -------------------------------------------------------
+       7. ANALYSIS
+       ------------------------------------------------------- */
+
+    currentAnalysis = {
+
+      origin,
+
+      destination,
+
+      originInput,
+
+      destinationInput,
+
+      date,
+
+      departure,
+
+      route,
+
+      points,
+
+      globalScore:
+        analysisForOfficialData.globalScore ??
+        globalScore,
+
+      weatherFailureCount,
+
+      officialAlerts:
+        officialAlertResult.alerts,
+
+      officialAlertsConfigured:
+        officialAlertResult.configured,
+
+      hydroItems:
+        hydroResult.items,
+
+      hydroConfigured:
+        hydroResult.configured
+
+    };
+
+
+    /* -------------------------------------------------------
+       8. RENDER
+       ------------------------------------------------------- */
+
+    setStatus(
+      "⏳ GENERANDO INFORME...",
+      "Preparando mapa, puntos y resumen."
+    );
+
+
+    renderTripHeader(
+      currentAnalysis
+    );
+
+
+    renderGlobalRisk(
+      currentAnalysis
+    );
+
+
+    /*
+     Muy importante:
+     primero mostramos results para que
+     el contenedor del mapa tenga tamaño.
+    */
+
+    $("results")
+      .classList.add(
+        "visible"
+      );
+
+
+    /*
+     Inicializar mapa después de que
+     el elemento sea visible.
+    */
+
+    initMap();
+
+
+    setTimeout(
+      () => {
+
+        renderRoute(
+          route,
+          currentAnalysis
+        );
+
+        renderPoints(
+          currentAnalysis
+        );
+
+        renderSegments(
+          currentAnalysis
+        );
+
+        renderRisks(
+          currentAnalysis
+        );
+
+        renderRecommendation(
+          currentAnalysis
+        );
+
+        renderOfficialAlerts(
+          currentAnalysis
+        );
+
+        renderHydrologicalStatus(
+          currentAnalysis
+        );
+
+      },
+      50
+    );
+
+
+    /*
+     Guardar automáticamente el viaje.
+     Solo si no existe uno igual.
+    */
+
+    const existing =
+      getSavedTrips()
+        .some(
+          t =>
+            t.origin === originInput &&
+            t.destination === destinationInput &&
+            t.date === date &&
+            t.departure === departure
+        );
+
+
+    if (!existing) {
+
+      saveTrip(
+        currentAnalysis
+      );
+
+    }
+
+
+    hideStatus();
+
+
+    /*
+     Scroll al resultado.
+    */
+
+    setTimeout(
+      () => {
+
+        $("results")
+          .scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
+      },
+      150
+    );
+
+
+  }
+  catch (error) {
+
+    console.error(
+      "TRAVEL SAFE error:",
+      error
+    );
+
+
+    hideStatus();
+
+
+    let message =
+      "No se ha podido completar el análisis.";
+
+
+    if (
+      error.message
+        .toLowerCase()
+        .includes("no se ha encontrado")
+    ) {
+
+      message =
+        error.message;
+
+    }
+    else if (
+      error.message
+        .toLowerCase()
+        .includes("route")
+    ) {
+
+      message =
+        "No se ha podido calcular una ruta entre el origen y el destino.";
+
+    }
+    else if (
+      error.message
+        .includes("HTTP")
+    ) {
+
+      message =
+        `Uno de los servicios externos no está disponible en este momento (${error.message}). Inténtalo de nuevo más tarde.`;
+
+    }
+    else {
+
+      message =
+        `${error.message || message}`;
+
+    }
+
+
+    showError(
+      message
+    );
+
+  }
+  finally {
+
+    $("analyzeBtn").disabled =
+      false;
+
+  }
+
+}
+
+
+/* ===========================================================
+   FORM EVENT
+   =========================================================== */
+
+$("travelForm")
+  .addEventListener(
+    "submit",
+    event => {
+
+      event.preventDefault();
+
+      analyzeTravel();
+
+    }
+  );
+
+
+/* ===========================================================
+   SAVED EVENTS
+   =========================================================== */
+
+$("savedTrips")
+  .addEventListener(
+    "click",
+    event => {
+
+      const button =
+        event.target.closest(
+          "button"
+        );
+
+
+      if (!button) {
+        return;
+      }
+
+
+      const id =
+        Number(
+          button.dataset.id
+        );
+
+
+      const action =
+        button.dataset.action;
+
+
+      const trips =
+        getSavedTrips();
+
+
+      const trip =
+        trips.find(
+          x => x.id === id
+        );
+
+
+      if (!trip) {
+        return;
+      }
+
+
+      if (
+        action === "load"
+      ) {
+
+        loadSavedTrip(
+          trip
+        );
+
+      }
+
+
+      if (
+        action === "delete"
+      ) {
+
+        deleteSavedTrip(
+          id
+        );
+
+      }
+
+    }
+  );
+
+
+/* ===========================================================
+   IMPRESIÓN / INFORME
+   =========================================================== */
+
+$("printReportBtn")
+  ?.addEventListener(
+    "click",
+    printReport
+  );
+
+
+/* ===========================================================
+   MAP RESIZE
+   =========================================================== */
+
+window.addEventListener(
+  "resize",
+  () => {
+
+    if (map) {
+
+      map.invalidateSize();
+
+    }
+
+  }
+);
+
+
+/* ===========================================================
+   ORIENTATION CHANGE
+   =========================================================== */
+
+window.addEventListener(
+  "orientationchange",
+  () => {
+
+    setTimeout(
+      () => {
+
+        if (map) {
+
+          map.invalidateSize();
+
+        }
+
+      },
+      300
+    );
+
+  }
+);
+
+
+/* ===========================================================
+   INICIALIZACIÓN
+   =========================================================== */
+
+setMinimumDate();
+
+renderSavedTrips();
+
+initMap();
+
+</script>
+
+</body>
+</html>
