@@ -1,7 +1,13 @@
 {
   "source": "AEMET OpenData",
-  "generatedAt": "2026-10-05T11:54:28.327905+00:00",
+  "generatedAt": "2026-10-05T12:03:32.619037+00:00",
   "status": "ok",
   "count": 0,
-  "alerts": []
+  "alerts": [],
+  "debug": {
+    "endpoint": "https://opendata.aemet.es/opendata/api/avisos_cap/ultimoelaborado/area/esp",
+    "datosUrl": "https://opendata.aemet.es/opendata/sh/9376a427Z_CAP_C_LEMM_20261005101019_AFAE",
+    "contentType": "application/x-gtar;charset=ISO-8859-15",
+    "bytes": 5109760
+  }
 }
