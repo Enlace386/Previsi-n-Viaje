@@ -1,16 +1,15 @@
 name: Actualizar avisos AEMET
 
 on:
-  schedule:
-    - cron: "15 */3 * * *"
-
   workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"
 
 permissions:
   contents: write
 
 jobs:
-  actualizar-aemet:
+  aemet:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,397 +20,136 @@ jobs:
         env:
           AEMET_API_KEY: ${{ secrets.AEMET_API_KEY }}
         run: |
-          python <<'PY'
+          python - <<'PY'
           import json
           import os
           import urllib.request
-          import urllib.error
-          import xml.etree.ElementTree as ET
           from datetime import datetime, timezone
 
-          API_KEY = os.environ.get("AEMET_API_KEY")
+          API_KEY = os.environ["AEMET_API_KEY"]
 
-          if not API_KEY:
-              raise SystemExit(
-                  "ERROR: No existe el secreto AEMET_API_KEY"
-              )
-
-          ENDPOINT = (
+          endpoint = (
               "https://opendata.aemet.es/opendata/api/"
               "avisos_cap/ultimoelaborado/area/esp"
           )
 
           print("Consultando AEMET...")
-          print("Endpoint:", ENDPOINT)
+          print("Endpoint:", endpoint)
 
-          request = urllib.request.Request(
-              ENDPOINT,
+          req = urllib.request.Request(
+              endpoint,
               headers={
                   "api_key": API_KEY,
-                  "User-Agent": "TRAVEL-SAFE/1.0",
-                  "Accept": "application/json"
+                  "accept": "application/json",
+                  "User-Agent": "TRAVEL-SAFE-GitHub-Actions"
               }
           )
 
-          try:
-              with urllib.request.urlopen(
-                  request,
-                  timeout=60
-              ) as response:
-                  first_raw = response.read().decode(
-                      "utf-8",
-                      errors="replace"
-                  )
+          with urllib.request.urlopen(req, timeout=60) as response:
+              raw = response.read()
 
-                  print(
-                      "Respuesta inicial HTTP:",
-                      response.status
-                  )
+          print("Respuesta inicial HTTP:", response.status)
+          print("Content-Type:", response.headers.get("Content-Type"))
+          print("Tamaño respuesta:", len(raw))
 
-          except Exception as e:
-              raise SystemExit(
-                  "ERROR consultando AEMET: " + str(e)
-              )
+          text = raw.decode("utf-8", errors="replace")
+
+          print("Primeros 1000 caracteres de la respuesta:")
+          print(text[:1000])
 
           try:
-              first = json.loads(first_raw)
+              data = json.loads(text)
           except Exception as e:
-              print("Respuesta recibida:")
-              print(first_raw[:2000])
-              raise SystemExit(
-                  "ERROR: La respuesta inicial de AEMET "
-                  "no es JSON: " + str(e)
-              )
+              print("ERROR: la respuesta inicial no es JSON")
+              print(repr(e))
 
-          estado = first.get("estado")
+              with open("aemet-debug-inicial.txt", "w", encoding="utf-8") as f:
+                  f.write(text)
 
-          print("Estado AEMET:", estado)
+              raise
 
-          if estado != 200:
-              raise SystemExit(
-                  "AEMET devolvió estado "
-                  + str(estado)
-                  + ": "
-                  + str(first)
-              )
+          print("Respuesta inicial JSON:")
+          print(json.dumps(data, ensure_ascii=False, indent=2)[:5000])
 
-          data_url = first.get("datos")
+          if data.get("estado") != 200:
+              print("AEMET ha devuelto un estado diferente de 200.")
+              print(json.dumps(data, ensure_ascii=False, indent=2))
 
-          if not data_url:
-              raise SystemExit(
-                  "ERROR: AEMET no devolvió la URL de datos."
-              )
+          datos_url = data.get("datos")
 
-          print("URL de datos recibida correctamente.")
+          if not datos_url:
+              print("AEMET no ha proporcionado la URL 'datos'.")
 
-          data_request = urllib.request.Request(
-              data_url,
+              with open("aemet-debug-inicial.json", "w", encoding="utf-8") as f:
+                  json.dump(data, f, ensure_ascii=False, indent=2)
+
+              raise RuntimeError("La respuesta de AEMET no contiene 'datos'")
+
+          print("URL de datos AEMET:")
+          print(datos_url)
+
+          req2 = urllib.request.Request(
+              datos_url,
               headers={
-                  "User-Agent": "TRAVEL-SAFE/1.0",
-                  "Accept": "*/*"
+                  "User-Agent": "TRAVEL-SAFE-GitHub-Actions",
+                  "accept": "*/*"
               }
           )
 
-          try:
-              with urllib.request.urlopen(
-                  data_request,
-                  timeout=60
-              ) as response:
+          with urllib.request.urlopen(req2, timeout=60) as response2:
+              raw2 = response2.read()
 
-                  content_type = (
-                      response.headers.get(
-                          "Content-Type",
-                          ""
-                      )
-                  )
+              content_type = response2.headers.get("Content-Type", "")
 
-                  raw_data = response.read()
+          print("Respuesta datos HTTP:", response2.status)
+          print("Content-Type datos:", content_type)
+          print("Tamaño datos:", len(raw2))
 
-                  print(
-                      "Contenido descargado:",
-                      len(raw_data),
-                      "bytes"
-                  )
+          contenido = raw2.decode("utf-8", errors="replace")
 
-                  print(
-                      "Content-Type:",
-                      content_type
-                  )
+          print("Primeros 3000 caracteres de los datos AEMET:")
+          print(contenido[:3000])
 
-          except Exception as e:
-              raise SystemExit(
-                  "ERROR descargando los datos de AEMET: "
-                  + str(e)
-              )
+          # Guardamos una copia de diagnóstico para inspeccionarla
+          # en GitHub si fuera necesario.
+          with open("aemet-debug-datos.txt", "w", encoding="utf-8") as f:
+              f.write(contenido)
 
-          text_data = raw_data.decode(
-              "utf-8",
-              errors="replace"
-          ).strip()
+          # También guardamos la respuesta inicial.
+          with open("aemet-debug-inicial.json", "w", encoding="utf-8") as f:
+              json.dump(data, f, ensure_ascii=False, indent=2)
 
-          alerts = []
-
-          # --------------------------------------------------
-          # CASO 1: AEMET devuelve JSON
-          # --------------------------------------------------
-
-          if (
-              "json" in content_type.lower()
-              or text_data.startswith("{")
-              or text_data.startswith("[")
-          ):
-              try:
-                  parsed = json.loads(text_data)
-
-                  if isinstance(parsed, list):
-                      alerts = parsed
-
-                  elif isinstance(parsed, dict):
-                      if isinstance(
-                          parsed.get("alerts"),
-                          list
-                      ):
-                          alerts = parsed["alerts"]
-
-                      elif isinstance(
-                          parsed.get("features"),
-                          list
-                      ):
-                          alerts = parsed["features"]
-
-                      else:
-                          alerts = [parsed]
-
-                  print(
-                      "Formato detectado: JSON"
-                  )
-
-              except Exception as e:
-                  print(
-                      "El contenido parecía JSON "
-                      "pero no pudo interpretarse."
-                  )
-                  print(text_data[:2000])
-
-          # --------------------------------------------------
-          # CASO 2: AEMET devuelve XML / CAP
-          # --------------------------------------------------
-
-          if not alerts and (
-              text_data.startswith("<")
-              or "xml" in content_type.lower()
-              or "cap" in content_type.lower()
-          ):
-              print(
-                  "Formato detectado: XML/CAP"
-              )
-
-              try:
-                  root = ET.fromstring(
-                      text_data
-                  )
-
-                  namespaces = {
-                      "cap": (
-                          "urn:oasis:names:"
-                          "tc:emergency:cap:1.2"
-                      )
-                  }
-
-                  for alert_node in root.findall(
-                      ".//cap:alert",
-                      namespaces
-                  ):
-                      item = {}
-
-                      for child in list(
-                          alert_node
-                      ):
-                          tag = child.tag.split(
-                              "}"
-                          )[-1]
-
-                          if tag == "info":
-                              info = {}
-
-                              for info_child in list(
-                                  child
-                              ):
-                                  info_tag = (
-                                      info_child.tag
-                                      .split("}")[-1]
-                                  )
-
-                                  if info_tag in (
-                                      "event",
-                                      "headline",
-                                      "description",
-                                      "instruction",
-                                      "severity",
-                                      "urgency",
-                                      "certainty",
-                                      "effective",
-                                      "onset",
-                                      "expires",
-                                      "senderName",
-                                      "category",
-                                  ):
-                                      info[
-                                          info_tag
-                                      ] = (
-                                          info_child.text
-                                          or ""
-                                      )
-
-                                  elif info_tag == "area":
-                                      area = {}
-
-                                      for area_child in list(
-                                          info_child
-                                      ):
-                                          area_tag = (
-                                              area_child.tag
-                                              .split("}")[-1]
-                                          )
-
-                                          if area_tag in (
-                                              "areaDesc",
-                                              "geocode",
-                                              "polygon",
-                                              "circle",
-                                          ):
-                                              area[
-                                                  area_tag
-                                              ] = (
-                                                  area_child.text
-                                                  or ""
-                                              )
-
-                                      if area:
-                                          info.setdefault(
-                                              "areas",
-                                              []
-                                          ).append(area)
-
-                              item["info"] = info
-
-                          elif tag in (
-                              "identifier",
-                              "sender",
-                              "sent",
-                              "status",
-                              "msgType",
-                          ):
-                              item[tag] = (
-                                  child.text or ""
-                              )
-
-                      if item:
-                          alerts.append(item)
-
-                  print(
-                      "Avisos CAP/XML encontrados:",
-                      len(alerts)
-                  )
-
-              except Exception as e:
-                  print(
-                      "ERROR procesando XML/CAP:",
-                      str(e)
-                  )
-
-                  print(
-                      "Primeros 2000 caracteres:"
-                  )
-
-                  print(
-                      text_data[:2000]
-                  )
-
-                  raise SystemExit(
-                      "No se pudo interpretar "
-                      "la respuesta de avisos AEMET."
-                  )
-
-          # --------------------------------------------------
-          # CASO 3: formato desconocido
-          # --------------------------------------------------
-
-          if not alerts:
-              print(
-                  "AEMET devolvió contenido, "
-                  "pero no se encontraron avisos."
-              )
-
-              print(
-                  "Primeros 2000 caracteres:"
-              )
-
-              print(
-                  text_data[:2000]
-              )
-
-          output = {
+          # De momento NO intentamos interpretar el contenido.
+          # Primero queremos saber exactamente qué devuelve AEMET.
+          resultado = {
               "source": "AEMET OpenData",
-              "generatedAt": datetime.now(
-                  timezone.utc
-              ).isoformat(),
+              "generatedAt": datetime.now(timezone.utc).isoformat(),
               "status": "ok",
-              "count": len(alerts),
-              "alerts": alerts
+              "count": 0,
+              "alerts": [],
+              "debug": {
+                  "endpoint": endpoint,
+                  "datosUrl": datos_url,
+                  "contentType": content_type,
+                  "bytes": len(raw2)
+              }
           }
 
-          with open(
-              "aemet-alerts.json",
-              "w",
-              encoding="utf-8"
-          ) as f:
-              json.dump(
-                  output,
-                  f,
-                  ensure_ascii=False,
-                  indent=2
-              )
+          with open("aemet-alerts.json", "w", encoding="utf-8") as f:
+              json.dump(resultado, f, ensure_ascii=False, indent=2)
 
-          print()
-          print(
-              "===================================="
-          )
-          print(
-              "AEMET FINALIZADO CORRECTAMENTE"
-          )
-          print(
-              "Avisos encontrados:",
-              len(alerts)
-          )
-          print(
-              "===================================="
-          )
+          print("Diagnóstico guardado.")
           PY
 
-      - name: Comprobar archivo generado
-        run: |
-          if [ ! -s aemet-alerts.json ]; then
-            echo "ERROR: No se ha generado aemet-alerts.json"
-            exit 1
-          fi
-
-          echo "Archivo generado:"
-          ls -lh aemet-alerts.json
-
-          echo "Primeras líneas:"
-          head -40 aemet-alerts.json
-
-      - name: Guardar avisos actualizados
+      - name: Guardar cambios
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add aemet-alerts.json
+          git add aemet-debug-inicial.json
+          git add aemet-debug-datos.txt
 
-          if git diff --cached --quiet; then
-            echo "No hay cambios en los avisos AEMET."
-          else
-            git commit -m "Actualización automática de avisos AEMET"
-            git push
-          fi
+          git diff --cached --quiet || git commit -m "Diagnosticar respuesta real de AEMET"
+
+          git push
