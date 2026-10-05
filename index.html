@@ -27,6 +27,12 @@
   crossorigin=""
 ></script>
 
+<!-- =========================================================
+     FIREBASE AUTHENTICATION
+     ========================================================= -->
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+
 <style>
 /* =========================================================
    RESET
@@ -939,12 +945,207 @@ button {
     font-size: 20px;
   }
 }
+
+
+/* =========================================================
+   AUTHENTICATION GATE
+   ========================================================= */
+
+.auth-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background:
+    radial-gradient(circle at 50% 15%, rgba(48, 88, 125, .20), transparent 42%),
+    #070a0f;
+}
+
+.auth-card {
+  width: min(430px, 100%);
+  padding: 28px;
+  border: 1px solid #263341;
+  border-radius: 20px;
+  background: rgba(12, 17, 24, .96);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .45);
+}
+
+.auth-brand {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.auth-logo {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.auth-logo span {
+  color: #63b3ff;
+}
+
+.auth-subtitle {
+  margin-top: 7px;
+  color: #8e9aaa;
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.auth-form {
+  display: grid;
+  gap: 13px;
+}
+
+.auth-form label {
+  display: grid;
+  gap: 7px;
+  color: #aeb8c5;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.auth-form input {
+  width: 100%;
+  min-height: 50px;
+  padding: 0 14px;
+  border: 1px solid #2a3745;
+  border-radius: 12px;
+  outline: none;
+  background: #0a0f15;
+  color: #edf2f7;
+  font: inherit;
+}
+
+.auth-form input:focus {
+  border-color: #4d8fc2;
+  box-shadow: 0 0 0 3px rgba(77, 143, 194, .14);
+}
+
+.auth-submit {
+  min-height: 50px;
+  margin-top: 4px;
+  border: 0;
+  border-radius: 12px;
+  background: #2f78a9;
+  color: white;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.auth-submit:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+
+.auth-error {
+  display: none;
+  padding: 11px 12px;
+  border: 1px solid rgba(239, 68, 68, .35);
+  border-radius: 10px;
+  background: rgba(127, 29, 29, .18);
+  color: #fca5a5;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.auth-error.visible {
+  display: block;
+}
+
+.app.auth-locked {
+  display: none;
+}
+
+.auth-userbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 9px;
+  margin-top: 10px;
+}
+
+.auth-user-email {
+  max-width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #8996a5;
+  font-size: 11px;
+}
+
+.logout-btn {
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid #334250;
+  border-radius: 9px;
+  background: #0d131b;
+  color: #cbd5e1;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  border-color: #557089;
+}
+
+@media (max-width: 600px) {
+  .auth-card {
+    padding: 22px;
+  }
+
+  .auth-userbar {
+    justify-content: space-between;
+  }
+
+  .auth-user-email {
+    max-width: 210px;
+  }
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="app">
+<!-- =====================================================
+     LOGIN / ACCESO PRIVADO
+     ===================================================== -->
+<div id="authScreen" class="auth-screen" aria-live="polite">
+  <div class="auth-card">
+    <div class="auth-brand">
+      <div class="auth-logo">TRAVEL <span>SAFE</span></div>
+      <div class="auth-subtitle">Acceso privado</div>
+    </div>
+
+    <form id="authForm" class="auth-form" autocomplete="on">
+      <label>
+        Correo electrónico
+        <input id="authEmail" type="email" autocomplete="username" required>
+      </label>
+
+      <label>
+        Contraseña
+        <input id="authPassword" type="password" autocomplete="current-password" required>
+      </label>
+
+      <div id="authError" class="auth-error"></div>
+
+      <button id="authSubmit" class="auth-submit" type="submit">Entrar</button>
+    </form>
+  </div>
+</div>
+
+<div class="app auth-locked">
 
   <div class="container">
 
@@ -968,6 +1169,11 @@ button {
           </div>
         </div>
 
+      </div>
+
+      <div class="auth-userbar">
+        <span id="authUserEmail" class="auth-user-email"></span>
+        <button id="logoutBtn" class="logout-btn" type="button">Cerrar sesión</button>
       </div>
 
     </header>
@@ -1532,6 +1738,132 @@ button {
 
 <script>
 "use strict";
+
+/* ===========================================================
+   FIREBASE AUTHENTICATION
+   =========================================================== */
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDdvxcXCTWaaQZ0EiEnZC19giqalyM3gl4",
+  authDomain: "travel-5a7cc.firebaseapp.com",
+  projectId: "travel-5a7cc",
+  storageBucket: "travel-5a7cc.firebasestorage.app",
+  messagingSenderId: "704773795349",
+  appId: "1:704773795349:web:f0ea37dddf39a3019f681c",
+  measurementId: "G-JVH01LTTMV"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+
+const authScreen = document.getElementById("authScreen");
+const authForm = document.getElementById("authForm");
+const authEmail = document.getElementById("authEmail");
+const authPassword = document.getElementById("authPassword");
+const authError = document.getElementById("authError");
+const authSubmit = document.getElementById("authSubmit");
+const authUserEmail = document.getElementById("authUserEmail");
+const logoutBtn = document.getElementById("logoutBtn");
+const appRoot = document.querySelector(".app");
+
+function showAuthError(message) {
+  authError.textContent = message;
+  authError.classList.add("visible");
+}
+
+function clearAuthError() {
+  authError.textContent = "";
+  authError.classList.remove("visible");
+}
+
+function authFriendlyError(error) {
+  const code = error?.code || "";
+
+  if (code.includes("invalid-credential") || code.includes("wrong-password") || code.includes("user-not-found")) {
+    return "El correo o la contraseña no son correctos.";
+  }
+
+  if (code.includes("invalid-email")) {
+    return "El correo electrónico no tiene un formato válido.";
+  }
+
+  if (code.includes("too-many-requests")) {
+    return "Se han realizado demasiados intentos. Espera unos minutos y vuelve a intentarlo.";
+  }
+
+  if (code.includes("network-request-failed")) {
+    return "No se ha podido conectar con Firebase. Comprueba tu conexión a Internet.";
+  }
+
+  return "No se ha podido iniciar sesión. Inténtalo de nuevo.";
+}
+
+authForm.addEventListener("submit", async event => {
+  event.preventDefault();
+  clearAuthError();
+
+  const email = authEmail.value.trim();
+  const password = authPassword.value;
+
+  if (!email || !password) {
+    showAuthError("Introduce el correo electrónico y la contraseña.");
+    return;
+  }
+
+  authSubmit.disabled = true;
+  authSubmit.textContent = "Entrando…";
+
+  try {
+    await auth.signInWithEmailAndPassword(email, password);
+  } catch (error) {
+    showAuthError(authFriendlyError(error));
+  } finally {
+    authSubmit.disabled = false;
+    authSubmit.textContent = "Entrar";
+  }
+});
+
+logoutBtn.addEventListener("click", async () => {
+  try {
+    await auth.signOut();
+  } catch (error) {
+    console.error("Error al cerrar sesión:", error);
+  }
+});
+
+function showAuthenticatedApp(user) {
+  authScreen.style.display = "none";
+  appRoot.classList.remove("auth-locked");
+  authUserEmail.textContent = user.email || "Usuario autorizado";
+
+  setMinimumDate();
+  renderSavedTrips();
+  initMap();
+
+  setTimeout(() => {
+    if (map) map.invalidateSize();
+  }, 100);
+}
+
+function showLoginScreen() {
+  appRoot.classList.add("auth-locked");
+  authScreen.style.display = "flex";
+  authUserEmail.textContent = "";
+  authPassword.value = "";
+  authSubmit.disabled = false;
+  authSubmit.textContent = "Entrar";
+  clearAuthError();
+  setTimeout(() => authEmail.focus(), 50);
+}
+
+auth.onAuthStateChanged(user => {
+  if (user) {
+    showAuthenticatedApp(user);
+  } else {
+    showLoginScreen();
+  }
+});
 
 /* ===========================================================
    CONFIGURACIÓN
@@ -6359,16 +6691,6 @@ window.addEventListener(
   }
 );
 
-
-/* ===========================================================
-   INICIALIZACIÓN
-   =========================================================== */
-
-setMinimumDate();
-
-renderSavedTrips();
-
-initMap();
 
 </script>
 
