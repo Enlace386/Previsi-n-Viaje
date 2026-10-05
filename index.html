@@ -722,6 +722,73 @@ button {
 }
 
 /* =========================================================
+   RIESGOS INTERACTIVOS / FENOMENOS
+   ========================================================= */
+.risk-item.interactive {
+  width:100%;
+  text-align:left;
+  color:inherit;
+  cursor:pointer;
+  transition:transform .15s ease, border-color .15s ease, background .15s ease;
+}
+.risk-item.interactive:hover {
+  transform:translateY(-1px);
+  border-color:#35d7ff;
+  background:#0c141d;
+}
+.risk-item.interactive:focus-visible {
+  outline:2px solid #35d7ff;
+  outline-offset:2px;
+}
+.risk-item.interactive .risk-click-hint {
+  display:block;
+  margin-top:7px;
+  color:#35d7ff;
+  font-size:11px;
+  font-weight:800;
+}
+.phenomenon-points {
+  display:none;
+  margin-top:10px;
+  padding:10px;
+  border-radius:12px;
+  background:#070c12;
+  border:1px solid #263542;
+}
+.phenomenon-points.open {
+  display:grid;
+  gap:7px;
+}
+.phenomenon-point {
+  width:100%;
+  text-align:left;
+  padding:10px 11px;
+  border:1px solid #1c2a36;
+  border-radius:10px;
+  background:#0d151e;
+  color:#dce5ed;
+  cursor:pointer;
+}
+.phenomenon-point:hover {
+  border-color:#35d7ff;
+}
+.phenomenon-point strong {
+  display:block;
+  margin-bottom:3px;
+}
+.phenomenon-point span {
+  display:block;
+  color:#93a1af;
+  font-size:11px;
+  line-height:1.45;
+}
+.phenomenon-empty {
+  color:#8996a3;
+  font-size:11px;
+  padding:4px;
+}
+
+/* =========================================================
    DATA STATUS
    ========================================================= */
 
@@ -1890,8 +1957,8 @@ const CONFIG = {
    * Ejemplo:
    * https://europe-southwest1-TU_PROYECTO.cloudfunctions.net/aemetProxy
    */
-  AEMET_ALERTS_URL:
-    "aemet-alerts.json",
+  AEMET_PROXY_URL:
+    "",
 
   HYDRO_PROXY_URL:
     "",
@@ -1926,6 +1993,8 @@ let startMarker = null;
 let endMarker = null;
 
 let currentAnalysis = null;
+
+let pointMarkers = [];
 
 
 /* ===========================================================
@@ -3178,35 +3247,50 @@ async function fetchOfficialAlerts(
   analysis
 ) {
 
-  /*
-   * AEMET se consulta de forma indirecta:
-   * GitHub Actions descarga los avisos oficiales con la API key
-   * guardada como secreto y publica aemet-alerts.json.
-   * El navegador nunca recibe ni contiene la API key.
-   */
+  if (!CONFIG.AEMET_PROXY_URL) {
+
+    return {
+      configured: false,
+      alerts: []
+    };
+
+  }
 
   const response =
     await fetchWithTimeout(
-      CONFIG.AEMET_ALERTS_URL,
+      CONFIG.AEMET_PROXY_URL,
       {
-        cache: "no-store"
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          type: "aemet",
+          date: analysis.date,
+          departure: analysis.departure,
+          origin: analysis.origin,
+          destination: analysis.destination,
+          points: analysis.points.map(
+            point => ({
+              lat: point.lat,
+              lon: point.lon,
+              passTime: point.passTime,
+              distanceKm: point.distanceKm
+            })
+          )
+        })
       }
     );
 
   const payload =
     await response.json();
 
-  const allAlerts =
-    normalizeOfficialItems(payload);
-
   const alerts =
-    allAlerts.filter(
+    normalizeOfficialItems(
+      payload
+    ).filter(
       alert =>
-        alertIsActiveForTrip(
-          alert,
-          analysis
-        ) &&
-        alertTouchesRouteGeometry(
+        alertTouchesRoute(
           alert,
           analysis.points
         )
@@ -3216,288 +3300,6 @@ async function fetchOfficialAlerts(
     configured: true,
     alerts
   };
-
-}
-
-
-/* ===========================================================
-   AEMET ESTÁTICO — RELEVANCIA GEOGRÁFICA Y TEMPORAL
-   =========================================================== */
-
-function parseAlertDate(value) {
-
-  if (!value) {
-    return null;
-  }
-
-  const d = new Date(value);
-
-  return Number.isNaN(d.getTime())
-    ? null
-    : d;
-
-}
-
-
-function alertIsActiveForTrip(
-  alert,
-  analysis
-) {
-
-  const tripStart =
-    parseAlertDate(
-      `${analysis.date}T${analysis.departure}:00`
-    );
-
-  if (!tripStart) {
-    return false;
-  }
-
-  const durationSeconds =
-    Number(
-      analysis.route?.duration || 0
-    );
-
-  const tripEnd =
-    new Date(
-      tripStart.getTime() +
-      durationSeconds * 1000
-    );
-
-  const effective =
-    parseAlertDate(
-      alert.effective ||
-      alert.onset ||
-      alert.sent
-    );
-
-  const expires =
-    parseAlertDate(
-      alert.expires
-    );
-
-  /*
-   * Si AEMET no aporta intervalo temporal, no inventamos
-   * que el aviso afecta al viaje.
-   */
-  if (!effective && !expires) {
-    return false;
-  }
-
-  const startsBeforeTripEnd =
-    !effective ||
-    effective.getTime() <= tripEnd.getTime();
-
-  const endsAfterTripStart =
-    !expires ||
-    expires.getTime() >= tripStart.getTime();
-
-  return startsBeforeTripEnd && endsAfterTripStart;
-
-}
-
-
-function normalizePolygonCoordinates(
-  polygon
-) {
-
-  if (!polygon) {
-    return [];
-  }
-
-  if (Array.isArray(polygon)) {
-
-    /* GeoJSON: [[lon,lat], ...] */
-    if (
-      polygon.length &&
-      Array.isArray(polygon[0]) &&
-      polygon[0].length >= 2 &&
-      typeof polygon[0][0] === "number"
-    ) {
-      return polygon.map(
-        pair => [
-          Number(pair[0]),
-          Number(pair[1])
-        ]
-      );
-    }
-
-    /* GeoJSON Polygon: [[[lon,lat], ...]] */
-    if (
-      polygon.length &&
-      Array.isArray(polygon[0]) &&
-      Array.isArray(polygon[0][0])
-    ) {
-      return normalizePolygonCoordinates(
-        polygon[0]
-      );
-    }
-
-    return [];
-  }
-
-  if (typeof polygon !== "string") {
-    return [];
-  }
-
-  const pairs =
-    polygon
-      .trim()
-      .split(/\s+/)
-      .map(token => {
-        const parts =
-          token.split(",");
-
-        if (parts.length < 2) {
-          return null;
-        }
-
-        const lon = Number(parts[0]);
-        const lat = Number(parts[1]);
-
-        return Number.isFinite(lon) &&
-          Number.isFinite(lat)
-          ? [lon, lat]
-          : null;
-      })
-      .filter(Boolean);
-
-  return pairs;
-
-}
-
-
-function pointInPolygon(
-  lat,
-  lon,
-  polygon
-) {
-
-  const pts =
-    normalizePolygonCoordinates(
-      polygon
-    );
-
-  if (pts.length < 3) {
-    return false;
-  }
-
-  let inside = false;
-
-  for (
-    let i = 0, j = pts.length - 1;
-    i < pts.length;
-    j = i++
-  ) {
-
-    const xi = pts[i][0];
-    const yi = pts[i][1];
-    const xj = pts[j][0];
-    const yj = pts[j][1];
-
-    const intersects =
-      ((yi > lat) !== (yj > lat)) &&
-      (
-        lon <
-        (xj - xi) *
-        (lat - yi) /
-        ((yj - yi) || 1e-12) +
-        xi
-      );
-
-    if (intersects) {
-      inside = !inside;
-    }
-  }
-
-  return inside;
-
-}
-
-
-function alertTouchesRouteGeometry(
-  alert,
-  points
-) {
-
-  if (
-    alert.routeRelevant === true ||
-    alert.relevant === true ||
-    alert.filteredForRoute === true
-  ) {
-    return true;
-  }
-
-  const polygons = [];
-
-  if (Array.isArray(alert.polygons)) {
-    polygons.push(...alert.polygons);
-  }
-
-  if (alert.polygon) {
-    polygons.push(alert.polygon);
-  }
-
-  if (alert.geometry?.coordinates) {
-    const coords =
-      alert.geometry.coordinates;
-
-    if (alert.geometry.type === "Polygon") {
-      polygons.push(coords);
-    }
-    else if (alert.geometry.type === "MultiPolygon") {
-      coords.forEach(
-        polygon => polygons.push(polygon)
-      );
-    }
-  }
-
-  if (polygons.length) {
-    return points.some(
-      point => polygons.some(
-        polygon =>
-          pointInPolygon(
-            point.lat,
-            point.lon,
-            polygon
-          )
-      )
-    );
-  }
-
-  const lat =
-    Number(
-      alert.lat ??
-      alert.latitude
-    );
-
-  const lon =
-    Number(
-      alert.lon ??
-      alert.longitude
-    );
-
-  if (
-    Number.isFinite(lat) &&
-    Number.isFinite(lon)
-  ) {
-    return points.some(
-      point =>
-        haversineKm(
-          lat,
-          lon,
-          point.lat,
-          point.lon
-        ) <= 50
-    );
-  }
-
-  /*
-   * Sin geometría/coordenadas no mostramos el aviso como
-   * geográficamente relevante. Así evitamos falsos positivos
-   * nacionales.
-   */
-  return false;
 
 }
 
@@ -3691,10 +3493,11 @@ function renderOfficialAlerts(
       "data-state warning";
 
     status.innerHTML = `
-      <strong>🚨 Avisos AEMET: datos no disponibles</strong>
+      <strong>🚨 Avisos AEMET: no conectados</strong>
       <span>
-        No se ha podido consultar el fichero público de avisos oficiales.
-        El riesgo meteorológico continúa analizándose con los datos disponibles.
+        El análisis meteorológico funciona con Open-Meteo,
+        pero los avisos oficiales AEMET requieren un proxy
+        seguro con la API key fuera del navegador.
       </span>
     `;
 
@@ -4500,6 +4303,7 @@ function renderRoute(
   routeLayer.clearLayers();
 
   pointLayer.clearLayers();
+  pointMarkers = [];
 
 
   if (startMarker) {
@@ -4712,6 +4516,22 @@ function renderRoute(
             point.risk.score
           );
 
+        const detectedPhenomena =
+          getDetectedPhenomena(analysis)
+            .filter(phenomenon =>
+              phenomenon.points.some(entry => entry.index === index)
+            );
+
+        const markerColor =
+          detectedPhenomena.length
+            ? "#ffb020"
+            : risk.color;
+
+        const markerTitle =
+          detectedPhenomena.length
+            ? `Fenómeno detectado · riesgo ${risk.name}`
+            : `Riesgo ${risk.name}`;
+
 
         const marker =
           L.marker(
@@ -4729,7 +4549,8 @@ function renderRoute(
                   html:
                     `<div
                       class="risk-marker"
-                      style="background:${risk.color}"
+                      title="${escapeHtml(markerTitle)}"
+                      style="background:${markerColor}"
                     ></div>`,
 
                   iconSize: [22,22],
@@ -4753,6 +4574,8 @@ function renderRoute(
           .addTo(
             pointLayer
           );
+
+        pointMarkers[index] = marker;
 
       }
     );
@@ -5556,114 +5379,189 @@ function renderSegments(
    RENDER RISKS
    =========================================================== */
 
-function renderRisks(
-  analysis
-) {
+function getDetectedPhenomena(analysis) {
 
-  $("risksList").innerHTML = "";
+  const definitions = [
+    {
+      id: "precip-prob",
+      icon: "🌧️",
+      label: "Probabilidad de precipitación elevada",
+      test: w => Number(w.precipitationProbability) >= 60,
+      detail: w => `Probabilidad ${fmt(w.precipitationProbability, " %")}`
+    },
+    {
+      id: "precip",
+      icon: "💧",
+      label: "Precipitación prevista",
+      test: w => Number(w.precipitation) >= 0.5,
+      detail: w => `${fmt(w.precipitation, " mm", 1)} previstos · ${weatherDescription(w.weatherCode)}`
+    },
+    {
+      id: "storm",
+      icon: "⛈️",
+      label: "Tormenta prevista",
+      test: w => isStorm(w),
+      detail: w => `${weatherDescription(w.weatherCode)}${Number.isFinite(Number(w.cape)) ? ` · CAPE ${Math.round(Number(w.cape))} J/kg` : ""}`
+    },
+    {
+      id: "gusts",
+      icon: "💨",
+      label: "Rachas de viento fuertes",
+      test: w => Number(w.gusts) >= 50,
+      detail: w => `Rachas de hasta ${fmt(w.gusts, " km/h")}`
+    },
+    {
+      id: "convective",
+      icon: "⚡",
+      label: "Entorno convectivo potencialmente inestable",
+      test: w => Number(w.cape) >= 500 && !isStorm(w),
+      detail: w => `CAPE ${Math.round(Number(w.cape))} J/kg`
+    },
+    {
+      id: "snow",
+      icon: "❄️",
+      label: "Nieve prevista",
+      test: w => hasSnow(w),
+      detail: w => `${weatherDescription(w.weatherCode)}${Number(w.snowfall) > 0 ? ` · ${fmt(w.snowfall, " cm", 1)}` : ""}`
+    },
+    {
+      id: "ice",
+      icon: "🧊",
+      label: "Posible hielo / precipitación helada",
+      test: w => ([56,57,66,67].includes(Number(w.weatherCode)) || (Number(w.temperature) <= 1 && Number(w.precipitation) > 0)),
+      detail: w => `${fmt(w.temperature, " °C", 1)} · ${weatherDescription(w.weatherCode)}`
+    },
+    {
+      id: "fog",
+      icon: "🌫️",
+      label: "Niebla o visibilidad reducida",
+      test: w => [45,48].includes(Number(w.weatherCode)) || Number(w.visibility) < 1000,
+      detail: w => `${weatherDescription(w.weatherCode)} · visibilidad ${formatVisibility(w.visibility)}`
+    },
+    {
+      id: "extreme-temp",
+      icon: "🌡️",
+      label: "Temperatura extrema",
+      test: w => Number(w.temperature) <= 0 || Number(w.temperature) >= 35,
+      detail: w => `Temperatura ${fmt(w.temperature, " °C", 1)}`
+    },
+    {
+      id: "high-altitude",
+      icon: "⛰️",
+      label: "Zona de altitud elevada",
+      test: w => Number(w.elevation) >= 800,
+      detail: w => `Altitud aproximada ${Math.round(Number(w.elevation))} m`
+    },
+    {
+      id: "official-alert",
+      icon: "🚨",
+      label: "Aviso oficial relevante",
+      test: (w, point) => Array.isArray(point.officialAlerts) && point.officialAlerts.length > 0,
+      detail: (w, point) => `${point.officialAlerts.length} aviso${point.officialAlerts.length === 1 ? "" : "s"} oficial${point.officialAlerts.length === 1 ? "" : "es"}`
+    }
+  ];
 
+  return definitions.map(def => ({
+    ...def,
+    points: analysis.points
+      .map((point, index) => ({ point, index }))
+      .filter(({ point }) => point.weather && def.test(point.weather, point))
+  })).filter(item => item.points.length > 0);
+}
 
-  const allRisks =
-    new Map();
+function formatPhenomenonPoint(item, index, phenomenon) {
+  const { point } = item;
+  const w = point.weather;
+  const risk = getRiskLevel(point.risk.score);
 
+  return `
+    <button class="phenomenon-point" type="button" data-point-index="${index}">
+      <strong>
+        Punto ${index + 1} · ${escapeHtml(point.passTime)} · km ${formatDistance(point.distanceKm)}
+      </strong>
+      <span>
+        ${escapeHtml(phenomenon.detail(w, point))} · riesgo ${escapeHtml(risk.name)} (${point.risk.score}/100)
+      </span>
+    </button>
+  `;
+}
 
-  analysis.points
-    .forEach(
-      point => {
+function focusAnalysisPoint(index) {
+  const point = currentAnalysis?.points?.[index];
+  const marker = pointMarkers[index];
 
-        point.risk.risks
-          .forEach(
-            risk => {
+  if (!point || !marker || !map) return;
 
-              if (
-                !allRisks.has(risk)
-              ) {
+  map.setView([point.lat, point.lon], Math.max(map.getZoom(), 10), { animate: true });
+  marker.openPopup();
+}
 
-                allRisks.set(
-                  risk,
-                  1
-                );
+function renderRisks(analysis) {
 
-              }
-              else {
+  const container = $("risksList");
+  container.innerHTML = "";
 
-                allRisks.set(
-                  risk,
-                  allRisks.get(risk) + 1
-                );
+  const phenomena = getDetectedPhenomena(analysis);
 
-              }
-
-            }
-          );
-
-      }
-    );
-
-
-  if (!allRisks.size) {
-
-    $("risksList").innerHTML = `
-
+  if (!phenomena.length) {
+    container.innerHTML = `
       <div class="risk-item">
-
-        <strong style="color:#35e28a">
-          🟢 No se han detectado riesgos meteorológicos relevantes
-        </strong>
-
-        <span>
-          Esto significa que los datos meteorológicos disponibles
-          no han superado los umbrales preventivos utilizados por
-          TRAVEL SAFE. No equivale a una garantía de ausencia
-          de riesgo.
-        </span>
-
+        <strong style="color:#35e28a">🟢 No se han detectado fenómenos meteorológicos relevantes</strong>
+        <span>Los datos disponibles no han superado los umbrales preventivos utilizados por TRAVEL SAFE. No equivale a una garantía de ausencia de riesgo.</span>
       </div>
-
     `;
-
     return;
-
   }
 
+  phenomena
+    .sort((a, b) => b.points.length - a.points.length)
+    .slice(0, 12)
+    .forEach((phenomenon, phenomenonIndex) => {
 
-  Array.from(allRisks.entries())
-    .sort(
-      (a,b) => b[1] - a[1]
-    )
-    .slice(0,8)
-    .forEach(
-      ([risk, count]) => {
+      const item = document.createElement("div");
+      item.className = "risk-item interactive";
 
-        const item =
-          document.createElement("div");
+      const pointsHtml = phenomenon.points
+        .map(entry => formatPhenomenonPoint(entry, entry.index, phenomenon))
+        .join("");
 
+      item.innerHTML = `
+        <button
+          type="button"
+          class="risk-item interactive"
+          data-phenomenon-index="${phenomenonIndex}"
+          aria-expanded="false"
+        >
+          <strong>${phenomenon.icon} ${escapeHtml(phenomenon.label)}</strong>
+          <span>Detectado en ${phenomenon.points.length} punto${phenomenon.points.length === 1 ? "" : "s"} de análisis.</span>
+          <span class="risk-click-hint">▸ Pulsar para ver los puntos detectados</span>
+        </button>
+        <div class="phenomenon-points" data-phenomenon-points="${phenomenonIndex}">
+          ${pointsHtml}
+        </div>
+      `;
 
-        item.className =
-          "risk-item";
+      container.appendChild(item);
+    });
 
+  container.querySelectorAll("[data-phenomenon-index]").forEach(button => {
+    button.addEventListener("click", () => {
+      const index = Number(button.dataset.phenomenonIndex);
+      const details = container.querySelector(`[data-phenomenon-points="${index}"]`);
+      const open = details.classList.toggle("open");
+      button.setAttribute("aria-expanded", String(open));
+      button.querySelector(".risk-click-hint").textContent = open
+        ? "▾ Pulsar para ocultar los puntos"
+        : "▸ Pulsar para ver los puntos detectados";
+    });
+  });
 
-        item.innerHTML = `
-
-          <strong>
-            ⚠️ ${escapeHtml(risk)}
-          </strong>
-
-          <span>
-            Detectado en ${count}
-            punto${count === 1 ? "" : "s"}
-            de análisis.
-          </span>
-
-        `;
-
-
-        $("risksList")
-          .appendChild(item);
-
-      }
-    );
-
+  container.querySelectorAll(".phenomenon-point").forEach(button => {
+    button.addEventListener("click", event => {
+      event.stopPropagation();
+      focusAnalysisPoint(Number(button.dataset.pointIndex));
+    });
+  });
 }
 
 
