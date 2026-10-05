@@ -1951,14 +1951,11 @@ const CONFIG = {
     "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
 
   /*
-   * IMPORTANTE:
-   * Estas URLs NO contienen claves secretas.
-   * En producción pueden apuntar a Cloud Functions de Firebase.
-   * Ejemplo:
-   * https://europe-southwest1-TU_PROYECTO.cloudfunctions.net/aemetProxy
+   * AEMET se publica mediante GitHub Actions en un JSON estático.
+   * La API key permanece exclusivamente en GitHub Secrets.
    */
-  AEMET_PROXY_URL:
-    "",
+  AEMET_ALERTS_URL:
+    "https://enlace386.github.io/Previsi-n-Viaje/aemet-alerts.json",
 
   HYDRO_PROXY_URL:
     "",
@@ -3205,6 +3202,45 @@ function alertTouchesRoute(
 
   }
 
+  /* CAP puede aportar polígonos como [[lat,lon], ...] o
+     como listas planas de coordenadas. Si el aviso tiene
+     geometría, comprobamos si alguno de los puntos de la ruta
+     cae dentro del área oficial. */
+  const polygons =
+    alert.polygons ||
+    alert.polygon ||
+    alert.geometry ||
+    alert.coordinates;
+
+  function pointInPolygon(lat, lon, polygon) {
+    if (!Array.isArray(polygon) || polygon.length < 3) return false;
+    let inside = false;
+    for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+      const a = polygon[i];
+      const b = polygon[j];
+      if (!Array.isArray(a) || !Array.isArray(b) || a.length < 2 || b.length < 2) continue;
+      const yi = Number(a[0]), xi = Number(a[1]);
+      const yj = Number(b[0]), xj = Number(b[1]);
+      if (![yi, xi, yj, xj].every(Number.isFinite)) continue;
+      const intersect = ((yi > lat) !== (yj > lat)) &&
+        (lon < (xj - xi) * (lat - yi) / ((yj - yi) || 1e-12) + xi);
+      if (intersect) inside = !inside;
+    }
+    return inside;
+  }
+
+  if (Array.isArray(polygons)) {
+    const candidatePolygons =
+      Array.isArray(polygons[0]) && Array.isArray(polygons[0][0])
+        ? polygons
+        : [polygons];
+    for (const polygon of candidatePolygons) {
+      if (points.some(point => pointInPolygon(point.lat, point.lon, polygon))) {
+        return true;
+      }
+    }
+  }
+
   const lat =
     Number(
       alert.lat ??
@@ -3247,48 +3283,27 @@ async function fetchOfficialAlerts(
   analysis
 ) {
 
-  if (!CONFIG.AEMET_PROXY_URL) {
-
-    return {
-      configured: false,
-      alerts: []
-    };
-
-  }
-
   const response =
     await fetchWithTimeout(
-      CONFIG.AEMET_PROXY_URL,
+      CONFIG.AEMET_ALERTS_URL,
       {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          type: "aemet",
-          date: analysis.date,
-          departure: analysis.departure,
-          origin: analysis.origin,
-          destination: analysis.destination,
-          points: analysis.points.map(
-            point => ({
-              lat: point.lat,
-              lon: point.lon,
-              passTime: point.passTime,
-              distanceKm: point.distanceKm
-            })
-          )
-        })
+        method: "GET",
+        cache: "no-store"
       }
     );
+
+  if (!response.ok) {
+    throw new Error(`AEMET JSON HTTP ${response.status}`);
+  }
 
   const payload =
     await response.json();
 
+  const allAlerts =
+    normalizeOfficialItems(payload);
+
   const alerts =
-    normalizeOfficialItems(
-      payload
-    ).filter(
+    allAlerts.filter(
       alert =>
         alertTouchesRoute(
           alert,
@@ -3298,7 +3313,12 @@ async function fetchOfficialAlerts(
 
   return {
     configured: true,
-    alerts
+    alerts,
+    generatedAt:
+      payload.generatedAt ||
+      payload.generated_at ||
+      null,
+    totalAlerts: allAlerts.length
   };
 
 }
@@ -3490,14 +3510,13 @@ function renderOfficialAlerts(
   ) {
 
     status.className =
-      "data-state warning";
+      "data-state danger";
 
     status.innerHTML = `
-      <strong>🚨 Avisos AEMET: no conectados</strong>
+      <strong>⚠️ Avisos AEMET: datos no disponibles</strong>
       <span>
-        El análisis meteorológico funciona con Open-Meteo,
-        pero los avisos oficiales AEMET requieren un proxy
-        seguro con la API key fuera del navegador.
+        No se ha podido cargar el archivo oficial publicado por GitHub Actions.
+        Esto no significa que no existan avisos.
       </span>
     `;
 
@@ -3516,9 +3535,8 @@ function renderOfficialAlerts(
     status.innerHTML = `
       <strong>✅ No se han recibido avisos oficiales relevantes para la ruta</strong>
       <span>
-        Esto significa que el proxy oficial no ha devuelto
-        avisos geográficamente relevantes para los puntos
-        analizados. No equivale a garantía de ausencia de peligro.
+        No hay avisos oficiales AEMET que afecten a los puntos de la ruta analizados.
+        Esto no equivale a garantía de ausencia de peligro meteorológico.
       </span>
     `;
 
@@ -4516,22 +4534,6 @@ function renderRoute(
             point.risk.score
           );
 
-        const detectedPhenomena =
-          getDetectedPhenomena(analysis)
-            .filter(phenomenon =>
-              phenomenon.points.some(entry => entry.index === index)
-            );
-
-        const markerColor =
-          detectedPhenomena.length
-            ? "#ffb020"
-            : risk.color;
-
-        const markerTitle =
-          detectedPhenomena.length
-            ? `Fenómeno detectado · riesgo ${risk.name}`
-            : `Riesgo ${risk.name}`;
-
 
         const marker =
           L.marker(
@@ -4549,8 +4551,7 @@ function renderRoute(
                   html:
                     `<div
                       class="risk-marker"
-                      title="${escapeHtml(markerTitle)}"
-                      style="background:${markerColor}"
+                      style="background:${risk.color}"
                     ></div>`,
 
                   iconSize: [22,22],
@@ -6514,6 +6515,12 @@ async function analyzeTravel() {
 
       officialAlertsConfigured:
         officialAlertResult.configured,
+
+      aemetGeneratedAt:
+        officialAlertResult.generatedAt || null,
+
+      aemetTotalAlerts:
+        officialAlertResult.totalAlerts || 0,
 
       hydroItems:
         hydroResult.items,
