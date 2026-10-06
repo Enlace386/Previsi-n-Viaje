@@ -457,6 +457,11 @@ button {
   min-height: 430px;
   background: #dfe5ea;
 }
+.map-layer-switcher{display:flex;flex-wrap:wrap;gap:7px;padding:10px 16px;background:#0b1119;border-top:1px solid var(--border)}
+.map-layer-btn{border:1px solid #2a3745;background:#111a24;color:#b9c5d1;border-radius:999px;padding:7px 11px;font:inherit;font-size:11px;font-weight:850;cursor:pointer}
+.map-layer-btn.active{background:#1b2b3b;border-color:#35d7ff;color:#fff}
+.dgt-map-marker{width:30px;height:30px;display:grid;place-items:center;border-radius:50%;border:3px solid #fff;background:#ff8a00;box-shadow:0 3px 14px rgba(0,0,0,.55);font-size:15px}
+
 
 /*
  IMPORTANT:
@@ -1509,6 +1514,11 @@ button {
 
         <div id="map"></div>
 
+        <div class="map-layer-switcher" role="group" aria-label="Información visible en el mapa">
+          <button type="button" class="map-layer-btn active" data-map-mode="weather" onclick="setMapMode('weather')">🌦️ Tiempo / Riesgo</button>
+          <button type="button" class="map-layer-btn" data-map-mode="dgt" onclick="setMapMode('dgt')">🚧 DGT</button>
+          <button type="button" class="map-layer-btn" data-map-mode="all" onclick="setMapMode('all')">🗺️ Todo</button>
+        </div>
 
         <div class="map-legend">
 
@@ -2015,6 +2025,8 @@ let endMarker = null;
 let currentAnalysis = null;
 
 let pointMarkers = [];
+let dgtLayer = null;
+let mapMode = "weather";
 
 
 /* ===========================================================
@@ -2130,6 +2142,9 @@ function initMap() {
   pointLayer =
     L.layerGroup().addTo(map);
 
+  dgtLayer =
+    L.layerGroup().addTo(map);
+
 
   /*
    Leaflet necesita recalcular tamaño cuando
@@ -2144,6 +2159,37 @@ function initMap() {
 
 }
 
+
+function setMapMode(mode) {
+  mapMode = ["weather","dgt","all"].includes(mode) ? mode : "weather";
+  const showWeather = mapMode === "weather" || mapMode === "all";
+  const showDgt = mapMode === "dgt" || mapMode === "all";
+  if (pointLayer) { if (showWeather && !map.hasLayer(pointLayer)) pointLayer.addTo(map); if (!showWeather && map.hasLayer(pointLayer)) map.removeLayer(pointLayer); }
+  if (dgtLayer) { if (showDgt && !map.hasLayer(dgtLayer)) dgtLayer.addTo(map); if (!showDgt && map.hasLayer(dgtLayer)) map.removeLayer(dgtLayer); }
+  document.querySelectorAll(".map-layer-btn").forEach(b => b.classList.toggle("active", b.dataset.mapMode === mapMode));
+}
+
+function translateDgtEvent(value) {
+  const raw = String(value || "").trim();
+  const key = raw.replace(/([a-z])([A-Z])/g,"$1 $2").replace(/[_.-]+/g," ").replace(/\s+/g," ").toLowerCase().trim();
+  const map = {"roadworks":"Obras en la carretera","vehicle stuck":"Vehículo averiado / detenido","accident":"Accidente","vehicle obstruction":"Obstáculo en la calzada","traffic congestion":"Retenciones","road closed":"Carretera cortada","poor road surface":"Calzada en mal estado","weather related":"Incidencia meteorológica","road maintenance":"Mantenimiento de carretera"};
+  return map[key] || raw;
+}
+
+function renderDgtMapMarkers(incidents) {
+  if (!dgtLayer) return;
+  dgtLayer.clearLayers();
+  (incidents || []).forEach(incident => {
+    if (!Number.isFinite(incident.lat) || !Number.isFinite(incident.lon)) return;
+    const eventName = translateDgtEvent(incident.event);
+    const location = [incident.road,incident.direction,incident.municipality,incident.province].filter(Boolean).join(" · ");
+    const distance = Number.isFinite(incident.distanceKm) ? `${incident.distanceKm.toFixed(1)} km de la ruta` : "";
+    const detail = [incident.description,location,distance].filter(Boolean).join(" · ");
+    L.marker([incident.lat,incident.lon],{icon:L.divIcon({className:"",html:`<div class="dgt-map-marker">🚧</div>`,iconSize:[30,30],iconAnchor:[15,15]})})
+      .bindPopup(`<div style="min-width:220px"><strong>🚧 ${escapeHtml(eventName)}</strong>${location ? `<br><br>🛣️ ${escapeHtml(location)}` : ""}${detail ? `<br><br>${escapeHtml(detail)}` : ""}</div>`)
+      .addTo(dgtLayer);
+  });
+}
 
 /* ===========================================================
    TIMEOUT FETCH
@@ -3494,7 +3540,7 @@ function renderDgtIncidents(result) {
     ].filter(Boolean).join(" · ");
 
     item.innerHTML = `
-      <strong>🚧 ${escapeHtml(incident.event)}</strong>
+      <strong>🚧 ${escapeHtml(translateDgtEvent(incident.event))}</strong>
       <span>${escapeHtml(detail || "Incidencia DGT próxima a la ruta.")}</span>
     `;
 
@@ -4495,6 +4541,7 @@ function renderRoute(
   routeLayer.clearLayers();
 
   pointLayer.clearLayers();
+  if (dgtLayer) dgtLayer.clearLayers();
   pointMarkers = [];
 
 
@@ -4798,6 +4845,9 @@ function renderRoute(
 
   $("mapInfo").textContent =
     `${formatDistance(route.distance / 1000)} · ${formatDuration(route.duration)} · ${analysis.points.length} puntos de análisis`;
+
+  renderDgtMapMarkers(analysis.dgtIncidents || []);
+  setMapMode(mapMode);
 
 }
 
