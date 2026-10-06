@@ -1,6 +1,6 @@
 {
   "source": "AEMET OpenData",
-  "generatedAt": "2026-10-06T09:43:26.187549+00:00",
+  "generatedAt": "2026-10-06T10:04:48.936136+00:00",
   "status": "ok",
   "count": 515,
   "alerts": [
@@ -17016,6 +17016,272 @@
       ]
     },
     {
+      "id": "2.49.0.0.724.0.ES.20261006094100.694303PRP106161791279660",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-06T09:41:00+00:00",
+      "status": "Actual",
+      "messageType": "Update",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel amarillo",
+      "urgency": "Immediate",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-06T11:41:00+02:00",
+      "onset": "2026-10-06T11:00:00+02:00",
+      "expires": "2026-10-06T17:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel amarillo. Litoral norte de Tarragona",
+      "description": "Precipitación acumulada en una hora: 30 mm.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Litoral norte de Tarragona",
+          "zoneCode": "694303",
+          "polygons": [
+            [
+              [
+                41.18,
+                1.06
+              ],
+              [
+                41.18,
+                1.16
+              ],
+              [
+                41.22,
+                1.22
+              ],
+              [
+                41.21,
+                1.3
+              ],
+              [
+                41.2,
+                1.33
+              ],
+              [
+                41.25,
+                1.36
+              ],
+              [
+                41.28,
+                1.35
+              ],
+              [
+                41.29,
+                1.4
+              ],
+              [
+                41.29,
+                1.44
+              ],
+              [
+                41.32,
+                1.54
+              ],
+              [
+                41.34,
+                1.56
+              ],
+              [
+                41.31,
+                1.6
+              ],
+              [
+                41.26,
+                1.62
+              ],
+              [
+                41.22,
+                1.62
+              ],
+              [
+                41.2,
+                1.65
+              ],
+              [
+                41.18,
+                1.53
+              ],
+              [
+                41.13,
+                1.36
+              ],
+              [
+                41.13,
+                1.3
+              ],
+              [
+                41.09,
+                1.2
+              ],
+              [
+                41.06,
+                1.16
+              ],
+              [
+                41.07,
+                1.12
+              ],
+              [
+                41.09,
+                1.1
+              ],
+              [
+                41.14,
+                1.09
+              ],
+              [
+                41.18,
+                1.06
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261006094100.694303TOTO07041791279660",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-06T09:41:00+00:00",
+      "status": "Actual",
+      "messageType": "Update",
+      "language": "es-ES",
+      "event": "Aviso de tormentas de nivel amarillo",
+      "urgency": "Immediate",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-06T11:41:00+02:00",
+      "onset": "2026-10-06T11:00:00+02:00",
+      "expires": "2026-10-07T05:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de tormentas de nivel amarillo. Litoral norte de Tarragona",
+      "description": "Pueden ir acompañadas de granizo.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Litoral norte de Tarragona",
+          "zoneCode": "694303",
+          "polygons": [
+            [
+              [
+                41.18,
+                1.06
+              ],
+              [
+                41.18,
+                1.16
+              ],
+              [
+                41.22,
+                1.22
+              ],
+              [
+                41.21,
+                1.3
+              ],
+              [
+                41.2,
+                1.33
+              ],
+              [
+                41.25,
+                1.36
+              ],
+              [
+                41.28,
+                1.35
+              ],
+              [
+                41.29,
+                1.4
+              ],
+              [
+                41.29,
+                1.44
+              ],
+              [
+                41.32,
+                1.54
+              ],
+              [
+                41.34,
+                1.56
+              ],
+              [
+                41.31,
+                1.6
+              ],
+              [
+                41.26,
+                1.62
+              ],
+              [
+                41.22,
+                1.62
+              ],
+              [
+                41.2,
+                1.65
+              ],
+              [
+                41.18,
+                1.53
+              ],
+              [
+                41.13,
+                1.36
+              ],
+              [
+                41.13,
+                1.3
+              ],
+              [
+                41.09,
+                1.2
+              ],
+              [
+                41.06,
+                1.16
+              ],
+              [
+                41.07,
+                1.12
+              ],
+              [
+                41.09,
+                1.1
+              ],
+              [
+                41.14,
+                1.09
+              ],
+              [
+                41.18,
+                1.06
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
       "id": "2.49.0.0.724.0.ES.20261005092419.659001PRP106231791192259",
       "sender": "http://www.aemet.es",
       "sent": "2026-10-05T09:24:19+00:00",
@@ -32043,139 +32309,6 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261006091405.694303TOTO07041791278045",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-06T09:14:05+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de tormentas de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-06T11:14:05+02:00",
-      "onset": "2026-10-06T14:00:00+02:00",
-      "expires": "2026-10-07T05:59:59+02:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de tormentas de nivel amarillo. Litoral norte de Tarragona",
-      "description": "Pueden ir acompañadas de granizo.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Litoral norte de Tarragona",
-          "zoneCode": "694303",
-          "polygons": [
-            [
-              [
-                41.18,
-                1.06
-              ],
-              [
-                41.18,
-                1.16
-              ],
-              [
-                41.22,
-                1.22
-              ],
-              [
-                41.21,
-                1.3
-              ],
-              [
-                41.2,
-                1.33
-              ],
-              [
-                41.25,
-                1.36
-              ],
-              [
-                41.28,
-                1.35
-              ],
-              [
-                41.29,
-                1.4
-              ],
-              [
-                41.29,
-                1.44
-              ],
-              [
-                41.32,
-                1.54
-              ],
-              [
-                41.34,
-                1.56
-              ],
-              [
-                41.31,
-                1.6
-              ],
-              [
-                41.26,
-                1.62
-              ],
-              [
-                41.22,
-                1.62
-              ],
-              [
-                41.2,
-                1.65
-              ],
-              [
-                41.18,
-                1.53
-              ],
-              [
-                41.13,
-                1.36
-              ],
-              [
-                41.13,
-                1.3
-              ],
-              [
-                41.09,
-                1.2
-              ],
-              [
-                41.06,
-                1.16
-              ],
-              [
-                41.07,
-                1.12
-              ],
-              [
-                41.09,
-                1.1
-              ],
-              [
-                41.14,
-                1.09
-              ],
-              [
-                41.18,
-                1.06
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
       "id": "2.49.0.0.724.0.ES.20261006070111.612101PRP106221791270071",
       "sender": "http://www.aemet.es",
       "sent": "2026-10-06T07:01:11+00:00",
@@ -33587,139 +33720,6 @@
               [
                 41.28,
                 0.39
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261006063734.694303PRP106161791268654",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-06T06:37:34+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-06T08:37:34+02:00",
-      "onset": "2026-10-06T14:00:00+02:00",
-      "expires": "2026-10-06T17:59:59+02:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel amarillo. Litoral norte de Tarragona",
-      "description": "Precipitación acumulada en una hora: 30 mm.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Litoral norte de Tarragona",
-          "zoneCode": "694303",
-          "polygons": [
-            [
-              [
-                41.18,
-                1.06
-              ],
-              [
-                41.18,
-                1.16
-              ],
-              [
-                41.22,
-                1.22
-              ],
-              [
-                41.21,
-                1.3
-              ],
-              [
-                41.2,
-                1.33
-              ],
-              [
-                41.25,
-                1.36
-              ],
-              [
-                41.28,
-                1.35
-              ],
-              [
-                41.29,
-                1.4
-              ],
-              [
-                41.29,
-                1.44
-              ],
-              [
-                41.32,
-                1.54
-              ],
-              [
-                41.34,
-                1.56
-              ],
-              [
-                41.31,
-                1.6
-              ],
-              [
-                41.26,
-                1.62
-              ],
-              [
-                41.22,
-                1.62
-              ],
-              [
-                41.2,
-                1.65
-              ],
-              [
-                41.18,
-                1.53
-              ],
-              [
-                41.13,
-                1.36
-              ],
-              [
-                41.13,
-                1.3
-              ],
-              [
-                41.09,
-                1.2
-              ],
-              [
-                41.06,
-                1.16
-              ],
-              [
-                41.07,
-                1.12
-              ],
-              [
-                41.09,
-                1.1
-              ],
-              [
-                41.14,
-                1.09
-              ],
-              [
-                41.18,
-                1.06
               ]
             ]
           ]
@@ -82218,175 +82218,6 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261006093142.645402TOTO08141791279102",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-06T09:31:42+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de tormentas de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-06T11:31:42+02:00",
-      "onset": "2026-10-08T10:00:00+02:00",
-      "expires": "2026-10-08T15:59:59+02:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de tormentas de nivel amarillo. Norte y nordeste de Mallorca",
-      "description": "Pueden ir acompañas de granizo.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Norte y nordeste de Mallorca",
-          "zoneCode": "645402",
-          "polygons": [
-            [
-              [
-                39.81,
-                2.93
-              ],
-              [
-                39.84,
-                2.94
-              ],
-              [
-                39.9,
-                2.93
-              ],
-              [
-                39.92,
-                2.95
-              ],
-              [
-                39.91,
-                2.99
-              ],
-              [
-                39.94,
-                3.03
-              ],
-              [
-                39.91,
-                3.09
-              ],
-              [
-                39.89,
-                3.08
-              ],
-              [
-                39.86,
-                3.11
-              ],
-              [
-                39.88,
-                3.17
-              ],
-              [
-                39.86,
-                3.2
-              ],
-              [
-                39.82,
-                3.12
-              ],
-              [
-                39.77,
-                3.15
-              ],
-              [
-                39.73,
-                3.26
-              ],
-              [
-                39.76,
-                3.33
-              ],
-              [
-                39.79,
-                3.35
-              ],
-              [
-                39.76,
-                3.41
-              ],
-              [
-                39.72,
-                3.45
-              ],
-              [
-                39.69,
-                3.46
-              ],
-              [
-                39.64,
-                3.44
-              ],
-              [
-                39.63,
-                3.44
-              ],
-              [
-                39.67,
-                3.39
-              ],
-              [
-                39.67,
-                3.36
-              ],
-              [
-                39.64,
-                3.31
-              ],
-              [
-                39.68,
-                3.28
-              ],
-              [
-                39.68,
-                3.25
-              ],
-              [
-                39.7,
-                3.23
-              ],
-              [
-                39.7,
-                3.16
-              ],
-              [
-                39.68,
-                3.11
-              ],
-              [
-                39.74,
-                3.02
-              ],
-              [
-                39.73,
-                3.0
-              ],
-              [
-                39.76,
-                2.95
-              ],
-              [
-                39.81,
-                2.93
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
       "id": "2.49.0.0.724.0.ES.20261006093142.645501PRP108141791279102",
       "sender": "http://www.aemet.es",
       "sent": "2026-10-06T09:31:42+00:00",
@@ -82512,131 +82343,6 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261006093142.645501TOTO08141791279102",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-06T09:31:42+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de tormentas de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-06T11:31:42+02:00",
-      "onset": "2026-10-08T10:00:00+02:00",
-      "expires": "2026-10-08T15:59:59+02:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de tormentas de nivel amarillo. Menorca",
-      "description": "Pueden ir acompañas de granizo.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Menorca",
-          "zoneCode": "645501",
-          "polygons": [
-            [
-              [
-                39.97,
-                3.83
-              ],
-              [
-                40.0,
-                3.83
-              ],
-              [
-                40.02,
-                3.79
-              ],
-              [
-                40.05,
-                3.82
-              ],
-              [
-                40.06,
-                3.88
-              ],
-              [
-                40.05,
-                3.98
-              ],
-              [
-                40.07,
-                4.03
-              ],
-              [
-                40.06,
-                4.17
-              ],
-              [
-                40.03,
-                4.17
-              ],
-              [
-                40.0,
-                4.23
-              ],
-              [
-                40.0,
-                4.25
-              ],
-              [
-                39.93,
-                4.28
-              ],
-              [
-                39.89,
-                4.31
-              ],
-              [
-                39.85,
-                4.31
-              ],
-              [
-                39.81,
-                4.27
-              ],
-              [
-                39.83,
-                4.2
-              ],
-              [
-                39.88,
-                4.1
-              ],
-              [
-                39.92,
-                4.02
-              ],
-              [
-                39.93,
-                3.97
-              ],
-              [
-                39.92,
-                3.86
-              ],
-              [
-                39.93,
-                3.82
-              ],
-              [
-                39.97,
-                3.83
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
       "id": "2.49.0.0.724.0.ES.20261006093142.690803PRP108181791279102",
       "sender": "http://www.aemet.es",
       "sent": "2026-10-06T09:31:42+00:00",
@@ -82653,311 +82359,6 @@
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel amarillo. Prelitoral de Barcelona",
       "description": "Precipitación acumulada en una hora: 20 mm.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Prelitoral de Barcelona",
-          "zoneCode": "690803",
-          "polygons": [
-            [
-              [
-                41.68,
-                1.42
-              ],
-              [
-                41.69,
-                1.45
-              ],
-              [
-                41.69,
-                1.53
-              ],
-              [
-                41.68,
-                1.57
-              ],
-              [
-                41.7,
-                1.62
-              ],
-              [
-                41.65,
-                1.63
-              ],
-              [
-                41.66,
-                1.66
-              ],
-              [
-                41.62,
-                1.68
-              ],
-              [
-                41.65,
-                1.73
-              ],
-              [
-                41.64,
-                1.78
-              ],
-              [
-                41.62,
-                1.79
-              ],
-              [
-                41.59,
-                1.83
-              ],
-              [
-                41.63,
-                1.91
-              ],
-              [
-                41.65,
-                2.01
-              ],
-              [
-                41.69,
-                2.01
-              ],
-              [
-                41.72,
-                2.04
-              ],
-              [
-                41.71,
-                2.09
-              ],
-              [
-                41.73,
-                2.16
-              ],
-              [
-                41.78,
-                2.19
-              ],
-              [
-                41.76,
-                2.23
-              ],
-              [
-                41.77,
-                2.28
-              ],
-              [
-                41.8,
-                2.3
-              ],
-              [
-                41.76,
-                2.34
-              ],
-              [
-                41.77,
-                2.37
-              ],
-              [
-                41.81,
-                2.38
-              ],
-              [
-                41.8,
-                2.44
-              ],
-              [
-                41.77,
-                2.49
-              ],
-              [
-                41.76,
-                2.52
-              ],
-              [
-                41.72,
-                2.54
-              ],
-              [
-                41.74,
-                2.73
-              ],
-              [
-                41.71,
-                2.67
-              ],
-              [
-                41.72,
-                2.65
-              ],
-              [
-                41.66,
-                2.59
-              ],
-              [
-                41.66,
-                2.55
-              ],
-              [
-                41.63,
-                2.52
-              ],
-              [
-                41.63,
-                2.42
-              ],
-              [
-                41.53,
-                2.32
-              ],
-              [
-                41.49,
-                2.25
-              ],
-              [
-                41.45,
-                2.14
-              ],
-              [
-                41.43,
-                2.12
-              ],
-              [
-                41.44,
-                2.03
-              ],
-              [
-                41.46,
-                2.02
-              ],
-              [
-                41.43,
-                1.9
-              ],
-              [
-                41.38,
-                1.87
-              ],
-              [
-                41.36,
-                1.9
-              ],
-              [
-                41.32,
-                1.84
-              ],
-              [
-                41.32,
-                1.79
-              ],
-              [
-                41.35,
-                1.74
-              ],
-              [
-                41.32,
-                1.7
-              ],
-              [
-                41.29,
-                1.69
-              ],
-              [
-                41.31,
-                1.64
-              ],
-              [
-                41.31,
-                1.63
-              ],
-              [
-                41.31,
-                1.6
-              ],
-              [
-                41.34,
-                1.56
-              ],
-              [
-                41.37,
-                1.57
-              ],
-              [
-                41.4,
-                1.49
-              ],
-              [
-                41.44,
-                1.47
-              ],
-              [
-                41.48,
-                1.49
-              ],
-              [
-                41.51,
-                1.41
-              ],
-              [
-                41.55,
-                1.45
-              ],
-              [
-                41.57,
-                1.45
-              ],
-              [
-                41.58,
-                1.39
-              ],
-              [
-                41.59,
-                1.41
-              ],
-              [
-                41.61,
-                1.36
-              ],
-              [
-                41.63,
-                1.39
-              ],
-              [
-                41.64,
-                1.45
-              ],
-              [
-                41.68,
-                1.42
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261006093142.690803TOTO08181791279102",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-06T09:31:42+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de tormentas de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-06T11:31:42+02:00",
-      "onset": "2026-10-08T10:00:00+02:00",
-      "expires": "2026-10-08T19:59:59+02:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de tormentas de nivel amarillo. Prelitoral de Barcelona",
-      "description": "Pueden venir acompañadas de granizo.",
       "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
       "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
       "level": "amarillo",
@@ -83460,219 +82861,6 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261006093142.690804TOTO08181791279102",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-06T09:31:42+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de tormentas de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-06T11:31:42+02:00",
-      "onset": "2026-10-08T10:00:00+02:00",
-      "expires": "2026-10-08T19:59:59+02:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de tormentas de nivel amarillo. Litoral de Barcelona",
-      "description": "Pueden venir acompañadas de granizo.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Litoral de Barcelona",
-          "zoneCode": "690804",
-          "polygons": [
-            [
-              [
-                41.31,
-                1.6
-              ],
-              [
-                41.31,
-                1.63
-              ],
-              [
-                41.31,
-                1.64
-              ],
-              [
-                41.29,
-                1.69
-              ],
-              [
-                41.32,
-                1.7
-              ],
-              [
-                41.35,
-                1.74
-              ],
-              [
-                41.32,
-                1.79
-              ],
-              [
-                41.32,
-                1.84
-              ],
-              [
-                41.36,
-                1.9
-              ],
-              [
-                41.38,
-                1.87
-              ],
-              [
-                41.43,
-                1.9
-              ],
-              [
-                41.46,
-                2.02
-              ],
-              [
-                41.44,
-                2.03
-              ],
-              [
-                41.43,
-                2.12
-              ],
-              [
-                41.45,
-                2.14
-              ],
-              [
-                41.49,
-                2.25
-              ],
-              [
-                41.53,
-                2.32
-              ],
-              [
-                41.63,
-                2.42
-              ],
-              [
-                41.63,
-                2.52
-              ],
-              [
-                41.66,
-                2.55
-              ],
-              [
-                41.66,
-                2.59
-              ],
-              [
-                41.72,
-                2.65
-              ],
-              [
-                41.71,
-                2.67
-              ],
-              [
-                41.74,
-                2.73
-              ],
-              [
-                41.74,
-                2.78
-              ],
-              [
-                41.68,
-                2.76
-              ],
-              [
-                41.65,
-                2.78
-              ],
-              [
-                41.58,
-                2.56
-              ],
-              [
-                41.54,
-                2.46
-              ],
-              [
-                41.49,
-                2.38
-              ],
-              [
-                41.47,
-                2.3
-              ],
-              [
-                41.45,
-                2.25
-              ],
-              [
-                41.41,
-                2.22
-              ],
-              [
-                41.37,
-                2.18
-              ],
-              [
-                41.32,
-                2.15
-              ],
-              [
-                41.29,
-                2.12
-              ],
-              [
-                41.27,
-                2.02
-              ],
-              [
-                41.26,
-                1.92
-              ],
-              [
-                41.23,
-                1.85
-              ],
-              [
-                41.22,
-                1.78
-              ],
-              [
-                41.2,
-                1.65
-              ],
-              [
-                41.22,
-                1.62
-              ],
-              [
-                41.26,
-                1.62
-              ],
-              [
-                41.31,
-                1.6
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
       "id": "2.49.0.0.724.0.ES.20261006093142.691702PRP108181791279102",
       "sender": "http://www.aemet.es",
       "sent": "2026-10-06T09:31:42+00:00",
@@ -83689,255 +82877,6 @@
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel amarillo. Prelitoral de Girona",
       "description": "Precipitación acumulada en una hora: 20 mm.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Prelitoral de Girona",
-          "zoneCode": "691702",
-          "polygons": [
-            [
-              [
-                41.81,
-                2.38
-              ],
-              [
-                41.81,
-                2.36
-              ],
-              [
-                41.86,
-                2.33
-              ],
-              [
-                41.89,
-                2.34
-              ],
-              [
-                41.87,
-                2.38
-              ],
-              [
-                41.9,
-                2.41
-              ],
-              [
-                41.89,
-                2.44
-              ],
-              [
-                41.92,
-                2.48
-              ],
-              [
-                41.94,
-                2.45
-              ],
-              [
-                42.0,
-                2.5
-              ],
-              [
-                42.04,
-                2.49
-              ],
-              [
-                42.07,
-                2.47
-              ],
-              [
-                42.11,
-                2.47
-              ],
-              [
-                42.2,
-                2.45
-              ],
-              [
-                42.2,
-                2.48
-              ],
-              [
-                42.23,
-                2.5
-              ],
-              [
-                42.22,
-                2.58
-              ],
-              [
-                42.25,
-                2.6
-              ],
-              [
-                42.26,
-                2.58
-              ],
-              [
-                42.29,
-                2.6
-              ],
-              [
-                42.3,
-                2.66
-              ],
-              [
-                42.27,
-                2.67
-              ],
-              [
-                42.28,
-                2.72
-              ],
-              [
-                42.33,
-                2.73
-              ],
-              [
-                42.37,
-                2.8
-              ],
-              [
-                42.38,
-                2.85
-              ],
-              [
-                42.35,
-                2.9
-              ],
-              [
-                42.34,
-                2.83
-              ],
-              [
-                42.31,
-                2.79
-              ],
-              [
-                42.27,
-                2.78
-              ],
-              [
-                42.23,
-                2.81
-              ],
-              [
-                42.24,
-                2.83
-              ],
-              [
-                42.2,
-                2.86
-              ],
-              [
-                42.14,
-                2.84
-              ],
-              [
-                42.1,
-                2.84
-              ],
-              [
-                42.07,
-                2.89
-              ],
-              [
-                42.03,
-                2.9
-              ],
-              [
-                41.97,
-                2.91
-              ],
-              [
-                41.94,
-                2.94
-              ],
-              [
-                41.93,
-                2.9
-              ],
-              [
-                41.91,
-                2.89
-              ],
-              [
-                41.88,
-                2.96
-              ],
-              [
-                41.87,
-                2.94
-              ],
-              [
-                41.85,
-                2.86
-              ],
-              [
-                41.82,
-                2.85
-              ],
-              [
-                41.76,
-                2.85
-              ],
-              [
-                41.74,
-                2.78
-              ],
-              [
-                41.74,
-                2.73
-              ],
-              [
-                41.72,
-                2.54
-              ],
-              [
-                41.76,
-                2.52
-              ],
-              [
-                41.77,
-                2.49
-              ],
-              [
-                41.8,
-                2.44
-              ],
-              [
-                41.81,
-                2.38
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261006093142.691702TOTO08181791279102",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-06T09:31:42+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de tormentas de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-06T11:31:42+02:00",
-      "onset": "2026-10-08T10:00:00+02:00",
-      "expires": "2026-10-08T19:59:59+02:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de tormentas de nivel amarillo. Prelitoral de Girona",
-      "description": "Pueden venir acompañadas de granizo.",
       "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
       "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
       "level": "amarillo",
@@ -84269,6 +83208,1067 @@
               [
                 41.74,
                 2.78
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261006093142.645402TOTO08141791279102",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-06T09:31:42+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de tormentas de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-06T11:31:42+02:00",
+      "onset": "2026-10-08T10:00:00+02:00",
+      "expires": "2026-10-08T15:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de tormentas de nivel amarillo. Norte y nordeste de Mallorca",
+      "description": "Pueden ir acompañas de granizo.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Norte y nordeste de Mallorca",
+          "zoneCode": "645402",
+          "polygons": [
+            [
+              [
+                39.81,
+                2.93
+              ],
+              [
+                39.84,
+                2.94
+              ],
+              [
+                39.9,
+                2.93
+              ],
+              [
+                39.92,
+                2.95
+              ],
+              [
+                39.91,
+                2.99
+              ],
+              [
+                39.94,
+                3.03
+              ],
+              [
+                39.91,
+                3.09
+              ],
+              [
+                39.89,
+                3.08
+              ],
+              [
+                39.86,
+                3.11
+              ],
+              [
+                39.88,
+                3.17
+              ],
+              [
+                39.86,
+                3.2
+              ],
+              [
+                39.82,
+                3.12
+              ],
+              [
+                39.77,
+                3.15
+              ],
+              [
+                39.73,
+                3.26
+              ],
+              [
+                39.76,
+                3.33
+              ],
+              [
+                39.79,
+                3.35
+              ],
+              [
+                39.76,
+                3.41
+              ],
+              [
+                39.72,
+                3.45
+              ],
+              [
+                39.69,
+                3.46
+              ],
+              [
+                39.64,
+                3.44
+              ],
+              [
+                39.63,
+                3.44
+              ],
+              [
+                39.67,
+                3.39
+              ],
+              [
+                39.67,
+                3.36
+              ],
+              [
+                39.64,
+                3.31
+              ],
+              [
+                39.68,
+                3.28
+              ],
+              [
+                39.68,
+                3.25
+              ],
+              [
+                39.7,
+                3.23
+              ],
+              [
+                39.7,
+                3.16
+              ],
+              [
+                39.68,
+                3.11
+              ],
+              [
+                39.74,
+                3.02
+              ],
+              [
+                39.73,
+                3.0
+              ],
+              [
+                39.76,
+                2.95
+              ],
+              [
+                39.81,
+                2.93
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261006093142.645501TOTO08141791279102",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-06T09:31:42+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de tormentas de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-06T11:31:42+02:00",
+      "onset": "2026-10-08T10:00:00+02:00",
+      "expires": "2026-10-08T15:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de tormentas de nivel amarillo. Menorca",
+      "description": "Pueden ir acompañas de granizo.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Menorca",
+          "zoneCode": "645501",
+          "polygons": [
+            [
+              [
+                39.97,
+                3.83
+              ],
+              [
+                40.0,
+                3.83
+              ],
+              [
+                40.02,
+                3.79
+              ],
+              [
+                40.05,
+                3.82
+              ],
+              [
+                40.06,
+                3.88
+              ],
+              [
+                40.05,
+                3.98
+              ],
+              [
+                40.07,
+                4.03
+              ],
+              [
+                40.06,
+                4.17
+              ],
+              [
+                40.03,
+                4.17
+              ],
+              [
+                40.0,
+                4.23
+              ],
+              [
+                40.0,
+                4.25
+              ],
+              [
+                39.93,
+                4.28
+              ],
+              [
+                39.89,
+                4.31
+              ],
+              [
+                39.85,
+                4.31
+              ],
+              [
+                39.81,
+                4.27
+              ],
+              [
+                39.83,
+                4.2
+              ],
+              [
+                39.88,
+                4.1
+              ],
+              [
+                39.92,
+                4.02
+              ],
+              [
+                39.93,
+                3.97
+              ],
+              [
+                39.92,
+                3.86
+              ],
+              [
+                39.93,
+                3.82
+              ],
+              [
+                39.97,
+                3.83
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261006093142.690803TOTO08181791279102",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-06T09:31:42+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de tormentas de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-06T11:31:42+02:00",
+      "onset": "2026-10-08T10:00:00+02:00",
+      "expires": "2026-10-08T19:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de tormentas de nivel amarillo. Prelitoral de Barcelona",
+      "description": "Pueden venir acompañadas de granizo.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Prelitoral de Barcelona",
+          "zoneCode": "690803",
+          "polygons": [
+            [
+              [
+                41.68,
+                1.42
+              ],
+              [
+                41.69,
+                1.45
+              ],
+              [
+                41.69,
+                1.53
+              ],
+              [
+                41.68,
+                1.57
+              ],
+              [
+                41.7,
+                1.62
+              ],
+              [
+                41.65,
+                1.63
+              ],
+              [
+                41.66,
+                1.66
+              ],
+              [
+                41.62,
+                1.68
+              ],
+              [
+                41.65,
+                1.73
+              ],
+              [
+                41.64,
+                1.78
+              ],
+              [
+                41.62,
+                1.79
+              ],
+              [
+                41.59,
+                1.83
+              ],
+              [
+                41.63,
+                1.91
+              ],
+              [
+                41.65,
+                2.01
+              ],
+              [
+                41.69,
+                2.01
+              ],
+              [
+                41.72,
+                2.04
+              ],
+              [
+                41.71,
+                2.09
+              ],
+              [
+                41.73,
+                2.16
+              ],
+              [
+                41.78,
+                2.19
+              ],
+              [
+                41.76,
+                2.23
+              ],
+              [
+                41.77,
+                2.28
+              ],
+              [
+                41.8,
+                2.3
+              ],
+              [
+                41.76,
+                2.34
+              ],
+              [
+                41.77,
+                2.37
+              ],
+              [
+                41.81,
+                2.38
+              ],
+              [
+                41.8,
+                2.44
+              ],
+              [
+                41.77,
+                2.49
+              ],
+              [
+                41.76,
+                2.52
+              ],
+              [
+                41.72,
+                2.54
+              ],
+              [
+                41.74,
+                2.73
+              ],
+              [
+                41.71,
+                2.67
+              ],
+              [
+                41.72,
+                2.65
+              ],
+              [
+                41.66,
+                2.59
+              ],
+              [
+                41.66,
+                2.55
+              ],
+              [
+                41.63,
+                2.52
+              ],
+              [
+                41.63,
+                2.42
+              ],
+              [
+                41.53,
+                2.32
+              ],
+              [
+                41.49,
+                2.25
+              ],
+              [
+                41.45,
+                2.14
+              ],
+              [
+                41.43,
+                2.12
+              ],
+              [
+                41.44,
+                2.03
+              ],
+              [
+                41.46,
+                2.02
+              ],
+              [
+                41.43,
+                1.9
+              ],
+              [
+                41.38,
+                1.87
+              ],
+              [
+                41.36,
+                1.9
+              ],
+              [
+                41.32,
+                1.84
+              ],
+              [
+                41.32,
+                1.79
+              ],
+              [
+                41.35,
+                1.74
+              ],
+              [
+                41.32,
+                1.7
+              ],
+              [
+                41.29,
+                1.69
+              ],
+              [
+                41.31,
+                1.64
+              ],
+              [
+                41.31,
+                1.63
+              ],
+              [
+                41.31,
+                1.6
+              ],
+              [
+                41.34,
+                1.56
+              ],
+              [
+                41.37,
+                1.57
+              ],
+              [
+                41.4,
+                1.49
+              ],
+              [
+                41.44,
+                1.47
+              ],
+              [
+                41.48,
+                1.49
+              ],
+              [
+                41.51,
+                1.41
+              ],
+              [
+                41.55,
+                1.45
+              ],
+              [
+                41.57,
+                1.45
+              ],
+              [
+                41.58,
+                1.39
+              ],
+              [
+                41.59,
+                1.41
+              ],
+              [
+                41.61,
+                1.36
+              ],
+              [
+                41.63,
+                1.39
+              ],
+              [
+                41.64,
+                1.45
+              ],
+              [
+                41.68,
+                1.42
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261006093142.690804TOTO08181791279102",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-06T09:31:42+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de tormentas de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-06T11:31:42+02:00",
+      "onset": "2026-10-08T10:00:00+02:00",
+      "expires": "2026-10-08T19:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de tormentas de nivel amarillo. Litoral de Barcelona",
+      "description": "Pueden venir acompañadas de granizo.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Litoral de Barcelona",
+          "zoneCode": "690804",
+          "polygons": [
+            [
+              [
+                41.31,
+                1.6
+              ],
+              [
+                41.31,
+                1.63
+              ],
+              [
+                41.31,
+                1.64
+              ],
+              [
+                41.29,
+                1.69
+              ],
+              [
+                41.32,
+                1.7
+              ],
+              [
+                41.35,
+                1.74
+              ],
+              [
+                41.32,
+                1.79
+              ],
+              [
+                41.32,
+                1.84
+              ],
+              [
+                41.36,
+                1.9
+              ],
+              [
+                41.38,
+                1.87
+              ],
+              [
+                41.43,
+                1.9
+              ],
+              [
+                41.46,
+                2.02
+              ],
+              [
+                41.44,
+                2.03
+              ],
+              [
+                41.43,
+                2.12
+              ],
+              [
+                41.45,
+                2.14
+              ],
+              [
+                41.49,
+                2.25
+              ],
+              [
+                41.53,
+                2.32
+              ],
+              [
+                41.63,
+                2.42
+              ],
+              [
+                41.63,
+                2.52
+              ],
+              [
+                41.66,
+                2.55
+              ],
+              [
+                41.66,
+                2.59
+              ],
+              [
+                41.72,
+                2.65
+              ],
+              [
+                41.71,
+                2.67
+              ],
+              [
+                41.74,
+                2.73
+              ],
+              [
+                41.74,
+                2.78
+              ],
+              [
+                41.68,
+                2.76
+              ],
+              [
+                41.65,
+                2.78
+              ],
+              [
+                41.58,
+                2.56
+              ],
+              [
+                41.54,
+                2.46
+              ],
+              [
+                41.49,
+                2.38
+              ],
+              [
+                41.47,
+                2.3
+              ],
+              [
+                41.45,
+                2.25
+              ],
+              [
+                41.41,
+                2.22
+              ],
+              [
+                41.37,
+                2.18
+              ],
+              [
+                41.32,
+                2.15
+              ],
+              [
+                41.29,
+                2.12
+              ],
+              [
+                41.27,
+                2.02
+              ],
+              [
+                41.26,
+                1.92
+              ],
+              [
+                41.23,
+                1.85
+              ],
+              [
+                41.22,
+                1.78
+              ],
+              [
+                41.2,
+                1.65
+              ],
+              [
+                41.22,
+                1.62
+              ],
+              [
+                41.26,
+                1.62
+              ],
+              [
+                41.31,
+                1.6
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261006093142.691702TOTO08181791279102",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-06T09:31:42+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de tormentas de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-06T11:31:42+02:00",
+      "onset": "2026-10-08T10:00:00+02:00",
+      "expires": "2026-10-08T19:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de tormentas de nivel amarillo. Prelitoral de Girona",
+      "description": "Pueden venir acompañadas de granizo.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Prelitoral de Girona",
+          "zoneCode": "691702",
+          "polygons": [
+            [
+              [
+                41.81,
+                2.38
+              ],
+              [
+                41.81,
+                2.36
+              ],
+              [
+                41.86,
+                2.33
+              ],
+              [
+                41.89,
+                2.34
+              ],
+              [
+                41.87,
+                2.38
+              ],
+              [
+                41.9,
+                2.41
+              ],
+              [
+                41.89,
+                2.44
+              ],
+              [
+                41.92,
+                2.48
+              ],
+              [
+                41.94,
+                2.45
+              ],
+              [
+                42.0,
+                2.5
+              ],
+              [
+                42.04,
+                2.49
+              ],
+              [
+                42.07,
+                2.47
+              ],
+              [
+                42.11,
+                2.47
+              ],
+              [
+                42.2,
+                2.45
+              ],
+              [
+                42.2,
+                2.48
+              ],
+              [
+                42.23,
+                2.5
+              ],
+              [
+                42.22,
+                2.58
+              ],
+              [
+                42.25,
+                2.6
+              ],
+              [
+                42.26,
+                2.58
+              ],
+              [
+                42.29,
+                2.6
+              ],
+              [
+                42.3,
+                2.66
+              ],
+              [
+                42.27,
+                2.67
+              ],
+              [
+                42.28,
+                2.72
+              ],
+              [
+                42.33,
+                2.73
+              ],
+              [
+                42.37,
+                2.8
+              ],
+              [
+                42.38,
+                2.85
+              ],
+              [
+                42.35,
+                2.9
+              ],
+              [
+                42.34,
+                2.83
+              ],
+              [
+                42.31,
+                2.79
+              ],
+              [
+                42.27,
+                2.78
+              ],
+              [
+                42.23,
+                2.81
+              ],
+              [
+                42.24,
+                2.83
+              ],
+              [
+                42.2,
+                2.86
+              ],
+              [
+                42.14,
+                2.84
+              ],
+              [
+                42.1,
+                2.84
+              ],
+              [
+                42.07,
+                2.89
+              ],
+              [
+                42.03,
+                2.9
+              ],
+              [
+                41.97,
+                2.91
+              ],
+              [
+                41.94,
+                2.94
+              ],
+              [
+                41.93,
+                2.9
+              ],
+              [
+                41.91,
+                2.89
+              ],
+              [
+                41.88,
+                2.96
+              ],
+              [
+                41.87,
+                2.94
+              ],
+              [
+                41.85,
+                2.86
+              ],
+              [
+                41.82,
+                2.85
+              ],
+              [
+                41.76,
+                2.85
+              ],
+              [
+                41.74,
+                2.78
+              ],
+              [
+                41.74,
+                2.73
+              ],
+              [
+                41.72,
+                2.54
+              ],
+              [
+                41.76,
+                2.52
+              ],
+              [
+                41.77,
+                2.49
+              ],
+              [
+                41.8,
+                2.44
+              ],
+              [
+                41.81,
+                2.38
               ]
             ]
           ]
