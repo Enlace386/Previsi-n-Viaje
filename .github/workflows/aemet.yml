@@ -1,178 +1,754 @@
-name: Actualizar incidencias DGT
+name: Actualizar avisos AEMET
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: "*/30 * * * *"
 
 permissions:
   contents: write
 
 jobs:
-  update-dgt:
+  aemet:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Descargar repositorio
         uses: actions/checkout@v4
 
-      - name: Descargar y normalizar DATEX2 oficial DGT
-        shell: bash
+      - name: Consultar y procesar avisos AEMET
+        env:
+          AEMET_API_KEY: ${{ secrets.AEMET_API_KEY }}
         run: |
-          set -euo pipefail
-
-          mkdir -p .tmp
-
-          # La publicación nueva es DATEX2 v3.7. Se mantiene v3.6 como
-          # respaldo mientras la transición de publicación termina.
-          URLS=(
-            'https://nap.dgt.es/datex2/v3/dgt/SituationPublication/datex2_v37.xml'
-            'https://nap.dgt.es/datex2/v3/dgt/SituationPublication/datex2_v36.xml'
-          )
-
-          downloaded=0
-          for url in "${URLS[@]}"; do
-            echo "Probando: $url"
-            if curl -fL --retry 3 --retry-delay 2 --connect-timeout 20 --max-time 90 \
-              -A 'TRAVEL_SAFE/1.0 (GitHub Actions)' "$url" -o .tmp/dgt.xml; then
-              downloaded=1
-              echo "Descarga correcta: $url"
-              break
-            fi
-          done
-
-          if [ "$downloaded" -ne 1 ]; then
-            echo 'No se ha podido descargar ninguna publicación DATEX2 de la DGT.' >&2
-            exit 1
-          fi
-
-          python3 <<'PY'
+          python - <<'PY'
           import json
+          import os
           import re
+          import tarfile
+          import tempfile
+          import urllib.request
           import xml.etree.ElementTree as ET
           from datetime import datetime, timezone
-          from pathlib import Path
 
-          src = Path('.tmp/dgt.xml')
-          root = ET.parse(src).getroot()
+          API_KEY = os.environ["AEMET_API_KEY"]
 
-          def local(tag):
-              return tag.rsplit('}', 1)[-1].lower() if '}' in tag else tag.lower()
+          ENDPOINT = (
+              "https://opendata.aemet.es/opendata/api/"
+              "avisos_cap/ultimoelaborado/area/esp"
+          )
 
-          def text_first(node, names):
-              wanted = {n.lower() for n in names}
-              for child in node.iter():
-                  if local(child.tag) in wanted and child.text and child.text.strip():
-                      return child.text.strip()
-              return ''
-
-          def attr_type(node):
-              for k, v in node.attrib.items():
-                  if k.rsplit('}', 1)[-1].lower() == 'type':
-                      return v.split(':')[-1]
-              return ''
-
-          def coordinates(record):
-              # DATEX2 standard: pointByCoordinates/pointCoordinates/latitude+longitude.
-              pairs = []
-              lat_nodes = []
-              lon_nodes = []
-              for child in record.iter():
-                  name = local(child.tag)
-                  if name == 'latitude' and child.text:
-                      try: lat_nodes.append(float(child.text.strip()))
-                      except: pass
-                  elif name == 'longitude' and child.text:
-                      try: lon_nodes.append(float(child.text.strip()))
-                      except: pass
-              for lat, lon in zip(lat_nodes, lon_nodes):
-                  if -90 <= lat <= 90 and -180 <= lon <= 180:
-                      pairs.append((lat, lon))
-              return pairs
-
-          records = []
-          seen = set()
-
-          for node in root.iter():
-              if local(node.tag) != 'situationrecord':
-                  continue
-
-              ident = node.attrib.get('id') or text_first(node, ['situationRecordId', 'identifier'])
-              version = node.attrib.get('version', '')
-              key = f'{ident}:{version}'
-              if key in seen:
-                  continue
-              seen.add(key)
-
-              coords = coordinates(node)
-              lat = coords[0][0] if coords else None
-              lon = coords[0][1] if coords else None
-
-              type_name = attr_type(node) or text_first(node, [
-                  'situationRecordType', 'generalNetworkManagementType',
-                  'trafficElementType', 'obstructionType', 'accidentType',
-                  'roadworksType', 'constructionWorkType'
-              ])
-
-              road = text_first(node, ['roadNumber', 'roadName', 'linkName', 'road'])
-              pk = text_first(node, ['kilometerPoint', 'kilometrePoint', 'pk'])
-              province = text_first(node, ['province'])
-              direction = text_first(node, ['tpegDirection', 'directionBound', 'directionCoded'])
-              severity = text_first(node, ['severity'])
-              cause = text_first(node, ['cause', 'managedCause', 'nonManagedCause'])
-              title = text_first(node, ['alertCText', 'headline', 'comment', 'publicEventDescription'])
-              description = text_first(node, ['description', 'comment', 'value'])
-              start = text_first(node, ['overallStartTime', 'situationRecordCreationTime'])
-              end = text_first(node, ['overallEndTime'])
-
-              # No inventamos coordenadas. Incidencias sin posición siguen en el
-              # fichero para trazabilidad, pero TRAVEL SAFE solo las asociará a la ruta
-              # cuando tengan posición geográfica utilizable.
-              records.append({
-                  'id': ident or None,
-                  'version': version or None,
-                  'lat': lat,
-                  'lon': lon,
-                  'road': road or None,
-                  'pk': pk or None,
-                  'province': province or None,
-                  'direction': direction or None,
-                  'severity': severity or None,
-                  'cause': cause or None,
-                  'type': type_name or None,
-                  'title': title or None,
-                  'description': description or None,
-                  'start': start or None,
-                  'end': end or None
-              })
-
-          # Prioriza registros geolocalizados y evita entradas vacías.
-          records = [r for r in records if r['lat'] is not None and r['lon'] is not None]
-
-          payload = {
-              'source': 'DGT DATEX2',
-              'sourceUrl': 'https://nap.dgt.es/es/dataset/incidencias-dgt-datex2-v3-7',
-              'generatedAt': datetime.now(timezone.utc).isoformat(),
-              'count': len(records),
-              'incidents': records
+          NS = {
+              "cap": "urn:oasis:names:tc:emergency:cap:1.2"
           }
 
-          Path('dgt-incidents.json').write_text(
-              json.dumps(payload, ensure_ascii=False, separators=(',', ':')),
-              encoding='utf-8'
+          print("========================================")
+          print("TRAVEL SAFE - AEMET")
+          print("========================================")
+
+          # =========================================================
+          # FUNCIONES AUXILIARES
+          # =========================================================
+
+          def clean(value):
+              if value is None:
+                  return None
+
+              value = value.strip()
+
+              return value if value else None
+
+
+          def get_text(node, path):
+              child = node.find(path, NS)
+
+              if child is None:
+                  return None
+
+              return clean(child.text)
+
+
+          def parse_iso(value):
+              if not value:
+                  return None
+
+              try:
+                  return datetime.fromisoformat(
+                      value.replace("Z", "+00:00")
+                  ).isoformat()
+
+              except Exception:
+                  return value
+
+
+          def parse_probability(value):
+              if not value:
+                  return None
+
+              match = re.search(
+                  r"(\d+)\s*%\s*-\s*(\d+)\s*%",
+                  value
+              )
+
+              if match:
+                  return {
+                      "min": int(match.group(1)),
+                      "max": int(match.group(2)),
+                      "text": value
+                  }
+
+              match = re.search(
+                  r"(\d+)\s*%",
+                  value
+              )
+
+              if match:
+                  number = int(match.group(1))
+
+                  return {
+                      "min": number,
+                      "max": number,
+                      "text": value
+                  }
+
+              return {
+                  "text": value
+              }
+
+
+          def parse_polygon(text):
+              if not text:
+                  return []
+
+              points = []
+
+              for pair in text.split():
+
+                  if "," not in pair:
+                      continue
+
+                  try:
+                      lat, lon = pair.split(",", 1)
+
+                      points.append([
+                          float(lat),
+                          float(lon)
+                      ])
+
+                  except Exception:
+                      continue
+
+              return points
+
+
+          def parse_parameter(info, parameter_name):
+
+              for parameter in info.findall(
+                  "cap:parameter",
+                  NS
+              ):
+
+                  value_name = get_text(
+                      parameter,
+                      "cap:valueName"
+                  )
+
+                  if value_name == parameter_name:
+
+                      return get_text(
+                          parameter,
+                          "cap:value"
+                      )
+
+              return None
+
+
+          def process_xml(xml_file):
+
+              alerts = []
+
+              print(
+                  "Procesando:",
+                  os.path.basename(xml_file)
+              )
+
+              try:
+
+                  tree = ET.parse(xml_file)
+
+                  root = tree.getroot()
+
+                  identifier = get_text(
+                      root,
+                      "cap:identifier"
+                  )
+
+                  sender = get_text(
+                      root,
+                      "cap:sender"
+                  )
+
+                  sent = get_text(
+                      root,
+                      "cap:sent"
+                  )
+
+                  status = get_text(
+                      root,
+                      "cap:status"
+                  )
+
+                  msg_type = get_text(
+                      root,
+                      "cap:msgType"
+                  )
+
+                  # -------------------------------------------------
+                  # CADA MENSAJE PUEDE TENER VARIOS BLOQUES <info>
+                  # -------------------------------------------------
+
+                  for info in root.findall(
+                      "cap:info",
+                      NS
+                  ):
+
+                      language = get_text(
+                          info,
+                          "cap:language"
+                      )
+
+                      # Solo necesitamos la versión española.
+                      if language and language.lower() != "es-es":
+                          continue
+
+                      event = get_text(
+                          info,
+                          "cap:event"
+                      )
+
+                      urgency = get_text(
+                          info,
+                          "cap:urgency"
+                      )
+
+                      severity = get_text(
+                          info,
+                          "cap:severity"
+                      )
+
+                      certainty = get_text(
+                          info,
+                          "cap:certainty"
+                      )
+
+                      effective = get_text(
+                          info,
+                          "cap:effective"
+                      )
+
+                      onset = get_text(
+                          info,
+                          "cap:onset"
+                      )
+
+                      expires = get_text(
+                          info,
+                          "cap:expires"
+                      )
+
+                      sender_name = get_text(
+                          info,
+                          "cap:senderName"
+                      )
+
+                      headline = get_text(
+                          info,
+                          "cap:headline"
+                      )
+
+                      description = get_text(
+                          info,
+                          "cap:description"
+                      )
+
+                      instruction = get_text(
+                          info,
+                          "cap:instruction"
+                      )
+
+                      web = get_text(
+                          info,
+                          "cap:web"
+                      )
+
+                      level = parse_parameter(
+                          info,
+                          "AEMET-Meteoalerta nivel"
+                      )
+
+                      phenomenon = parse_parameter(
+                          info,
+                          "AEMET-Meteoalerta fenomeno"
+                      )
+
+                      probability = parse_parameter(
+                          info,
+                          "AEMET-Meteoalerta probabilidad"
+                      )
+
+                      # -------------------------------------------------
+                      # ÁREAS GEOGRÁFICAS
+                      # -------------------------------------------------
+
+                      areas = []
+
+                      for area in info.findall(
+                          "cap:area",
+                          NS
+                      ):
+
+                          area_desc = get_text(
+                              area,
+                              "cap:areaDesc"
+                          )
+
+                          zone_code = None
+
+                          for geo in area.findall(
+                              "cap:geocode",
+                              NS
+                          ):
+
+                              value_name = get_text(
+                                  geo,
+                                  "cap:valueName"
+                              )
+
+                              value = get_text(
+                                  geo,
+                                  "cap:value"
+                              )
+
+                              if (
+                                  value_name
+                                  == "AEMET-Meteoalerta zona"
+                              ):
+
+                                  zone_code = value
+
+                                  break
+
+                          polygons = []
+
+                          for polygon in area.findall(
+                              "cap:polygon",
+                              NS
+                          ):
+
+                              coords = parse_polygon(
+                                  clean(polygon.text)
+                              )
+
+                              if coords:
+                                  polygons.append(coords)
+
+                          areas.append({
+                              "name": area_desc,
+                              "zoneCode": zone_code,
+                              "polygons": polygons
+                          })
+
+                      alert = {
+
+                          "id": identifier,
+
+                          "sender": sender,
+
+                          "sent": parse_iso(sent),
+
+                          "status": status,
+
+                          "messageType": msg_type,
+
+                          "language": language,
+
+                          "event": event,
+
+                          "urgency": urgency,
+
+                          "severity": severity,
+
+                          "certainty": certainty,
+
+                          "effective": parse_iso(
+                              effective
+                          ),
+
+                          "onset": parse_iso(
+                              onset
+                          ),
+
+                          "expires": parse_iso(
+                              expires
+                          ),
+
+                          "senderName": sender_name,
+
+                          "headline": headline,
+
+                          "description": description,
+
+                          "instruction": instruction,
+
+                          "web": web,
+
+                          "level": level,
+
+                          "phenomenon": phenomenon,
+
+                          "probability": parse_probability(
+                              probability
+                          ),
+
+                          "areas": areas
+                      }
+
+                      alerts.append(alert)
+
+              except Exception as e:
+
+                  print(
+                      "ERROR procesando",
+                      xml_file,
+                      ":",
+                      repr(e)
+                  )
+
+              return alerts
+
+
+          # =========================================================
+          # 1. PRIMERA PETICIÓN A AEMET
+          # =========================================================
+
+          print("Consultando AEMET...")
+
+          request = urllib.request.Request(
+              ENDPOINT,
+              headers={
+                  "api_key": API_KEY,
+                  "Accept": "application/json",
+                  "User-Agent": "TRAVEL-SAFE-GitHub-Actions"
+              }
           )
-          print(f'Incidencias geolocalizadas publicadas: {len(records)}')
+
+          with urllib.request.urlopen(
+              request,
+              timeout=60
+          ) as response:
+
+              initial_raw = response.read()
+
+          initial_text = initial_raw.decode(
+              "utf-8",
+              errors="replace"
+          )
+
+          initial = json.loads(
+              initial_text
+          )
+
+          print(
+              "Estado AEMET:",
+              initial.get("estado")
+          )
+
+          if initial.get("estado") != 200:
+
+              raise RuntimeError(
+                  "AEMET devolvió estado "
+                  + str(initial.get("estado"))
+              )
+
+          datos_url = initial.get("datos")
+
+          if not datos_url:
+
+              raise RuntimeError(
+                  "AEMET no ha devuelto la URL datos."
+              )
+
+          print(
+              "URL datos obtenida correctamente."
+          )
+
+
+          # =========================================================
+          # 2. DESCARGAR TAR.GZ
+          # =========================================================
+
+          request2 = urllib.request.Request(
+              datos_url,
+              headers={
+                  "Accept": "*/*",
+                  "User-Agent": "TRAVEL-SAFE-GitHub-Actions"
+              }
+          )
+
+          with urllib.request.urlopen(
+              request2,
+              timeout=60
+          ) as response2:
+
+              archive = response2.read()
+
+              content_type = response2.headers.get(
+                  "Content-Type",
+                  ""
+              )
+
+          print(
+              "Content-Type:",
+              content_type
+          )
+
+          print(
+              "Tamaño descarga:",
+              len(archive),
+              "bytes"
+          )
+
+
+          # =========================================================
+          # 3. GUARDAR TEMPORALMENTE EL ARCHIVO
+          # =========================================================
+
+          with tempfile.TemporaryDirectory() as tmp:
+
+              archive_path = os.path.join(
+                  tmp,
+                  "aemet.tar.gz"
+              )
+
+              with open(
+                  archive_path,
+                  "wb"
+              ) as f:
+
+                  f.write(archive)
+
+
+              # =====================================================
+              # 4. COMPROBAR TAR
+              # =====================================================
+
+              if not tarfile.is_tarfile(
+                  archive_path
+              ):
+
+                  raise RuntimeError(
+                      "La respuesta de AEMET "
+                      "no es un TAR válido."
+                  )
+
+
+              # =====================================================
+              # 5. EXTRAER Y PROCESAR INMEDIATAMENTE
+              # =====================================================
+
+              all_alerts = []
+
+              with tarfile.open(
+                  archive_path,
+                  "r:*"
+              ) as tar:
+
+                  members = tar.getmembers()
+
+                  xml_members = [
+                      member
+                      for member in members
+                      if (
+                          member.isfile()
+                          and member.name.lower().endswith(
+                              ".xml"
+                          )
+                      )
+                  ]
+
+                  print(
+                      "XML CAP encontrados:",
+                      len(xml_members)
+                  )
+
+
+                  for member in xml_members:
+
+                      # ------------------------------------------------
+                      # MUY IMPORTANTE:
+                      # procesamos el archivo mientras el TAR/TEMP
+                      # sigue existiendo.
+                      # ------------------------------------------------
+
+                      safe_name = os.path.basename(
+                          member.name
+                      )
+
+                      xml_path = os.path.join(
+                          tmp,
+                          safe_name
+                      )
+
+                      source = tar.extractfile(
+                          member
+                      )
+
+                      if source is None:
+                          continue
+
+                      xml_content = source.read()
+
+                      with open(
+                          xml_path,
+                          "wb"
+                      ) as xml_file:
+
+                          xml_file.write(
+                              xml_content
+                          )
+
+                      # Procesar AQUÍ, dentro del TemporaryDirectory.
+                      parsed = process_xml(
+                          xml_path
+                      )
+
+                      all_alerts.extend(
+                          parsed
+                      )
+
+
+          # =========================================================
+          # 6. ELIMINAR DUPLICADOS
+          # =========================================================
+
+          unique = {}
+
+          for alert in all_alerts:
+
+              key = (
+                  alert.get("id"),
+                  alert.get("headline"),
+                  alert.get("onset"),
+                  alert.get("expires")
+              )
+
+              unique[key] = alert
+
+          alerts = list(
+              unique.values()
+          )
+
+
+          # =========================================================
+          # 7. ORDENAR POR NIVEL
+          # =========================================================
+
+          level_order = {
+              "rojo": 0,
+              "naranja": 1,
+              "amarillo": 2
+          }
+
+          alerts.sort(
+              key=lambda alert: (
+                  level_order.get(
+                      str(
+                          alert.get("level") or ""
+                      ).lower(),
+                      9
+                  ),
+                  alert.get("onset") or ""
+              )
+          )
+
+
+          # =========================================================
+          # 8. GENERAR aemet-alerts.json
+          # =========================================================
+
+          result = {
+
+              "source": "AEMET OpenData",
+
+              "generatedAt": datetime.now(
+                  timezone.utc
+              ).isoformat(),
+
+              "status": "ok",
+
+              "count": len(alerts),
+
+              "alerts": alerts
+          }
+
+
+          with open(
+              "aemet-alerts.json",
+              "w",
+              encoding="utf-8"
+          ) as f:
+
+              json.dump(
+                  result,
+                  f,
+                  ensure_ascii=False,
+                  indent=2
+              )
+
+
+          # =========================================================
+          # 9. RESUMEN
+          # =========================================================
+
+          print("")
+          print("========================================")
+          print("RESULTADO AEMET")
+          print("========================================")
+
+          print(
+              "Avisos procesados:",
+              len(alerts)
+          )
+
+          for alert in alerts[:20]:
+
+              print(
+                  "-",
+                  alert.get("level"),
+                  "|",
+                  alert.get("event"),
+                  "|",
+                  alert.get("headline")
+              )
+
+          print("========================================")
+
+
+          # =========================================================
+          # 10. GUARDAR CAMBIOS
+          # =========================================================
+
           PY
 
-      - name: Publicar dgt-incidents.json
-        shell: bash
+      - name: Guardar avisos AEMET
         run: |
-          set -euo pipefail
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add dgt-incidents.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add aemet-alerts.json
+
           if git diff --cached --quiet; then
-            echo 'Sin cambios en dgt-incidents.json'
-            exit 0
+            echo "No hay cambios en los avisos AEMET."
+          else
+            git commit -m "Actualizar avisos AEMET"
+            git push
           fi
-          git commit -m 'chore: actualizar incidencias DGT'
-          git push
