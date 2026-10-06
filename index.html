@@ -1988,11 +1988,14 @@ const CONFIG = {
   FLOOD_ARPSI_WMS_URL:
     "https://gis.miteco.gob.es/geoserver/agua/Zi_arpsi/wms",
 
-  FLOOD_Q100_WMS_URL:
-    "https://gis.miteco.gob.es/geoserver/agua/Zi_laminas_q100/wms",
+  /* Solo peligrosidad elevada/frecuente: T=10 y T=50.
+     No se consulta T=100/T=500 para no presentar escenarios ocasionales
+     o excepcionales como si fueran un riesgo elevado para el viaje. */
+  FLOOD_Q10_WMS_URL:
+    "https://gis.miteco.gob.es/geoserver/agua/Zi_laminas_q10/wms",
 
-  FLOOD_Q500_WMS_URL:
-    "https://gis.miteco.gob.es/geoserver/agua/Zi_laminas_q500/wms",
+  FLOOD_Q50_WMS_URL:
+    "https://gis.miteco.gob.es/geoserver/agua/Zi_laminas_q50/wms",
 
   ANALYSIS_DISTANCE_KM:
     25,
@@ -3471,12 +3474,12 @@ async function queryFloodZone(point) {
 
   const layers = [
     {key:"arpsi", url:CONFIG.FLOOD_ARPSI_WMS_URL, layer:"Zi_arpsi"},
-    {key:"q100", url:CONFIG.FLOOD_Q100_WMS_URL, layer:"Zi_laminas_q100"},
-    {key:"q500", url:CONFIG.FLOOD_Q500_WMS_URL, layer:"Zi_laminas_q500"}
+    {key:"q10", url:CONFIG.FLOOD_Q10_WMS_URL, layer:"Zi_laminas_q10"},
+    {key:"q50", url:CONFIG.FLOOD_Q50_WMS_URL, layer:"Zi_laminas_q50"}
   ];
 
   const allFeatures = [];
-  const detected = { arpsi:false, q100:false, q500:false };
+  const detected = { arpsi:false, q10:false, q50:false };
   let successfulLayers = 0;
 
   for (const layer of layers) {
@@ -3491,7 +3494,7 @@ async function queryFloodZone(point) {
   }
 
   if (successfulLayers === 0) {
-    return {checked:false, detected:false, arpsi:false, q100:false, q500:false, features:[], error:"No se pudo consultar ningún servicio WMS oficial del SNCZI"};
+    return {checked:false, detected:false, arpsi:false, q10:false, q50:false, features:[], error:"No se pudo consultar ningún servicio WMS oficial del SNCZI"};
   }
 
   const names = allFeatures.map(feature => {
@@ -3503,8 +3506,8 @@ async function queryFloodZone(point) {
     checked:true,
     detected:allFeatures.length > 0,
     arpsi:detected.arpsi,
-    q100:detected.q100,
-    q500:detected.q500,
+    q10:detected.q10,
+    q50:detected.q50,
     features:names.slice(0,8)
   };
 }
@@ -3522,13 +3525,23 @@ async function fetchFloodRisk(analysis) {
     if (!result.detected) continue;
 
     results.push({point, result});
-    let bonus = 4;
-    if (result.q100) bonus += 8;
-    if (result.arpsi) bonus += 7;
+    /* La cartografía estática solo eleva el riesgo cuando representa
+       peligrosidad elevada/frecuente (T=10/T=50) o ARPSI.
+       No se usan T=100 ni T=500. */
+    let bonus = 0;
+    if (result.q10) bonus += 14;
+    if (result.q50) bonus += 9;
+    if (result.arpsi) bonus += 8;
+    if (bonus <= 0) continue;
+
     point.risk.score = Math.min(100, point.risk.score + bonus);
     point.risk.risks = Array.from(new Set([
       ...point.risk.risks,
-      result.arpsi ? "Zona con riesgo potencial significativo de inundación (ARPSI)" : "Zona cartografiada con posible afección por inundación"
+      result.q10
+        ? "Zona de riesgo elevado por inundación (SNCZI T=10)"
+        : result.q50
+          ? "Zona de inundación frecuente (SNCZI T=50)"
+          : "Área ARPSI: riesgo potencial significativo de inundación"
     ]));
   }
 
@@ -3544,10 +3557,12 @@ function addFloodMapLayers() {
   if (!map || floodLayers.length) return;
   try {
     const arpsi = L.tileLayer.wms(CONFIG.FLOOD_ARPSI_WMS_URL,{layers:"Zi_arpsi",format:"image/png",transparent:true,opacity:0.28,attribution:"© MITECO · SNCZI"});
-    const q100 = L.tileLayer.wms(CONFIG.FLOOD_Q100_WMS_URL,{layers:"Zi_laminas_q100",format:"image/png",transparent:true,opacity:0.22,attribution:"© MITECO · SNCZI"});
+    const q10 = L.tileLayer.wms(CONFIG.FLOOD_Q10_WMS_URL,{layers:"Zi_laminas_q10",format:"image/png",transparent:true,opacity:0.25,attribution:"© MITECO · SNCZI"});
+    const q50 = L.tileLayer.wms(CONFIG.FLOOD_Q50_WMS_URL,{layers:"Zi_laminas_q50",format:"image/png",transparent:true,opacity:0.20,attribution:"© MITECO · SNCZI"});
     arpsi.addTo(map);
-    q100.addTo(map);
-    floodLayers.push(arpsi,q100);
+    q10.addTo(map);
+    q50.addTo(map);
+    floodLayers.push(arpsi,q10,q50);
   } catch(error) {
     console.warn("SNCZI map layers error",error);
   }
@@ -3614,19 +3629,28 @@ function applyOfficialAlertsToRisk(
       analysis.points.forEach(
         point => {
 
+          const polygons = getAemetPolygons(alert);
+          const polygonRelevant = polygons.some(poly =>
+            pointInPolygon(point.lat, point.lon, poly)
+          );
+
+          const coordinateRelevant =
+            Number.isFinite(lat) &&
+            Number.isFinite(lon) &&
+            haversineKm(
+              lat,
+              lon,
+              point.lat,
+              point.lon
+            ) <= 50;
+
           const relevant =
-            (
-              Number.isFinite(lat) &&
-              Number.isFinite(lon)
-            )
-              ? haversineKm(
-                  lat,
-                  lon,
-                  point.lat,
-                  point.lon
-                ) <= 50
-              : alert.routeRelevant === true ||
-                alert.relevant === true;
+            coordinateRelevant ||
+            polygonRelevant ||
+            (polygons.length === 0 && (
+              alert.routeRelevant === true ||
+              alert.relevant === true
+            ));
 
           if (!relevant) {
             return;
@@ -3880,8 +3904,8 @@ function renderHydrologicalStatus(analysis) {
 
   status.className = "data-state danger";
   status.innerHTML = `
-    <strong>🌊 ${items.length} punto(s) de la ruta coinciden con cartografía oficial de inundación</strong>
-    <span>Esto identifica vulnerabilidad cartográfica, no una inundación que esté ocurriendo ahora. La situación actual se contrasta además con meteorología, avisos oficiales y DGT.</span>
+    <strong>🟠 ${items.length} punto(s) de la ruta están en una zona de riesgo elevado</strong>
+    <span>Se muestran únicamente ARPSI y escenarios SNCZI T=10 (alta probabilidad) y T=50 (inundación frecuente). Esto es peligrosidad cartográfica y no significa que exista una inundación ahora. La posible afección actual se contrasta con AEMET y DGT.</span>
   `;
 
   items.forEach(({ point, result }) => {
@@ -3895,9 +3919,10 @@ function renderHydrologicalStatus(analysis) {
         <strong>🌊 Punto ${pointIndex + 1} · paso estimado ${escapeHtml(point.passTime)}</strong>
         <span>
           km ${escapeHtml(formatDistance(point.distanceKm))}<br>
-          ${result.arpsi ? "ARPSI: Área de riesgo potencial significativo de inundación." : "Zona inundable cartografiada."}<br>
-          ${result.q100 ? "Escenario T=100 años detectado." : ""}
-          ${result.q500 ? " Escenario T=500 años detectado." : ""}
+          ${result.arpsi ? "ARPSI: área de riesgo potencial significativo." : ""}
+          ${result.q10 ? "Escenario T=10 años: alta probabilidad." : ""}
+          ${result.q50 ? "Escenario T=50 años: inundación frecuente." : ""}<br>
+          ${((point.dgtIncidents || []).some(i => /inund|agua|aneg|cortad|cerrad/i.test(String(i.title || i.type || i.description || "")))) ? "🔴 DGT: posible afección actual relacionada con agua/inundación." : "🟠 Riesgo cartográfico elevado; no implica inundación actual."}
         </span>
       </button>
     `;
@@ -5685,11 +5710,13 @@ function getDetectedPhenomena(analysis) {
     {
       id: "flood-zone",
       icon: "🌊",
-      label: "Zona cartografiada con riesgo de inundación",
-      test: (w, point) => point.flood?.detected === true,
-      detail: (w, point) => point.flood?.arpsi
-        ? "Área con riesgo potencial significativo de inundación (ARPSI)"
-        : "Punto situado sobre cartografía oficial de zona inundable"
+      label: "Zona de riesgo elevado de inundación",
+      test: (w, point) => point.flood?.detected === true && (point.flood?.arpsi || point.flood?.q10 || point.flood?.q50),
+      detail: (w, point) => point.flood?.q10
+        ? "SNCZI T=10: alta probabilidad de inundación"
+        : point.flood?.q50
+          ? "SNCZI T=50: inundación frecuente"
+          : "ARPSI: riesgo potencial significativo"
     },
     {
       id: "dgt",
