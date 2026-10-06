@@ -1179,12 +1179,6 @@ button {
   }
 }
 
-
-  .compact-weather .weather-item { padding: 10px 12px; }
-  .compact-weather { gap: 8px; }
-  .point-risks { font-size: .9rem; line-height: 1.45; }
-  .risk-method { font-size: .82rem; opacity: .75; }
-  .section-title { margin-bottom: 12px; }
 </style>
 </head>
 
@@ -1582,6 +1576,24 @@ button {
 
 
       <!-- ===================================================
+           SEGMENTS
+           =================================================== -->
+
+      <section class="panel section">
+
+        <div class="section-title">
+          🛣️ Riesgo por tramos
+        </div>
+
+        <div
+          id="segmentsList"
+          class="segments"
+        ></div>
+
+      </section>
+
+
+      <!-- ===================================================
            MAIN RISKS
            =================================================== -->
 
@@ -1594,6 +1606,41 @@ button {
         <div
           id="risksList"
           class="risks-list"
+        ></div>
+
+      </section>
+
+
+      <!-- ===================================================
+           FLOODING
+           =================================================== -->
+
+      <section class="panel section">
+
+        <div class="section-title">
+          🌊 Inundaciones
+        </div>
+
+        <div
+          id="floodStatus"
+          class="data-state warning"
+        >
+
+          <strong>
+            🌊 Estado: datos insuficientes
+          </strong>
+
+          <span>
+            No se dispone todavía de una fuente hidrológica oficial
+            georreferenciada conectada a TRAVEL SAFE. Esto no significa
+            que no exista riesgo de inundación.
+          </span>
+
+        </div>
+
+        <div
+          id="floodList"
+          class="official-list"
         ></div>
 
       </section>
@@ -1619,39 +1666,15 @@ button {
           </strong>
 
           <span>
-            Se comprobarán los avisos oficiales que puedan afectar a la ruta.
+            La consulta oficial AEMET necesita un proxy seguro
+            (por ejemplo, una Cloud Function de Firebase) para no
+            exponer la API key en este HTML público.
           </span>
 
         </div>
 
         <div
           id="alertsList"
-          class="official-list"
-        ></div>
-
-      </section>
-
-
-      <!-- ===================================================
-           DGT
-           =================================================== -->
-
-      <section class="panel section">
-
-        <div class="section-title">
-          🚧 Incidencias DGT
-        </div>
-
-        <div
-          id="dgtStatus"
-          class="data-state warning"
-        >
-          <strong>🚧 Estado: incidencias DGT no consultadas</strong>
-          <span>Se comprobarán las incidencias cercanas a la ruta.</span>
-        </div>
-
-        <div
-          id="dgtList"
           class="official-list"
         ></div>
 
@@ -1672,6 +1695,65 @@ button {
           id="recommendation"
           class="recommendation"
         ></div>
+
+      </section>
+
+
+      <!-- ===================================================
+           SOURCES
+           =================================================== -->
+
+      <section class="panel sources">
+
+        <div class="section-title">
+          📚 Fuentes utilizadas
+        </div>
+
+        <div class="source-list">
+
+          <div class="source-row">
+            <strong>Mapa:</strong>
+            <span>
+              OpenStreetMap + Leaflet
+            </span>
+          </div>
+
+          <div class="source-row">
+            <strong>Ruta:</strong>
+            <span>
+              OSRM
+            </span>
+          </div>
+
+          <div class="source-row">
+            <strong>Geocodificación:</strong>
+            <span>
+              Nominatim / OpenStreetMap
+            </span>
+          </div>
+
+          <div class="source-row">
+            <strong>Meteorología:</strong>
+            <span>
+              Open-Meteo
+            </span>
+          </div>
+
+          <div class="source-row">
+            <strong>Avisos:</strong>
+            <span>
+              No evaluados automáticamente en esta versión
+            </span>
+          </div>
+
+          <div class="source-row">
+            <strong>Inundaciones:</strong>
+            <span>
+              Datos insuficientes / sin simulación
+            </span>
+          </div>
+
+        </div>
 
       </section>
 
@@ -1868,14 +1950,15 @@ const CONFIG = {
   MAP_TILE:
     "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
 
-  /* Avisos AEMET publicados por GitHub Actions */
+  /*
+   * AEMET se publica mediante GitHub Actions en un JSON estático.
+   * La API key permanece exclusivamente en GitHub Secrets.
+   */
   AEMET_ALERTS_URL:
     "https://enlace386.github.io/Previsi-n-Viaje/aemet-alerts.json",
 
-  /* Incidencias DGT publicadas por GitHub Actions */
-  DGT_INCIDENTS_URL:
-    "https://enlace386.github.io/Previsi-n-Viaje/dgt-incidents.json",
-
+  HYDRO_PROXY_URL:
+    "",
 
   ANALYSIS_DISTANCE_KM:
     25,
@@ -1909,7 +1992,6 @@ let endMarker = null;
 let currentAnalysis = null;
 
 let pointMarkers = [];
-
 
 
 /* ===========================================================
@@ -3067,7 +3149,7 @@ function enrichPointWithTerrain(
 
 
 /* ===========================================================
-   AVISOS OFICIALES — AEMET OpenData
+   AVISOS OFICIALES — PROXY SEGURO
    =========================================================== */
 
 function normalizeOfficialItems(
@@ -3098,220 +3180,851 @@ function normalizeOfficialItems(
 }
 
 
-function pointInPolygon(lat, lon, polygon) {
+function alertTouchesRoute(
+  alert,
+  points
+) {
 
-  if (!Array.isArray(polygon) || polygon.length < 3) return false;
+  /*
+   * Un proxy puede devolver directamente
+   * only route-relevant alerts. Si además entrega
+   * coordenadas simples, hacemos una comprobación
+   * aproximada para evitar mostrar avisos nacionales
+   * sin relación geográfica.
+   */
 
-  let inside = false;
+  if (
+    alert.routeRelevant === true ||
+    alert.relevant === true
+  ) {
 
-  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-    const yi = Number(polygon[i][0]);
-    const xi = Number(polygon[i][1]);
-    const yj = Number(polygon[j][0]);
-    const xj = Number(polygon[j][1]);
-
-    if (![yi, xi, yj, xj].every(Number.isFinite)) continue;
-
-    const intersect =
-      ((yi > lat) !== (yj > lat)) &&
-      (lon < (xj - xi) * (lat - yi) / ((yj - yi) || 1e-12) + xi);
-
-    if (intersect) inside = !inside;
-  }
-
-  return inside;
-}
-
-function normalizeAemetPolygon(value) {
-
-  if (Array.isArray(value)) {
-    if (value.length && Array.isArray(value[0])) return value;
-    if (value.length && typeof value[0] === "object") {
-      return value.map(p => [Number(p.lat ?? p.latitude), Number(p.lon ?? p.longitude)]);
-    }
-  }
-
-  if (typeof value !== "string") return [];
-
-  return value
-    .trim()
-    .split(/\s+/)
-    .map(pair => pair.split(",").map(Number))
-    .filter(pair => pair.length === 2 && pair.every(Number.isFinite));
-}
-
-function getAemetPolygons(alert) {
-
-  const candidates = [
-    alert.polygon,
-    alert.polygons,
-    alert.geometry?.coordinates,
-    alert.area?.polygon,
-    alert.area?.polygons,
-    alert.areas?.flatMap(a => [a.polygon, a.polygons]).filter(Boolean)
-  ];
-
-  const polygons = [];
-
-  function collect(value) {
-    if (!value) return;
-    if (typeof value === "string") {
-      const poly = normalizeAemetPolygon(value);
-      if (poly.length >= 3) polygons.push(poly);
-      return;
-    }
-    if (Array.isArray(value)) {
-      if (value.length >= 3 && value.every(p => Array.isArray(p) && p.length >= 2)) {
-        const poly = value.map(p => [Number(p[0]), Number(p[1])]);
-        if (poly.every(p => p.every(Number.isFinite))) polygons.push(poly);
-        return;
-      }
-      value.forEach(collect);
-    }
-  }
-
-  candidates.forEach(collect);
-  return polygons;
-}
-
-function alertTouchesRoute(alert, points) {
-
-  if (alert.routeRelevant === true || alert.relevant === true || alert.filteredForRoute === true) {
     return true;
+
   }
 
-  const lat = Number(alert.lat ?? alert.latitude);
-  const lon = Number(alert.lon ?? alert.longitude);
+  /* CAP puede aportar polígonos como [[lat,lon], ...] o
+     como listas planas de coordenadas. Si el aviso tiene
+     geometría, comprobamos si alguno de los puntos de la ruta
+     cae dentro del área oficial. */
+  const polygons =
+    alert.polygons ||
+    alert.polygon ||
+    alert.geometry ||
+    alert.coordinates;
 
-  if (Number.isFinite(lat) && Number.isFinite(lon)) {
-    if (points.some(point => haversineKm(lat, lon, point.lat, point.lon) <= 50)) return true;
+  function pointInPolygon(lat, lon, polygon) {
+    if (!Array.isArray(polygon) || polygon.length < 3) return false;
+    let inside = false;
+    for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+      const a = polygon[i];
+      const b = polygon[j];
+      if (!Array.isArray(a) || !Array.isArray(b) || a.length < 2 || b.length < 2) continue;
+      const yi = Number(a[0]), xi = Number(a[1]);
+      const yj = Number(b[0]), xj = Number(b[1]);
+      if (![yi, xi, yj, xj].every(Number.isFinite)) continue;
+      const intersect = ((yi > lat) !== (yj > lat)) &&
+        (lon < (xj - xi) * (lat - yi) / ((yj - yi) || 1e-12) + xi);
+      if (intersect) inside = !inside;
+    }
+    return inside;
   }
 
-  const polygons = getAemetPolygons(alert);
-  if (polygons.length) {
-    return points.some(point => polygons.some(poly => pointInPolygon(point.lat, point.lon, poly)));
+  if (Array.isArray(polygons)) {
+    const candidatePolygons =
+      Array.isArray(polygons[0]) && Array.isArray(polygons[0][0])
+        ? polygons
+        : [polygons];
+    for (const polygon of candidatePolygons) {
+      if (points.some(point => pointInPolygon(point.lat, point.lon, polygon))) {
+        return true;
+      }
+    }
   }
 
-  return false;
+  const lat =
+    Number(
+      alert.lat ??
+      alert.latitude
+    );
+
+  const lon =
+    Number(
+      alert.lon ??
+      alert.longitude
+    );
+
+  if (
+    !Number.isFinite(lat) ||
+    !Number.isFinite(lon)
+  ) {
+
+    /*
+     * Sin coordenadas no inventamos relevancia.
+     * El proxy debe haber filtrado previamente.
+     */
+    return alert.filteredForRoute === true;
+
+  }
+
+  return points.some(
+    point =>
+      haversineKm(
+        lat,
+        lon,
+        point.lat,
+        point.lon
+      ) <= 50
+  );
+
 }
 
-async function fetchOfficialAlerts(analysis) {
 
-  if (!CONFIG.AEMET_ALERTS_URL) {
-    return { configured: false, alerts: [], generatedAt: null, source: "AEMET OpenData" };
+async function fetchOfficialAlerts(
+  analysis
+) {
+
+  const response =
+    await fetchWithTimeout(
+      CONFIG.AEMET_ALERTS_URL,
+      {
+        method: "GET",
+        cache: "no-store"
+      }
+    );
+
+  if (!response.ok) {
+    throw new Error(`AEMET JSON HTTP ${response.status}`);
   }
 
-  const response = await fetchWithTimeout(CONFIG.AEMET_ALERTS_URL, { cache: "no-store" });
-  if (!response.ok) throw new Error(`AEMET HTTP ${response.status}`);
+  const payload =
+    await response.json();
 
-  const payload = await response.json();
-  const source = normalizeOfficialItems(payload);
-  const alerts = source.filter(alert => alertTouchesRoute(alert, analysis.points));
+  const allAlerts =
+    normalizeOfficialItems(payload);
+
+  const alerts =
+    allAlerts.filter(
+      alert =>
+        alertTouchesRoute(
+          alert,
+          analysis.points
+        )
+    );
 
   return {
     configured: true,
     alerts,
-    generatedAt: payload.generatedAt || payload.updatedAt || null,
-    source: payload.source || "AEMET OpenData"
+    generatedAt:
+      payload.generatedAt ||
+      payload.generated_at ||
+      null,
+    totalAlerts: allAlerts.length
   };
+
 }
 
 
 /* ===========================================================
-   DGT — INCIDENCIAS DE TRÁFICO
+   INUNDACIONES — FUENTE OFICIAL OPCIONAL
    =========================================================== */
 
-function getIncidentCoordinates(incident) {
+async function fetchHydrologicalStatus(
+  analysis
+) {
 
-  const directLat = Number(incident.lat ?? incident.latitude);
-  const directLon = Number(incident.lon ?? incident.longitude);
-  if (Number.isFinite(directLat) && Number.isFinite(directLon)) return [[directLat, directLon]];
+  if (!CONFIG.HYDRO_PROXY_URL) {
 
-  const candidates = [
-    incident.geometry?.coordinates,
-    incident.position?.coordinates,
-    incident.location?.coordinates,
-    incident.coordinates
-  ];
+    return {
+      configured: false,
+      items: []
+    };
 
-  const out = [];
-  function collect(v) {
-    if (!Array.isArray(v)) return;
-    if (v.length >= 2 && Number.isFinite(Number(v[0])) && Number.isFinite(Number(v[1]))) {
-      // GeoJSON uses [lon, lat].
-      const lon = Number(v[0]), lat = Number(v[1]);
-      if (Math.abs(lat) <= 90 && Math.abs(lon) <= 180) out.push([lat, lon]);
-      return;
-    }
-    v.forEach(collect);
-  }
-  candidates.forEach(collect);
-  return out;
-}
-
-function dgtIncidentTouchesRoute(incident, points) {
-  const coords = getIncidentCoordinates(incident);
-  return coords.some(([lat, lon]) =>
-    points.some(point => haversineKm(lat, lon, point.lat, point.lon) <= 15)
-  );
-}
-
-async function fetchDgtIncidents(analysis) {
-
-  if (!CONFIG.DGT_INCIDENTS_URL) {
-    return { configured: false, incidents: [], generatedAt: null, source: "DGT" };
   }
 
-  const response = await fetchWithTimeout(CONFIG.DGT_INCIDENTS_URL, { cache: "no-store" });
-  if (!response.ok) throw new Error(`DGT HTTP ${response.status}`);
+  const response =
+    await fetchWithTimeout(
+      CONFIG.HYDRO_PROXY_URL,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          type: "hydrology",
+          date: analysis.date,
+          departure: analysis.departure,
+          points: analysis.points.map(
+            point => ({
+              lat: point.lat,
+              lon: point.lon,
+              passTime: point.passTime,
+              distanceKm: point.distanceKm
+            })
+          )
+        })
+      }
+    );
 
-  const payload = await response.json();
-  const sourceItems = Array.isArray(payload)
-    ? payload
-    : (Array.isArray(payload.incidents) ? payload.incidents : []);
-
-  const incidents = sourceItems.filter(incident => dgtIncidentTouchesRoute(incident, analysis.points));
+  const payload =
+    await response.json();
 
   return {
     configured: true,
-    incidents,
-    total: sourceItems.length,
-    generatedAt: payload.generatedAt || payload.updatedAt || null,
-    source: payload.source || "DGT DATEX2"
+    items:
+      normalizeOfficialItems(payload)
   };
+
 }
 
-function dgtSeverityScore(incident) {
-  const text = String(`${incident.severity || ""} ${incident.type || ""} ${incident.title || ""} ${incident.description || ""}`).toLowerCase();
-  if (/(corte|cerrad|carretera cortada|desprendimiento|calzada cortada|roadclosed|carriagewayblocked)/i.test(text)) return 22;
-  if (/(accidente|obstáculo|obstru|retención|congest|nieve|hielo|niebla|viento|lluvia)/i.test(text)) return 12;
-  return 7;
+
+function applyOfficialAlertsToRisk(
+  analysis
+) {
+
+  const alerts =
+    analysis.officialAlerts || [];
+
+  if (!alerts.length) {
+    return;
+  }
+
+  alerts.forEach(
+    alert => {
+
+      const severity =
+        String(
+          alert.severity ||
+          alert.nivel ||
+          alert.level ||
+          ""
+        ).toLowerCase();
+
+      let bonus = 8;
+
+      if (
+        severity.includes("rojo") ||
+        severity.includes("extreme") ||
+        severity.includes("extremo")
+      ) {
+        bonus = 30;
+      }
+      else if (
+        severity.includes("naranja") ||
+        severity.includes("orange") ||
+        severity.includes("muy alto")
+      ) {
+        bonus = 20;
+      }
+      else if (
+        severity.includes("amarillo") ||
+        severity.includes("yellow")
+      ) {
+        bonus = 10;
+      }
+
+      const lat =
+        Number(
+          alert.lat ??
+          alert.latitude
+        );
+
+      const lon =
+        Number(
+          alert.lon ??
+          alert.longitude
+        );
+
+      analysis.points.forEach(
+        point => {
+
+          const relevant =
+            (
+              Number.isFinite(lat) &&
+              Number.isFinite(lon)
+            )
+              ? haversineKm(
+                  lat,
+                  lon,
+                  point.lat,
+                  point.lon
+                ) <= 50
+              : alert.routeRelevant === true ||
+                alert.relevant === true;
+
+          if (!relevant) {
+            return;
+          }
+
+          point.risk.score =
+            Math.min(
+              100,
+              point.risk.score + bonus
+            );
+
+          const label =
+            alert.title ||
+            alert.event ||
+            alert.fenomeno ||
+            "Aviso meteorológico oficial";
+
+          point.risk.risks =
+            Array.from(
+              new Set([
+                ...point.risk.risks,
+                `Aviso oficial: ${label}`
+              ])
+            );
+
+        }
+      );
+
+    }
+  );
+
+  analysis.globalScore =
+    calculateGlobalScore(
+      analysis.points
+    );
+
 }
 
-function applyDgtIncidentsToRisk(analysis) {
-  const incidents = analysis.dgtIncidents || [];
-  incidents.forEach(incident => {
-    const coords = getIncidentCoordinates(incident);
-    if (!coords.length) return;
-    const bonus = dgtSeverityScore(incident);
-    analysis.points.forEach(point => {
-      const distance = Math.min(...coords.map(([lat, lon]) => haversineKm(lat, lon, point.lat, point.lon)));
-      if (distance > 15) return;
-      point.dgtIncidents = point.dgtIncidents || [];
-      point.dgtIncidents.push({...incident, distanceToRouteKm: distance});
-    });
-  });
 
-  // Una sola aportación DGT por punto: la incidencia más grave. Evita
-  // que varias incidencias cercanas disparen el resultado hasta 100.
-  analysis.points.forEach(point => {
-    if (!point.dgtIncidents?.length) return;
-    const maxBonus = Math.min(15, Math.max(...point.dgtIncidents.map(dgtSeverityScore)));
-    point.risk.score = Math.min(100, point.risk.score + maxBonus);
-    const label = point.dgtIncidents[0].title || point.dgtIncidents[0].type || "Incidencia DGT";
-    point.risk.risks = Array.from(new Set([...point.risk.risks, `DGT: ${label}`]));
-  });
+/* ===========================================================
+   RENDER AVISOS E INUNDACIONES
+   =========================================================== */
+
+function renderOfficialAlerts(
+  analysis
+) {
+
+  const status =
+    $("alertsStatus");
+
+  const list =
+    $("alertsList");
+
+  list.innerHTML = "";
+
+  if (
+    !analysis.officialAlertsConfigured
+  ) {
+
+    status.className =
+      "data-state danger";
+
+    status.innerHTML = `
+      <strong>⚠️ Avisos AEMET: datos no disponibles</strong>
+      <span>
+        No se ha podido cargar el archivo oficial publicado por GitHub Actions.
+        Esto no significa que no existan avisos.
+      </span>
+    `;
+
+    return;
+
+  }
+
+  const alerts =
+    analysis.officialAlerts || [];
+
+  if (!alerts.length) {
+
+    status.className =
+      "data-state success";
+
+    status.innerHTML = `
+      <strong>✅ No se han recibido avisos oficiales relevantes para la ruta</strong>
+      <span>
+        No hay avisos oficiales AEMET que afecten a los puntos de la ruta analizados.
+        Esto no equivale a garantía de ausencia de peligro meteorológico.
+      </span>
+    `;
+
+    return;
+
+  }
+
+  status.className =
+    "data-state danger";
+
+  status.innerHTML = `
+    <strong>🚨 ${alerts.length} aviso(s) oficial(es) relevante(s)</strong>
+    <span>
+      Los avisos oficiales relevantes incrementan el riesgo
+      de los puntos afectados.
+    </span>
+  `;
+
+  alerts.forEach(
+    alert => {
+
+      const item =
+        document.createElement("div");
+
+      item.className =
+        "official-alert";
+
+      item.innerHTML = `
+        <strong>
+          ${escapeHtml(
+            alert.title ||
+            alert.event ||
+            alert.fenomeno ||
+            "Aviso meteorológico oficial"
+          )}
+        </strong>
+
+        <span>
+          Nivel:
+          ${escapeHtml(
+            alert.severity ||
+            alert.nivel ||
+            alert.level ||
+            "No indicado"
+          )}
+          <br>
+          ${escapeHtml(
+            alert.description ||
+            alert.descripcion ||
+            alert.text ||
+            "Sin descripción adicional."
+          )}
+        </span>
+      `;
+
+      list.appendChild(item);
+
+    }
+  );
+
 }
+
+
+function renderHydrologicalStatus(
+  analysis
+) {
+
+  const status =
+    $("floodStatus");
+
+  const list =
+    $("floodList");
+
+  list.innerHTML = "";
+
+  if (
+    !analysis.hydroConfigured
+  ) {
+
+    status.className =
+      "data-state warning";
+
+    status.innerHTML = `
+      <strong>🌊 Inundaciones: datos insuficientes</strong>
+      <span>
+        No hay una fuente hidrológica oficial georreferenciada
+        conectada. TRAVEL SAFE no transforma esta ausencia
+        de datos en "sin riesgo".
+      </span>
+    `;
+
+    return;
+
+  }
+
+  const items =
+    analysis.hydroItems || [];
+
+  if (!items.length) {
+
+    status.className =
+      "data-state success";
+
+    status.innerHTML = `
+      <strong>✅ Sin incidencias hidrológicas relevantes devueltas por la fuente conectada</strong>
+      <span>
+        La fuente oficial consultada no ha devuelto incidencias
+        para los puntos enviados. Comprueba siempre los avisos
+        locales antes de salir.
+      </span>
+    `;
+
+    return;
+
+  }
+
+  status.className =
+    "data-state danger";
+
+  status.innerHTML = `
+    <strong>🌊 Incidencias hidrológicas relevantes detectadas</strong>
+    <span>
+      La fuente oficial conectada ha devuelto información
+      compatible con riesgo hidrológico en el recorrido.
+    </span>
+  `;
+
+  items.forEach(
+    item => {
+
+      const el =
+        document.createElement("div");
+
+      el.className =
+        "official-alert";
+
+      el.innerHTML = `
+        <strong>
+          ${escapeHtml(
+            item.title ||
+            item.event ||
+            item.fenomeno ||
+            "Incidencia hidrológica"
+          )}
+        </strong>
+
+        <span>
+          ${escapeHtml(
+            item.description ||
+            item.descripcion ||
+            item.text ||
+            "Sin descripción adicional."
+          )}
+        </span>
+      `;
+
+      list.appendChild(el);
+
+    }
+  );
+
+}
+
+
+/* ===========================================================
+   EXPORTACIÓN / IMPRESIÓN
+   =========================================================== */
+
+function printReport() {
+
+  if (!currentAnalysis) {
+    return;
+  }
+
+  window.print();
+
+}
+
+
+/* ===========================================================
+   RIESGO METEOROLÓGICO
+   =========================================================== */
+
+function calculatePointRisk(
+  weather
+) {
+
+  let score = 0;
+
+  const risks = [];
+
+
+  const temp =
+    Number(weather.temperature);
+
+
+  const rainProb =
+    Number(
+      weather.precipitationProbability || 0
+    );
+
+
+  const rain =
+    Number(
+      weather.precipitation || 0
+    );
+
+
+  const wind =
+    Number(
+      weather.wind || 0
+    );
+
+
+  const gusts =
+    Number(
+      weather.gusts || 0
+    );
+
+
+  const visibility =
+    Number(
+      weather.visibility || 99999
+    );
+
+
+  /* ---------------------------------------------------------
+     PROBABILIDAD / LLUVIA
+     --------------------------------------------------------- */
+
+  if (rainProb >= 40) {
+
+    score += 4;
+
+    risks.push(
+      "Probabilidad de precipitación elevada"
+    );
+
+  }
+
+  if (rainProb >= 70) {
+
+    score += 4;
+
+  }
+
+
+  /* ---------------------------------------------------------
+     INTENSIDAD DE LLUVIA
+     --------------------------------------------------------- */
+
+  if (rain >= 2) {
+
+    score += 5;
+
+    risks.push(
+      "Precipitación prevista"
+    );
+
+  }
+
+  if (rain >= 5) {
+
+    score += 5;
+
+    risks.push(
+      "Lluvia intensa"
+    );
+
+  }
+
+
+  /* ---------------------------------------------------------
+     TORMENTA
+     --------------------------------------------------------- */
+
+  if (isStorm(weather)) {
+
+    score += 15;
+
+    risks.push(
+      "Tormenta prevista"
+    );
+
+  }
+
+
+  /* ---------------------------------------------------------
+     NIEVE
+     --------------------------------------------------------- */
+
+  if (hasSnow(weather)) {
+
+    score += 15;
+
+    risks.push(
+      "Posible nieve"
+    );
+
+  }
+
+
+  /* ---------------------------------------------------------
+     HIELO
+     --------------------------------------------------------- */
+
+  if (
+    Number.isFinite(temp) &&
+    temp <= 0
+  ) {
+
+    score += 12;
+
+    risks.push(
+      "Temperatura igual o inferior a 0 °C"
+    );
+
+  }
+  else if (
+    Number.isFinite(temp) &&
+    temp <= 3
+  ) {
+
+    score += 6;
+
+    risks.push(
+      "Temperatura próxima a 0 °C"
+    );
+
+  }
+
+
+  /* ---------------------------------------------------------
+     VIENTO
+     --------------------------------------------------------- */
+
+  if (wind >= 35) {
+
+    score += 5;
+
+    risks.push(
+      "Viento fuerte"
+    );
+
+  }
+
+  if (gusts >= 55) {
+
+    score += 5;
+
+    risks.push(
+      `Rachas de hasta ${Math.round(gusts)} km/h`
+    );
+
+  }
+
+  if (gusts >= 75) {
+
+    score += 7;
+
+    risks.push(
+      "Rachas muy fuertes"
+    );
+
+  }
+
+
+  /* ---------------------------------------------------------
+     NIEBLA / VISIBILIDAD
+     --------------------------------------------------------- */
+
+  if (
+    visibility > 0 &&
+    visibility < 2000
+  ) {
+
+    score += 7;
+
+    risks.push(
+      "Visibilidad reducida"
+    );
+
+  }
+
+  if (
+    visibility > 0 &&
+    visibility < 1000
+  ) {
+
+    score += 5;
+
+    risks.push(
+      "Visibilidad muy reducida"
+    );
+
+  }
+
+
+  /* ---------------------------------------------------------
+     NIEVE / HIELO — COMBINACIÓN METEOROLÓGICA
+     --------------------------------------------------------- */
+
+  const freezingLevel =
+    Number(weather.freezingLevel);
+
+  const snowDepth =
+    Number(weather.snowDepth);
+
+  if (
+    Number.isFinite(freezingLevel) &&
+    Number.isFinite(weather.elevation) &&
+    weather.elevation >= freezingLevel - 250
+  ) {
+
+    score += 8;
+
+    risks.push(
+      "Cota de congelación cercana a la altitud del punto"
+    );
+
+  }
+
+  if (
+    Number.isFinite(snowDepth) &&
+    snowDepth > 0
+  ) {
+
+    score += 8;
+
+    risks.push(
+      "Nieve acumulada prevista en el entorno"
+    );
+
+  }
+
+  if (
+    Number.isFinite(temp) &&
+    temp <= 2 &&
+    (rain > 0 || Number(weather.snowfall || 0) > 0)
+  ) {
+
+    score += 8;
+
+    risks.push(
+      "Precipitación con temperatura próxima a congelación"
+    );
+
+  }
+
+  /* ---------------------------------------------------------
+     CAPE / TORMENTA
+     --------------------------------------------------------- */
+
+  const cape =
+    Number(weather.cape);
+
+  if (
+    Number.isFinite(cape) &&
+    cape >= 800 &&
+    !isStorm(weather)
+  ) {
+
+    score += 4;
+
+    risks.push(
+      "Entorno convectivo potencialmente inestable"
+    );
+
+  }
+
+
+  score =
+    Math.min(
+      100,
+      Math.round(score)
+    );
+
+
+  return {
+
+    score,
+
+    risks
+
+  };
+
+}
+
 
 /* ===========================================================
    NIVEL DE RIESGO
@@ -4214,7 +4927,14 @@ function renderGlobalRisk(
 
   if (riskMethod) {
 
-    riskMethod.innerHTML = `<span>El nivel resume las condiciones previstas durante todo el trayecto.</span>`;
+    riskMethod.innerHTML = `
+      <strong>Cómo se calcula:</strong>
+      0–20 bajo · 21–40 moderado · 41–60 alto ·
+      61–80 muy alto · 81–100 extremo.
+      El resultado combina la media de los puntos (45%)
+      y el peor punto (55%). Los avisos oficiales relevantes
+      pueden elevar el resultado.
+    `;
 
   }
 
@@ -4357,11 +5077,84 @@ function renderPoints(
 
           <div class="point-body">
 
-            <div class="weather-grid compact-weather">
-              <div class="weather-item"><div class="weather-label">Estado</div><div class="weather-value">${escapeHtml(weatherDescription(w.weatherCode))}</div></div>
-              <div class="weather-item"><div class="weather-label">Temperatura</div><div class="weather-value">${fmt(w.temperature," °C",1)}</div></div>
-              <div class="weather-item"><div class="weather-label">Lluvia</div><div class="weather-value">${fmt(w.precipitationProbability," %")}${Number(w.precipitation)>0 ? ` · ${fmt(w.precipitation," mm",1)}` : ""}</div></div>
-              <div class="weather-item"><div class="weather-label">Viento</div><div class="weather-value">${fmt(w.wind," km/h")}${Number(w.gusts)>0 ? ` · rachas ${fmt(w.gusts," km/h")}` : ""}</div></div>
+            <div class="weather-grid">
+
+              <div class="weather-item">
+                <div class="weather-label">
+                  Temperatura
+                </div>
+                <div class="weather-value">
+                  ${fmt(w.temperature," °C",1)}
+                </div>
+              </div>
+
+              <div class="weather-item">
+                <div class="weather-label">
+                  Sensación
+                </div>
+                <div class="weather-value">
+                  ${fmt(w.apparent," °C",1)}
+                </div>
+              </div>
+
+              <div class="weather-item">
+                <div class="weather-label">
+                  Lluvia
+                </div>
+                <div class="weather-value">
+                  ${fmt(w.precipitationProbability," %")}
+                </div>
+              </div>
+
+              <div class="weather-item">
+                <div class="weather-label">
+                  Precipitación
+                </div>
+                <div class="weather-value">
+                  ${fmt(w.precipitation," mm",1)}
+                </div>
+              </div>
+
+              <div class="weather-item">
+                <div class="weather-label">
+                  Viento
+                </div>
+                <div class="weather-value">
+                  ${fmt(w.wind," km/h")}
+                </div>
+              </div>
+
+              <div class="weather-item">
+                <div class="weather-label">
+                  Rachas
+                </div>
+                <div class="weather-value">
+                  ${fmt(w.gusts," km/h")}
+                </div>
+              </div>
+
+              <div class="weather-item">
+                <div class="weather-label">
+                  Visibilidad
+                </div>
+                <div class="weather-value">
+                  ${formatVisibility(w.visibility)}
+                </div>
+              </div>
+
+              <div class="weather-item">
+                <div class="weather-label">
+                  Estado
+                </div>
+                <div class="weather-value">
+                  ${escapeHtml(
+                    weatherDescription(
+                      w.weatherCode
+                    )
+                  )}
+                </div>
+              </div>
+
             </div>
 
 
@@ -4379,16 +5172,12 @@ function renderPoints(
                   : ""
               }
 
+              <br><br>
 
-              ${
-                point.dgtIncidents?.length
-                  ? `<br><br><strong>🚧 DGT:</strong><br>${point.dgtIncidents
-                      .slice(0,3)
-                      .map(x => `• ${escapeHtml(x.title || x.type || "Incidencia")}`)
-                      .join("<br>")}`
-                  : ""
-              }
-
+              <span style="color:#748190">
+                Fuente: Open-Meteo · Hora meteorológica más próxima:
+                ${fmt(w.forecastDifferenceMinutes," min")}
+              </span>
 
             </div>
 
@@ -4664,14 +5453,6 @@ function getDetectedPhenomena(analysis) {
       test: w => Number(w.elevation) >= 800,
       detail: w => `Altitud aproximada ${Math.round(Number(w.elevation))} m`
     },
-
-    {
-      id: "dgt",
-      icon: "🚧",
-      label: "Incidencia DGT en el entorno de la ruta",
-      test: (w, point) => Array.isArray(point.dgtIncidents) && point.dgtIncidents.length > 0,
-      detail: (w, point) => `${point.dgtIncidents.length} incidencia${point.dgtIncidents.length === 1 ? "" : "s"} DGT cercana${point.dgtIncidents.length === 1 ? "" : "s"}`
-    },
     {
       id: "official-alert",
       icon: "🚨",
@@ -4785,101 +5566,161 @@ function renderRisks(analysis) {
 }
 
 
-function renderOfficialAlerts(analysis) {
-  const status = $("alertsStatus");
-  const list = $("alertsList");
-  if (!status || !list) return;
-  list.innerHTML = "";
-  const alerts = Array.isArray(analysis.officialAlerts) ? analysis.officialAlerts : [];
-
-  if (!alerts.length) {
-    status.className = "data-state success";
-    status.innerHTML = `<strong>🟢 AEMET: sin avisos relevantes</strong><span>No se han encontrado avisos que afecten a la ruta.</span>`;
-    return;
-  }
-
-  const rank = a => {
-    const t = String(a.level || a.nivel || a.severity || a.event || "").toLowerCase();
-    if (/rojo|red|extreme|extremo/.test(t)) return 3;
-    if (/naranja|orange|severe|muy alto/.test(t)) return 2;
-    return 1;
-  };
-  const selected = [...alerts].sort((a,b)=>rank(b)-rank(a)).slice(0,3);
-  status.className = "data-state warning";
-  status.innerHTML = `<strong>🚨 AEMET: ${alerts.length} aviso${alerts.length===1?"":"s"} relevante${alerts.length===1?"":"s"}</strong><span>Se muestran solo los más importantes.</span>`;
-
-  selected.forEach(alert => {
-    const level = String(alert.level || alert.nivel || alert.severity || "Aviso").toLowerCase();
-    const title = alert.headline || alert.title || alert.event || "Aviso meteorológico";
-    const el = document.createElement("div");
-    el.className = "official-alert";
-    el.innerHTML = `<strong>${escapeHtml(title)}</strong><span>${escapeHtml(level)}${alert.description ? ` · ${escapeHtml(String(alert.description).slice(0,180))}` : ""}</span>`;
-    list.appendChild(el);
-  });
-}
-
-function renderDgtIncidents(analysis) {
-  const status = $("dgtStatus");
-  const list = $("dgtList");
-  if (!status || !list) return;
-  list.innerHTML = "";
-  const incidents = Array.isArray(analysis.dgtIncidents) ? analysis.dgtIncidents : [];
-
-  if (!incidents.length) {
-    status.className = "data-state success";
-    status.innerHTML = `<strong>🟢 DGT: sin incidencias relevantes</strong><span>No se han encontrado incidencias cercanas a la ruta.</span>`;
-    return;
-  }
-
-  status.className = "data-state warning";
-  status.innerHTML = `<strong>🚧 DGT: ${incidents.length} incidencia${incidents.length===1?"":"s"}</strong><span>Se muestran las incidencias más cercanas a la ruta.</span>`;
-  incidents.slice(0,5).forEach(incident => {
-    const el = document.createElement("div");
-    el.className = "official-alert";
-    const title = incident.title || incident.type || incident.cause || "Incidencia de tráfico";
-    const desc = incident.description || incident.detail || "";
-    el.innerHTML = `<strong>${escapeHtml(title)}</strong><span>${escapeHtml(String(desc).slice(0,180))}</span>`;
-    list.appendChild(el);
-  });
-}
-
 /* ===========================================================
    RECOMMENDATION
    =========================================================== */
 
-function renderRecommendation(analysis) {
-  const score = analysis.globalScore;
-  const risk = getRiskLevel(score);
-  const factors = [];
-  analysis.points.forEach(point => (point.risk.risks || []).forEach(r => {
-    if (!factors.includes(r)) factors.push(r);
-  }));
+function renderRecommendation(
+  analysis
+) {
 
-  let text = "Con las previsiones disponibles, el viaje presenta condiciones normales.";
-  if (score > 20 && score <= 40) text = "Hay algunos factores que aconsejan conducir con algo más de precaución.";
-  else if (score > 40 && score <= 60) text = "Hay condiciones que pueden afectar a la conducción en algunos tramos.";
-  else if (score > 60) text = "Hay condiciones adversas importantes en parte del recorrido. Revisa los avisos antes de salir.";
+  const score =
+    analysis.globalScore;
+
+
+  const risks =
+    [];
+
+
+  analysis.points
+    .forEach(
+      point => {
+
+        point.risk.risks
+          .forEach(
+            risk => {
+
+              if (!risks.includes(risk)) {
+
+                risks.push(risk);
+
+              }
+
+            }
+          );
+
+      }
+    );
+
+
+  let text;
+
+
+  if (score <= 20) {
+
+    text =
+      "Con los datos meteorológicos disponibles no se han detectado condiciones relevantes que eleven significativamente el riesgo de conducción. Mantén la precaución habitual y revisa las previsiones antes de salir.";
+
+  }
+  else if (score <= 40) {
+
+    text =
+      `Se recomienda mantener una precaución adicional durante el recorrido. ${
+        risks.length
+          ? "Los principales factores detectados son: " +
+            risks.slice(0,3).join(", ") +
+            "."
+          : ""
+      }`;
+
+  }
+  else if (score <= 60) {
+
+    text =
+      `Se recomienda extremar la atención durante las zonas afectadas por las condiciones meteorológicas detectadas. ${
+        risks.length
+          ? "Principales factores: " +
+            risks.slice(0,4).join(", ") +
+            "."
+          : ""
+      }`;
+
+  }
+  else {
+
+    text =
+      `Se han detectado condiciones meteorológicas potencialmente adversas en parte del recorrido. ${
+        risks.length
+          ? "Factores principales: " +
+            risks.slice(0,5).join(", ") +
+            "."
+          : ""
+      } Consulta los avisos oficiales y vuelve a analizar el viaje antes de salir.`;
+
+  }
+
 
   $("recommendation").innerHTML = `
-    <div class="recommendation-title">🚗 ${escapeHtml(risk.name)}</div>
-    <div class="recommendation-text">${escapeHtml(text)}</div>
-    ${factors.length ? `<div class="recommendation-factors"><strong>Lo más relevante:</strong> ${escapeHtml(factors.slice(0,3).join(" · "))}</div>` : ""}
+
+    <div class="recommendation-title">
+      🚗 Recomendación preventiva
+    </div>
+
+    <div class="recommendation-text">
+      ${escapeHtml(text)}
+    </div>
+
   `;
+
 }
+
 
 /* ===========================================================
    GLOBAL SCORE
    =========================================================== */
 
-function calculateGlobalScore(points) {
-  const scores = points.filter(p => p.weather).map(p => Number(p.risk.score) || 0);
-  if (!scores.length) return 0;
-  const average = scores.reduce((a,b) => a + b, 0) / scores.length;
-  const worst = Math.max(...scores);
-  // Prioriza el comportamiento general del viaje y usa el peor punto
-  // como advertencia, sin dejar que un único punto domine todo el resultado.
-  return Math.round((average * 0.70) + (worst * 0.30));
+function calculateGlobalScore(
+  points
+) {
+
+  const scores =
+    points
+      .filter(
+        p => p.weather
+      )
+      .map(
+        p => p.risk.score
+      );
+
+
+  if (!scores.length) {
+
+    return 0;
+
+  }
+
+
+  /*
+   No usamos únicamente la media.
+
+   El peor punto tiene más peso para evitar
+   que una zona problemática quede diluida
+   por muchos puntos con buen tiempo.
+  */
+
+  const average =
+    scores.reduce(
+      (a,b) => a+b,
+      0
+    ) / scores.length;
+
+
+  const maximum =
+    Math.max(...scores);
+
+
+  const weighted =
+    average * .45 +
+    maximum * .55;
+
+
+  return Math.min(
+    100,
+    Math.round(weighted)
+  );
+
 }
+
 
 /* ===========================================================
    LOCAL STORAGE
@@ -5553,7 +6394,7 @@ async function analyzeTravel() {
 
     setStatus(
       "⏳ CONSULTANDO FUENTES OFICIALES...",
-      "Comprobando AEMET y DGT."
+      "Comprobando avisos AEMET y, si están configurados, datos hidrológicos."
     );
 
     let officialAlertResult = {
@@ -5561,11 +6402,10 @@ async function analyzeTravel() {
       alerts: []
     };
 
-    let dgtResult = {
+    let hydroResult = {
       configured: false,
-      incidents: []
+      items: []
     };
-
 
     try {
 
@@ -5583,7 +6423,7 @@ async function analyzeTravel() {
     catch (officialError) {
 
       console.warn(
-        "AEMET static feed error",
+        "AEMET proxy error",
         officialError
       );
 
@@ -5591,18 +6431,24 @@ async function analyzeTravel() {
 
     try {
 
-      dgtResult = await fetchDgtIncidents({
-        origin,
-        destination,
-        date,
-        departure,
-        points,
-        route
-      });
+      hydroResult =
+        await fetchHydrologicalStatus({
+          origin,
+          destination,
+          date,
+          departure,
+          points,
+          route
+        });
 
     }
-    catch (dgtError) {
-      console.warn("DGT incidents error", dgtError);
+    catch (hydroError) {
+
+      console.warn(
+        "Hydrological proxy error",
+        hydroError
+      );
+
     }
 
     const analysisForOfficialData = {
@@ -5620,22 +6466,13 @@ async function analyzeTravel() {
       analysisForOfficialData
     );
 
-    /* DGT ya ha modificado los puntos directamente. */
-    applyDgtIncidentsToRisk({
-      points,
-      dgtIncidents: dgtResult.incidents
-    });
-
-    analysisForOfficialData.globalScore =
-      calculateGlobalScore(points);
-
     /* -------------------------------------------------------
        8. SCORE
        ------------------------------------------------------- */
 
     setStatus(
       "⏳ EVALUANDO RIESGOS...",
-      "Calculando el nivel de riesgo del viaje."
+      "Calculando el riesgo global con el peor tramo y los factores críticos."
     );
 
 
@@ -5679,24 +6516,17 @@ async function analyzeTravel() {
       officialAlertsConfigured:
         officialAlertResult.configured,
 
-      officialAlertsGeneratedAt:
-        officialAlertResult.generatedAt,
+      aemetGeneratedAt:
+        officialAlertResult.generatedAt || null,
 
-      officialAlertsSource:
-        officialAlertResult.source,
+      aemetTotalAlerts:
+        officialAlertResult.totalAlerts || 0,
 
-      dgtIncidents:
-        dgtResult.incidents,
+      hydroItems:
+        hydroResult.items,
 
-      dgtConfigured:
-        dgtResult.configured,
-
-      dgtGeneratedAt:
-        dgtResult.generatedAt,
-
-      dgtTotal:
-        dgtResult.total ?? null,
-
+      hydroConfigured:
+        hydroResult.configured
 
     };
 
@@ -5706,8 +6536,8 @@ async function analyzeTravel() {
        ------------------------------------------------------- */
 
     setStatus(
-      "⏳ PREPARANDO RESULTADO...",
-      "Generando un resumen sencillo del viaje."
+      "⏳ GENERANDO INFORME...",
+      "Preparando mapa, puntos y resumen."
     );
 
 
@@ -5741,7 +6571,6 @@ async function analyzeTravel() {
     initMap();
 
 
-
     setTimeout(
       () => {
 
@@ -5754,6 +6583,9 @@ async function analyzeTravel() {
           currentAnalysis
         );
 
+        renderSegments(
+          currentAnalysis
+        );
 
         renderRisks(
           currentAnalysis
@@ -5767,10 +6599,9 @@ async function analyzeTravel() {
           currentAnalysis
         );
 
-        renderDgtIncidents(
+        renderHydrologicalStatus(
           currentAnalysis
         );
-
 
       },
       50
