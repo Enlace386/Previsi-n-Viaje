@@ -1,0 +1,178 @@
+name: Actualizar incidencias DGT
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  update-dgt:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Descargar y normalizar DATEX2 oficial DGT
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mkdir -p .tmp
+
+          # La publicación nueva es DATEX2 v3.7. Se mantiene v3.6 como
+          # respaldo mientras la transición de publicación termina.
+          URLS=(
+            'https://nap.dgt.es/datex2/v3/dgt/SituationPublication/datex2_v37.xml'
+            'https://nap.dgt.es/datex2/v3/dgt/SituationPublication/datex2_v36.xml'
+          )
+
+          downloaded=0
+          for url in "${URLS[@]}"; do
+            echo "Probando: $url"
+            if curl -fL --retry 3 --retry-delay 2 --connect-timeout 20 --max-time 90 \
+              -A 'TRAVEL_SAFE/1.0 (GitHub Actions)' "$url" -o .tmp/dgt.xml; then
+              downloaded=1
+              echo "Descarga correcta: $url"
+              break
+            fi
+          done
+
+          if [ "$downloaded" -ne 1 ]; then
+            echo 'No se ha podido descargar ninguna publicación DATEX2 de la DGT.' >&2
+            exit 1
+          fi
+
+          python3 <<'PY'
+          import json
+          import re
+          import xml.etree.ElementTree as ET
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          src = Path('.tmp/dgt.xml')
+          root = ET.parse(src).getroot()
+
+          def local(tag):
+              return tag.rsplit('}', 1)[-1].lower() if '}' in tag else tag.lower()
+
+          def text_first(node, names):
+              wanted = {n.lower() for n in names}
+              for child in node.iter():
+                  if local(child.tag) in wanted and child.text and child.text.strip():
+                      return child.text.strip()
+              return ''
+
+          def attr_type(node):
+              for k, v in node.attrib.items():
+                  if k.rsplit('}', 1)[-1].lower() == 'type':
+                      return v.split(':')[-1]
+              return ''
+
+          def coordinates(record):
+              # DATEX2 standard: pointByCoordinates/pointCoordinates/latitude+longitude.
+              pairs = []
+              lat_nodes = []
+              lon_nodes = []
+              for child in record.iter():
+                  name = local(child.tag)
+                  if name == 'latitude' and child.text:
+                      try: lat_nodes.append(float(child.text.strip()))
+                      except: pass
+                  elif name == 'longitude' and child.text:
+                      try: lon_nodes.append(float(child.text.strip()))
+                      except: pass
+              for lat, lon in zip(lat_nodes, lon_nodes):
+                  if -90 <= lat <= 90 and -180 <= lon <= 180:
+                      pairs.append((lat, lon))
+              return pairs
+
+          records = []
+          seen = set()
+
+          for node in root.iter():
+              if local(node.tag) != 'situationrecord':
+                  continue
+
+              ident = node.attrib.get('id') or text_first(node, ['situationRecordId', 'identifier'])
+              version = node.attrib.get('version', '')
+              key = f'{ident}:{version}'
+              if key in seen:
+                  continue
+              seen.add(key)
+
+              coords = coordinates(node)
+              lat = coords[0][0] if coords else None
+              lon = coords[0][1] if coords else None
+
+              type_name = attr_type(node) or text_first(node, [
+                  'situationRecordType', 'generalNetworkManagementType',
+                  'trafficElementType', 'obstructionType', 'accidentType',
+                  'roadworksType', 'constructionWorkType'
+              ])
+
+              road = text_first(node, ['roadNumber', 'roadName', 'linkName', 'road'])
+              pk = text_first(node, ['kilometerPoint', 'kilometrePoint', 'pk'])
+              province = text_first(node, ['province'])
+              direction = text_first(node, ['tpegDirection', 'directionBound', 'directionCoded'])
+              severity = text_first(node, ['severity'])
+              cause = text_first(node, ['cause', 'managedCause', 'nonManagedCause'])
+              title = text_first(node, ['alertCText', 'headline', 'comment', 'publicEventDescription'])
+              description = text_first(node, ['description', 'comment', 'value'])
+              start = text_first(node, ['overallStartTime', 'situationRecordCreationTime'])
+              end = text_first(node, ['overallEndTime'])
+
+              # No inventamos coordenadas. Incidencias sin posición siguen en el
+              # fichero para trazabilidad, pero TRAVEL SAFE solo las asociará a la ruta
+              # cuando tengan posición geográfica utilizable.
+              records.append({
+                  'id': ident or None,
+                  'version': version or None,
+                  'lat': lat,
+                  'lon': lon,
+                  'road': road or None,
+                  'pk': pk or None,
+                  'province': province or None,
+                  'direction': direction or None,
+                  'severity': severity or None,
+                  'cause': cause or None,
+                  'type': type_name or None,
+                  'title': title or None,
+                  'description': description or None,
+                  'start': start or None,
+                  'end': end or None
+              })
+
+          # Prioriza registros geolocalizados y evita entradas vacías.
+          records = [r for r in records if r['lat'] is not None and r['lon'] is not None]
+
+          payload = {
+              'source': 'DGT DATEX2',
+              'sourceUrl': 'https://nap.dgt.es/es/dataset/incidencias-dgt-datex2-v3-7',
+              'generatedAt': datetime.now(timezone.utc).isoformat(),
+              'count': len(records),
+              'incidents': records
+          }
+
+          Path('dgt-incidents.json').write_text(
+              json.dumps(payload, ensure_ascii=False, separators=(',', ':')),
+              encoding='utf-8'
+          )
+          print(f'Incidencias geolocalizadas publicadas: {len(records)}')
+          PY
+
+      - name: Publicar dgt-incidents.json
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add dgt-incidents.json
+          if git diff --cached --quiet; then
+            echo 'Sin cambios en dgt-incidents.json'
+            exit 0
+          fi
+          git commit -m 'chore: actualizar incidencias DGT'
+          git push
