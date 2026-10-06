@@ -1,0 +1,311 @@
+name: Actualizar incidencias DGT
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  dgt:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Consultar DGT y generar JSON
+        run: |
+          python - <<'PY'
+          import json
+          import re
+          import urllib.request
+          import xml.etree.ElementTree as ET
+          from datetime import datetime, timezone
+
+          PACKAGE_ID = "77be854a-6911-47dc-ba4c-b13067a50552"
+          CKAN_API = (
+              "https://nap.dgt.es/api/3/action/package_show?id="
+              + PACKAGE_ID
+          )
+
+          headers = {
+              "User-Agent": "TRAVEL-SAFE-DGT/1.0"
+          }
+
+          req = urllib.request.Request(CKAN_API, headers=headers)
+          with urllib.request.urlopen(req, timeout=30) as response:
+              meta = json.load(response)
+
+          if not meta.get("success"):
+              raise RuntimeError("No se pudo consultar el recurso DGT en el NAP.")
+
+          resources = meta["result"].get("resources", [])
+          resource = next(
+              (
+                  r for r in resources
+                  if r.get("format", "").upper() == "DATEX2 V3.7"
+                  or r.get("mimetype") == "application/xml"
+                  or str(r.get("name", "")).lower() == "datex2_v37.xml"
+              ),
+              None
+          )
+
+          if not resource or not resource.get("url"):
+              raise RuntimeError("No se encontró la URL del XML DATEX2 v3.7 de DGT.")
+
+          xml_req = urllib.request.Request(
+              resource["url"],
+              headers=headers
+          )
+
+          with urllib.request.urlopen(xml_req, timeout=60) as response:
+              xml_data = response.read()
+
+          root = ET.fromstring(xml_data)
+
+          def local(tag):
+              return tag.split("}", 1)[-1] if "}" in tag else tag
+
+          def text_of(elem):
+              if elem is None:
+                  return ""
+              return " ".join(
+                  x.strip()
+                  for x in elem.itertext()
+                  if x and x.strip()
+              ).strip()
+
+          def descendants(elem, names):
+              wanted = set(names)
+              for child in elem.iter():
+                  if local(child.tag) in wanted:
+                      yield child
+
+          def first_text(elem, names):
+              for child in descendants(elem, names):
+                  value = text_of(child)
+                  if value:
+                      return value
+              return ""
+
+          def first_number(elem, names):
+              for child in descendants(elem, names):
+                  value = text_of(child).replace(",", ".")
+                  try:
+                      return float(value)
+                  except Exception:
+                      pass
+              return None
+
+          def coordinate_pairs(elem):
+              pairs = []
+
+              # Buscar estructuras explícitas de coordenadas.
+              for parent in elem.iter():
+                  lat = None
+                  lon = None
+
+                  for child in parent:
+                      name = local(child.tag).lower()
+                      value = text_of(child).replace(",", ".")
+                      try:
+                          number = float(value)
+                      except Exception:
+                          continue
+
+                      if "latitude" in name:
+                          lat = number
+                      elif "longitude" in name:
+                          lon = number
+
+                  if lat is not None and lon is not None:
+                      if -90 <= lat <= 90 and -180 <= lon <= 180:
+                          pairs.append((lat, lon))
+
+              # Fallback: cualquier par cercano de tags latitude/longitude.
+              if not pairs:
+                  lat = first_number(elem, ["latitude"])
+                  lon = first_number(elem, ["longitude"])
+                  if lat is not None and lon is not None:
+                      if -90 <= lat <= 90 and -180 <= lon <= 180:
+                          pairs.append((lat, lon))
+
+              return pairs
+
+          def normalize_event(value):
+              value = re.sub(r"([a-z])([A-Z])", r"\1 \2", value or "")
+              value = value.replace("_", " ").replace("-", " ")
+              return re.sub(r"\s+", " ", value).strip()
+
+          incidents = []
+
+          # DATEX2 agrupa la información en situation.
+          situation_nodes = [
+              x for x in root.iter()
+              if local(x.tag) == "situation"
+          ]
+
+          for situation in situation_nodes:
+              sid = (
+                  situation.attrib.get("id")
+                  or situation.attrib.get("situationId")
+                  or ""
+              )
+
+              records = [
+                  x for x in situation.iter()
+                  if local(x.tag) == "situationRecord"
+              ]
+
+              if not records:
+                  records = [situation]
+
+              for record_index, record in enumerate(records):
+                  coords = coordinate_pairs(record)
+
+                  if not coords:
+                      coords = coordinate_pairs(situation)
+
+                  if not coords:
+                      continue
+
+                  event = (
+                      first_text(
+                          record,
+                          [
+                              "probabilityOfOccurrence",
+                              "causeType",
+                              "accidentType",
+                              "constructionType",
+                              "vehicleObstructionType",
+                              "weatherRelatedRoadConditionType",
+                              "nonWeatherRelatedRoadConditionType",
+                              "roadMaintenanceType",
+                              "situationRecordType"
+                          ]
+                      )
+                      or "Incidencia de tráfico"
+                  )
+
+                  description = first_text(
+                      record,
+                      [
+                          "value",
+                          "comment",
+                          "description",
+                          "generalPublicComment",
+                          "nonGeneralPublicComment"
+                      ]
+                  )
+
+                  road = first_text(
+                      record,
+                      [
+                          "roadName",
+                          "roadNumber",
+                          "road"
+                      ]
+                  )
+
+                  direction = first_text(
+                      record,
+                      [
+                          "direction",
+                          "directionDescription",
+                          "directionValue"
+                      ]
+                  )
+
+                  municipality = first_text(
+                      record,
+                      [
+                          "municipality",
+                          "townName",
+                          "localityName"
+                      ]
+                  )
+
+                  province = first_text(
+                      record,
+                      [
+                          "province",
+                          "administrativeAreaName"
+                      ]
+                  )
+
+                  severity = first_text(
+                      record,
+                      [
+                          "severity",
+                          "impact"
+                      ]
+                  )
+
+                  for coord_index, (lat, lon) in enumerate(coords):
+                      item_id = (
+                          f"{sid}-{record_index}-{coord_index}"
+                          if sid
+                          else f"{lat:.6f},{lon:.6f},{event}"
+                      )
+
+                      incidents.append({
+                          "id": item_id,
+                          "lat": lat,
+                          "lon": lon,
+                          "event": normalize_event(event),
+                          "description": description,
+                          "road": road,
+                          "direction": direction,
+                          "municipality": municipality,
+                          "province": province,
+                          "severity": severity
+                      })
+
+          # Eliminar duplicados.
+          unique = []
+          seen = set()
+
+          for item in incidents:
+              key = (
+                  item["id"],
+                  round(item["lat"], 5),
+                  round(item["lon"], 5)
+              )
+
+              if key in seen:
+                  continue
+
+              seen.add(key)
+              unique.append(item)
+
+          payload = {
+              "source": "DGT DATEX2 v3.7",
+              "sourceUrl": resource["url"],
+              "generatedAt": datetime.now(timezone.utc).isoformat(),
+              "count": len(unique),
+              "incidents": unique
+          }
+
+          with open("dgt-incidents.json", "w", encoding="utf-8") as f:
+              json.dump(payload, f, ensure_ascii=False, indent=2)
+
+          print(f"DGT: {len(unique)} incidencias procesadas.")
+          print(f"Fuente: {resource['url']}")
+          PY
+
+      - name: Guardar incidencias DGT
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add dgt-incidents.json
+
+          if git diff --cached --quiet; then
+            echo "No hay cambios en las incidencias DGT."
+          else
+            git commit -m "Actualizar incidencias DGT"
+            git push
+          fi
