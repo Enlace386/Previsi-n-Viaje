@@ -1179,6 +1179,12 @@ button {
   }
 }
 
+
+  .compact-weather .weather-item { padding: 10px 12px; }
+  .compact-weather { gap: 8px; }
+  .point-risks { font-size: .9rem; line-height: 1.45; }
+  .risk-method { font-size: .82rem; opacity: .75; }
+  .section-title { margin-bottom: 12px; }
 </style>
 </head>
 
@@ -1576,24 +1582,6 @@ button {
 
 
       <!-- ===================================================
-           SEGMENTS
-           =================================================== -->
-
-      <section class="panel section">
-
-        <div class="section-title">
-          🛣️ Riesgo por tramos
-        </div>
-
-        <div
-          id="segmentsList"
-          class="segments"
-        ></div>
-
-      </section>
-
-
-      <!-- ===================================================
            MAIN RISKS
            =================================================== -->
 
@@ -1606,41 +1594,6 @@ button {
         <div
           id="risksList"
           class="risks-list"
-        ></div>
-
-      </section>
-
-
-      <!-- ===================================================
-           FLOODING
-           =================================================== -->
-
-      <section class="panel section">
-
-        <div class="section-title">
-          🌊 Inundaciones
-        </div>
-
-        <div
-          id="floodStatus"
-          class="data-state warning"
-        >
-
-          <strong>
-            🌊 Estado: datos insuficientes
-          </strong>
-
-          <span>
-            No se dispone todavía de una fuente hidrológica oficial
-            georreferenciada conectada a TRAVEL SAFE. Esto no significa
-            que no exista riesgo de inundación.
-          </span>
-
-        </div>
-
-        <div
-          id="floodList"
-          class="official-list"
         ></div>
 
       </section>
@@ -1666,7 +1619,7 @@ button {
           </strong>
 
           <span>
-            Los avisos AEMET se publican mediante GitHub Actions en un fichero estático, sin exponer ninguna API key en este HTML.
+            Se comprobarán los avisos oficiales que puedan afectar a la ruta.
           </span>
 
         </div>
@@ -1694,7 +1647,7 @@ button {
           class="data-state warning"
         >
           <strong>🚧 Estado: incidencias DGT no consultadas</strong>
-          <span>Se comprobarán las incidencias publicadas oficialmente y su proximidad a la ruta.</span>
+          <span>Se comprobarán las incidencias cercanas a la ruta.</span>
         </div>
 
         <div
@@ -1719,66 +1672,6 @@ button {
           id="recommendation"
           class="recommendation"
         ></div>
-
-      </section>
-
-
-      <!-- ===================================================
-           SOURCES
-           =================================================== -->
-
-      <section class="panel sources">
-
-        <div class="section-title">
-          📚 Fuentes utilizadas
-        </div>
-
-        <div class="source-list">
-
-          <div class="source-row">
-            <strong>Mapa:</strong>
-            <span>
-              OpenStreetMap + Leaflet
-            </span>
-          </div>
-
-          <div class="source-row">
-            <strong>Ruta:</strong>
-            <span>
-              OSRM
-            </span>
-          </div>
-
-          <div class="source-row">
-            <strong>Geocodificación:</strong>
-            <span>
-              Nominatim / OpenStreetMap
-            </span>
-          </div>
-
-          <div class="source-row">
-            <strong>Meteorología:</strong>
-            <span>
-              Open-Meteo
-            </span>
-          </div>
-
-          <div class="source-row">
-            <strong>Avisos:</strong>
-            <span>AEMET OpenData · fichero oficial actualizado por GitHub Actions</span>
-          </div>
-
-          <div class="source-row">
-            <strong>Tráfico:</strong>
-            <span>DGT / Punto de Acceso Nacional · DATEX2 v3.7</span>
-          </div>
-
-          <div class="source-row">
-            <strong>Inundaciones:</strong>
-            <span>MITECO · SNCZI / ARPSI · cartografía oficial</span>
-          </div>
-
-        </div>
 
       </section>
 
@@ -1983,19 +1876,6 @@ const CONFIG = {
   DGT_INCIDENTS_URL:
     "https://enlace386.github.io/Previsi-n-Viaje/dgt-incidents.json",
 
-  /* Cartografía oficial SNCZI / MITECO.
-     Cada capa tiene su propio servicio WMS publicado por MITECO. */
-  FLOOD_ARPSI_WMS_URL:
-    "https://gis.miteco.gob.es/geoserver/agua/Zi_arpsi/wms",
-
-  /* Solo peligrosidad elevada/frecuente: T=10 y T=50.
-     No se consulta T=100/T=500 para no presentar escenarios ocasionales
-     o excepcionales como si fueran un riesgo elevado para el viaje. */
-  FLOOD_Q10_WMS_URL:
-    "https://gis.miteco.gob.es/geoserver/agua/Zi_laminas_q10/wms",
-
-  FLOOD_Q50_WMS_URL:
-    "https://gis.miteco.gob.es/geoserver/agua/Zi_laminas_q50/wms",
 
   ANALYSIS_DISTANCE_KM:
     25,
@@ -2030,7 +1910,6 @@ let currentAnalysis = null;
 
 let pointMarkers = [];
 
-let floodLayers = [];
 
 
 /* ===========================================================
@@ -3404,7 +3283,7 @@ async function fetchDgtIncidents(analysis) {
 
 function dgtSeverityScore(incident) {
   const text = String(`${incident.severity || ""} ${incident.type || ""} ${incident.title || ""} ${incident.description || ""}`).toLowerCase();
-  if (/(corte|cerrad|carretera cortada|inund|desprendimiento|calzada cortada|roadclosed|carriagewayblocked)/i.test(text)) return 22;
+  if (/(corte|cerrad|carretera cortada|desprendimiento|calzada cortada|roadclosed|carriagewayblocked)/i.test(text)) return 22;
   if (/(accidente|obstáculo|obstru|retención|congest|nieve|hielo|niebla|viento|lluvia)/i.test(text)) return 12;
   return 7;
 }
@@ -3416,853 +3295,23 @@ function applyDgtIncidentsToRisk(analysis) {
     if (!coords.length) return;
     const bonus = dgtSeverityScore(incident);
     analysis.points.forEach(point => {
-      const distances = coords.map(([lat, lon]) => haversineKm(lat, lon, point.lat, point.lon));
-      const distance = Math.min(...distances);
+      const distance = Math.min(...coords.map(([lat, lon]) => haversineKm(lat, lon, point.lat, point.lon)));
       if (distance > 15) return;
       point.dgtIncidents = point.dgtIncidents || [];
       point.dgtIncidents.push({...incident, distanceToRouteKm: distance});
-      point.risk.score = Math.min(100, point.risk.score + bonus);
-      const label = incident.title || incident.type || incident.cause || "Incidencia DGT";
-      point.risk.risks = Array.from(new Set([...point.risk.risks, `DGT: ${label}`]));
-    });
-  });
-}
-
-
-/* ===========================================================
-   INUNDACIONES — SNCZI / MITECO
-   =========================================================== */
-
-async function queryFloodLayer(point, layerUrl, layerName) {
-
-  const bboxSize = 0.006;
-  const minLon = point.lon - bboxSize;
-  const maxLon = point.lon + bboxSize;
-  const minLat = point.lat - bboxSize;
-  const maxLat = point.lat + bboxSize;
-
-  const params = new URLSearchParams({
-    SERVICE: "WMS",
-    VERSION: "1.3.0",
-    REQUEST: "GetFeatureInfo",
-    LAYERS: layerName,
-    QUERY_LAYERS: layerName,
-    STYLES: "",
-    CRS: "EPSG:4326",
-    BBOX: `${minLat},${minLon},${maxLat},${maxLon}`,
-    WIDTH: "101",
-    HEIGHT: "101",
-    I: "50",
-    J: "50",
-    INFO_FORMAT: "application/json",
-    FEATURE_COUNT: "10"
-  });
-
-  const response = await fetchWithTimeout(`${layerUrl}?${params}`, {cache:"no-store"}, 12000);
-  if (!response.ok) throw new Error(`SNCZI HTTP ${response.status}`);
-
-  const text = await response.text();
-  let payload;
-  try { payload = JSON.parse(text); } catch {
-    throw new Error("El servicio SNCZI no devolvió GeoJSON");
-  }
-
-  return Array.isArray(payload.features) ? payload.features : [];
-}
-
-async function queryFloodZone(point) {
-
-  const layers = [
-    {key:"arpsi", url:CONFIG.FLOOD_ARPSI_WMS_URL, layer:"Zi_arpsi"},
-    {key:"q10", url:CONFIG.FLOOD_Q10_WMS_URL, layer:"Zi_laminas_q10"},
-    {key:"q50", url:CONFIG.FLOOD_Q50_WMS_URL, layer:"Zi_laminas_q50"}
-  ];
-
-  const allFeatures = [];
-  const detected = { arpsi:false, q10:false, q50:false };
-  let successfulLayers = 0;
-
-  for (const layer of layers) {
-    try {
-      const features = await queryFloodLayer(point, layer.url, layer.layer);
-      successfulLayers++;
-      if (features.length) detected[layer.key] = true;
-      allFeatures.push(...features.map(feature => ({...feature, __layer: layer.key})));
-    } catch (error) {
-      console.warn(`SNCZI ${layer.key} error`, error);
-    }
-  }
-
-  if (successfulLayers === 0) {
-    return {checked:false, detected:false, arpsi:false, q10:false, q50:false, features:[], error:"No se pudo consultar ningún servicio WMS oficial del SNCZI"};
-  }
-
-  const names = allFeatures.map(feature => {
-    const props = feature.properties || {};
-    return String(props.nombre || props.name || props.NOMBRE || props.tipo || feature.__layer || "Zona cartografiada");
-  });
-
-  return {
-    checked:true,
-    detected:allFeatures.length > 0,
-    arpsi:detected.arpsi,
-    q10:detected.q10,
-    q50:detected.q50,
-    features:names.slice(0,8)
-  };
-}
-
-async function fetchFloodRisk(analysis) {
-
-  const results = [];
-  let failed = 0;
-
-  for (const point of analysis.points) {
-    const result = await queryFloodZone(point);
-    point.flood = result;
-
-    if (!result.checked) { failed++; continue; }
-    if (!result.detected) continue;
-
-    results.push({point, result});
-    /* La cartografía estática solo eleva el riesgo cuando representa
-       peligrosidad elevada/frecuente (T=10/T=50) o ARPSI.
-       No se usan T=100 ni T=500. */
-    let bonus = 0;
-    if (result.q10) bonus += 14;
-    if (result.q50) bonus += 9;
-    if (result.arpsi) bonus += 8;
-    if (bonus <= 0) continue;
-
-    point.risk.score = Math.min(100, point.risk.score + bonus);
-    point.risk.risks = Array.from(new Set([
-      ...point.risk.risks,
-      result.q10
-        ? "Zona de riesgo elevado por inundación (SNCZI T=10)"
-        : result.q50
-          ? "Zona de inundación frecuente (SNCZI T=50)"
-          : "Área ARPSI: riesgo potencial significativo de inundación"
-    ]));
-  }
-
-  return {
-    configured:true,
-    checkedPoints:analysis.points.length - failed,
-    failedPoints:failed,
-    items:results
-  };
-}
-
-function addFloodMapLayers() {
-  if (!map || floodLayers.length) return;
-  try {
-    const arpsi = L.tileLayer.wms(CONFIG.FLOOD_ARPSI_WMS_URL,{layers:"Zi_arpsi",format:"image/png",transparent:true,opacity:0.28,attribution:"© MITECO · SNCZI"});
-    const q10 = L.tileLayer.wms(CONFIG.FLOOD_Q10_WMS_URL,{layers:"Zi_laminas_q10",format:"image/png",transparent:true,opacity:0.25,attribution:"© MITECO · SNCZI"});
-    const q50 = L.tileLayer.wms(CONFIG.FLOOD_Q50_WMS_URL,{layers:"Zi_laminas_q50",format:"image/png",transparent:true,opacity:0.20,attribution:"© MITECO · SNCZI"});
-    arpsi.addTo(map);
-    q10.addTo(map);
-    q50.addTo(map);
-    floodLayers.push(arpsi,q10,q50);
-  } catch(error) {
-    console.warn("SNCZI map layers error",error);
-  }
-}
-
-
-function applyOfficialAlertsToRisk(
-  analysis
-) {
-
-  const alerts =
-    analysis.officialAlerts || [];
-
-  if (!alerts.length) {
-    return;
-  }
-
-  alerts.forEach(
-    alert => {
-
-      const severity =
-        String(
-          alert.severity ||
-          alert.nivel ||
-          alert.level ||
-          ""
-        ).toLowerCase();
-
-      let bonus = 8;
-
-      if (
-        severity.includes("rojo") ||
-        severity.includes("extreme") ||
-        severity.includes("extremo")
-      ) {
-        bonus = 30;
-      }
-      else if (
-        severity.includes("naranja") ||
-        severity.includes("orange") ||
-        severity.includes("muy alto")
-      ) {
-        bonus = 20;
-      }
-      else if (
-        severity.includes("amarillo") ||
-        severity.includes("yellow")
-      ) {
-        bonus = 10;
-      }
-
-      const lat =
-        Number(
-          alert.lat ??
-          alert.latitude
-        );
-
-      const lon =
-        Number(
-          alert.lon ??
-          alert.longitude
-        );
-
-      analysis.points.forEach(
-        point => {
-
-          const polygons = getAemetPolygons(alert);
-          const polygonRelevant = polygons.some(poly =>
-            pointInPolygon(point.lat, point.lon, poly)
-          );
-
-          const coordinateRelevant =
-            Number.isFinite(lat) &&
-            Number.isFinite(lon) &&
-            haversineKm(
-              lat,
-              lon,
-              point.lat,
-              point.lon
-            ) <= 50;
-
-          const relevant =
-            coordinateRelevant ||
-            polygonRelevant ||
-            (polygons.length === 0 && (
-              alert.routeRelevant === true ||
-              alert.relevant === true
-            ));
-
-          if (!relevant) {
-            return;
-          }
-
-          point.risk.score =
-            Math.min(
-              100,
-              point.risk.score + bonus
-            );
-
-          const label =
-            alert.title ||
-            alert.event ||
-            alert.fenomeno ||
-            "Aviso meteorológico oficial";
-
-          point.risk.risks =
-            Array.from(
-              new Set([
-                ...point.risk.risks,
-                `Aviso oficial: ${label}`
-              ])
-            );
-
-        }
-      );
-
-    }
-  );
-
-  analysis.globalScore =
-    calculateGlobalScore(
-      analysis.points
-    );
-
-}
-
-
-/* ===========================================================
-   RENDER AVISOS E INUNDACIONES
-   =========================================================== */
-
-function renderOfficialAlerts(
-  analysis
-) {
-
-  const status =
-    $("alertsStatus");
-
-  const list =
-    $("alertsList");
-
-  list.innerHTML = "";
-
-  if (
-    !analysis.officialAlertsConfigured
-  ) {
-
-    status.className =
-      "data-state warning";
-
-    status.innerHTML = `
-      <strong>⚪ Avisos AEMET: datos no disponibles</strong>
-      <span>No se ha podido leer el fichero oficial de avisos publicado por GitHub Actions. No se interpreta como ausencia de avisos.</span>
-    `;
-
-    return;
-
-  }
-
-  const alerts =
-    analysis.officialAlerts || [];
-
-  if (!alerts.length) {
-
-    status.className =
-      "data-state success";
-
-    status.innerHTML = `
-      <strong>🟢 Avisos AEMET: sin avisos relevantes para la ruta</strong>
-      <span>El fichero oficial AEMET se ha consultado correctamente y ninguno de sus avisos cartografiados coincide con los puntos analizados.</span>
-    `;
-
-    return;
-
-  }
-
-  status.className =
-    "data-state danger";
-
-  status.innerHTML = `
-    <strong>🚨 ${alerts.length} aviso(s) oficial(es) relevante(s)</strong>
-    <span>
-      Los avisos oficiales relevantes incrementan el riesgo
-      de los puntos afectados.
-    </span>
-  `;
-
-  alerts.forEach(
-    alert => {
-
-      const item =
-        document.createElement("div");
-
-      item.className =
-        "official-alert";
-
-      item.innerHTML = `
-        <strong>
-          ${escapeHtml(
-            alert.title ||
-            alert.event ||
-            alert.fenomeno ||
-            "Aviso meteorológico oficial"
-          )}
-        </strong>
-
-        <span>
-          Nivel:
-          ${escapeHtml(
-            alert.severity ||
-            alert.nivel ||
-            alert.level ||
-            "No indicado"
-          )}
-          <br>
-          ${escapeHtml(
-            alert.description ||
-            alert.descripcion ||
-            alert.text ||
-            "Sin descripción adicional."
-          )}
-        </span>
-      `;
-
-      list.appendChild(item);
-
-    }
-  );
-
-}
-
-
-function formatDateTimeEs(value) {
-  const d = new Date(value);
-  if (Number.isNaN(d.getTime())) return String(value || "");
-  return d.toLocaleString("es-ES", {
-    dateStyle: "short",
-    timeStyle: "short"
-  });
-}
-
-
-function renderDgtIncidents(analysis) {
-
-  const status = $("dgtStatus");
-  const list = $("dgtList");
-  list.innerHTML = "";
-
-  if (!analysis.dgtConfigured) {
-    status.className = "data-state warning";
-    status.innerHTML = `
-      <strong>⚪ Incidencias DGT: datos no disponibles</strong>
-      <span>No se ha podido leer el fichero estático publicado por GitHub Actions a partir del DATEX2 oficial de la DGT. Esto no significa que la carretera esté libre de incidencias.</span>
-    `;
-    return;
-  }
-
-  const incidents = analysis.dgtIncidents || [];
-
-  if (!incidents.length) {
-    status.className = "data-state success";
-    status.innerHTML = `
-      <strong>🟢 DGT consultada: sin incidencias relevantes para la ruta</strong>
-      <span>El fichero DGT se ha leído correctamente y no se han encontrado incidencias próximas a los puntos analizados. ${analysis.dgtGeneratedAt ? `Última actualización: ${escapeHtml(formatDateTimeEs(analysis.dgtGeneratedAt))}.` : ""}</span>
-    `;
-    return;
-  }
-
-  status.className = "data-state danger";
-  status.innerHTML = `
-    <strong>🚧 ${incidents.length} incidencia(s) DGT relevante(s)</strong>
-    <span>Se han encontrado incidencias cercanas a los puntos de análisis. La distancia y el tipo de incidencia se tienen en cuenta al calcular el riesgo.</span>
-  `;
-
-  incidents.forEach((incident, index) => {
-
-    const coords = getIncidentCoordinates(incident);
-    let pointIndex = -1;
-    let bestDistance = Infinity;
-    analysis.points.forEach((point, idx) => {
-      coords.forEach(([lat, lon]) => {
-        const d = haversineKm(lat, lon, point.lat, point.lon);
-        if (d < bestDistance && d <= 15) { bestDistance = d; pointIndex = idx; }
-      });
-    });
-
-    const el = document.createElement("div");
-    el.className = "official-alert";
-
-    el.innerHTML = `
-      <button type="button" class="phenomenon-point" data-point-index="${pointIndex}">
-        <strong>🚧 ${escapeHtml(incident.title || incident.type || `Incidencia DGT ${index + 1}`)}</strong>
-        <span>
-          ${escapeHtml(incident.road || incident.roadNumber || incident.roadName || "Carretera no indicada")} · ${escapeHtml(incident.pk || incident.km || "PK no indicado")}<br>
-          ${escapeHtml(incident.description || incident.title || incident.type || "Sin descripción adicional.")}<br>
-          ${pointIndex >= 0 ? `Paso estimado: ${escapeHtml(analysis.points[pointIndex].passTime)}` : ""}
-        </span>
-      </button>
-    `;
-
-    list.appendChild(el);
-  });
-
-  list.querySelectorAll("[data-point-index]").forEach(button => {
-    button.addEventListener("click", () => {
-      const index = Number(button.dataset.pointIndex);
-      if (index >= 0) focusAnalysisPoint(index);
     });
   });
 
-}
-
-
-function renderHydrologicalStatus(analysis) {
-
-  const status = $("floodStatus");
-  const list = $("floodList");
-  list.innerHTML = "";
-
-  const items = analysis.floodItems || [];
-
-  if (!analysis.floodConfigured || analysis.floodFailedPoints === analysis.points.length) {
-    status.className = "data-state warning";
-    status.innerHTML = `
-      <strong>⚪ SNCZI/MITECO: datos no disponibles</strong>
-      <span>No se ha podido consultar los servicios WMS oficiales del SNCZI para los puntos analizados. No se interpreta como ausencia de riesgo.</span>
-    `;
-    return;
-  }
-
-  if (!items.length) {
-    status.className = "data-state success";
-    status.innerHTML = `
-      <strong>✅ No se ha detectado que los puntos analizados estén sobre una zona inundable cartografiada</strong>
-      <span>La cartografía oficial consultada no ha identificado una afección en los puntos analizados. Esto no significa que no pueda producirse una inundación puntual ni sustituye a los avisos AEMET, Protección Civil o DGT.</span>
-    `;
-    return;
-  }
-
-  status.className = "data-state danger";
-  status.innerHTML = `
-    <strong>🟠 ${items.length} punto(s) de la ruta están en una zona de riesgo elevado</strong>
-    <span>Se muestran únicamente ARPSI y escenarios SNCZI T=10 (alta probabilidad) y T=50 (inundación frecuente). Esto es peligrosidad cartográfica y no significa que exista una inundación ahora. La posible afección actual se contrasta con AEMET y DGT.</span>
-  `;
-
-  items.forEach(({ point, result }) => {
-
-    const pointIndex = analysis.points.indexOf(point);
-    const el = document.createElement("div");
-    el.className = "official-alert";
-
-    el.innerHTML = `
-      <button type="button" class="phenomenon-point" data-point-index="${pointIndex}">
-        <strong>🌊 Punto ${pointIndex + 1} · paso estimado ${escapeHtml(point.passTime)}</strong>
-        <span>
-          km ${escapeHtml(formatDistance(point.distanceKm))}<br>
-          ${result.arpsi ? "ARPSI: área de riesgo potencial significativo." : ""}
-          ${result.q10 ? "Escenario T=10 años: alta probabilidad." : ""}
-          ${result.q50 ? "Escenario T=50 años: inundación frecuente." : ""}<br>
-          ${((point.dgtIncidents || []).some(i => /inund|agua|aneg|cortad|cerrad/i.test(String(i.title || i.type || i.description || "")))) ? "🔴 DGT: posible afección actual relacionada con agua/inundación." : "🟠 Riesgo cartográfico elevado; no implica inundación actual."}
-        </span>
-      </button>
-    `;
-
-    list.appendChild(el);
+  // Una sola aportación DGT por punto: la incidencia más grave. Evita
+  // que varias incidencias cercanas disparen el resultado hasta 100.
+  analysis.points.forEach(point => {
+    if (!point.dgtIncidents?.length) return;
+    const maxBonus = Math.min(15, Math.max(...point.dgtIncidents.map(dgtSeverityScore)));
+    point.risk.score = Math.min(100, point.risk.score + maxBonus);
+    const label = point.dgtIncidents[0].title || point.dgtIncidents[0].type || "Incidencia DGT";
+    point.risk.risks = Array.from(new Set([...point.risk.risks, `DGT: ${label}`]));
   });
-
-  list.querySelectorAll("[data-point-index]").forEach(button => {
-    button.addEventListener("click", () => {
-      focusAnalysisPoint(Number(button.dataset.pointIndex));
-    });
-  });
-
 }
-
-
-/* ===========================================================
-   EXPORTACIÓN / IMPRESIÓN
-   =========================================================== */
-
-function printReport() {
-
-  if (!currentAnalysis) {
-    return;
-  }
-
-  window.print();
-
-}
-
-
-/* ===========================================================
-   RIESGO METEOROLÓGICO
-   =========================================================== */
-
-function calculatePointRisk(
-  weather
-) {
-
-  let score = 0;
-
-  const risks = [];
-
-
-  const temp =
-    Number(weather.temperature);
-
-
-  const rainProb =
-    Number(
-      weather.precipitationProbability || 0
-    );
-
-
-  const rain =
-    Number(
-      weather.precipitation || 0
-    );
-
-
-  const wind =
-    Number(
-      weather.wind || 0
-    );
-
-
-  const gusts =
-    Number(
-      weather.gusts || 0
-    );
-
-
-  const visibility =
-    Number(
-      weather.visibility || 99999
-    );
-
-
-  /* ---------------------------------------------------------
-     PROBABILIDAD / LLUVIA
-     --------------------------------------------------------- */
-
-  if (rainProb >= 40) {
-
-    score += 4;
-
-    risks.push(
-      "Probabilidad de precipitación elevada"
-    );
-
-  }
-
-  if (rainProb >= 70) {
-
-    score += 4;
-
-  }
-
-
-  /* ---------------------------------------------------------
-     INTENSIDAD DE LLUVIA
-     --------------------------------------------------------- */
-
-  if (rain >= 2) {
-
-    score += 5;
-
-    risks.push(
-      "Precipitación prevista"
-    );
-
-  }
-
-  if (rain >= 5) {
-
-    score += 5;
-
-    risks.push(
-      "Lluvia intensa"
-    );
-
-  }
-
-
-  /* ---------------------------------------------------------
-     TORMENTA
-     --------------------------------------------------------- */
-
-  if (isStorm(weather)) {
-
-    score += 15;
-
-    risks.push(
-      "Tormenta prevista"
-    );
-
-  }
-
-
-  /* ---------------------------------------------------------
-     NIEVE
-     --------------------------------------------------------- */
-
-  if (hasSnow(weather)) {
-
-    score += 15;
-
-    risks.push(
-      "Posible nieve"
-    );
-
-  }
-
-
-  /* ---------------------------------------------------------
-     HIELO
-     --------------------------------------------------------- */
-
-  if (
-    Number.isFinite(temp) &&
-    temp <= 0
-  ) {
-
-    score += 12;
-
-    risks.push(
-      "Temperatura igual o inferior a 0 °C"
-    );
-
-  }
-  else if (
-    Number.isFinite(temp) &&
-    temp <= 3
-  ) {
-
-    score += 6;
-
-    risks.push(
-      "Temperatura próxima a 0 °C"
-    );
-
-  }
-
-
-  /* ---------------------------------------------------------
-     VIENTO
-     --------------------------------------------------------- */
-
-  if (wind >= 35) {
-
-    score += 5;
-
-    risks.push(
-      "Viento fuerte"
-    );
-
-  }
-
-  if (gusts >= 55) {
-
-    score += 5;
-
-    risks.push(
-      `Rachas de hasta ${Math.round(gusts)} km/h`
-    );
-
-  }
-
-  if (gusts >= 75) {
-
-    score += 7;
-
-    risks.push(
-      "Rachas muy fuertes"
-    );
-
-  }
-
-
-  /* ---------------------------------------------------------
-     NIEBLA / VISIBILIDAD
-     --------------------------------------------------------- */
-
-  if (
-    visibility > 0 &&
-    visibility < 2000
-  ) {
-
-    score += 7;
-
-    risks.push(
-      "Visibilidad reducida"
-    );
-
-  }
-
-  if (
-    visibility > 0 &&
-    visibility < 1000
-  ) {
-
-    score += 5;
-
-    risks.push(
-      "Visibilidad muy reducida"
-    );
-
-  }
-
-
-  /* ---------------------------------------------------------
-     NIEVE / HIELO — COMBINACIÓN METEOROLÓGICA
-     --------------------------------------------------------- */
-
-  const freezingLevel =
-    Number(weather.freezingLevel);
-
-  const snowDepth =
-    Number(weather.snowDepth);
-
-  if (
-    Number.isFinite(freezingLevel) &&
-    Number.isFinite(weather.elevation) &&
-    weather.elevation >= freezingLevel - 250
-  ) {
-
-    score += 8;
-
-    risks.push(
-      "Cota de congelación cercana a la altitud del punto"
-    );
-
-  }
-
-  if (
-    Number.isFinite(snowDepth) &&
-    snowDepth > 0
-  ) {
-
-    score += 8;
-
-    risks.push(
-      "Nieve acumulada prevista en el entorno"
-    );
-
-  }
-
-  if (
-    Number.isFinite(temp) &&
-    temp <= 2 &&
-    (rain > 0 || Number(weather.snowfall || 0) > 0)
-  ) {
-
-    score += 8;
-
-    risks.push(
-      "Precipitación con temperatura próxima a congelación"
-    );
-
-  }
-
-  /* ---------------------------------------------------------
-     CAPE / TORMENTA
-     --------------------------------------------------------- */
-
-  const cape =
-    Number(weather.cape);
-
-  if (
-    Number.isFinite(cape) &&
-    cape >= 800 &&
-    !isStorm(weather)
-  ) {
-
-    score += 4;
-
-    risks.push(
-      "Entorno convectivo potencialmente inestable"
-    );
-
-  }
-
-
-  score =
-    Math.min(
-      100,
-      Math.round(score)
-    );
-
-
-  return {
-
-    score,
-
-    risks
-
-  };
-
-}
-
 
 /* ===========================================================
    NIVEL DE RIESGO
@@ -5165,14 +4214,7 @@ function renderGlobalRisk(
 
   if (riskMethod) {
 
-    riskMethod.innerHTML = `
-      <strong>Cómo se calcula:</strong>
-      0–20 bajo · 21–40 moderado · 41–60 alto ·
-      61–80 muy alto · 81–100 extremo.
-      El resultado combina la media de los puntos (45%)
-      y el peor punto (55%). Los avisos oficiales relevantes
-      pueden elevar el resultado.
-    `;
+    riskMethod.innerHTML = `<span>El nivel resume las condiciones previstas durante todo el trayecto.</span>`;
 
   }
 
@@ -5315,84 +4357,11 @@ function renderPoints(
 
           <div class="point-body">
 
-            <div class="weather-grid">
-
-              <div class="weather-item">
-                <div class="weather-label">
-                  Temperatura
-                </div>
-                <div class="weather-value">
-                  ${fmt(w.temperature," °C",1)}
-                </div>
-              </div>
-
-              <div class="weather-item">
-                <div class="weather-label">
-                  Sensación
-                </div>
-                <div class="weather-value">
-                  ${fmt(w.apparent," °C",1)}
-                </div>
-              </div>
-
-              <div class="weather-item">
-                <div class="weather-label">
-                  Lluvia
-                </div>
-                <div class="weather-value">
-                  ${fmt(w.precipitationProbability," %")}
-                </div>
-              </div>
-
-              <div class="weather-item">
-                <div class="weather-label">
-                  Precipitación
-                </div>
-                <div class="weather-value">
-                  ${fmt(w.precipitation," mm",1)}
-                </div>
-              </div>
-
-              <div class="weather-item">
-                <div class="weather-label">
-                  Viento
-                </div>
-                <div class="weather-value">
-                  ${fmt(w.wind," km/h")}
-                </div>
-              </div>
-
-              <div class="weather-item">
-                <div class="weather-label">
-                  Rachas
-                </div>
-                <div class="weather-value">
-                  ${fmt(w.gusts," km/h")}
-                </div>
-              </div>
-
-              <div class="weather-item">
-                <div class="weather-label">
-                  Visibilidad
-                </div>
-                <div class="weather-value">
-                  ${formatVisibility(w.visibility)}
-                </div>
-              </div>
-
-              <div class="weather-item">
-                <div class="weather-label">
-                  Estado
-                </div>
-                <div class="weather-value">
-                  ${escapeHtml(
-                    weatherDescription(
-                      w.weatherCode
-                    )
-                  )}
-                </div>
-              </div>
-
+            <div class="weather-grid compact-weather">
+              <div class="weather-item"><div class="weather-label">Estado</div><div class="weather-value">${escapeHtml(weatherDescription(w.weatherCode))}</div></div>
+              <div class="weather-item"><div class="weather-label">Temperatura</div><div class="weather-value">${fmt(w.temperature," °C",1)}</div></div>
+              <div class="weather-item"><div class="weather-label">Lluvia</div><div class="weather-value">${fmt(w.precipitationProbability," %")}${Number(w.precipitation)>0 ? ` · ${fmt(w.precipitation," mm",1)}` : ""}</div></div>
+              <div class="weather-item"><div class="weather-label">Viento</div><div class="weather-value">${fmt(w.wind," km/h")}${Number(w.gusts)>0 ? ` · rachas ${fmt(w.gusts," km/h")}` : ""}</div></div>
             </div>
 
 
@@ -5410,12 +4379,6 @@ function renderPoints(
                   : ""
               }
 
-              ${
-                point.flood?.detected
-                  ? `<br><br><strong>🌊 Inundaciones:</strong><br>
-                     • ${point.flood.arpsi ? "ARPSI / riesgo potencial significativo" : "Zona inundable cartografiada"}`
-                  : ""
-              }
 
               ${
                 point.dgtIncidents?.length
@@ -5426,12 +4389,6 @@ function renderPoints(
                   : ""
               }
 
-              <br><br>
-
-              <span style="color:#748190">
-                Fuente: Open-Meteo · Hora meteorológica más próxima:
-                ${fmt(w.forecastDifferenceMinutes," min")}
-              </span>
 
             </div>
 
@@ -5707,17 +4664,7 @@ function getDetectedPhenomena(analysis) {
       test: w => Number(w.elevation) >= 800,
       detail: w => `Altitud aproximada ${Math.round(Number(w.elevation))} m`
     },
-    {
-      id: "flood-zone",
-      icon: "🌊",
-      label: "Zona de riesgo elevado de inundación",
-      test: (w, point) => point.flood?.detected === true && (point.flood?.arpsi || point.flood?.q10 || point.flood?.q50),
-      detail: (w, point) => point.flood?.q10
-        ? "SNCZI T=10: alta probabilidad de inundación"
-        : point.flood?.q50
-          ? "SNCZI T=50: inundación frecuente"
-          : "ARPSI: riesgo potencial significativo"
-    },
+
     {
       id: "dgt",
       icon: "🚧",
@@ -5838,161 +4785,101 @@ function renderRisks(analysis) {
 }
 
 
+function renderOfficialAlerts(analysis) {
+  const status = $("alertsStatus");
+  const list = $("alertsList");
+  if (!status || !list) return;
+  list.innerHTML = "";
+  const alerts = Array.isArray(analysis.officialAlerts) ? analysis.officialAlerts : [];
+
+  if (!alerts.length) {
+    status.className = "data-state success";
+    status.innerHTML = `<strong>🟢 AEMET: sin avisos relevantes</strong><span>No se han encontrado avisos que afecten a la ruta.</span>`;
+    return;
+  }
+
+  const rank = a => {
+    const t = String(a.level || a.nivel || a.severity || a.event || "").toLowerCase();
+    if (/rojo|red|extreme|extremo/.test(t)) return 3;
+    if (/naranja|orange|severe|muy alto/.test(t)) return 2;
+    return 1;
+  };
+  const selected = [...alerts].sort((a,b)=>rank(b)-rank(a)).slice(0,3);
+  status.className = "data-state warning";
+  status.innerHTML = `<strong>🚨 AEMET: ${alerts.length} aviso${alerts.length===1?"":"s"} relevante${alerts.length===1?"":"s"}</strong><span>Se muestran solo los más importantes.</span>`;
+
+  selected.forEach(alert => {
+    const level = String(alert.level || alert.nivel || alert.severity || "Aviso").toLowerCase();
+    const title = alert.headline || alert.title || alert.event || "Aviso meteorológico";
+    const el = document.createElement("div");
+    el.className = "official-alert";
+    el.innerHTML = `<strong>${escapeHtml(title)}</strong><span>${escapeHtml(level)}${alert.description ? ` · ${escapeHtml(String(alert.description).slice(0,180))}` : ""}</span>`;
+    list.appendChild(el);
+  });
+}
+
+function renderDgtIncidents(analysis) {
+  const status = $("dgtStatus");
+  const list = $("dgtList");
+  if (!status || !list) return;
+  list.innerHTML = "";
+  const incidents = Array.isArray(analysis.dgtIncidents) ? analysis.dgtIncidents : [];
+
+  if (!incidents.length) {
+    status.className = "data-state success";
+    status.innerHTML = `<strong>🟢 DGT: sin incidencias relevantes</strong><span>No se han encontrado incidencias cercanas a la ruta.</span>`;
+    return;
+  }
+
+  status.className = "data-state warning";
+  status.innerHTML = `<strong>🚧 DGT: ${incidents.length} incidencia${incidents.length===1?"":"s"}</strong><span>Se muestran las incidencias más cercanas a la ruta.</span>`;
+  incidents.slice(0,5).forEach(incident => {
+    const el = document.createElement("div");
+    el.className = "official-alert";
+    const title = incident.title || incident.type || incident.cause || "Incidencia de tráfico";
+    const desc = incident.description || incident.detail || "";
+    el.innerHTML = `<strong>${escapeHtml(title)}</strong><span>${escapeHtml(String(desc).slice(0,180))}</span>`;
+    list.appendChild(el);
+  });
+}
+
 /* ===========================================================
    RECOMMENDATION
    =========================================================== */
 
-function renderRecommendation(
-  analysis
-) {
+function renderRecommendation(analysis) {
+  const score = analysis.globalScore;
+  const risk = getRiskLevel(score);
+  const factors = [];
+  analysis.points.forEach(point => (point.risk.risks || []).forEach(r => {
+    if (!factors.includes(r)) factors.push(r);
+  }));
 
-  const score =
-    analysis.globalScore;
-
-
-  const risks =
-    [];
-
-
-  analysis.points
-    .forEach(
-      point => {
-
-        point.risk.risks
-          .forEach(
-            risk => {
-
-              if (!risks.includes(risk)) {
-
-                risks.push(risk);
-
-              }
-
-            }
-          );
-
-      }
-    );
-
-
-  let text;
-
-
-  if (score <= 20) {
-
-    text =
-      "Con los datos meteorológicos disponibles no se han detectado condiciones relevantes que eleven significativamente el riesgo de conducción. Mantén la precaución habitual y revisa las previsiones antes de salir.";
-
-  }
-  else if (score <= 40) {
-
-    text =
-      `Se recomienda mantener una precaución adicional durante el recorrido. ${
-        risks.length
-          ? "Los principales factores detectados son: " +
-            risks.slice(0,3).join(", ") +
-            "."
-          : ""
-      }`;
-
-  }
-  else if (score <= 60) {
-
-    text =
-      `Se recomienda extremar la atención durante las zonas afectadas por las condiciones meteorológicas detectadas. ${
-        risks.length
-          ? "Principales factores: " +
-            risks.slice(0,4).join(", ") +
-            "."
-          : ""
-      }`;
-
-  }
-  else {
-
-    text =
-      `Se han detectado condiciones meteorológicas potencialmente adversas en parte del recorrido. ${
-        risks.length
-          ? "Factores principales: " +
-            risks.slice(0,5).join(", ") +
-            "."
-          : ""
-      } Consulta los avisos oficiales y vuelve a analizar el viaje antes de salir.`;
-
-  }
-
+  let text = "Con las previsiones disponibles, el viaje presenta condiciones normales.";
+  if (score > 20 && score <= 40) text = "Hay algunos factores que aconsejan conducir con algo más de precaución.";
+  else if (score > 40 && score <= 60) text = "Hay condiciones que pueden afectar a la conducción en algunos tramos.";
+  else if (score > 60) text = "Hay condiciones adversas importantes en parte del recorrido. Revisa los avisos antes de salir.";
 
   $("recommendation").innerHTML = `
-
-    <div class="recommendation-title">
-      🚗 Recomendación preventiva
-    </div>
-
-    <div class="recommendation-text">
-      ${escapeHtml(text)}
-    </div>
-
+    <div class="recommendation-title">🚗 ${escapeHtml(risk.name)}</div>
+    <div class="recommendation-text">${escapeHtml(text)}</div>
+    ${factors.length ? `<div class="recommendation-factors"><strong>Lo más relevante:</strong> ${escapeHtml(factors.slice(0,3).join(" · "))}</div>` : ""}
   `;
-
 }
-
 
 /* ===========================================================
    GLOBAL SCORE
    =========================================================== */
 
-function calculateGlobalScore(
-  points
-) {
-
-  const scores =
-    points
-      .filter(
-        p => p.weather
-      )
-      .map(
-        p => p.risk.score
-      );
-
-
-  if (!scores.length) {
-
-    return 0;
-
-  }
-
-
-  /*
-   No usamos únicamente la media.
-
-   El peor punto tiene más peso para evitar
-   que una zona problemática quede diluida
-   por muchos puntos con buen tiempo.
-  */
-
-  const average =
-    scores.reduce(
-      (a,b) => a+b,
-      0
-    ) / scores.length;
-
-
-  const maximum =
-    Math.max(...scores);
-
-
-  const weighted =
-    average * .45 +
-    maximum * .55;
-
-
-  return Math.min(
-    100,
-    Math.round(weighted)
-  );
-
+function calculateGlobalScore(points) {
+  const scores = points.filter(p => p.weather).map(p => Number(p.risk.score) || 0);
+  if (!scores.length) return 0;
+  const average = scores.reduce((a,b) => a + b, 0) / scores.length;
+  const worst = Math.max(...scores);
+  // Prioriza el comportamiento general del viaje y usa el peor punto
+  // como advertencia, sin dejar que un único punto domine todo el resultado.
+  return Math.round((average * 0.70) + (worst * 0.30));
 }
-
 
 /* ===========================================================
    LOCAL STORAGE
@@ -6666,7 +5553,7 @@ async function analyzeTravel() {
 
     setStatus(
       "⏳ CONSULTANDO FUENTES OFICIALES...",
-      "Comprobando AEMET, DGT y cartografía oficial SNCZI/MITECO."
+      "Comprobando AEMET y DGT."
     );
 
     let officialAlertResult = {
@@ -6679,12 +5566,6 @@ async function analyzeTravel() {
       incidents: []
     };
 
-    let floodResult = {
-      configured: false,
-      items: [],
-      checkedPoints: 0,
-      failedPoints: 0
-    };
 
     try {
 
@@ -6724,27 +5605,6 @@ async function analyzeTravel() {
       console.warn("DGT incidents error", dgtError);
     }
 
-    setStatus(
-      "⏳ COMPROBANDO INUNDACIONES...",
-      "Contrastando los puntos de la ruta con la cartografía oficial del SNCZI/MITECO."
-    );
-
-    try {
-
-      floodResult = await fetchFloodRisk({
-        origin,
-        destination,
-        date,
-        departure,
-        points,
-        route
-      });
-
-    }
-    catch (floodError) {
-      console.warn("Flood risk error", floodError);
-    }
-
     const analysisForOfficialData = {
       origin,
       destination,
@@ -6760,7 +5620,7 @@ async function analyzeTravel() {
       analysisForOfficialData
     );
 
-    /* DGT y SNCZI ya han modificado los puntos directamente. */
+    /* DGT ya ha modificado los puntos directamente. */
     applyDgtIncidentsToRisk({
       points,
       dgtIncidents: dgtResult.incidents
@@ -6775,7 +5635,7 @@ async function analyzeTravel() {
 
     setStatus(
       "⏳ EVALUANDO RIESGOS...",
-      "Calculando el riesgo global con el peor tramo y los factores críticos."
+      "Calculando el nivel de riesgo del viaje."
     );
 
 
@@ -6837,17 +5697,6 @@ async function analyzeTravel() {
       dgtTotal:
         dgtResult.total ?? null,
 
-      floodItems:
-        floodResult.items,
-
-      floodConfigured:
-        floodResult.configured,
-
-      floodCheckedPoints:
-        floodResult.checkedPoints,
-
-      floodFailedPoints:
-        floodResult.failedPoints,
 
     };
 
@@ -6857,8 +5706,8 @@ async function analyzeTravel() {
        ------------------------------------------------------- */
 
     setStatus(
-      "⏳ GENERANDO INFORME...",
-      "Preparando mapa, puntos y resumen."
+      "⏳ PREPARANDO RESULTADO...",
+      "Generando un resumen sencillo del viaje."
     );
 
 
@@ -6891,7 +5740,6 @@ async function analyzeTravel() {
 
     initMap();
 
-    addFloodMapLayers();
 
 
     setTimeout(
@@ -6906,9 +5754,6 @@ async function analyzeTravel() {
           currentAnalysis
         );
 
-        renderSegments(
-          currentAnalysis
-        );
 
         renderRisks(
           currentAnalysis
@@ -6926,9 +5771,6 @@ async function analyzeTravel() {
           currentAnalysis
         );
 
-        renderHydrologicalStatus(
-          currentAnalysis
-        );
 
       },
       50
