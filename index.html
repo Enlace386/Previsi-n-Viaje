@@ -1975,13 +1975,6 @@ const CONFIG = {
   MAP_TILE:
     "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
 
-  /*
-   * IMPORTANTE:
-   * Estas URLs NO contienen claves secretas.
-   * En producción pueden apuntar a Cloud Functions de Firebase.
-   * Ejemplo:
-   * https://europe-southwest1-TU_PROYECTO.cloudfunctions.net/aemetProxy
-   */
   /* Avisos AEMET publicados por GitHub Actions */
   AEMET_ALERTS_URL:
     "https://enlace386.github.io/Previsi-n-Viaje/aemet-alerts.json",
@@ -1990,21 +1983,16 @@ const CONFIG = {
   DGT_INCIDENTS_URL:
     "https://enlace386.github.io/Previsi-n-Viaje/dgt-incidents.json",
 
-  /* Cartografía oficial SNCZI / MITECO */
-  FLOOD_WMS_URL:
-    "https://gis.miteco.gob.es/geoserver/agua/wms",
-
+  /* Cartografía oficial SNCZI / MITECO.
+     Cada capa tiene su propio servicio WMS publicado por MITECO. */
   FLOOD_ARPSI_WMS_URL:
-    "https://gis.miteco.gob.es/geoserver/agua/wms",
+    "https://gis.miteco.gob.es/geoserver/agua/Zi_arpsi/wms",
 
-  FLOOD_Q100_LAYER:
-    "Zi_laminas_q100",
+  FLOOD_Q100_WMS_URL:
+    "https://gis.miteco.gob.es/geoserver/agua/Zi_laminas_q100/wms",
 
-  FLOOD_Q500_LAYER:
-    "Zi_laminas_q500",
-
-  HYDRO_PROXY_URL:
-    "",
+  FLOOD_Q500_WMS_URL:
+    "https://gis.miteco.gob.es/geoserver/agua/Zi_laminas_q500/wms",
 
   ANALYSIS_DISTANCE_KM:
     25,
@@ -3197,7 +3185,7 @@ function enrichPointWithTerrain(
 
 
 /* ===========================================================
-   AVISOS OFICIALES — PROXY SEGURO
+   AVISOS OFICIALES — AEMET OpenData
    =========================================================== */
 
 function normalizeOfficialItems(
@@ -3228,89 +3216,122 @@ function normalizeOfficialItems(
 }
 
 
-function alertTouchesRoute(
-  alert,
-  points
-) {
+function pointInPolygon(lat, lon, polygon) {
 
-  /*
-   * Un proxy puede devolver directamente
-   * only route-relevant alerts. Si además entrega
-   * coordenadas simples, hacemos una comprobación
-   * aproximada para evitar mostrar avisos nacionales
-   * sin relación geográfica.
-   */
+  if (!Array.isArray(polygon) || polygon.length < 3) return false;
 
-  if (
-    alert.routeRelevant === true ||
-    alert.relevant === true
-  ) {
+  let inside = false;
 
-    return true;
+  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+    const yi = Number(polygon[i][0]);
+    const xi = Number(polygon[i][1]);
+    const yj = Number(polygon[j][0]);
+    const xj = Number(polygon[j][1]);
 
+    if (![yi, xi, yj, xj].every(Number.isFinite)) continue;
+
+    const intersect =
+      ((yi > lat) !== (yj > lat)) &&
+      (lon < (xj - xi) * (lat - yi) / ((yj - yi) || 1e-12) + xi);
+
+    if (intersect) inside = !inside;
   }
 
-  const lat =
-    Number(
-      alert.lat ??
-      alert.latitude
-    );
-
-  const lon =
-    Number(
-      alert.lon ??
-      alert.longitude
-    );
-
-  if (
-    !Number.isFinite(lat) ||
-    !Number.isFinite(lon)
-  ) {
-
-    /*
-     * Sin coordenadas no inventamos relevancia.
-     * El proxy debe haber filtrado previamente.
-     */
-    return alert.filteredForRoute === true;
-
-  }
-
-  return points.some(
-    point =>
-      haversineKm(
-        lat,
-        lon,
-        point.lat,
-        point.lon
-      ) <= 50
-  );
-
+  return inside;
 }
 
+function normalizeAemetPolygon(value) {
 
-async function fetchOfficialAlerts(
-  analysis
-) {
-
-  if (!CONFIG.AEMET_ALERTS_URL) {
-    return { configured: false, alerts: [] };
+  if (Array.isArray(value)) {
+    if (value.length && Array.isArray(value[0])) return value;
+    if (value.length && typeof value[0] === "object") {
+      return value.map(p => [Number(p.lat ?? p.latitude), Number(p.lon ?? p.longitude)]);
+    }
   }
 
-  const response = await fetchWithTimeout(
-    CONFIG.AEMET_ALERTS_URL,
-    { cache: "no-store" }
-  );
+  if (typeof value !== "string") return [];
+
+  return value
+    .trim()
+    .split(/\s+/)
+    .map(pair => pair.split(",").map(Number))
+    .filter(pair => pair.length === 2 && pair.every(Number.isFinite));
+}
+
+function getAemetPolygons(alert) {
+
+  const candidates = [
+    alert.polygon,
+    alert.polygons,
+    alert.geometry?.coordinates,
+    alert.area?.polygon,
+    alert.area?.polygons,
+    alert.areas?.flatMap(a => [a.polygon, a.polygons]).filter(Boolean)
+  ];
+
+  const polygons = [];
+
+  function collect(value) {
+    if (!value) return;
+    if (typeof value === "string") {
+      const poly = normalizeAemetPolygon(value);
+      if (poly.length >= 3) polygons.push(poly);
+      return;
+    }
+    if (Array.isArray(value)) {
+      if (value.length >= 3 && value.every(p => Array.isArray(p) && p.length >= 2)) {
+        const poly = value.map(p => [Number(p[0]), Number(p[1])]);
+        if (poly.every(p => p.every(Number.isFinite))) polygons.push(poly);
+        return;
+      }
+      value.forEach(collect);
+    }
+  }
+
+  candidates.forEach(collect);
+  return polygons;
+}
+
+function alertTouchesRoute(alert, points) {
+
+  if (alert.routeRelevant === true || alert.relevant === true || alert.filteredForRoute === true) {
+    return true;
+  }
+
+  const lat = Number(alert.lat ?? alert.latitude);
+  const lon = Number(alert.lon ?? alert.longitude);
+
+  if (Number.isFinite(lat) && Number.isFinite(lon)) {
+    if (points.some(point => haversineKm(lat, lon, point.lat, point.lon) <= 50)) return true;
+  }
+
+  const polygons = getAemetPolygons(alert);
+  if (polygons.length) {
+    return points.some(point => polygons.some(poly => pointInPolygon(point.lat, point.lon, poly)));
+  }
+
+  return false;
+}
+
+async function fetchOfficialAlerts(analysis) {
+
+  if (!CONFIG.AEMET_ALERTS_URL) {
+    return { configured: false, alerts: [], generatedAt: null, source: "AEMET OpenData" };
+  }
+
+  const response = await fetchWithTimeout(CONFIG.AEMET_ALERTS_URL, { cache: "no-store" });
+  if (!response.ok) throw new Error(`AEMET HTTP ${response.status}`);
 
   const payload = await response.json();
-
-  const alerts = normalizeOfficialItems(payload)
-    .filter(alert => alertTouchesRoute(alert, analysis.points));
+  const source = normalizeOfficialItems(payload);
+  const alerts = source.filter(alert => alertTouchesRoute(alert, analysis.points));
 
   return {
     configured: true,
-    alerts
+    alerts,
+    generatedAt: payload.generatedAt || payload.updatedAt || null,
+    source: payload.source || "AEMET OpenData"
   };
-
 }
 
 
@@ -3318,112 +3339,90 @@ async function fetchOfficialAlerts(
    DGT — INCIDENCIAS DE TRÁFICO
    =========================================================== */
 
+function getIncidentCoordinates(incident) {
+
+  const directLat = Number(incident.lat ?? incident.latitude);
+  const directLon = Number(incident.lon ?? incident.longitude);
+  if (Number.isFinite(directLat) && Number.isFinite(directLon)) return [[directLat, directLon]];
+
+  const candidates = [
+    incident.geometry?.coordinates,
+    incident.position?.coordinates,
+    incident.location?.coordinates,
+    incident.coordinates
+  ];
+
+  const out = [];
+  function collect(v) {
+    if (!Array.isArray(v)) return;
+    if (v.length >= 2 && Number.isFinite(Number(v[0])) && Number.isFinite(Number(v[1]))) {
+      // GeoJSON uses [lon, lat].
+      const lon = Number(v[0]), lat = Number(v[1]);
+      if (Math.abs(lat) <= 90 && Math.abs(lon) <= 180) out.push([lat, lon]);
+      return;
+    }
+    v.forEach(collect);
+  }
+  candidates.forEach(collect);
+  return out;
+}
+
+function dgtIncidentTouchesRoute(incident, points) {
+  const coords = getIncidentCoordinates(incident);
+  return coords.some(([lat, lon]) =>
+    points.some(point => haversineKm(lat, lon, point.lat, point.lon) <= 15)
+  );
+}
+
 async function fetchDgtIncidents(analysis) {
 
   if (!CONFIG.DGT_INCIDENTS_URL) {
-    return { configured: false, incidents: [] };
+    return { configured: false, incidents: [], generatedAt: null, source: "DGT" };
   }
 
-  const response = await fetchWithTimeout(
-    CONFIG.DGT_INCIDENTS_URL,
-    { cache: "no-store" }
-  );
+  const response = await fetchWithTimeout(CONFIG.DGT_INCIDENTS_URL, { cache: "no-store" });
+  if (!response.ok) throw new Error(`DGT HTTP ${response.status}`);
 
   const payload = await response.json();
   const sourceItems = Array.isArray(payload)
     ? payload
     : (Array.isArray(payload.incidents) ? payload.incidents : []);
 
-  const incidents = sourceItems.filter(incident =>
-    dgtIncidentTouchesRoute(incident, analysis.points)
-  );
+  const incidents = sourceItems.filter(incident => dgtIncidentTouchesRoute(incident, analysis.points));
 
   return {
     configured: true,
     incidents,
-    generatedAt: payload.generatedAt || null,
-    source: payload.source || "DGT"
+    total: sourceItems.length,
+    generatedAt: payload.generatedAt || payload.updatedAt || null,
+    source: payload.source || "DGT DATEX2"
   };
-
-}
-
-function dgtIncidentTouchesRoute(incident, points) {
-
-  const lat = Number(incident.lat ?? incident.latitude);
-  const lon = Number(incident.lon ?? incident.longitude);
-
-  if (!Number.isFinite(lat) || !Number.isFinite(lon)) {
-    return false;
-  }
-
-  /* 12 km alrededor de los puntos analizados: suficiente para
-     detectar incidencias cercanas sin convertirlas en nacionales. */
-  return points.some(point =>
-    haversineKm(lat, lon, point.lat, point.lon) <= 12
-  );
-
 }
 
 function dgtSeverityScore(incident) {
-
-  const text = String(
-    `${incident.severity || ""} ${incident.type || ""} ${incident.title || ""} ${incident.description || ""}`
-  ).toLowerCase();
-
-  if (/(corte|cerrad|carretera cortada|inund|desprendimiento|accidente con.*grave|calzada cortada)/i.test(text)) {
-    return 22;
-  }
-
-  if (/(accidente|obstáculo|obstru|retención|congest|nieve|hielo|niebla|viento|lluvia)/i.test(text)) {
-    return 12;
-  }
-
+  const text = String(`${incident.severity || ""} ${incident.type || ""} ${incident.title || ""} ${incident.description || ""}`).toLowerCase();
+  if (/(corte|cerrad|carretera cortada|inund|desprendimiento|calzada cortada|roadclosed|carriagewayblocked)/i.test(text)) return 22;
+  if (/(accidente|obstáculo|obstru|retención|congest|nieve|hielo|niebla|viento|lluvia)/i.test(text)) return 12;
   return 7;
-
 }
 
 function applyDgtIncidentsToRisk(analysis) {
-
   const incidents = analysis.dgtIncidents || [];
-
   incidents.forEach(incident => {
-
-    const lat = Number(incident.lat ?? incident.latitude);
-    const lon = Number(incident.lon ?? incident.longitude);
-
-    if (!Number.isFinite(lat) || !Number.isFinite(lon)) return;
-
+    const coords = getIncidentCoordinates(incident);
+    if (!coords.length) return;
     const bonus = dgtSeverityScore(incident);
-
     analysis.points.forEach(point => {
-
-      const distance = haversineKm(
-        lat,
-        lon,
-        point.lat,
-        point.lon
-      );
-
-      if (distance > 12) return;
-
+      const distances = coords.map(([lat, lon]) => haversineKm(lat, lon, point.lat, point.lon));
+      const distance = Math.min(...distances);
+      if (distance > 15) return;
       point.dgtIncidents = point.dgtIncidents || [];
-      point.dgtIncidents.push({
-        ...incident,
-        distanceToRouteKm: distance
-      });
-
+      point.dgtIncidents.push({...incident, distanceToRouteKm: distance});
       point.risk.score = Math.min(100, point.risk.score + bonus);
-
-      const label = incident.title || incident.type || "Incidencia DGT";
-      point.risk.risks = Array.from(new Set([
-        ...point.risk.risks,
-        `DGT: ${label}`
-      ]));
-
+      const label = incident.title || incident.type || incident.cause || "Incidencia DGT";
+      point.risk.risks = Array.from(new Set([...point.risk.risks, `DGT: ${label}`]));
     });
-
   });
-
 }
 
 
@@ -3431,21 +3430,9 @@ function applyDgtIncidentsToRisk(analysis) {
    INUNDACIONES — SNCZI / MITECO
    =========================================================== */
 
-async function queryFloodZone(point) {
+async function queryFloodLayer(point, layerUrl, layerName) {
 
-  /*
-   * Se consulta la cartografía oficial mediante WMS GetFeatureInfo.
-   * No afirmamos que exista una inundación: solo identificamos si
-   * el punto cae sobre una zona cartografiada como inundable/ARPSI.
-   */
-
-  const layers = [
-    "Zi_arpsi",
-    CONFIG.FLOOD_Q100_LAYER,
-    CONFIG.FLOOD_Q500_LAYER
-  ];
-
-  const bboxSize = 0.012;
+  const bboxSize = 0.006;
   const minLon = point.lon - bboxSize;
   const maxLon = point.lon + bboxSize;
   const minLat = point.lat - bboxSize;
@@ -3455,8 +3442,8 @@ async function queryFloodZone(point) {
     SERVICE: "WMS",
     VERSION: "1.3.0",
     REQUEST: "GetFeatureInfo",
-    LAYERS: layers.join(","),
-    QUERY_LAYERS: layers.join(","),
+    LAYERS: layerName,
+    QUERY_LAYERS: layerName,
     STYLES: "",
     CRS: "EPSG:4326",
     BBOX: `${minLat},${minLon},${maxLat},${maxLon}`,
@@ -3468,58 +3455,58 @@ async function queryFloodZone(point) {
     FEATURE_COUNT: "10"
   });
 
-  try {
+  const response = await fetchWithTimeout(`${layerUrl}?${params}`, {cache:"no-store"}, 12000);
+  if (!response.ok) throw new Error(`SNCZI HTTP ${response.status}`);
 
-    const response = await fetchWithTimeout(
-      `${CONFIG.FLOOD_WMS_URL}?${params}`,
-      { cache: "no-store" },
-      12000
-    );
-
-    const payload = await response.json();
-    const features = Array.isArray(payload.features)
-      ? payload.features
-      : [];
-
-    const names = features.map(feature => {
-      const props = feature.properties || {};
-      return String(
-        props.nombre ||
-        props.name ||
-        props.NOMBRE ||
-        props.tipo ||
-        "Zona cartografiada"
-      );
-    });
-
-    const hasArpsi = features.some(feature =>
-      JSON.stringify(feature).toLowerCase().includes("arpsi")
-    );
-
-    const raw = JSON.stringify(payload).toLowerCase();
-    const hasQ100 = raw.includes("q100") || raw.includes("100");
-    const hasQ500 = raw.includes("q500") || raw.includes("500");
-
-    return {
-      checked: true,
-      detected: features.length > 0,
-      arpsi: hasArpsi,
-      q100: hasQ100,
-      q500: hasQ500,
-      features: names.slice(0, 5)
-    };
-
-  }
-  catch (error) {
-
-    return {
-      checked: false,
-      detected: false,
-      error: error.message || "No se pudo consultar el SNCZI"
-    };
-
+  const text = await response.text();
+  let payload;
+  try { payload = JSON.parse(text); } catch {
+    throw new Error("El servicio SNCZI no devolvió GeoJSON");
   }
 
+  return Array.isArray(payload.features) ? payload.features : [];
+}
+
+async function queryFloodZone(point) {
+
+  const layers = [
+    {key:"arpsi", url:CONFIG.FLOOD_ARPSI_WMS_URL, layer:"Zi_arpsi"},
+    {key:"q100", url:CONFIG.FLOOD_Q100_WMS_URL, layer:"Zi_laminas_q100"},
+    {key:"q500", url:CONFIG.FLOOD_Q500_WMS_URL, layer:"Zi_laminas_q500"}
+  ];
+
+  const allFeatures = [];
+  const detected = { arpsi:false, q100:false, q500:false };
+  let successfulLayers = 0;
+
+  for (const layer of layers) {
+    try {
+      const features = await queryFloodLayer(point, layer.url, layer.layer);
+      successfulLayers++;
+      if (features.length) detected[layer.key] = true;
+      allFeatures.push(...features.map(feature => ({...feature, __layer: layer.key})));
+    } catch (error) {
+      console.warn(`SNCZI ${layer.key} error`, error);
+    }
+  }
+
+  if (successfulLayers === 0) {
+    return {checked:false, detected:false, arpsi:false, q100:false, q500:false, features:[], error:"No se pudo consultar ningún servicio WMS oficial del SNCZI"};
+  }
+
+  const names = allFeatures.map(feature => {
+    const props = feature.properties || {};
+    return String(props.nombre || props.name || props.NOMBRE || props.tipo || feature.__layer || "Zona cartografiada");
+  });
+
+  return {
+    checked:true,
+    detected:allFeatures.length > 0,
+    arpsi:detected.arpsi,
+    q100:detected.q100,
+    q500:detected.q500,
+    features:names.slice(0,8)
+  };
 }
 
 async function fetchFloodRisk(analysis) {
@@ -3527,92 +3514,43 @@ async function fetchFloodRisk(analysis) {
   const results = [];
   let failed = 0;
 
-  const checked = await Promise.all(
-    analysis.points.map(async point => {
-      const result = await queryFloodZone(point);
-      point.flood = result;
-      return { point, result };
-    })
-  );
+  for (const point of analysis.points) {
+    const result = await queryFloodZone(point);
+    point.flood = result;
 
-  checked.forEach(({ point, result }) => {
+    if (!result.checked) { failed++; continue; }
+    if (!result.detected) continue;
 
-    if (!result.checked) {
-      failed++;
-      return;
-    }
-
-    if (!result.detected) return;
-
-    results.push({ point, result });
-
+    results.push({point, result});
     let bonus = 4;
     if (result.q100) bonus += 8;
     if (result.arpsi) bonus += 7;
-
     point.risk.score = Math.min(100, point.risk.score + bonus);
-
     point.risk.risks = Array.from(new Set([
       ...point.risk.risks,
-      result.arpsi
-        ? "Zona con riesgo potencial significativo de inundación (ARPSI)"
-        : "Zona cartografiada con posible afección por inundación"
+      result.arpsi ? "Zona con riesgo potencial significativo de inundación (ARPSI)" : "Zona cartografiada con posible afección por inundación"
     ]));
-
-  });
+  }
 
   return {
-    configured: true,
-    checkedPoints: analysis.points.length - failed,
-    failedPoints: failed,
-    items: results
+    configured:true,
+    checkedPoints:analysis.points.length - failed,
+    failedPoints:failed,
+    items:results
   };
-
 }
 
-
-/* ===========================================================
-   CAPAS VISUALES SNCZI
-   =========================================================== */
-
 function addFloodMapLayers() {
-
   if (!map || floodLayers.length) return;
-
   try {
-
-    const arpsi = L.tileLayer.wms(
-      CONFIG.FLOOD_ARPSI_WMS_URL,
-      {
-        layers: "Zi_arpsi",
-        format: "image/png",
-        transparent: true,
-        opacity: 0.28,
-        attribution: "© MITECO · SNCZI"
-      }
-    );
-
-    const q100 = L.tileLayer.wms(
-      CONFIG.FLOOD_WMS_URL,
-      {
-        layers: CONFIG.FLOOD_Q100_LAYER,
-        format: "image/png",
-        transparent: true,
-        opacity: 0.22,
-        attribution: "© MITECO · SNCZI"
-      }
-    );
-
+    const arpsi = L.tileLayer.wms(CONFIG.FLOOD_ARPSI_WMS_URL,{layers:"Zi_arpsi",format:"image/png",transparent:true,opacity:0.28,attribution:"© MITECO · SNCZI"});
+    const q100 = L.tileLayer.wms(CONFIG.FLOOD_Q100_WMS_URL,{layers:"Zi_laminas_q100",format:"image/png",transparent:true,opacity:0.22,attribution:"© MITECO · SNCZI"});
     arpsi.addTo(map);
     q100.addTo(map);
-
-    floodLayers.push(arpsi, q100);
-
+    floodLayers.push(arpsi,q100);
+  } catch(error) {
+    console.warn("SNCZI map layers error",error);
   }
-  catch (error) {
-    console.warn("SNCZI map layers error", error);
-  }
-
 }
 
 
@@ -3752,12 +3690,8 @@ function renderOfficialAlerts(
       "data-state warning";
 
     status.innerHTML = `
-      <strong>🚨 Avisos AEMET: no conectados</strong>
-      <span>
-        El análisis meteorológico funciona con Open-Meteo,
-        pero los avisos oficiales AEMET requieren un proxy
-        seguro con la API key fuera del navegador.
-      </span>
+      <strong>⚪ Avisos AEMET: datos no disponibles</strong>
+      <span>No se ha podido leer el fichero oficial de avisos publicado por GitHub Actions. No se interpreta como ausencia de avisos.</span>
     `;
 
     return;
@@ -3773,12 +3707,8 @@ function renderOfficialAlerts(
       "data-state success";
 
     status.innerHTML = `
-      <strong>✅ No se han recibido avisos oficiales relevantes para la ruta</strong>
-      <span>
-        Esto significa que el proxy oficial no ha devuelto
-        avisos geográficamente relevantes para los puntos
-        analizados. No equivale a garantía de ausencia de peligro.
-      </span>
+      <strong>🟢 Avisos AEMET: sin avisos relevantes para la ruta</strong>
+      <span>El fichero oficial AEMET se ha consultado correctamente y ninguno de sus avisos cartografiados coincide con los puntos analizados.</span>
     `;
 
     return;
@@ -3860,8 +3790,8 @@ function renderDgtIncidents(analysis) {
   if (!analysis.dgtConfigured) {
     status.className = "data-state warning";
     status.innerHTML = `
-      <strong>🚧 Incidencias DGT: datos no disponibles</strong>
-      <span>No se ha podido consultar el fichero oficial publicado para TRAVEL SAFE. Esto no significa que la carretera esté libre de incidencias.</span>
+      <strong>⚪ Incidencias DGT: datos no disponibles</strong>
+      <span>No se ha podido leer el fichero estático publicado por GitHub Actions a partir del DATEX2 oficial de la DGT. Esto no significa que la carretera esté libre de incidencias.</span>
     `;
     return;
   }
@@ -3871,8 +3801,8 @@ function renderDgtIncidents(analysis) {
   if (!incidents.length) {
     status.className = "data-state success";
     status.innerHTML = `
-      <strong>✅ No se han detectado incidencias DGT próximas a los puntos analizados</strong>
-      <span>La consulta no ha encontrado incidencias con coordenadas suficientemente próximas a la ruta. ${analysis.dgtGeneratedAt ? `Última actualización recibida: ${escapeHtml(formatDateTimeEs(analysis.dgtGeneratedAt))}.` : ""}</span>
+      <strong>🟢 DGT consultada: sin incidencias relevantes para la ruta</strong>
+      <span>El fichero DGT se ha leído correctamente y no se han encontrado incidencias próximas a los puntos analizados. ${analysis.dgtGeneratedAt ? `Última actualización: ${escapeHtml(formatDateTimeEs(analysis.dgtGeneratedAt))}.` : ""}</span>
     `;
     return;
   }
@@ -3885,10 +3815,15 @@ function renderDgtIncidents(analysis) {
 
   incidents.forEach((incident, index) => {
 
-    const pointIndex = analysis.points.findIndex(point =>
-      Number.isFinite(Number(incident.lat)) &&
-      haversineKm(Number(incident.lat), Number(incident.lon), point.lat, point.lon) <= 12
-    );
+    const coords = getIncidentCoordinates(incident);
+    let pointIndex = -1;
+    let bestDistance = Infinity;
+    analysis.points.forEach((point, idx) => {
+      coords.forEach(([lat, lon]) => {
+        const d = haversineKm(lat, lon, point.lat, point.lon);
+        if (d < bestDistance && d <= 15) { bestDistance = d; pointIndex = idx; }
+      });
+    });
 
     const el = document.createElement("div");
     el.className = "official-alert";
@@ -3897,8 +3832,8 @@ function renderDgtIncidents(analysis) {
       <button type="button" class="phenomenon-point" data-point-index="${pointIndex}">
         <strong>🚧 ${escapeHtml(incident.title || incident.type || `Incidencia DGT ${index + 1}`)}</strong>
         <span>
-          ${escapeHtml(incident.road || "Carretera no indicada")} · ${escapeHtml(incident.pk || "PK no indicado")}<br>
-          ${escapeHtml(incident.description || "Sin descripción adicional.")}<br>
+          ${escapeHtml(incident.road || incident.roadNumber || incident.roadName || "Carretera no indicada")} · ${escapeHtml(incident.pk || incident.km || "PK no indicado")}<br>
+          ${escapeHtml(incident.description || incident.title || incident.type || "Sin descripción adicional.")}<br>
           ${pointIndex >= 0 ? `Paso estimado: ${escapeHtml(analysis.points[pointIndex].passTime)}` : ""}
         </span>
       </button>
@@ -3928,8 +3863,8 @@ function renderHydrologicalStatus(analysis) {
   if (!analysis.floodConfigured || analysis.floodFailedPoints === analysis.points.length) {
     status.className = "data-state warning";
     status.innerHTML = `
-      <strong>🌊 Inundaciones: datos cartográficos no disponibles</strong>
-      <span>No se ha podido consultar correctamente el SNCZI/MITECO para los puntos analizados. No se interpreta como ausencia de riesgo.</span>
+      <strong>⚪ SNCZI/MITECO: datos no disponibles</strong>
+      <span>No se ha podido consultar los servicios WMS oficiales del SNCZI para los puntos analizados. No se interpreta como ausencia de riesgo.</span>
     `;
     return;
   }
@@ -6704,17 +6639,12 @@ async function analyzeTravel() {
 
     setStatus(
       "⏳ CONSULTANDO FUENTES OFICIALES...",
-      "Comprobando avisos AEMET y, si están configurados, datos hidrológicos."
+      "Comprobando AEMET, DGT y cartografía oficial SNCZI/MITECO."
     );
 
     let officialAlertResult = {
       configured: false,
       alerts: []
-    };
-
-    let hydroResult = {
-      configured: false,
-      items: []
     };
 
     let dgtResult = {
@@ -6745,30 +6675,8 @@ async function analyzeTravel() {
     catch (officialError) {
 
       console.warn(
-        "AEMET proxy error",
+        "AEMET static feed error",
         officialError
-      );
-
-    }
-
-    try {
-
-      hydroResult =
-        await fetchHydrologicalStatus({
-          origin,
-          destination,
-          date,
-          departure,
-          points,
-          route
-        });
-
-    }
-    catch (hydroError) {
-
-      console.warn(
-        "Hydrological proxy error",
-        hydroError
       );
 
     }
@@ -6884,6 +6792,12 @@ async function analyzeTravel() {
       officialAlertsConfigured:
         officialAlertResult.configured,
 
+      officialAlertsGeneratedAt:
+        officialAlertResult.generatedAt,
+
+      officialAlertsSource:
+        officialAlertResult.source,
+
       dgtIncidents:
         dgtResult.incidents,
 
@@ -6892,6 +6806,9 @@ async function analyzeTravel() {
 
       dgtGeneratedAt:
         dgtResult.generatedAt,
+
+      dgtTotal:
+        dgtResult.total ?? null,
 
       floodItems:
         floodResult.items,
@@ -6904,12 +6821,6 @@ async function analyzeTravel() {
 
       floodFailedPoints:
         floodResult.failedPoints,
-
-      hydroItems:
-        hydroResult.items,
-
-      hydroConfigured:
-        hydroResult.configured
 
     };
 
