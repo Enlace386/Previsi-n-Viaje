@@ -1682,6 +1682,26 @@ button {
 
 
       <!-- ===================================================
+           DGT TRAFFIC INCIDENTS
+           =================================================== -->
+
+      <section class="panel section">
+
+        <div class="section-title">
+          🚧 Incidencias DGT
+        </div>
+
+        <div id="dgtStatus" class="data-state">
+          <strong>🚧 Estado: esperando consulta</strong>
+          <span>Las incidencias DGT se mostrarán al analizar la ruta.</span>
+        </div>
+
+        <div id="dgtList" class="official-list"></div>
+
+      </section>
+
+
+      <!-- ===================================================
            RECOMMENDATION
            =================================================== -->
 
@@ -1956,6 +1976,9 @@ const CONFIG = {
    */
   AEMET_ALERTS_URL:
     "https://enlace386.github.io/Previsi-n-Viaje/aemet-alerts.json",
+
+  DGT_INCIDENTS_URL:
+    "https://enlace386.github.io/Previsi-n-Viaje/dgt-incidents.json",
 
   HYDRO_PROXY_URL:
     "",
@@ -3327,6 +3350,157 @@ async function fetchOfficialAlerts(
 /* ===========================================================
    INUNDACIONES — FUENTE OFICIAL OPCIONAL
    =========================================================== */
+
+
+/* ===========================================================
+   DGT — INCIDENCIAS DE TRÁFICO
+   =========================================================== */
+
+function normalizeDgtIncident(item) {
+  if (!item || typeof item !== "object") return null;
+
+  const lat = Number(item.lat ?? item.latitude ?? item.location?.lat ?? item.location?.latitude);
+  const lon = Number(item.lon ?? item.lng ?? item.longitude ?? item.location?.lon ?? item.location?.longitude);
+
+  if (!Number.isFinite(lat) || !Number.isFinite(lon)) return null;
+
+  return {
+    id: String(item.id || item.situationId || `${lat},${lon},${item.event || ""}`),
+    lat,
+    lon,
+    event: String(item.event || item.type || item.incident || "Incidencia de tráfico"),
+    description: String(item.description || item.message || item.comment || ""),
+    road: String(item.road || item.roadName || ""),
+    municipality: String(item.municipality || item.locality || item.town || ""),
+    province: String(item.province || ""),
+    direction: String(item.direction || "")
+  };
+}
+
+function dgtDistanceToRouteKm(incident, points) {
+  let best = Infinity;
+
+  for (const point of points || []) {
+    if (!Number.isFinite(point.lat) || !Number.isFinite(point.lon)) continue;
+
+    best = Math.min(
+      best,
+      haversineKm(incident.lat, incident.lon, point.lat, point.lon)
+    );
+  }
+
+  return best;
+}
+
+async function fetchDgtIncidents(analysis) {
+  const response = await fetchWithTimeout(
+    CONFIG.DGT_INCIDENTS_URL,
+    { cache: "no-store" },
+    12000
+  );
+
+  const payload = await response.json();
+
+  const raw = Array.isArray(payload)
+    ? payload
+    : Array.isArray(payload.incidents)
+      ? payload.incidents
+      : [];
+
+  const incidents = raw
+    .map(normalizeDgtIncident)
+    .filter(Boolean)
+    .map(item => ({
+      ...item,
+      distanceKm: dgtDistanceToRouteKm(item, analysis.points)
+    }))
+    .filter(item => item.distanceKm <= 12)
+    .sort((a, b) => a.distanceKm - b.distanceKm);
+
+  const seen = new Set();
+
+  return {
+    configured: true,
+    incidents: incidents.filter(item => {
+      if (seen.has(item.id)) return false;
+      seen.add(item.id);
+      return true;
+    }),
+    generatedAt: payload.generatedAt || null,
+    source: payload.source || "DGT"
+  };
+}
+
+function renderDgtIncidents(result) {
+  const status = $("dgtStatus");
+  const list = $("dgtList");
+
+  if (!status || !list) return;
+
+  list.innerHTML = "";
+
+  if (result?.error) {
+    status.className = "data-state warning";
+    status.innerHTML = `
+      <strong>⚠️ DGT no disponible</strong>
+      <span>No se ha podido consultar la última actualización de incidencias.</span>
+    `;
+    return;
+  }
+
+  const incidents = result?.incidents || [];
+
+  if (!incidents.length) {
+    status.className = "data-state";
+    status.innerHTML = `
+      <strong>✅ Sin incidencias DGT relevantes</strong>
+      <span>No se han encontrado incidencias próximas a la ruta analizada.</span>
+    `;
+    return;
+  }
+
+  const updated = result.generatedAt
+    ? new Date(result.generatedAt).toLocaleString("es-ES", {
+        dateStyle: "short",
+        timeStyle: "short"
+      })
+    : "última actualización disponible";
+
+  status.className = "data-state warning";
+  status.innerHTML = `
+    <strong>🚧 ${incidents.length} incidencia(s) DGT</strong>
+    <span>Última actualización disponible: ${escapeHtml(updated)}.</span>
+  `;
+
+  incidents.slice(0, 20).forEach(incident => {
+    const item = document.createElement("div");
+    item.className = "official-item";
+
+    const location = [
+      incident.road,
+      incident.direction,
+      incident.municipality,
+      incident.province
+    ].filter(Boolean).join(" · ");
+
+    const distance = Number.isFinite(incident.distanceKm)
+      ? `${incident.distanceKm.toFixed(1)} km de la ruta`
+      : "";
+
+    const detail = [
+      incident.description,
+      location,
+      distance
+    ].filter(Boolean).join(" · ");
+
+    item.innerHTML = `
+      <strong>🚧 ${escapeHtml(incident.event)}</strong>
+      <span>${escapeHtml(detail || "Incidencia DGT próxima a la ruta.")}</span>
+    `;
+
+    list.appendChild(item);
+  });
+}
 
 async function fetchHydrologicalStatus(
   analysis
@@ -6451,6 +6625,43 @@ async function analyzeTravel() {
 
     }
 
+    let dgtResult = {
+      configured: true,
+      incidents: [],
+      generatedAt: null,
+      source: "DGT"
+    };
+
+    try {
+
+      dgtResult =
+        await fetchDgtIncidents({
+          origin,
+          destination,
+          date,
+          departure,
+          points,
+          route
+        });
+
+    }
+    catch (dgtError) {
+
+      console.warn(
+        "DGT error",
+        dgtError
+      );
+
+      dgtResult = {
+        configured: true,
+        incidents: [],
+        generatedAt: null,
+        source: "DGT",
+        error: true
+      };
+
+    }
+
     const analysisForOfficialData = {
       origin,
       destination,
@@ -6521,6 +6732,15 @@ async function analyzeTravel() {
 
       aemetTotalAlerts:
         officialAlertResult.totalAlerts || 0,
+
+      dgtIncidents:
+        dgtResult.incidents || [],
+
+      dgtGeneratedAt:
+        dgtResult.generatedAt || null,
+
+      dgtConfigured:
+        dgtResult.configured,
 
       hydroItems:
         hydroResult.items,
@@ -6597,6 +6817,10 @@ async function analyzeTravel() {
 
         renderOfficialAlerts(
           currentAnalysis
+        );
+
+        renderDgtIncidents(
+          dgtResult
         );
 
         renderHydrologicalStatus(
