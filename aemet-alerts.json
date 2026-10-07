@@ -1,6 +1,6 @@
 {
   "source": "AEMET OpenData",
-  "generatedAt": "2026-10-07T06:04:47.994901+00:00",
+  "generatedAt": "2026-10-07T06:45:44.310633+00:00",
   "status": "ok",
   "count": 504,
   "alerts": [
@@ -6207,424 +6207,6 @@
               [
                 43.06,
                 -6.36
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261007042435.645404PRP107141791347075",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-07T04:24:35+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel naranja",
-      "urgency": "Immediate",
-      "severity": "Severe",
-      "certainty": "Likely",
-      "effective": "2026-10-07T06:24:35+02:00",
-      "onset": "2026-10-07T06:00:00+02:00",
-      "expires": "2026-10-07T15:59:59+02:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel naranja. Sur de Mallorca",
-      "description": "Precipitación acumulada en una hora: 30 mm.",
-      "instruction": "Esté preparado. Tome precauciones y manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños graves a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "naranja",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Sur de Mallorca",
-          "zoneCode": "645404",
-          "polygons": [
-            [
-              [
-                39.64,
-                2.44
-              ],
-              [
-                39.63,
-                2.49
-              ],
-              [
-                39.59,
-                2.51
-              ],
-              [
-                39.61,
-                2.57
-              ],
-              [
-                39.64,
-                2.57
-              ],
-              [
-                39.66,
-                2.6
-              ],
-              [
-                39.66,
-                2.66
-              ],
-              [
-                39.65,
-                2.71
-              ],
-              [
-                39.66,
-                2.74
-              ],
-              [
-                39.64,
-                2.78
-              ],
-              [
-                39.57,
-                2.85
-              ],
-              [
-                39.55,
-                2.83
-              ],
-              [
-                39.52,
-                2.89
-              ],
-              [
-                39.53,
-                2.94
-              ],
-              [
-                39.52,
-                2.97
-              ],
-              [
-                39.46,
-                2.97
-              ],
-              [
-                39.46,
-                3.01
-              ],
-              [
-                39.48,
-                3.06
-              ],
-              [
-                39.42,
-                3.1
-              ],
-              [
-                39.38,
-                3.07
-              ],
-              [
-                39.36,
-                3.09
-              ],
-              [
-                39.3,
-                3.07
-              ],
-              [
-                39.29,
-                3.03
-              ],
-              [
-                39.34,
-                2.99
-              ],
-              [
-                39.36,
-                2.96
-              ],
-              [
-                39.36,
-                2.91
-              ],
-              [
-                39.37,
-                2.85
-              ],
-              [
-                39.36,
-                2.79
-              ],
-              [
-                39.41,
-                2.74
-              ],
-              [
-                39.44,
-                2.75
-              ],
-              [
-                39.48,
-                2.72
-              ],
-              [
-                39.5,
-                2.75
-              ],
-              [
-                39.54,
-                2.72
-              ],
-              [
-                39.56,
-                2.67
-              ],
-              [
-                39.57,
-                2.63
-              ],
-              [
-                39.55,
-                2.62
-              ],
-              [
-                39.52,
-                2.54
-              ],
-              [
-                39.46,
-                2.52
-              ],
-              [
-                39.48,
-                2.48
-              ],
-              [
-                39.54,
-                2.45
-              ],
-              [
-                39.53,
-                2.37
-              ],
-              [
-                39.59,
-                2.35
-              ],
-              [
-                39.64,
-                2.44
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261007042435.645404TOTO07141791347075",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-07T04:24:35+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de tormentas de nivel naranja",
-      "urgency": "Immediate",
-      "severity": "Severe",
-      "certainty": "Likely",
-      "effective": "2026-10-07T06:24:35+02:00",
-      "onset": "2026-10-07T06:00:00+02:00",
-      "expires": "2026-10-07T15:59:59+02:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de tormentas de nivel naranja. Sur de Mallorca",
-      "description": "Pueden ir acompañas de rachas de 70 a 90 km/h y de granizo.",
-      "instruction": "Esté preparado. Tome precauciones y manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños graves a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "naranja",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Sur de Mallorca",
-          "zoneCode": "645404",
-          "polygons": [
-            [
-              [
-                39.64,
-                2.44
-              ],
-              [
-                39.63,
-                2.49
-              ],
-              [
-                39.59,
-                2.51
-              ],
-              [
-                39.61,
-                2.57
-              ],
-              [
-                39.64,
-                2.57
-              ],
-              [
-                39.66,
-                2.6
-              ],
-              [
-                39.66,
-                2.66
-              ],
-              [
-                39.65,
-                2.71
-              ],
-              [
-                39.66,
-                2.74
-              ],
-              [
-                39.64,
-                2.78
-              ],
-              [
-                39.57,
-                2.85
-              ],
-              [
-                39.55,
-                2.83
-              ],
-              [
-                39.52,
-                2.89
-              ],
-              [
-                39.53,
-                2.94
-              ],
-              [
-                39.52,
-                2.97
-              ],
-              [
-                39.46,
-                2.97
-              ],
-              [
-                39.46,
-                3.01
-              ],
-              [
-                39.48,
-                3.06
-              ],
-              [
-                39.42,
-                3.1
-              ],
-              [
-                39.38,
-                3.07
-              ],
-              [
-                39.36,
-                3.09
-              ],
-              [
-                39.3,
-                3.07
-              ],
-              [
-                39.29,
-                3.03
-              ],
-              [
-                39.34,
-                2.99
-              ],
-              [
-                39.36,
-                2.96
-              ],
-              [
-                39.36,
-                2.91
-              ],
-              [
-                39.37,
-                2.85
-              ],
-              [
-                39.36,
-                2.79
-              ],
-              [
-                39.41,
-                2.74
-              ],
-              [
-                39.44,
-                2.75
-              ],
-              [
-                39.48,
-                2.72
-              ],
-              [
-                39.5,
-                2.75
-              ],
-              [
-                39.54,
-                2.72
-              ],
-              [
-                39.56,
-                2.67
-              ],
-              [
-                39.57,
-                2.63
-              ],
-              [
-                39.55,
-                2.62
-              ],
-              [
-                39.52,
-                2.54
-              ],
-              [
-                39.46,
-                2.52
-              ],
-              [
-                39.48,
-                2.48
-              ],
-              [
-                39.54,
-                2.45
-              ],
-              [
-                39.53,
-                2.37
-              ],
-              [
-                39.59,
-                2.35
-              ],
-              [
-                39.64,
-                2.44
               ]
             ]
           ]
@@ -68639,6 +68221,424 @@
               [
                 43.18,
                 -4.84
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261007063748.645404PRP107141791355068",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-07T06:37:48+00:00",
+      "status": "Actual",
+      "messageType": "Update",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel amarillo",
+      "urgency": "Immediate",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-07T08:37:48+02:00",
+      "onset": "2026-10-07T08:00:00+02:00",
+      "expires": "2026-10-07T15:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel amarillo. Sur de Mallorca",
+      "description": "Precipitación acumulada en una hora: 20 mm.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Sur de Mallorca",
+          "zoneCode": "645404",
+          "polygons": [
+            [
+              [
+                39.64,
+                2.44
+              ],
+              [
+                39.63,
+                2.49
+              ],
+              [
+                39.59,
+                2.51
+              ],
+              [
+                39.61,
+                2.57
+              ],
+              [
+                39.64,
+                2.57
+              ],
+              [
+                39.66,
+                2.6
+              ],
+              [
+                39.66,
+                2.66
+              ],
+              [
+                39.65,
+                2.71
+              ],
+              [
+                39.66,
+                2.74
+              ],
+              [
+                39.64,
+                2.78
+              ],
+              [
+                39.57,
+                2.85
+              ],
+              [
+                39.55,
+                2.83
+              ],
+              [
+                39.52,
+                2.89
+              ],
+              [
+                39.53,
+                2.94
+              ],
+              [
+                39.52,
+                2.97
+              ],
+              [
+                39.46,
+                2.97
+              ],
+              [
+                39.46,
+                3.01
+              ],
+              [
+                39.48,
+                3.06
+              ],
+              [
+                39.42,
+                3.1
+              ],
+              [
+                39.38,
+                3.07
+              ],
+              [
+                39.36,
+                3.09
+              ],
+              [
+                39.3,
+                3.07
+              ],
+              [
+                39.29,
+                3.03
+              ],
+              [
+                39.34,
+                2.99
+              ],
+              [
+                39.36,
+                2.96
+              ],
+              [
+                39.36,
+                2.91
+              ],
+              [
+                39.37,
+                2.85
+              ],
+              [
+                39.36,
+                2.79
+              ],
+              [
+                39.41,
+                2.74
+              ],
+              [
+                39.44,
+                2.75
+              ],
+              [
+                39.48,
+                2.72
+              ],
+              [
+                39.5,
+                2.75
+              ],
+              [
+                39.54,
+                2.72
+              ],
+              [
+                39.56,
+                2.67
+              ],
+              [
+                39.57,
+                2.63
+              ],
+              [
+                39.55,
+                2.62
+              ],
+              [
+                39.52,
+                2.54
+              ],
+              [
+                39.46,
+                2.52
+              ],
+              [
+                39.48,
+                2.48
+              ],
+              [
+                39.54,
+                2.45
+              ],
+              [
+                39.53,
+                2.37
+              ],
+              [
+                39.59,
+                2.35
+              ],
+              [
+                39.64,
+                2.44
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261007063748.645404TOTO07141791355068",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-07T06:37:48+00:00",
+      "status": "Actual",
+      "messageType": "Update",
+      "language": "es-ES",
+      "event": "Aviso de tormentas de nivel amarillo",
+      "urgency": "Immediate",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-07T08:37:48+02:00",
+      "onset": "2026-10-07T08:00:00+02:00",
+      "expires": "2026-10-07T15:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de tormentas de nivel amarillo. Sur de Mallorca",
+      "description": "Pueden ir acompañas de rachas de 70 a 90 km/h y de granizo.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Sur de Mallorca",
+          "zoneCode": "645404",
+          "polygons": [
+            [
+              [
+                39.64,
+                2.44
+              ],
+              [
+                39.63,
+                2.49
+              ],
+              [
+                39.59,
+                2.51
+              ],
+              [
+                39.61,
+                2.57
+              ],
+              [
+                39.64,
+                2.57
+              ],
+              [
+                39.66,
+                2.6
+              ],
+              [
+                39.66,
+                2.66
+              ],
+              [
+                39.65,
+                2.71
+              ],
+              [
+                39.66,
+                2.74
+              ],
+              [
+                39.64,
+                2.78
+              ],
+              [
+                39.57,
+                2.85
+              ],
+              [
+                39.55,
+                2.83
+              ],
+              [
+                39.52,
+                2.89
+              ],
+              [
+                39.53,
+                2.94
+              ],
+              [
+                39.52,
+                2.97
+              ],
+              [
+                39.46,
+                2.97
+              ],
+              [
+                39.46,
+                3.01
+              ],
+              [
+                39.48,
+                3.06
+              ],
+              [
+                39.42,
+                3.1
+              ],
+              [
+                39.38,
+                3.07
+              ],
+              [
+                39.36,
+                3.09
+              ],
+              [
+                39.3,
+                3.07
+              ],
+              [
+                39.29,
+                3.03
+              ],
+              [
+                39.34,
+                2.99
+              ],
+              [
+                39.36,
+                2.96
+              ],
+              [
+                39.36,
+                2.91
+              ],
+              [
+                39.37,
+                2.85
+              ],
+              [
+                39.36,
+                2.79
+              ],
+              [
+                39.41,
+                2.74
+              ],
+              [
+                39.44,
+                2.75
+              ],
+              [
+                39.48,
+                2.72
+              ],
+              [
+                39.5,
+                2.75
+              ],
+              [
+                39.54,
+                2.72
+              ],
+              [
+                39.56,
+                2.67
+              ],
+              [
+                39.57,
+                2.63
+              ],
+              [
+                39.55,
+                2.62
+              ],
+              [
+                39.52,
+                2.54
+              ],
+              [
+                39.46,
+                2.52
+              ],
+              [
+                39.48,
+                2.48
+              ],
+              [
+                39.54,
+                2.45
+              ],
+              [
+                39.53,
+                2.37
+              ],
+              [
+                39.59,
+                2.35
+              ],
+              [
+                39.64,
+                2.44
               ]
             ]
           ]
