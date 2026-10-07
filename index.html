@@ -1929,6 +1929,23 @@ logoutBtn.addEventListener("click", async () => {
   }
 });
 
+function cargarViajeDesdeOrganizador() {
+  const params = new URLSearchParams(window.location.search);
+  const origin = params.get("origin");
+  const destination = params.get("destination");
+  const date = params.get("date");
+  const time = params.get("time");
+
+  if (!origin || !destination || !date || !time) return false;
+
+  $("origin").value = origin;
+  $("destination").value = destination;
+  $("travelDate").value = date;
+  $("departureTime").value = time;
+
+  return true;
+}
+
 function showAuthenticatedApp(user) {
   authScreen.style.display = "none";
   appRoot.classList.remove("auth-locked");
@@ -1938,9 +1955,12 @@ function showAuthenticatedApp(user) {
   renderSavedTrips();
   initMap();
 
+  const incomingTrip = cargarViajeDesdeOrganizador();
+
   setTimeout(() => {
     if (map) map.invalidateSize();
-  }, 100);
+    if (incomingTrip) analyzeTravel();
+  }, 150);
 }
 
 function showLoginScreen() {
