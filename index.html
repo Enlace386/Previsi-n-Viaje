@@ -63,6 +63,7 @@ body {
 
 body {
   overflow-x: hidden;
+  padding-bottom: calc(92px + env(safe-area-inset-bottom));
 }
 
 button,
@@ -1278,11 +1279,14 @@ body {
 
 /* Floating pill navigation */
 .travel-pill-nav {
-  position: sticky;
-  top: 76px;
-  z-index: 900;
-  width: min(680px,100%);
-  margin: 2px auto 16px;
+  position: fixed !important;
+  left: 50%;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  top: auto !important;
+  transform: translateX(-50%);
+  z-index: 99990;
+  width: min(680px, calc(100% - 24px));
+  margin: 0;
   padding: 6px;
   display: grid;
   grid-template-columns: repeat(5,1fr);
@@ -1535,9 +1539,9 @@ body {
   .auth-user-email { display:none !important; }
   .logout-btn { padding: 9px 11px !important; }
   .travel-pill-nav {
-    top: 70px;
-    margin-left: 1px;
-    margin-right: 1px;
+    left: 50%;
+    bottom: max(10px, env(safe-area-inset-bottom));
+    width: calc(100% - 18px);
     border-radius: 22px;
   }
   .travel-nav-item { min-height: 48px; border-radius: 17px; }
