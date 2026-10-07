@@ -8,8 +8,8 @@
   content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"
 >
 
-<meta name="theme-color" content="#070a0f">
-<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#f6f8fc">
+<meta name="color-scheme" content="light">
 
 <title>PREVISIÓN VIAJES</title>
 
@@ -1184,6 +1184,367 @@ button {
   }
 }
 
+
+
+/* =========================================================
+   PREMIUM MOBILE REDESIGN — VISUAL LAYER ONLY
+   Existing application logic and component IDs are preserved.
+   ========================================================= */
+
+:root {
+  --ui-bg: #f5f7fb;
+  --ui-surface: rgba(255,255,255,.84);
+  --ui-surface-solid: #ffffff;
+  --ui-text: #172033;
+  --ui-soft: #6e788a;
+  --ui-muted: #98a1b1;
+  --ui-blue: #2b78ef;
+  --ui-blue-soft: #eaf2ff;
+  --ui-green: #18b978;
+  --ui-orange: #f19a32;
+  --ui-red: #ef4a5b;
+  --ui-border: rgba(35,55,90,.08);
+  --ui-shadow: 0 12px 34px rgba(35,55,90,.08);
+  --ui-shadow-soft: 0 5px 20px rgba(35,55,90,.06);
+}
+
+html, body {
+  background: var(--ui-bg) !important;
+  color: var(--ui-text) !important;
+}
+
+body {
+  background:
+    radial-gradient(circle at 92% -4%, rgba(76,139,255,.10), transparent 28%),
+    radial-gradient(circle at -5% 32%, rgba(94,184,255,.07), transparent 26%),
+    var(--ui-bg) !important;
+}
+
+.app {
+  padding: 0 14px 112px !important;
+}
+
+.container {
+  width: min(1180px, 100%) !important;
+  margin: 0 auto !important;
+}
+
+.header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  padding: calc(env(safe-area-inset-top) + 12px) 2px 12px !important;
+  background: rgba(245,247,251,.78) !important;
+  backdrop-filter: blur(22px) !important;
+  -webkit-backdrop-filter: blur(22px) !important;
+}
+
+.logo-row { gap: 11px !important; }
+
+.logo-icon {
+  width: 46px !important;
+  height: 46px !important;
+  border: 1px solid rgba(255,255,255,.92) !important;
+  border-radius: 16px !important;
+  background: linear-gradient(145deg,#3d8bff,#2166d4) !important;
+  color: #fff !important;
+  box-shadow: 0 8px 20px rgba(43,120,239,.20) !important;
+}
+
+.logo-title {
+  color: #172033 !important;
+  font-size: clamp(20px,5vw,31px) !important;
+  letter-spacing: -.035em !important;
+}
+
+.logo-title span { color: var(--ui-blue) !important; }
+
+.logo-subtitle {
+  color: var(--ui-soft) !important;
+  font-size: 10px !important;
+  letter-spacing: .08em !important;
+}
+
+.auth-userbar { gap: 8px !important; }
+.auth-user-email { color: var(--ui-soft) !important; }
+
+.logout-btn {
+  border: 1px solid var(--ui-border) !important;
+  border-radius: 14px !important;
+  background: rgba(255,255,255,.82) !important;
+  color: var(--ui-text) !important;
+  box-shadow: var(--ui-shadow-soft) !important;
+}
+
+/* Floating pill navigation */
+.travel-pill-nav {
+  position: sticky;
+  top: 76px;
+  z-index: 900;
+  width: min(680px,100%);
+  margin: 2px auto 16px;
+  padding: 6px;
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  gap: 4px;
+  border: 1px solid rgba(255,255,255,.92);
+  border-radius: 24px;
+  background: rgba(255,255,255,.76);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 12px 34px rgba(35,55,90,.12), inset 1px 1px 0 rgba(255,255,255,.95);
+}
+
+.travel-nav-item {
+  min-height: 50px;
+  border: 0;
+  border-radius: 18px;
+  background: transparent;
+  color: #8992a3;
+  font: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-direction: column;
+  transition: transform .18s ease, background .18s ease, color .18s ease, box-shadow .18s ease;
+}
+
+.travel-nav-item:active { transform: scale(.97); }
+
+.travel-nav-item.active {
+  color: var(--ui-blue);
+  background: linear-gradient(145deg,#edf4ff,#e7f0ff);
+  box-shadow: inset 0 1px 2px rgba(255,255,255,.9), 0 4px 12px rgba(43,120,239,.08);
+}
+
+.travel-nav-icon {
+  font-size: 17px;
+  line-height: 1;
+}
+
+.travel-nav-item span:last-child {
+  font-size: 9px;
+  font-weight: 750;
+}
+
+.panel {
+  border: 1px solid rgba(255,255,255,.88) !important;
+  border-radius: 24px !important;
+  background: rgba(255,255,255,.82) !important;
+  color: var(--ui-text) !important;
+  box-shadow: var(--ui-shadow), inset 1px 1px 0 rgba(255,255,255,.95) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+}
+
+.panel + .panel { margin-top: 14px !important; }
+
+.search-panel,
+.risk-panel,
+.trip-header,
+.section,
+.sources { padding: 20px !important; }
+
+.panel-title,
+.section-title {
+  color: var(--ui-text) !important;
+  letter-spacing: -.02em !important;
+  text-transform: none !important;
+  font-size: 17px !important;
+}
+
+.panel-title { font-weight: 800 !important; }
+
+.section-title { font-weight: 850 !important; }
+
+.field label {
+  color: var(--ui-soft) !important;
+  letter-spacing: .02em !important;
+  text-transform: none !important;
+}
+
+.field input,
+.auth-form input {
+  min-height: 54px !important;
+  border: 1px solid rgba(35,55,90,.08) !important;
+  border-radius: 17px !important;
+  background: rgba(248,250,253,.96) !important;
+  color: var(--ui-text) !important;
+  box-shadow: inset 0 1px 3px rgba(35,55,90,.025) !important;
+}
+
+.field input:focus,
+.auth-form input:focus {
+  border-color: rgba(43,120,239,.28) !important;
+  box-shadow: 0 0 0 4px rgba(43,120,239,.08), inset 0 1px 3px rgba(35,55,90,.025) !important;
+}
+
+.analyze-btn {
+  min-height: 56px !important;
+  border-radius: 18px !important;
+  color: #fff !important;
+  background: linear-gradient(135deg,#3a8cff,#2169dd) !important;
+  box-shadow: 0 12px 28px rgba(43,120,239,.22) !important;
+  font-weight: 800 !important;
+  letter-spacing: -.01em !important;
+}
+
+.status,
+.error,
+.data-state,
+.confidence,
+.risk-method,
+.recommendation {
+  border-radius: 17px !important;
+  background: rgba(248,250,253,.9) !important;
+  border-color: rgba(35,55,90,.07) !important;
+  color: var(--ui-text) !important;
+}
+
+.status-detail,
+.data-state span,
+.risk-description,
+.trip-meta,
+.source-row,
+.point-time,
+.point-risks,
+.footer { color: var(--ui-soft) !important; }
+
+.trip-route {
+  color: var(--ui-text) !important;
+  letter-spacing: -.045em !important;
+}
+
+.meta-item strong { color: var(--ui-text) !important; }
+
+.report-btn {
+  border: 1px solid var(--ui-border) !important;
+  border-radius: 15px !important;
+  background: rgba(255,255,255,.9) !important;
+  color: var(--ui-text) !important;
+  box-shadow: var(--ui-shadow-soft) !important;
+}
+
+.score-circle {
+  background:
+    radial-gradient(circle at center,#fff 56%,transparent 57%),
+    conic-gradient(var(--risk-color,var(--ui-green)) var(--risk-angle,0deg),#e8edf3 0deg) !important;
+  box-shadow: 0 8px 20px rgba(35,55,90,.07) !important;
+}
+
+.score-number { color: var(--ui-text) !important; }
+.score-label { color: var(--ui-muted) !important; }
+
+.map-heading { padding: 18px 20px 14px !important; }
+.map-heading-title { color: var(--ui-text) !important; }
+.map-heading-info { color: var(--ui-soft) !important; }
+
+#map {
+  height: 430px !important;
+  min-height: 430px !important;
+}
+
+.map-layer-switcher {
+  padding: 11px 16px !important;
+  background: rgba(255,255,255,.82) !important;
+  border-top: 1px solid rgba(35,55,90,.06) !important;
+}
+
+.map-layer-btn {
+  border: 1px solid rgba(35,55,90,.08) !important;
+  background: rgba(255,255,255,.92) !important;
+  color: var(--ui-soft) !important;
+  border-radius: 999px !important;
+}
+
+.map-layer-btn.active {
+  background: var(--ui-blue-soft) !important;
+  border-color: rgba(43,120,239,.20) !important;
+  color: var(--ui-blue) !important;
+}
+
+.map-legend { background: rgba(255,255,255,.86) !important; color: var(--ui-soft) !important; }
+
+.point-card,
+.segment-card,
+.risk-card,
+.official-alert,
+.source-row,
+.saved-trip,
+.recommendation-item {
+  border-color: rgba(35,55,90,.07) !important;
+  background: rgba(248,250,253,.86) !important;
+  color: var(--ui-text) !important;
+  box-shadow: var(--ui-shadow-soft) !important;
+  border-radius: 18px !important;
+}
+
+.point-top,
+.point-body { border-color: rgba(35,55,90,.06) !important; }
+.weather-item { background: #fff !important; border: 1px solid rgba(35,55,90,.05); }
+.weather-label { color: var(--ui-soft) !important; }
+.weather-value { color: var(--ui-text) !important; }
+
+.footer {
+  padding-bottom: 12px !important;
+}
+
+/* Login */
+.auth-screen {
+  background:
+    radial-gradient(circle at 90% 5%, rgba(76,139,255,.13), transparent 32%),
+    radial-gradient(circle at 0% 60%, rgba(94,184,255,.08), transparent 28%),
+    #f5f7fb !important;
+}
+
+.auth-card {
+  border: 1px solid rgba(255,255,255,.92) !important;
+  border-radius: 28px !important;
+  background: rgba(255,255,255,.82) !important;
+  box-shadow: 0 24px 70px rgba(35,55,90,.12), inset 1px 1px 0 rgba(255,255,255,.95) !important;
+  backdrop-filter: blur(22px) !important;
+  -webkit-backdrop-filter: blur(22px) !important;
+}
+
+.auth-logo { color: var(--ui-text) !important; letter-spacing: -.04em !important; }
+.auth-logo span { color: var(--ui-blue) !important; }
+.auth-subtitle { color: var(--ui-soft) !important; }
+.auth-form label { color: var(--ui-soft) !important; }
+.auth-submit {
+  border-radius: 17px !important;
+  background: linear-gradient(135deg,#3a8cff,#2169dd) !important;
+  box-shadow: 0 12px 28px rgba(43,120,239,.20) !important;
+}
+
+/* Desktop: retain the same visual language while using available width. */
+@media (min-width:760px) {
+  .travel-pill-nav { margin-bottom: 18px; }
+  .search-panel,
+  .risk-panel,
+  .trip-header,
+  .section,
+  .sources { padding: 24px !important; }
+}
+
+/* Small phones */
+@media (max-width:500px) {
+  .app { padding-left: 9px !important; padding-right: 9px !important; padding-bottom: 102px !important; }
+  .header { padding-left: 2px !important; padding-right: 2px !important; }
+  .auth-user-email { display:none !important; }
+  .logout-btn { padding: 9px 11px !important; }
+  .travel-pill-nav {
+    top: 70px;
+    margin-left: 1px;
+    margin-right: 1px;
+    border-radius: 22px;
+  }
+  .travel-nav-item { min-height: 48px; border-radius: 17px; }
+  .travel-nav-item span:last-child { font-size: 8px; }
+  .travel-nav-icon { font-size: 16px; }
+  .panel { border-radius: 22px !important; }
+}
 </style>
 </head>
 
@@ -1252,10 +1613,44 @@ button {
 
 
     <!-- =====================================================
+         MOBILE / PILL NAVIGATION
+         ===================================================== -->
+
+    <nav class="travel-pill-nav" aria-label="Navegación rápida">
+
+      <button type="button" class="travel-nav-item active" data-target="section-analyze">
+        <span class="travel-nav-icon">⌂</span>
+        <span>Inicio</span>
+      </button>
+
+      <button type="button" class="travel-nav-item" data-target="section-route">
+        <span class="travel-nav-icon">⌖</span>
+        <span>Ruta</span>
+      </button>
+
+      <button type="button" class="travel-nav-item" data-target="section-weather">
+        <span class="travel-nav-icon">☁</span>
+        <span>Tiempo</span>
+      </button>
+
+      <button type="button" class="travel-nav-item" data-target="section-risks">
+        <span class="travel-nav-icon">⚠</span>
+        <span>Riesgos</span>
+      </button>
+
+      <button type="button" class="travel-nav-item" data-target="section-trips">
+        <span class="travel-nav-icon">♡</span>
+        <span>Viajes</span>
+      </button>
+
+    </nav>
+
+
+    <!-- =====================================================
          SEARCH
          ===================================================== -->
 
-    <section class="panel search-panel">
+    <section id="section-analyze" class="panel search-panel">
 
       <div class="panel-title">
         Analiza tu viaje
@@ -1384,7 +1779,7 @@ button {
            TRIP HEADER
            =================================================== -->
 
-      <section class="panel trip-header">
+      <section id="section-summary" class="panel trip-header">
 
         <div
           id="tripRoute"
@@ -1415,7 +1810,7 @@ button {
            GLOBAL RISK
            =================================================== -->
 
-      <section class="panel risk-panel">
+      <section id="section-risks" class="panel risk-panel">
 
         <div class="panel-title">
           ⚠️ Riesgo global
@@ -1486,7 +1881,7 @@ button {
            MAP
            =================================================== -->
 
-      <section class="panel map-panel">
+      <section id="section-route" class="panel map-panel">
 
         <div class="map-heading">
 
@@ -1571,7 +1966,7 @@ button {
            WEATHER POINTS
            =================================================== -->
 
-      <section class="panel section">
+      <section id="section-weather" class="panel section">
 
         <div class="section-title">
           🌦️ Condiciones durante el recorrido
@@ -1792,7 +2187,7 @@ button {
            SAVED TRIPS
            =================================================== -->
 
-      <section class="panel section">
+      <section id="section-trips" class="panel section">
 
         <div class="section-title">
           💾 Mis viajes
@@ -7137,6 +7532,47 @@ window.addEventListener(
 );
 
 
+</script>
+
+
+<script>
+(function(){
+  const items = document.querySelectorAll('.travel-nav-item');
+  if (!items.length) return;
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const id = item.dataset.target;
+      const target = document.getElementById(id);
+      if (!target) return;
+      items.forEach(x => x.classList.remove('active'));
+      item.classList.add('active');
+      const offset = window.innerWidth <= 500 ? 128 : 118;
+      const y = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({top: Math.max(0,y), behavior:'smooth'});
+    });
+  });
+
+  const observed = [
+    'section-analyze','section-summary','section-route','section-weather','section-risks','section-trips'
+  ].map(id => document.getElementById(id)).filter(Boolean);
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      const visible = entries.filter(e => e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+      if (!visible) return;
+      const map = {
+        'section-analyze':'section-analyze',
+        'section-summary':'section-analyze',
+        'section-route':'section-route',
+        'section-weather':'section-weather',
+        'section-risks':'section-risks',
+        'section-trips':'section-trips'
+      };
+      const activeTarget = map[visible.target.id];
+      items.forEach(x => x.classList.toggle('active', x.dataset.target === activeTarget));
+    }, {rootMargin:'-18% 0px -65% 0px', threshold:[0,.15,.35,.6]});
+    observed.forEach(el => observer.observe(el));
+  }
+})();
 </script>
 
 </body>
