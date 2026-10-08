@@ -1,8 +1,8 @@
 {
   "source": "AEMET OpenData",
-  "generatedAt": "2026-10-08T20:06:35.404358+00:00",
+  "generatedAt": "2026-10-08T20:41:22.407316+00:00",
   "status": "ok",
-  "count": 208,
+  "count": 211,
   "alerts": [
     {
       "id": "2.49.0.0.724.0.ES.20261008065517.694304VIRM08121791442517",
@@ -4502,6 +4502,416 @@
       ]
     },
     {
+      "id": "2.49.0.0.724.0.ES.20261008202429.733004TOTO09061791491069",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-08T20:24:29+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de tormentas de nivel amarillo",
+      "urgency": "Immediate",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-08T22:24:29+02:00",
+      "onset": "2026-10-08T22:00:00+02:00",
+      "expires": "2026-10-09T07:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de tormentas de nivel amarillo. Valle del Guadalentín, Lorca y Águilas",
+      "description": "Probabilidad de granizo y rachas muy fuertes.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Valle del Guadalentín, Lorca y Águilas",
+          "zoneCode": "733004",
+          "polygons": [
+            [
+              [
+                37.87,
+                -1.97
+              ],
+              [
+                37.88,
+                -1.97
+              ],
+              [
+                37.97,
+                -1.82
+              ],
+              [
+                37.95,
+                -1.78
+              ],
+              [
+                37.95,
+                -1.73
+              ],
+              [
+                37.9,
+                -1.67
+              ],
+              [
+                37.86,
+                -1.65
+              ],
+              [
+                37.9,
+                -1.6
+              ],
+              [
+                37.89,
+                -1.5
+              ],
+              [
+                37.91,
+                -1.41
+              ],
+              [
+                37.86,
+                -1.35
+              ],
+              [
+                37.91,
+                -1.28
+              ],
+              [
+                37.85,
+                -1.27
+              ],
+              [
+                37.83,
+                -1.29
+              ],
+              [
+                37.74,
+                -1.28
+              ],
+              [
+                37.72,
+                -1.37
+              ],
+              [
+                37.68,
+                -1.46
+              ],
+              [
+                37.62,
+                -1.46
+              ],
+              [
+                37.58,
+                -1.45
+              ],
+              [
+                37.56,
+                -1.46
+              ],
+              [
+                37.52,
+                -1.4
+              ],
+              [
+                37.48,
+                -1.46
+              ],
+              [
+                37.44,
+                -1.48
+              ],
+              [
+                37.43,
+                -1.52
+              ],
+              [
+                37.41,
+                -1.55
+              ],
+              [
+                37.4,
+                -1.59
+              ],
+              [
+                37.37,
+                -1.63
+              ],
+              [
+                37.38,
+                -1.63
+              ],
+              [
+                37.44,
+                -1.74
+              ],
+              [
+                37.45,
+                -1.81
+              ],
+              [
+                37.43,
+                -1.81
+              ],
+              [
+                37.46,
+                -1.84
+              ],
+              [
+                37.59,
+                -1.95
+              ],
+              [
+                37.67,
+                -2.01
+              ],
+              [
+                37.73,
+                -1.99
+              ],
+              [
+                37.78,
+                -2.01
+              ],
+              [
+                37.84,
+                -1.99
+              ],
+              [
+                37.87,
+                -1.97
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261008202429.733005TOTO09061791491069",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-08T20:24:29+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de tormentas de nivel amarillo",
+      "urgency": "Immediate",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-08T22:24:29+02:00",
+      "onset": "2026-10-08T22:00:00+02:00",
+      "expires": "2026-10-09T07:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de tormentas de nivel amarillo. Campo de Cartagena y Mazarrón",
+      "description": "Probabilidad de granizo y rachas muy fuertes.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Campo de Cartagena y Mazarrón",
+          "zoneCode": "733005",
+          "polygons": [
+            [
+              [
+                37.85,
+                -1.27
+              ],
+              [
+                37.81,
+                -1.19
+              ],
+              [
+                37.79,
+                -1.16
+              ],
+              [
+                37.75,
+                -1.14
+              ],
+              [
+                37.74,
+                -1.1
+              ],
+              [
+                37.72,
+                -1.08
+              ],
+              [
+                37.72,
+                -1.05
+              ],
+              [
+                37.76,
+                -1.06
+              ],
+              [
+                37.74,
+                -1.099999
+              ],
+              [
+                37.75,
+                -1.139999
+              ],
+              [
+                37.81,
+                -1.03
+              ],
+              [
+                37.85,
+                -1.0
+              ],
+              [
+                37.82,
+                -0.98
+              ],
+              [
+                37.83,
+                -0.94
+              ],
+              [
+                37.86,
+                -0.86
+              ],
+              [
+                37.88,
+                -0.85
+              ],
+              [
+                37.85,
+                -0.78
+              ],
+              [
+                37.85,
+                -0.76
+              ],
+              [
+                37.82,
+                -0.76
+              ],
+              [
+                37.81,
+                -0.8
+              ],
+              [
+                37.78,
+                -0.8
+              ],
+              [
+                37.75,
+                -0.85
+              ],
+              [
+                37.72,
+                -0.86
+              ],
+              [
+                37.66,
+                -0.8
+              ],
+              [
+                37.63,
+                -0.74
+              ],
+              [
+                37.6,
+                -0.73
+              ],
+              [
+                37.6,
+                -0.77
+              ],
+              [
+                37.58,
+                -0.82
+              ],
+              [
+                37.58,
+                -0.85
+              ],
+              [
+                37.56,
+                -0.92
+              ],
+              [
+                37.58,
+                -0.97
+              ],
+              [
+                37.58,
+                -1.07
+              ],
+              [
+                37.55,
+                -1.13
+              ],
+              [
+                37.57,
+                -1.2
+              ],
+              [
+                37.58,
+                -1.25
+              ],
+              [
+                37.56,
+                -1.27
+              ],
+              [
+                37.56,
+                -1.32
+              ],
+              [
+                37.52,
+                -1.4
+              ],
+              [
+                37.56,
+                -1.46
+              ],
+              [
+                37.58,
+                -1.45
+              ],
+              [
+                37.62,
+                -1.46
+              ],
+              [
+                37.68,
+                -1.46
+              ],
+              [
+                37.72,
+                -1.37
+              ],
+              [
+                37.74,
+                -1.28
+              ],
+              [
+                37.83,
+                -1.29
+              ],
+              [
+                37.85,
+                -1.27
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
       "id": "2.49.0.0.724.0.ES.20261008091602.610404PRP109041791450962",
       "sender": "http://www.aemet.es",
       "sent": "2026-10-08T09:16:02+00:00",
@@ -4897,6 +5307,219 @@
               [
                 37.87,
                 -1.97
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261008202513.610404TOTO09041791491113",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-08T20:25:13+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de tormentas de nivel amarillo",
+      "urgency": "Immediate",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-08T22:25:13+02:00",
+      "onset": "2026-10-08T22:00:00+02:00",
+      "expires": "2026-10-09T05:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de tormentas de nivel amarillo. Levante almeriense",
+      "description": "Probabilidad de granizo y rachas muy fuertes.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Levante almeriense",
+          "zoneCode": "610404",
+          "polygons": [
+            [
+              [
+                36.73,
+                -2.2
+              ],
+              [
+                36.8,
+                -2.23
+              ],
+              [
+                36.86,
+                -2.2
+              ],
+              [
+                36.96,
+                -2.3
+              ],
+              [
+                36.99,
+                -2.3
+              ],
+              [
+                37.01,
+                -2.2
+              ],
+              [
+                37.0,
+                -2.1
+              ],
+              [
+                37.0,
+                -2.07
+              ],
+              [
+                36.98,
+                -2.02
+              ],
+              [
+                37.0,
+                -1.99
+              ],
+              [
+                37.15,
+                -2.0
+              ],
+              [
+                37.16,
+                -1.96
+              ],
+              [
+                37.21,
+                -1.96
+              ],
+              [
+                37.19,
+                -1.92
+              ],
+              [
+                37.22,
+                -1.89
+              ],
+              [
+                37.27,
+                -1.89
+              ],
+              [
+                37.3,
+                -1.95
+              ],
+              [
+                37.36,
+                -1.9
+              ],
+              [
+                37.39,
+                -1.84
+              ],
+              [
+                37.43,
+                -1.81
+              ],
+              [
+                37.45,
+                -1.81
+              ],
+              [
+                37.44,
+                -1.74
+              ],
+              [
+                37.38,
+                -1.63
+              ],
+              [
+                37.36,
+                -1.67
+              ],
+              [
+                37.3,
+                -1.71
+              ],
+              [
+                37.23,
+                -1.8
+              ],
+              [
+                37.17,
+                -1.82
+              ],
+              [
+                37.07,
+                -1.85
+              ],
+              [
+                37.01,
+                -1.88
+              ],
+              [
+                37.01,
+                -1.89
+              ],
+              [
+                36.94,
+                -1.9
+              ],
+              [
+                36.94,
+                -1.91
+              ],
+              [
+                36.94,
+                -1.93
+              ],
+              [
+                36.93,
+                -1.95
+              ],
+              [
+                36.9,
+                -1.98
+              ],
+              [
+                36.89,
+                -1.99
+              ],
+              [
+                36.85,
+                -1.99
+              ],
+              [
+                36.81,
+                -2.06
+              ],
+              [
+                36.78,
+                -2.06
+              ],
+              [
+                36.76,
+                -2.1
+              ],
+              [
+                36.76,
+                -2.11
+              ],
+              [
+                36.73,
+                -2.12
+              ],
+              [
+                36.72,
+                -2.19
+              ],
+              [
+                36.73,
+                -2.2
               ]
             ]
           ]
