@@ -1,8 +1,8 @@
 {
   "source": "AEMET OpenData",
-  "generatedAt": "2026-10-08T10:06:45.201032+00:00",
+  "generatedAt": "2026-10-08T10:40:59.501439+00:00",
   "status": "ok",
-  "count": 210,
+  "count": 207,
   "alerts": [
     {
       "id": "2.49.0.0.724.0.ES.20261008065517.694304VIRM08121791442517",
@@ -509,22 +509,22 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261007092432.691703COCO08221791365072",
+      "id": "2.49.0.0.724.0.ES.20261008102018.691703COCO09121791454818",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-07T09:24:32+00:00",
+      "sent": "2026-10-08T10:20:18+00:00",
       "status": "Actual",
       "messageType": "Update",
       "language": "es-ES",
       "event": "Aviso de costeros de nivel naranja",
-      "urgency": "Future",
+      "urgency": "Immediate",
       "severity": "Severe",
       "certainty": "Likely",
-      "effective": "2026-10-07T11:24:32+02:00",
-      "onset": "2026-10-08T08:00:00+02:00",
-      "expires": "2026-10-08T23:59:59+02:00",
+      "effective": "2026-10-08T12:20:18+02:00",
+      "onset": "2026-10-08T12:00:00+02:00",
+      "expires": "2026-10-09T13:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de costeros de nivel naranja. Costa - Ampurdán",
-      "description": "Viento del norte de 50 a 70 km/h (fuerza 7 a 8) y olas de 3 o 4 m.",
+      "description": "Viento del norte y noroeste de 50 a 70 km/h (fuerza 7 a 8) y olas de 3 o 4 m.",
       "instruction": "Esté preparado. Tome precauciones y manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños graves a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
       "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
       "level": "naranja",
@@ -956,191 +956,6 @@
               [
                 40.22,
                 3.45
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261007093555.691703COCO09121791365755",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-07T09:35:55+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de costeros de nivel naranja",
-      "urgency": "Future",
-      "severity": "Severe",
-      "certainty": "Likely",
-      "effective": "2026-10-07T11:35:55+02:00",
-      "onset": "2026-10-09T00:00:00+02:00",
-      "expires": "2026-10-09T13:59:59+02:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel naranja. Costa - Ampurdán",
-      "description": "Viento del norte y noroeste de 50 a 70 km/h (fuerza 7 a 8) y olas de 4 m.",
-      "instruction": "Esté preparado. Tome precauciones y manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños graves a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "naranja",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Costa - Ampurdán",
-          "zoneCode": "691703C",
-          "polygons": [
-            [
-              [
-                41.82,
-                3.08
-              ],
-              [
-                41.83,
-                3.09
-              ],
-              [
-                41.85,
-                3.15
-              ],
-              [
-                41.89,
-                3.2
-              ],
-              [
-                41.97,
-                3.23
-              ],
-              [
-                42.0,
-                3.2
-              ],
-              [
-                42.05,
-                3.2
-              ],
-              [
-                42.06,
-                3.21
-              ],
-              [
-                42.12,
-                3.17
-              ],
-              [
-                42.13,
-                3.13
-              ],
-              [
-                42.17,
-                3.11
-              ],
-              [
-                42.22,
-                3.12
-              ],
-              [
-                42.26,
-                3.16
-              ],
-              [
-                42.23,
-                3.22
-              ],
-              [
-                42.25,
-                3.28
-              ],
-              [
-                42.28,
-                3.28
-              ],
-              [
-                42.32,
-                3.31
-              ],
-              [
-                42.34,
-                3.27
-              ],
-              [
-                42.34,
-                3.24
-              ],
-              [
-                42.36,
-                3.16
-              ],
-              [
-                42.41,
-                3.16
-              ],
-              [
-                42.44,
-                3.18
-              ],
-              [
-                42.43,
-                3.25
-              ],
-              [
-                42.44,
-                3.71
-              ],
-              [
-                42.41,
-                3.75
-              ],
-              [
-                42.35,
-                3.77
-              ],
-              [
-                42.29,
-                3.77
-              ],
-              [
-                42.22,
-                3.75
-              ],
-              [
-                42.16,
-                3.72
-              ],
-              [
-                42.09,
-                3.67
-              ],
-              [
-                41.94,
-                3.68
-              ],
-              [
-                41.88,
-                3.67
-              ],
-              [
-                41.82,
-                3.64
-              ],
-              [
-                41.72,
-                3.58
-              ],
-              [
-                41.66,
-                3.52
-              ],
-              [
-                41.61,
-                3.46
-              ],
-              [
-                41.82,
-                3.08
               ]
             ]
           ]
@@ -1872,175 +1687,6 @@
               [
                 40.48,
                 0.09
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261007092432.694304COCO08221791365072",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-07T09:24:32+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de costeros de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-07T11:24:32+02:00",
-      "onset": "2026-10-08T08:00:00+02:00",
-      "expires": "2026-10-08T23:59:59+02:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel amarillo. Costa - Litoral sur de Tarragona",
-      "description": "Viento del noroeste de 50 a 60 km/h (fuerza 7).",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Costa - Litoral sur de Tarragona",
-          "zoneCode": "694304C",
-          "polygons": [
-            [
-              [
-                40.64,
-                0.73
-              ],
-              [
-                40.64,
-                0.74
-              ],
-              [
-                40.590001,
-                0.71
-              ],
-              [
-                40.59,
-                0.67
-              ],
-              [
-                40.57,
-                0.6
-              ],
-              [
-                40.56,
-                0.65
-              ],
-              [
-                40.59,
-                0.71
-              ],
-              [
-                40.65,
-                0.77
-              ],
-              [
-                40.68,
-                0.84
-              ],
-              [
-                40.7,
-                0.88
-              ],
-              [
-                40.78,
-                0.78
-              ],
-              [
-                40.77,
-                0.73
-              ],
-              [
-                40.8,
-                0.7
-              ],
-              [
-                40.85,
-                0.75
-              ],
-              [
-                40.87,
-                0.79
-              ],
-              [
-                40.92,
-                0.84
-              ],
-              [
-                41.03,
-                0.97
-              ],
-              [
-                41.06,
-                1.05
-              ],
-              [
-                41.07,
-                1.12
-              ],
-              [
-                40.76,
-                1.33
-              ],
-              [
-                40.75,
-                1.31
-              ],
-              [
-                40.69,
-                1.32
-              ],
-              [
-                40.62,
-                1.3
-              ],
-              [
-                40.56,
-                1.28
-              ],
-              [
-                40.51,
-                1.23
-              ],
-              [
-                40.46,
-                1.18
-              ],
-              [
-                40.4,
-                1.07
-              ],
-              [
-                40.35,
-                1.01
-              ],
-              [
-                40.52,
-                0.55
-              ],
-              [
-                40.52,
-                0.52
-              ],
-              [
-                40.57,
-                0.54
-              ],
-              [
-                40.62,
-                0.6
-              ],
-              [
-                40.64,
-                0.73
               ]
             ]
           ]
@@ -3443,6 +3089,175 @@
       ]
     },
     {
+      "id": "2.49.0.0.724.0.ES.20261008102018.694304COCO09061791454818",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-08T10:20:18+00:00",
+      "status": "Actual",
+      "messageType": "Update",
+      "language": "es-ES",
+      "event": "Aviso de costeros de nivel amarillo",
+      "urgency": "Immediate",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-08T12:20:18+02:00",
+      "onset": "2026-10-08T12:00:00+02:00",
+      "expires": "2026-10-09T07:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de costeros de nivel amarillo. Costa - Litoral sur de Tarragona",
+      "description": "Viento del noroeste de 50 a 60 km/h (fuerza 7).",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Costa - Litoral sur de Tarragona",
+          "zoneCode": "694304C",
+          "polygons": [
+            [
+              [
+                40.64,
+                0.73
+              ],
+              [
+                40.64,
+                0.74
+              ],
+              [
+                40.590001,
+                0.71
+              ],
+              [
+                40.59,
+                0.67
+              ],
+              [
+                40.57,
+                0.6
+              ],
+              [
+                40.56,
+                0.65
+              ],
+              [
+                40.59,
+                0.71
+              ],
+              [
+                40.65,
+                0.77
+              ],
+              [
+                40.68,
+                0.84
+              ],
+              [
+                40.7,
+                0.88
+              ],
+              [
+                40.78,
+                0.78
+              ],
+              [
+                40.77,
+                0.73
+              ],
+              [
+                40.8,
+                0.7
+              ],
+              [
+                40.85,
+                0.75
+              ],
+              [
+                40.87,
+                0.79
+              ],
+              [
+                40.92,
+                0.84
+              ],
+              [
+                41.03,
+                0.97
+              ],
+              [
+                41.06,
+                1.05
+              ],
+              [
+                41.07,
+                1.12
+              ],
+              [
+                40.76,
+                1.33
+              ],
+              [
+                40.75,
+                1.31
+              ],
+              [
+                40.69,
+                1.32
+              ],
+              [
+                40.62,
+                1.3
+              ],
+              [
+                40.56,
+                1.28
+              ],
+              [
+                40.51,
+                1.23
+              ],
+              [
+                40.46,
+                1.18
+              ],
+              [
+                40.4,
+                1.07
+              ],
+              [
+                40.35,
+                1.01
+              ],
+              [
+                40.52,
+                0.55
+              ],
+              [
+                40.52,
+                0.52
+              ],
+              [
+                40.57,
+                0.54
+              ],
+              [
+                40.62,
+                0.6
+              ],
+              [
+                40.64,
+                0.73
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
       "id": "2.49.0.0.724.0.ES.20261008065517.694304VIRM08221791442517",
       "sender": "http://www.aemet.es",
       "sent": "2026-10-08T06:55:17+00:00",
@@ -4381,19 +4196,19 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261007092432.691704COCO08221791365072",
+      "id": "2.49.0.0.724.0.ES.20261008102018.691704COCO09081791454818",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-07T09:24:32+00:00",
+      "sent": "2026-10-08T10:20:18+00:00",
       "status": "Actual",
-      "messageType": "Alert",
+      "messageType": "Update",
       "language": "es-ES",
       "event": "Aviso de costeros de nivel amarillo",
       "urgency": "Future",
       "severity": "Moderate",
       "certainty": "Likely",
-      "effective": "2026-10-07T11:24:32+02:00",
+      "effective": "2026-10-08T12:20:18+02:00",
       "onset": "2026-10-08T18:00:00+02:00",
-      "expires": "2026-10-08T23:59:59+02:00",
+      "expires": "2026-10-09T09:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de costeros de nivel amarillo. Costa - Litoral sur de Girona",
       "description": "Viento del norte de 50 a 60 km/h (fuerza 7) y olas de 3 m.",
@@ -4965,260 +4780,6 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261007093555.691704COCO09081791365755",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-07T09:35:55+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de costeros de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-07T11:35:55+02:00",
-      "onset": "2026-10-09T00:00:00+02:00",
-      "expires": "2026-10-09T09:59:59+02:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel amarillo. Costa - Litoral sur de Girona",
-      "description": "Viento del norte de 50 a 60 km/h (fuerza 7) y olas de 3 m.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Costa - Litoral sur de Girona",
-          "zoneCode": "691704C",
-          "polygons": [
-            [
-              [
-                41.82,
-                3.08
-              ],
-              [
-                41.61,
-                3.46
-              ],
-              [
-                41.46,
-                3.22
-              ],
-              [
-                41.4,
-                3.09
-              ],
-              [
-                41.58,
-                2.87
-              ],
-              [
-                41.65,
-                2.78
-              ],
-              [
-                41.67,
-                2.79
-              ],
-              [
-                41.7,
-                2.85
-              ],
-              [
-                41.72,
-                2.94
-              ],
-              [
-                41.75,
-                2.97
-              ],
-              [
-                41.8,
-                3.07
-              ],
-              [
-                41.82,
-                3.08
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261007093555.694304COCO09061791365755",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-07T09:35:55+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de costeros de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-07T11:35:55+02:00",
-      "onset": "2026-10-09T00:00:00+02:00",
-      "expires": "2026-10-09T07:59:59+02:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel amarillo. Costa - Litoral sur de Tarragona",
-      "description": "Viento del noroeste de 50 a 60 km/h (fuerza 7).",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Costa - Litoral sur de Tarragona",
-          "zoneCode": "694304C",
-          "polygons": [
-            [
-              [
-                40.64,
-                0.73
-              ],
-              [
-                40.64,
-                0.74
-              ],
-              [
-                40.590001,
-                0.71
-              ],
-              [
-                40.59,
-                0.67
-              ],
-              [
-                40.57,
-                0.6
-              ],
-              [
-                40.56,
-                0.65
-              ],
-              [
-                40.59,
-                0.71
-              ],
-              [
-                40.65,
-                0.77
-              ],
-              [
-                40.68,
-                0.84
-              ],
-              [
-                40.7,
-                0.88
-              ],
-              [
-                40.78,
-                0.78
-              ],
-              [
-                40.77,
-                0.73
-              ],
-              [
-                40.8,
-                0.7
-              ],
-              [
-                40.85,
-                0.75
-              ],
-              [
-                40.87,
-                0.79
-              ],
-              [
-                40.92,
-                0.84
-              ],
-              [
-                41.03,
-                0.97
-              ],
-              [
-                41.06,
-                1.05
-              ],
-              [
-                41.07,
-                1.12
-              ],
-              [
-                40.76,
-                1.33
-              ],
-              [
-                40.75,
-                1.31
-              ],
-              [
-                40.69,
-                1.32
-              ],
-              [
-                40.62,
-                1.3
-              ],
-              [
-                40.56,
-                1.28
-              ],
-              [
-                40.51,
-                1.23
-              ],
-              [
-                40.46,
-                1.18
-              ],
-              [
-                40.4,
-                1.07
-              ],
-              [
-                40.35,
-                1.01
-              ],
-              [
-                40.52,
-                0.55
-              ],
-              [
-                40.52,
-                0.52
-              ],
-              [
-                40.57,
-                0.54
-              ],
-              [
-                40.62,
-                0.6
-              ],
-              [
-                40.64,
-                0.73
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
       "id": "2.49.0.0.724.0.ES.20261008091621.785101PRP109161791450981",
       "sender": "http://www.aemet.es",
       "sent": "2026-10-08T09:16:21+00:00",
@@ -5333,9 +4894,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261007093555.691703COCO09221791365755",
+      "id": "2.49.0.0.724.0.ES.20261008102018.691703COCO09221791454818",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-07T09:35:55+00:00",
+      "sent": "2026-10-08T10:20:18+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -5343,7 +4904,7 @@
       "urgency": "Future",
       "severity": "Moderate",
       "certainty": "Likely",
-      "effective": "2026-10-07T11:35:55+02:00",
+      "effective": "2026-10-08T12:20:18+02:00",
       "onset": "2026-10-09T14:00:00+02:00",
       "expires": "2026-10-09T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
