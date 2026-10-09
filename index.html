@@ -3890,7 +3890,7 @@ async function fetchDgtIncidents(analysis) {
       ...item,
       distanceKm: dgtDistanceToRouteKm(item, analysis.points)
     }))
-    .filter(item => item.distanceKm <= 12)
+    .filter(item => item.distanceKm <= 3)
     .sort((a, b) => a.distanceKm - b.distanceKm);
 
   const seen = new Set();
