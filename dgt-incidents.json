@@ -1,8 +1,8 @@
 {
   "source": "DGT DATEX2 v3.7",
   "sourceUrl": "https://nap.dgt.es/datex2/v3/dgt/SituationPublication/datex2_v37.xml",
-  "generatedAt": "2026-10-12T02:09:53.288547+00:00",
-  "count": 1004,
+  "generatedAt": "2026-10-12T02:31:09.646874+00:00",
+  "count": 1001,
   "incidents": [
     {
       "id": "2816645-0-0",
@@ -227,84 +227,6 @@
     },
     {
       "id": "13514422-0-0",
-      "lat": 42.54907,
-      "lon": -0.42510316,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-23",
-      "direction": "",
-      "municipality": "Jaca",
-      "province": "Huesca",
-      "severity": "",
-      "startTime": "2026-05-23T10:46:49.000+02:00"
-    },
-    {
-      "id": "13514422-0-1",
-      "lat": 42.54068,
-      "lon": -0.3978,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-23",
-      "direction": "",
-      "municipality": "Jaca",
-      "province": "Huesca",
-      "severity": "",
-      "startTime": "2026-05-23T10:46:49.000+02:00"
-    },
-    {
-      "id": "13514422-1-0",
-      "lat": 42.5374,
-      "lon": -0.37852547,
-      "event": "roadworks",
-      "description": "",
-      "road": "N-330",
-      "direction": "",
-      "municipality": "Sabiñánigo",
-      "province": "Huesca",
-      "severity": "",
-      "startTime": "2026-03-05T10:59:54.000+01:00"
-    },
-    {
-      "id": "13514422-1-1",
-      "lat": 42.53749,
-      "lon": -0.3773081,
-      "event": "roadworks",
-      "description": "",
-      "road": "N-330",
-      "direction": "",
-      "municipality": "Sabiñánigo",
-      "province": "Huesca",
-      "severity": "",
-      "startTime": "2026-03-05T10:59:54.000+01:00"
-    },
-    {
-      "id": "13514422-2-0",
-      "lat": 42.53986,
-      "lon": -0.35606816,
-      "event": "roadworks",
-      "description": "",
-      "road": "N-260a",
-      "direction": "",
-      "municipality": "Sabiñánigo",
-      "province": "Huesca",
-      "severity": "",
-      "startTime": "2026-05-23T10:43:00.000+02:00"
-    },
-    {
-      "id": "13514422-2-1",
-      "lat": 42.54703,
-      "lon": -0.34909785,
-      "event": "roadworks",
-      "description": "",
-      "road": "N-260a",
-      "direction": "",
-      "municipality": "Sabiñánigo",
-      "province": "Huesca",
-      "severity": "",
-      "startTime": "2026-05-23T10:43:00.000+02:00"
-    },
-    {
-      "id": "13514422-3-0",
       "lat": 42.534897,
       "lon": -0.37122956,
       "event": "roadworks",
@@ -317,7 +239,7 @@
       "startTime": "2025-10-17T13:38:12.000+02:00"
     },
     {
-      "id": "13514422-3-1",
+      "id": "13514422-0-1",
       "lat": 42.540215,
       "lon": -0.3969102,
       "event": "roadworks",
@@ -328,6 +250,84 @@
       "province": "Huesca",
       "severity": "",
       "startTime": "2025-10-17T13:38:12.000+02:00"
+    },
+    {
+      "id": "13514422-1-0",
+      "lat": 42.54907,
+      "lon": -0.42510316,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-23",
+      "direction": "",
+      "municipality": "Jaca",
+      "province": "Huesca",
+      "severity": "",
+      "startTime": "2026-05-23T10:46:49.000+02:00"
+    },
+    {
+      "id": "13514422-1-1",
+      "lat": 42.54068,
+      "lon": -0.3978,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-23",
+      "direction": "",
+      "municipality": "Jaca",
+      "province": "Huesca",
+      "severity": "",
+      "startTime": "2026-05-23T10:46:49.000+02:00"
+    },
+    {
+      "id": "13514422-2-0",
+      "lat": 42.5374,
+      "lon": -0.37852547,
+      "event": "roadworks",
+      "description": "",
+      "road": "N-330",
+      "direction": "",
+      "municipality": "Sabiñánigo",
+      "province": "Huesca",
+      "severity": "",
+      "startTime": "2026-03-05T10:59:54.000+01:00"
+    },
+    {
+      "id": "13514422-2-1",
+      "lat": 42.53749,
+      "lon": -0.3773081,
+      "event": "roadworks",
+      "description": "",
+      "road": "N-330",
+      "direction": "",
+      "municipality": "Sabiñánigo",
+      "province": "Huesca",
+      "severity": "",
+      "startTime": "2026-03-05T10:59:54.000+01:00"
+    },
+    {
+      "id": "13514422-3-0",
+      "lat": 42.53986,
+      "lon": -0.35606816,
+      "event": "roadworks",
+      "description": "",
+      "road": "N-260a",
+      "direction": "",
+      "municipality": "Sabiñánigo",
+      "province": "Huesca",
+      "severity": "",
+      "startTime": "2026-05-23T10:43:00.000+02:00"
+    },
+    {
+      "id": "13514422-3-1",
+      "lat": 42.54703,
+      "lon": -0.34909785,
+      "event": "roadworks",
+      "description": "",
+      "road": "N-260a",
+      "direction": "",
+      "municipality": "Sabiñánigo",
+      "province": "Huesca",
+      "severity": "",
+      "startTime": "2026-05-23T10:43:00.000+02:00"
     },
     {
       "id": "13606294-0-0",
@@ -786,29 +786,29 @@
     },
     {
       "id": "16208586-0-0",
-      "lat": 39.17506,
-      "lon": -1.52431,
+      "lat": 39.188675,
+      "lon": -1.5949024,
       "event": "Incidencia de tráfico",
       "description": "",
-      "road": "AB-201",
+      "road": "CM-3218",
       "direction": "",
-      "municipality": "Jorquera",
+      "municipality": "Fuentealbilla",
       "province": "Albacete",
       "severity": "",
-      "startTime": "2026-01-28T19:30:07.000+01:00"
+      "startTime": "2026-02-09T16:24:19.000+01:00"
     },
     {
       "id": "16208586-0-1",
-      "lat": 39.18902,
-      "lon": -1.5964718,
+      "lat": 39.16457,
+      "lon": -1.6206584,
       "event": "Incidencia de tráfico",
       "description": "",
-      "road": "AB-201",
+      "road": "CM-3218",
       "direction": "",
-      "municipality": "Jorquera",
+      "municipality": "Fuentealbilla",
       "province": "Albacete",
       "severity": "",
-      "startTime": "2026-01-28T19:30:07.000+01:00"
+      "startTime": "2026-02-09T16:24:19.000+01:00"
     },
     {
       "id": "16208586-1-0",
@@ -838,29 +838,29 @@
     },
     {
       "id": "16208586-2-0",
-      "lat": 39.188675,
-      "lon": -1.5949024,
+      "lat": 39.17506,
+      "lon": -1.52431,
       "event": "Incidencia de tráfico",
       "description": "",
-      "road": "CM-3218",
+      "road": "AB-201",
       "direction": "",
-      "municipality": "Fuentealbilla",
+      "municipality": "Jorquera",
       "province": "Albacete",
       "severity": "",
-      "startTime": "2026-02-09T16:24:19.000+01:00"
+      "startTime": "2026-01-28T19:30:07.000+01:00"
     },
     {
       "id": "16208586-2-1",
-      "lat": 39.16457,
-      "lon": -1.6206584,
+      "lat": 39.18902,
+      "lon": -1.5964718,
       "event": "Incidencia de tráfico",
       "description": "",
-      "road": "CM-3218",
+      "road": "AB-201",
       "direction": "",
-      "municipality": "Fuentealbilla",
+      "municipality": "Jorquera",
       "province": "Albacete",
       "severity": "",
-      "startTime": "2026-02-09T16:24:19.000+01:00"
+      "startTime": "2026-01-28T19:30:07.000+01:00"
     },
     {
       "id": "16351057-0-0",
@@ -929,8 +929,8 @@
     },
     {
       "id": "16460865-0-0",
-      "lat": 38.117306,
-      "lon": -3.0979881,
+      "lat": 38.112312,
+      "lon": -3.102655,
       "event": "roadworks",
       "description": "",
       "road": "A-32",
@@ -942,8 +942,8 @@
     },
     {
       "id": "16460865-0-1",
-      "lat": 38.10567,
-      "lon": -3.114956,
+      "lat": 38.114464,
+      "lon": -3.101022,
       "event": "roadworks",
       "description": "",
       "road": "A-32",
@@ -955,8 +955,8 @@
     },
     {
       "id": "16460865-1-0",
-      "lat": 38.10567,
-      "lon": -3.114956,
+      "lat": 38.117306,
+      "lon": -3.0979881,
       "event": "roadworks",
       "description": "",
       "road": "A-32",
@@ -968,8 +968,8 @@
     },
     {
       "id": "16460865-1-1",
-      "lat": 38.117306,
-      "lon": -3.0979881,
+      "lat": 38.10567,
+      "lon": -3.114956,
       "event": "roadworks",
       "description": "",
       "road": "A-32",
@@ -1007,8 +1007,8 @@
     },
     {
       "id": "16460865-3-0",
-      "lat": 38.112312,
-      "lon": -3.102655,
+      "lat": 38.10567,
+      "lon": -3.114956,
       "event": "roadworks",
       "description": "",
       "road": "A-32",
@@ -1020,8 +1020,8 @@
     },
     {
       "id": "16460865-3-1",
-      "lat": 38.114464,
-      "lon": -3.101022,
+      "lat": 38.117306,
+      "lon": -3.0979881,
       "event": "roadworks",
       "description": "",
       "road": "A-32",
@@ -1060,7 +1060,7 @@
     {
       "id": "16478363-0-0",
       "lat": 37.40024,
-      "lon": -3.525099,
+      "lon": -3.5251,
       "event": "Incidencia de tráfico",
       "description": "",
       "road": "A-4000R1",
@@ -1073,7 +1073,7 @@
     {
       "id": "16478363-1-0",
       "lat": 37.40024,
-      "lon": -3.5251,
+      "lon": -3.525099,
       "event": "Incidencia de tráfico",
       "description": "",
       "road": "A-4000R1",
@@ -1215,8 +1215,8 @@
     },
     {
       "id": "16645749-0-0",
-      "lat": 36.48967,
-      "lon": -5.9227257,
+      "lat": 36.469097,
+      "lon": -5.860917,
       "event": "Incidencia de tráfico",
       "description": "",
       "road": "A-381",
@@ -1228,8 +1228,8 @@
     },
     {
       "id": "16645749-0-1",
-      "lat": 36.469097,
-      "lon": -5.860917,
+      "lat": 36.48967,
+      "lon": -5.9227257,
       "event": "Incidencia de tráfico",
       "description": "",
       "road": "A-381",
@@ -1241,8 +1241,8 @@
     },
     {
       "id": "16645749-1-0",
-      "lat": 36.469097,
-      "lon": -5.860917,
+      "lat": 36.48967,
+      "lon": -5.9227257,
       "event": "Incidencia de tráfico",
       "description": "",
       "road": "A-381",
@@ -1254,8 +1254,8 @@
     },
     {
       "id": "16645749-1-1",
-      "lat": 36.48967,
-      "lon": -5.9227257,
+      "lat": 36.469097,
+      "lon": -5.860917,
       "event": "Incidencia de tráfico",
       "description": "",
       "road": "A-381",
@@ -2151,6 +2151,32 @@
     },
     {
       "id": "18223841-0-0",
+      "lat": 36.46824,
+      "lon": -6.158225,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-4",
+      "direction": "",
+      "municipality": "Puerto Real",
+      "province": "Cádiz",
+      "severity": "",
+      "startTime": "2026-04-28T20:31:34.000+02:00"
+    },
+    {
+      "id": "18223841-0-1",
+      "lat": 36.466812,
+      "lon": -6.1717715,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-4",
+      "direction": "",
+      "municipality": "Puerto Real",
+      "province": "Cádiz",
+      "severity": "",
+      "startTime": "2026-04-28T20:31:34.000+02:00"
+    },
+    {
+      "id": "18223841-1-0",
       "lat": 36.468124,
       "lon": -6.1676664,
       "event": "roadworks",
@@ -2163,7 +2189,7 @@
       "startTime": "2026-04-28T20:31:30.000+02:00"
     },
     {
-      "id": "18223841-0-1",
+      "id": "18223841-1-1",
       "lat": 36.46824,
       "lon": -6.158225,
       "event": "roadworks",
@@ -2174,32 +2200,6 @@
       "province": "Cádiz",
       "severity": "",
       "startTime": "2026-04-28T20:31:30.000+02:00"
-    },
-    {
-      "id": "18223841-1-0",
-      "lat": 36.46824,
-      "lon": -6.158225,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-4",
-      "direction": "",
-      "municipality": "Puerto Real",
-      "province": "Cádiz",
-      "severity": "",
-      "startTime": "2026-04-28T20:31:34.000+02:00"
-    },
-    {
-      "id": "18223841-1-1",
-      "lat": 36.466812,
-      "lon": -6.1717715,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-4",
-      "direction": "",
-      "municipality": "Puerto Real",
-      "province": "Cádiz",
-      "severity": "",
-      "startTime": "2026-04-28T20:31:34.000+02:00"
     },
     {
       "id": "18285036-0-0",
@@ -2255,32 +2255,6 @@
     },
     {
       "id": "18367717-0-0",
-      "lat": 36.759094,
-      "lon": -5.3622985,
-      "event": "Incidencia de tráfico",
-      "description": "",
-      "road": "A-372",
-      "direction": "",
-      "municipality": "Grazalema",
-      "province": "Cádiz",
-      "severity": "",
-      "startTime": "2026-06-26T11:44:10.000+02:00"
-    },
-    {
-      "id": "18367717-0-1",
-      "lat": 36.76135,
-      "lon": -5.360078,
-      "event": "Incidencia de tráfico",
-      "description": "",
-      "road": "A-372",
-      "direction": "",
-      "municipality": "Grazalema",
-      "province": "Cádiz",
-      "severity": "",
-      "startTime": "2026-06-26T11:44:10.000+02:00"
-    },
-    {
-      "id": "18367717-1-0",
       "lat": 36.75757,
       "lon": -5.37021,
       "event": "Incidencia de tráfico",
@@ -2293,7 +2267,7 @@
       "startTime": "2026-06-26T11:44:10.000+02:00"
     },
     {
-      "id": "18367717-1-1",
+      "id": "18367717-0-1",
       "lat": 36.752243,
       "lon": -5.5065794,
       "event": "Incidencia de tráfico",
@@ -2306,7 +2280,7 @@
       "startTime": "2026-06-26T11:44:10.000+02:00"
     },
     {
-      "id": "18367717-2-0",
+      "id": "18367717-1-0",
       "lat": 36.752773,
       "lon": -5.349793,
       "event": "Incidencia de tráfico",
@@ -2319,9 +2293,35 @@
       "startTime": "2026-06-26T11:44:10.000+02:00"
     },
     {
-      "id": "18367717-2-1",
+      "id": "18367717-1-1",
       "lat": 36.760555,
       "lon": -5.3856072,
+      "event": "Incidencia de tráfico",
+      "description": "",
+      "road": "A-372",
+      "direction": "",
+      "municipality": "Grazalema",
+      "province": "Cádiz",
+      "severity": "",
+      "startTime": "2026-06-26T11:44:10.000+02:00"
+    },
+    {
+      "id": "18367717-2-0",
+      "lat": 36.759094,
+      "lon": -5.3622985,
+      "event": "Incidencia de tráfico",
+      "description": "",
+      "road": "A-372",
+      "direction": "",
+      "municipality": "Grazalema",
+      "province": "Cádiz",
+      "severity": "",
+      "startTime": "2026-06-26T11:44:10.000+02:00"
+    },
+    {
+      "id": "18367717-2-1",
+      "lat": 36.76135,
+      "lon": -5.360078,
       "event": "Incidencia de tráfico",
       "description": "",
       "road": "A-372",
@@ -2489,6 +2489,32 @@
     },
     {
       "id": "18752648-0-0",
+      "lat": 42.44735,
+      "lon": -4.3938227,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-67",
+      "direction": "",
+      "municipality": "Espinosa de Villagonzalo",
+      "province": "Palencia",
+      "severity": "",
+      "startTime": "2026-05-18T12:56:13.000+02:00"
+    },
+    {
+      "id": "18752648-0-1",
+      "lat": 42.48529,
+      "lon": -4.3860617,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-67",
+      "direction": "",
+      "municipality": "Espinosa de Villagonzalo",
+      "province": "Palencia",
+      "severity": "",
+      "startTime": "2026-05-18T12:56:13.000+02:00"
+    },
+    {
+      "id": "18752648-1-0",
       "lat": 42.485264,
       "lon": -4.385827,
       "event": "roadworks",
@@ -2501,7 +2527,7 @@
       "startTime": "2026-05-18T12:57:06.000+02:00"
     },
     {
-      "id": "18752648-0-1",
+      "id": "18752648-1-1",
       "lat": 42.44735,
       "lon": -4.3938227,
       "event": "roadworks",
@@ -2512,32 +2538,6 @@
       "province": "Palencia",
       "severity": "",
       "startTime": "2026-05-18T12:57:06.000+02:00"
-    },
-    {
-      "id": "18752648-1-0",
-      "lat": 42.44735,
-      "lon": -4.3938227,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-67",
-      "direction": "",
-      "municipality": "Espinosa de Villagonzalo",
-      "province": "Palencia",
-      "severity": "",
-      "startTime": "2026-05-18T12:56:13.000+02:00"
-    },
-    {
-      "id": "18752648-1-1",
-      "lat": 42.48529,
-      "lon": -4.3860617,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-67",
-      "direction": "",
-      "municipality": "Espinosa de Villagonzalo",
-      "province": "Palencia",
-      "severity": "",
-      "startTime": "2026-05-18T12:56:13.000+02:00"
     },
     {
       "id": "18799418-0-0",
@@ -3035,58 +3035,6 @@
     },
     {
       "id": "19642895-0-0",
-      "lat": 43.41297,
-      "lon": -3.972347,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-67",
-      "direction": "",
-      "municipality": "Miengo",
-      "province": "Cantabria",
-      "severity": "",
-      "startTime": "2026-06-02T18:24:14.000+02:00"
-    },
-    {
-      "id": "19642895-0-1",
-      "lat": 43.412464,
-      "lon": -3.9733672,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-67",
-      "direction": "",
-      "municipality": "Miengo",
-      "province": "Cantabria",
-      "severity": "",
-      "startTime": "2026-06-02T18:24:14.000+02:00"
-    },
-    {
-      "id": "19642895-1-0",
-      "lat": 43.41106,
-      "lon": -3.9772303,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-67",
-      "direction": "",
-      "municipality": "Miengo",
-      "province": "Cantabria",
-      "severity": "",
-      "startTime": "2026-06-02T18:23:55.000+02:00"
-    },
-    {
-      "id": "19642895-1-1",
-      "lat": 43.41065,
-      "lon": -3.978736,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-67",
-      "direction": "",
-      "municipality": "Miengo",
-      "province": "Cantabria",
-      "severity": "",
-      "startTime": "2026-06-02T18:23:55.000+02:00"
-    },
-    {
-      "id": "19642895-2-0",
       "lat": 43.41024,
       "lon": -3.9801087,
       "event": "roadworks",
@@ -3099,7 +3047,7 @@
       "startTime": "2026-06-02T18:25:14.000+02:00"
     },
     {
-      "id": "19642895-2-1",
+      "id": "19642895-0-1",
       "lat": 43.409863,
       "lon": -3.9812305,
       "event": "roadworks",
@@ -3112,46 +3060,72 @@
       "startTime": "2026-06-02T18:25:14.000+02:00"
     },
     {
+      "id": "19642895-1-0",
+      "lat": 43.41297,
+      "lon": -3.972347,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-67",
+      "direction": "",
+      "municipality": "Miengo",
+      "province": "Cantabria",
+      "severity": "",
+      "startTime": "2026-06-02T18:24:14.000+02:00"
+    },
+    {
+      "id": "19642895-1-1",
+      "lat": 43.412464,
+      "lon": -3.9733672,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-67",
+      "direction": "",
+      "municipality": "Miengo",
+      "province": "Cantabria",
+      "severity": "",
+      "startTime": "2026-06-02T18:24:14.000+02:00"
+    },
+    {
+      "id": "19642895-2-0",
+      "lat": 43.41106,
+      "lon": -3.9772303,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-67",
+      "direction": "",
+      "municipality": "Miengo",
+      "province": "Cantabria",
+      "severity": "",
+      "startTime": "2026-06-02T18:23:55.000+02:00"
+    },
+    {
+      "id": "19642895-2-1",
+      "lat": 43.41065,
+      "lon": -3.978736,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-67",
+      "direction": "",
+      "municipality": "Miengo",
+      "province": "Cantabria",
+      "severity": "",
+      "startTime": "2026-06-02T18:23:55.000+02:00"
+    },
+    {
       "id": "19770113-0-0",
-      "lat": 38.355263,
-      "lon": -5.674093,
+      "lat": 38.31279,
+      "lon": -5.5984,
       "event": "roadworks",
       "description": "",
       "road": "BA-075",
       "direction": "",
-      "municipality": "Azuaga",
+      "municipality": "Granja de Torrehermosa",
       "province": "Badajoz",
       "severity": "",
-      "startTime": "2026-06-29T07:00:31.000+02:00"
+      "startTime": "2026-06-29T07:00:38.000+02:00"
     },
     {
       "id": "19770113-0-1",
-      "lat": 38.31279,
-      "lon": -5.5984,
-      "event": "roadworks",
-      "description": "",
-      "road": "BA-075",
-      "direction": "",
-      "municipality": "Azuaga",
-      "province": "Badajoz",
-      "severity": "",
-      "startTime": "2026-06-29T07:00:31.000+02:00"
-    },
-    {
-      "id": "19770113-1-0",
-      "lat": 38.31279,
-      "lon": -5.5984,
-      "event": "roadworks",
-      "description": "",
-      "road": "BA-075",
-      "direction": "",
-      "municipality": "Granja de Torrehermosa",
-      "province": "Badajoz",
-      "severity": "",
-      "startTime": "2026-06-29T07:00:38.000+02:00"
-    },
-    {
-      "id": "19770113-1-1",
       "lat": 38.355263,
       "lon": -5.674093,
       "event": "roadworks",
@@ -3164,33 +3138,33 @@
       "startTime": "2026-06-29T07:00:38.000+02:00"
     },
     {
+      "id": "19770113-1-0",
+      "lat": 38.355263,
+      "lon": -5.674093,
+      "event": "roadworks",
+      "description": "",
+      "road": "BA-075",
+      "direction": "",
+      "municipality": "Azuaga",
+      "province": "Badajoz",
+      "severity": "",
+      "startTime": "2026-06-29T07:00:31.000+02:00"
+    },
+    {
+      "id": "19770113-1-1",
+      "lat": 38.31279,
+      "lon": -5.5984,
+      "event": "roadworks",
+      "description": "",
+      "road": "BA-075",
+      "direction": "",
+      "municipality": "Azuaga",
+      "province": "Badajoz",
+      "severity": "",
+      "startTime": "2026-06-29T07:00:31.000+02:00"
+    },
+    {
       "id": "19925467-0-0",
-      "lat": 40.68768,
-      "lon": -1.0975671,
-      "event": "roadworks",
-      "description": "",
-      "road": "TE-V-1004",
-      "direction": "",
-      "municipality": "Visiedo",
-      "province": "Teruel",
-      "severity": "",
-      "startTime": "2026-07-22T08:58:51.000+02:00"
-    },
-    {
-      "id": "19925467-0-1",
-      "lat": 40.6832,
-      "lon": -1.09747,
-      "event": "roadworks",
-      "description": "",
-      "road": "TE-V-1004",
-      "direction": "",
-      "municipality": "Visiedo",
-      "province": "Teruel",
-      "severity": "",
-      "startTime": "2026-07-22T08:58:51.000+02:00"
-    },
-    {
-      "id": "19925467-1-0",
       "lat": 40.68478,
       "lon": -1.0963386,
       "event": "roadworks",
@@ -3203,7 +3177,7 @@
       "startTime": "2026-06-26T08:37:47.000+02:00"
     },
     {
-      "id": "19925467-1-1",
+      "id": "19925467-0-1",
       "lat": 40.685406,
       "lon": -1.096758,
       "event": "roadworks",
@@ -3214,6 +3188,32 @@
       "province": "Teruel",
       "severity": "",
       "startTime": "2026-06-26T08:37:47.000+02:00"
+    },
+    {
+      "id": "19925467-1-0",
+      "lat": 40.68768,
+      "lon": -1.0975671,
+      "event": "roadworks",
+      "description": "",
+      "road": "TE-V-1004",
+      "direction": "",
+      "municipality": "Visiedo",
+      "province": "Teruel",
+      "severity": "",
+      "startTime": "2026-07-22T08:58:51.000+02:00"
+    },
+    {
+      "id": "19925467-1-1",
+      "lat": 40.6832,
+      "lon": -1.09747,
+      "event": "roadworks",
+      "description": "",
+      "road": "TE-V-1004",
+      "direction": "",
+      "municipality": "Visiedo",
+      "province": "Teruel",
+      "severity": "",
+      "startTime": "2026-07-22T08:58:51.000+02:00"
     },
     {
       "id": "19925467-2-0",
@@ -3243,8 +3243,8 @@
     },
     {
       "id": "19985132-0-0",
-      "lat": 41.276516,
-      "lon": -0.5867124,
+      "lat": 41.26799,
+      "lon": -0.57647365,
       "event": "roadworks",
       "description": "",
       "road": "TE-V-1703",
@@ -3252,36 +3252,10 @@
       "municipality": "Vinaceite",
       "province": "Teruel",
       "severity": "",
-      "startTime": "2026-06-22T09:31:20.000+02:00"
+      "startTime": "2026-06-22T09:31:24.000+02:00"
     },
     {
       "id": "19985132-0-1",
-      "lat": 41.26799,
-      "lon": -0.57647365,
-      "event": "roadworks",
-      "description": "",
-      "road": "TE-V-1703",
-      "direction": "",
-      "municipality": "Vinaceite",
-      "province": "Teruel",
-      "severity": "",
-      "startTime": "2026-06-22T09:31:20.000+02:00"
-    },
-    {
-      "id": "19985132-1-0",
-      "lat": 41.26799,
-      "lon": -0.57647365,
-      "event": "roadworks",
-      "description": "",
-      "road": "TE-V-1703",
-      "direction": "",
-      "municipality": "Vinaceite",
-      "province": "Teruel",
-      "severity": "",
-      "startTime": "2026-06-22T09:31:24.000+02:00"
-    },
-    {
-      "id": "19985132-1-1",
       "lat": 41.276516,
       "lon": -0.5867124,
       "event": "roadworks",
@@ -3292,6 +3266,32 @@
       "province": "Teruel",
       "severity": "",
       "startTime": "2026-06-22T09:31:24.000+02:00"
+    },
+    {
+      "id": "19985132-1-0",
+      "lat": 41.276516,
+      "lon": -0.5867124,
+      "event": "roadworks",
+      "description": "",
+      "road": "TE-V-1703",
+      "direction": "",
+      "municipality": "Vinaceite",
+      "province": "Teruel",
+      "severity": "",
+      "startTime": "2026-06-22T09:31:20.000+02:00"
+    },
+    {
+      "id": "19985132-1-1",
+      "lat": 41.26799,
+      "lon": -0.57647365,
+      "event": "roadworks",
+      "description": "",
+      "road": "TE-V-1703",
+      "direction": "",
+      "municipality": "Vinaceite",
+      "province": "Teruel",
+      "severity": "",
+      "startTime": "2026-06-22T09:31:20.000+02:00"
     },
     {
       "id": "20134084-0-0",
@@ -3486,7 +3486,7 @@
       "municipality": "Garachico",
       "province": "Santa Cruz de Tenerife",
       "severity": "",
-      "startTime": "2026-08-03T09:41:18.000+02:00"
+      "startTime": "2026-08-03T09:41:03.000+02:00"
     },
     {
       "id": "20405610-1-1",
@@ -3499,7 +3499,7 @@
       "municipality": "Garachico",
       "province": "Santa Cruz de Tenerife",
       "severity": "",
-      "startTime": "2026-08-03T09:41:18.000+02:00"
+      "startTime": "2026-08-03T09:41:03.000+02:00"
     },
     {
       "id": "20405610-2-0",
@@ -3512,7 +3512,7 @@
       "municipality": "Garachico",
       "province": "Santa Cruz de Tenerife",
       "severity": "",
-      "startTime": "2026-08-03T09:41:03.000+02:00"
+      "startTime": "2026-08-03T09:41:18.000+02:00"
     },
     {
       "id": "20405610-2-1",
@@ -3525,12 +3525,12 @@
       "municipality": "Garachico",
       "province": "Santa Cruz de Tenerife",
       "severity": "",
-      "startTime": "2026-08-03T09:41:03.000+02:00"
+      "startTime": "2026-08-03T09:41:18.000+02:00"
     },
     {
       "id": "20406797-0-0",
-      "lat": 28.29113,
-      "lon": -16.81388,
+      "lat": 28.290081,
+      "lon": -16.810015,
       "event": "roadworks",
       "description": "",
       "road": "TF-375",
@@ -3538,10 +3538,62 @@
       "municipality": "Santiago del Teide",
       "province": "Santa Cruz de Tenerife",
       "severity": "",
-      "startTime": "2026-06-23T10:57:42.000+02:00"
+      "startTime": "2026-06-23T10:57:59.000+02:00"
     },
     {
       "id": "20406797-0-1",
+      "lat": 28.29113,
+      "lon": -16.81388,
+      "event": "roadworks",
+      "description": "",
+      "road": "TF-375",
+      "direction": "",
+      "municipality": "Santiago del Teide",
+      "province": "Santa Cruz de Tenerife",
+      "severity": "",
+      "startTime": "2026-06-23T10:57:59.000+02:00"
+    },
+    {
+      "id": "20406797-1-0",
+      "lat": 28.290081,
+      "lon": -16.810015,
+      "event": "roadworks",
+      "description": "",
+      "road": "TF-375",
+      "direction": "",
+      "municipality": "Santiago del Teide",
+      "province": "Santa Cruz de Tenerife",
+      "severity": "",
+      "startTime": "2026-06-23T10:57:38.000+02:00"
+    },
+    {
+      "id": "20406797-1-1",
+      "lat": 28.29113,
+      "lon": -16.81388,
+      "event": "roadworks",
+      "description": "",
+      "road": "TF-375",
+      "direction": "",
+      "municipality": "Santiago del Teide",
+      "province": "Santa Cruz de Tenerife",
+      "severity": "",
+      "startTime": "2026-06-23T10:57:38.000+02:00"
+    },
+    {
+      "id": "20406797-2-0",
+      "lat": 28.29113,
+      "lon": -16.81388,
+      "event": "roadworks",
+      "description": "",
+      "road": "TF-375",
+      "direction": "",
+      "municipality": "Santiago del Teide",
+      "province": "Santa Cruz de Tenerife",
+      "severity": "",
+      "startTime": "2026-06-23T10:57:42.000+02:00"
+    },
+    {
+      "id": "20406797-2-1",
       "lat": 28.290121,
       "lon": -16.809832,
       "event": "roadworks",
@@ -3554,7 +3606,7 @@
       "startTime": "2026-06-23T10:57:42.000+02:00"
     },
     {
-      "id": "20406797-1-0",
+      "id": "20406797-3-0",
       "lat": 28.29113,
       "lon": -16.81388,
       "event": "roadworks",
@@ -3567,7 +3619,7 @@
       "startTime": "2026-06-23T10:57:46.000+02:00"
     },
     {
-      "id": "20406797-1-1",
+      "id": "20406797-3-1",
       "lat": 28.290121,
       "lon": -16.809832,
       "event": "roadworks",
@@ -3578,58 +3630,6 @@
       "province": "Santa Cruz de Tenerife",
       "severity": "",
       "startTime": "2026-06-23T10:57:46.000+02:00"
-    },
-    {
-      "id": "20406797-2-0",
-      "lat": 28.290081,
-      "lon": -16.810015,
-      "event": "roadworks",
-      "description": "",
-      "road": "TF-375",
-      "direction": "",
-      "municipality": "Santiago del Teide",
-      "province": "Santa Cruz de Tenerife",
-      "severity": "",
-      "startTime": "2026-06-23T10:57:38.000+02:00"
-    },
-    {
-      "id": "20406797-2-1",
-      "lat": 28.29113,
-      "lon": -16.81388,
-      "event": "roadworks",
-      "description": "",
-      "road": "TF-375",
-      "direction": "",
-      "municipality": "Santiago del Teide",
-      "province": "Santa Cruz de Tenerife",
-      "severity": "",
-      "startTime": "2026-06-23T10:57:38.000+02:00"
-    },
-    {
-      "id": "20406797-3-0",
-      "lat": 28.290081,
-      "lon": -16.810015,
-      "event": "roadworks",
-      "description": "",
-      "road": "TF-375",
-      "direction": "",
-      "municipality": "Santiago del Teide",
-      "province": "Santa Cruz de Tenerife",
-      "severity": "",
-      "startTime": "2026-06-23T10:57:59.000+02:00"
-    },
-    {
-      "id": "20406797-3-1",
-      "lat": 28.29113,
-      "lon": -16.81388,
-      "event": "roadworks",
-      "description": "",
-      "road": "TF-375",
-      "direction": "",
-      "municipality": "Santiago del Teide",
-      "province": "Santa Cruz de Tenerife",
-      "severity": "",
-      "startTime": "2026-06-23T10:57:59.000+02:00"
     },
     {
       "id": "20453639-0-0",
@@ -3750,45 +3750,19 @@
     },
     {
       "id": "20794162-0-0",
-      "lat": 37.42203,
-      "lon": -6.1538,
+      "lat": 37.521866,
+      "lon": -6.16505,
       "event": "roadworks",
       "description": "",
       "road": "SE-3405",
       "direction": "",
-      "municipality": "Olivares",
+      "municipality": "Gerena",
       "province": "Sevilla",
       "severity": "",
-      "startTime": "2026-08-26T11:47:46.000+02:00"
+      "startTime": "2026-08-26T11:47:31.000+02:00"
     },
     {
       "id": "20794162-0-1",
-      "lat": 37.521866,
-      "lon": -6.16505,
-      "event": "roadworks",
-      "description": "",
-      "road": "SE-3405",
-      "direction": "",
-      "municipality": "Olivares",
-      "province": "Sevilla",
-      "severity": "",
-      "startTime": "2026-08-26T11:47:46.000+02:00"
-    },
-    {
-      "id": "20794162-1-0",
-      "lat": 37.521866,
-      "lon": -6.16505,
-      "event": "roadworks",
-      "description": "",
-      "road": "SE-3405",
-      "direction": "",
-      "municipality": "Gerena",
-      "province": "Sevilla",
-      "severity": "",
-      "startTime": "2026-08-26T11:47:31.000+02:00"
-    },
-    {
-      "id": "20794162-1-1",
       "lat": 37.42203,
       "lon": -6.1538,
       "event": "roadworks",
@@ -3799,6 +3773,32 @@
       "province": "Sevilla",
       "severity": "",
       "startTime": "2026-08-26T11:47:31.000+02:00"
+    },
+    {
+      "id": "20794162-1-0",
+      "lat": 37.42203,
+      "lon": -6.1538,
+      "event": "roadworks",
+      "description": "",
+      "road": "SE-3405",
+      "direction": "",
+      "municipality": "Olivares",
+      "province": "Sevilla",
+      "severity": "",
+      "startTime": "2026-08-26T11:47:46.000+02:00"
+    },
+    {
+      "id": "20794162-1-1",
+      "lat": 37.521866,
+      "lon": -6.16505,
+      "event": "roadworks",
+      "description": "",
+      "road": "SE-3405",
+      "direction": "",
+      "municipality": "Olivares",
+      "province": "Sevilla",
+      "severity": "",
+      "startTime": "2026-08-26T11:47:46.000+02:00"
     },
     {
       "id": "20847960-0-0",
@@ -3854,8 +3854,8 @@
     },
     {
       "id": "20966640-0-0",
-      "lat": 38.05513,
-      "lon": -1.2905171,
+      "lat": 38.056557,
+      "lon": -1.2991208,
       "event": "roadworks",
       "description": "",
       "road": "RM-531",
@@ -3863,36 +3863,10 @@
       "municipality": "Alguazas",
       "province": "Murcia",
       "severity": "",
-      "startTime": "2026-07-13T08:59:48.000+02:00"
+      "startTime": "2026-07-13T08:59:53.000+02:00"
     },
     {
       "id": "20966640-0-1",
-      "lat": 38.056557,
-      "lon": -1.2991208,
-      "event": "roadworks",
-      "description": "",
-      "road": "RM-531",
-      "direction": "",
-      "municipality": "Alguazas",
-      "province": "Murcia",
-      "severity": "",
-      "startTime": "2026-07-13T08:59:48.000+02:00"
-    },
-    {
-      "id": "20966640-1-0",
-      "lat": 38.056557,
-      "lon": -1.2991208,
-      "event": "roadworks",
-      "description": "",
-      "road": "RM-531",
-      "direction": "",
-      "municipality": "Alguazas",
-      "province": "Murcia",
-      "severity": "",
-      "startTime": "2026-07-13T08:59:53.000+02:00"
-    },
-    {
-      "id": "20966640-1-1",
       "lat": 38.05513,
       "lon": -1.2905171,
       "event": "roadworks",
@@ -3903,6 +3877,32 @@
       "province": "Murcia",
       "severity": "",
       "startTime": "2026-07-13T08:59:53.000+02:00"
+    },
+    {
+      "id": "20966640-1-0",
+      "lat": 38.05513,
+      "lon": -1.2905171,
+      "event": "roadworks",
+      "description": "",
+      "road": "RM-531",
+      "direction": "",
+      "municipality": "Alguazas",
+      "province": "Murcia",
+      "severity": "",
+      "startTime": "2026-07-13T08:59:48.000+02:00"
+    },
+    {
+      "id": "20966640-1-1",
+      "lat": 38.056557,
+      "lon": -1.2991208,
+      "event": "roadworks",
+      "description": "",
+      "road": "RM-531",
+      "direction": "",
+      "municipality": "Alguazas",
+      "province": "Murcia",
+      "severity": "",
+      "startTime": "2026-07-13T08:59:48.000+02:00"
     },
     {
       "id": "21037298-0-0",
@@ -3915,7 +3915,7 @@
       "municipality": "Sevilla",
       "province": "Sevilla",
       "severity": "",
-      "startTime": "2026-07-15T08:02:26.000+02:00"
+      "startTime": "2026-07-15T08:01:57.000+02:00"
     },
     {
       "id": "21037298-0-1",
@@ -3928,7 +3928,7 @@
       "municipality": "Sevilla",
       "province": "Sevilla",
       "severity": "",
-      "startTime": "2026-07-15T08:02:26.000+02:00"
+      "startTime": "2026-07-15T08:01:57.000+02:00"
     },
     {
       "id": "21037298-1-0",
@@ -3941,7 +3941,7 @@
       "municipality": "Sevilla",
       "province": "Sevilla",
       "severity": "",
-      "startTime": "2026-07-15T08:01:57.000+02:00"
+      "startTime": "2026-07-15T08:02:12.000+02:00"
     },
     {
       "id": "21037298-1-1",
@@ -3954,7 +3954,7 @@
       "municipality": "Sevilla",
       "province": "Sevilla",
       "severity": "",
-      "startTime": "2026-07-15T08:01:57.000+02:00"
+      "startTime": "2026-07-15T08:02:12.000+02:00"
     },
     {
       "id": "21037298-2-0",
@@ -3967,7 +3967,7 @@
       "municipality": "Sevilla",
       "province": "Sevilla",
       "severity": "",
-      "startTime": "2026-07-15T08:02:12.000+02:00"
+      "startTime": "2026-07-15T08:02:26.000+02:00"
     },
     {
       "id": "21037298-2-1",
@@ -3980,7 +3980,7 @@
       "municipality": "Sevilla",
       "province": "Sevilla",
       "severity": "",
-      "startTime": "2026-07-15T08:02:12.000+02:00"
+      "startTime": "2026-07-15T08:02:26.000+02:00"
     },
     {
       "id": "21042867-0-0",
@@ -4246,19 +4246,32 @@
       "id": "21439526-0-0",
       "lat": 40.099148,
       "lon": -3.6326559,
-      "event": "road Surface In Poor Condition",
+      "event": "Incidencia de tráfico",
       "description": "",
       "road": "M-305",
       "direction": "",
       "municipality": "Seseña",
       "province": "Toledo",
-      "severity": "",
-      "startTime": "2026-07-18T07:48:56.000+02:00"
+      "severity": "highest",
+      "startTime": "2026-07-18T07:50:10.000+02:00"
     },
     {
       "id": "21439526-0-1",
       "lat": 40.10073,
       "lon": -3.6335166,
+      "event": "Incidencia de tráfico",
+      "description": "",
+      "road": "M-305",
+      "direction": "",
+      "municipality": "Seseña",
+      "province": "Toledo",
+      "severity": "highest",
+      "startTime": "2026-07-18T07:50:10.000+02:00"
+    },
+    {
+      "id": "21439526-1-0",
+      "lat": 40.099148,
+      "lon": -3.6326559,
       "event": "road Surface In Poor Condition",
       "description": "",
       "road": "M-305",
@@ -4269,30 +4282,17 @@
       "startTime": "2026-07-18T07:48:56.000+02:00"
     },
     {
-      "id": "21439526-1-0",
-      "lat": 40.099148,
-      "lon": -3.6326559,
-      "event": "Incidencia de tráfico",
-      "description": "",
-      "road": "M-305",
-      "direction": "",
-      "municipality": "Seseña",
-      "province": "Toledo",
-      "severity": "highest",
-      "startTime": "2026-07-18T07:50:10.000+02:00"
-    },
-    {
       "id": "21439526-1-1",
       "lat": 40.10073,
       "lon": -3.6335166,
-      "event": "Incidencia de tráfico",
+      "event": "road Surface In Poor Condition",
       "description": "",
       "road": "M-305",
       "direction": "",
       "municipality": "Seseña",
       "province": "Toledo",
-      "severity": "highest",
-      "startTime": "2026-07-18T07:50:10.000+02:00"
+      "severity": "",
+      "startTime": "2026-07-18T07:48:56.000+02:00"
     },
     {
       "id": "21512647-0-0",
@@ -4480,7 +4480,7 @@
       "id": "21745653-0-0",
       "lat": 41.960876,
       "lon": -7.515236,
-      "event": "Incidencia de tráfico",
+      "event": "road Surface In Poor Condition",
       "description": "",
       "road": "A-52",
       "direction": "",
@@ -4493,7 +4493,7 @@
       "id": "21745653-0-1",
       "lat": 42.01098,
       "lon": -7.5825095,
-      "event": "Incidencia de tráfico",
+      "event": "road Surface In Poor Condition",
       "description": "",
       "road": "A-52",
       "direction": "",
@@ -4506,7 +4506,7 @@
       "id": "21745653-1-0",
       "lat": 41.960876,
       "lon": -7.515236,
-      "event": "road Surface In Poor Condition",
+      "event": "Incidencia de tráfico",
       "description": "",
       "road": "A-52",
       "direction": "",
@@ -4519,7 +4519,7 @@
       "id": "21745653-1-1",
       "lat": 42.01098,
       "lon": -7.5825095,
-      "event": "road Surface In Poor Condition",
+      "event": "Incidencia de tráfico",
       "description": "",
       "road": "A-52",
       "direction": "",
@@ -4582,84 +4582,6 @@
     },
     {
       "id": "21842278-0-0",
-      "lat": 38.39979,
-      "lon": -0.60782784,
-      "event": "roadworks",
-      "description": "",
-      "road": "AP-7",
-      "direction": "",
-      "municipality": "Agost",
-      "province": "Alacant/Alicante",
-      "severity": "",
-      "startTime": "2026-08-04T02:43:53.000+02:00"
-    },
-    {
-      "id": "21842278-0-1",
-      "lat": 38.395157,
-      "lon": -0.61147356,
-      "event": "roadworks",
-      "description": "",
-      "road": "AP-7",
-      "direction": "",
-      "municipality": "Agost",
-      "province": "Alacant/Alicante",
-      "severity": "",
-      "startTime": "2026-08-04T02:43:53.000+02:00"
-    },
-    {
-      "id": "21842278-1-0",
-      "lat": 38.39979,
-      "lon": -0.60782784,
-      "event": "roadworks",
-      "description": "",
-      "road": "AP-7",
-      "direction": "",
-      "municipality": "Agost",
-      "province": "Alacant/Alicante",
-      "severity": "",
-      "startTime": "2026-08-04T02:43:49.000+02:00"
-    },
-    {
-      "id": "21842278-1-1",
-      "lat": 38.395157,
-      "lon": -0.61147356,
-      "event": "roadworks",
-      "description": "",
-      "road": "AP-7",
-      "direction": "",
-      "municipality": "Agost",
-      "province": "Alacant/Alicante",
-      "severity": "",
-      "startTime": "2026-08-04T02:43:49.000+02:00"
-    },
-    {
-      "id": "21842278-2-0",
-      "lat": 38.394466,
-      "lon": -0.6122677,
-      "event": "roadworks",
-      "description": "",
-      "road": "AP-7",
-      "direction": "",
-      "municipality": "Alacant/Alicante",
-      "province": "Alacant/Alicante",
-      "severity": "",
-      "startTime": "2026-08-04T00:47:05.000+02:00"
-    },
-    {
-      "id": "21842278-2-1",
-      "lat": 38.40577,
-      "lon": -0.60292906,
-      "event": "roadworks",
-      "description": "",
-      "road": "AP-7",
-      "direction": "",
-      "municipality": "Alacant/Alicante",
-      "province": "Alacant/Alicante",
-      "severity": "",
-      "startTime": "2026-08-04T00:47:05.000+02:00"
-    },
-    {
-      "id": "21842278-3-0",
       "lat": 38.394386,
       "lon": -0.6120805,
       "event": "roadworks",
@@ -4672,7 +4594,7 @@
       "startTime": "2026-08-04T02:43:56.000+02:00"
     },
     {
-      "id": "21842278-3-1",
+      "id": "21842278-0-1",
       "lat": 38.38883,
       "lon": -0.6172577,
       "event": "roadworks",
@@ -4683,6 +4605,84 @@
       "province": "Alacant/Alicante",
       "severity": "",
       "startTime": "2026-08-04T02:43:56.000+02:00"
+    },
+    {
+      "id": "21842278-1-0",
+      "lat": 38.394466,
+      "lon": -0.6122677,
+      "event": "roadworks",
+      "description": "",
+      "road": "AP-7",
+      "direction": "",
+      "municipality": "Alacant/Alicante",
+      "province": "Alacant/Alicante",
+      "severity": "",
+      "startTime": "2026-08-04T00:47:05.000+02:00"
+    },
+    {
+      "id": "21842278-1-1",
+      "lat": 38.40577,
+      "lon": -0.60292906,
+      "event": "roadworks",
+      "description": "",
+      "road": "AP-7",
+      "direction": "",
+      "municipality": "Alacant/Alicante",
+      "province": "Alacant/Alicante",
+      "severity": "",
+      "startTime": "2026-08-04T00:47:05.000+02:00"
+    },
+    {
+      "id": "21842278-2-0",
+      "lat": 38.39979,
+      "lon": -0.60782784,
+      "event": "roadworks",
+      "description": "",
+      "road": "AP-7",
+      "direction": "",
+      "municipality": "Agost",
+      "province": "Alacant/Alicante",
+      "severity": "",
+      "startTime": "2026-08-04T02:43:49.000+02:00"
+    },
+    {
+      "id": "21842278-2-1",
+      "lat": 38.395157,
+      "lon": -0.61147356,
+      "event": "roadworks",
+      "description": "",
+      "road": "AP-7",
+      "direction": "",
+      "municipality": "Agost",
+      "province": "Alacant/Alicante",
+      "severity": "",
+      "startTime": "2026-08-04T02:43:49.000+02:00"
+    },
+    {
+      "id": "21842278-3-0",
+      "lat": 38.39979,
+      "lon": -0.60782784,
+      "event": "roadworks",
+      "description": "",
+      "road": "AP-7",
+      "direction": "",
+      "municipality": "Agost",
+      "province": "Alacant/Alicante",
+      "severity": "",
+      "startTime": "2026-08-04T02:43:53.000+02:00"
+    },
+    {
+      "id": "21842278-3-1",
+      "lat": 38.395157,
+      "lon": -0.61147356,
+      "event": "roadworks",
+      "description": "",
+      "road": "AP-7",
+      "direction": "",
+      "municipality": "Agost",
+      "province": "Alacant/Alicante",
+      "severity": "",
+      "startTime": "2026-08-04T02:43:53.000+02:00"
     },
     {
       "id": "21842365-0-0",
@@ -4816,32 +4816,6 @@
     },
     {
       "id": "21916837-0-0",
-      "lat": 39.068676,
-      "lon": -0.56764776,
-      "event": "roadworks",
-      "description": "",
-      "road": "CV-560",
-      "direction": "",
-      "municipality": "Càrcer",
-      "province": "València/Valencia",
-      "severity": "highest",
-      "startTime": "2026-08-03T13:00:58.000+02:00"
-    },
-    {
-      "id": "21916837-0-1",
-      "lat": 39.06946,
-      "lon": -0.5695052,
-      "event": "roadworks",
-      "description": "",
-      "road": "CV-560",
-      "direction": "",
-      "municipality": "Càrcer",
-      "province": "València/Valencia",
-      "severity": "highest",
-      "startTime": "2026-08-03T13:00:58.000+02:00"
-    },
-    {
-      "id": "21916837-1-0",
       "lat": 39.06946,
       "lon": -0.56950516,
       "event": "roadworks",
@@ -4854,7 +4828,7 @@
       "startTime": "2026-08-03T13:00:52.000+02:00"
     },
     {
-      "id": "21916837-1-1",
+      "id": "21916837-0-1",
       "lat": 39.068676,
       "lon": -0.56764776,
       "event": "roadworks",
@@ -4865,6 +4839,32 @@
       "province": "València/Valencia",
       "severity": "highest",
       "startTime": "2026-08-03T13:00:52.000+02:00"
+    },
+    {
+      "id": "21916837-1-0",
+      "lat": 39.068676,
+      "lon": -0.56764776,
+      "event": "roadworks",
+      "description": "",
+      "road": "CV-560",
+      "direction": "",
+      "municipality": "Càrcer",
+      "province": "València/Valencia",
+      "severity": "highest",
+      "startTime": "2026-08-03T13:00:58.000+02:00"
+    },
+    {
+      "id": "21916837-1-1",
+      "lat": 39.06946,
+      "lon": -0.5695052,
+      "event": "roadworks",
+      "description": "",
+      "road": "CV-560",
+      "direction": "",
+      "municipality": "Càrcer",
+      "province": "València/Valencia",
+      "severity": "highest",
+      "startTime": "2026-08-03T13:00:58.000+02:00"
     },
     {
       "id": "21937431-0-0",
@@ -4972,32 +4972,6 @@
     },
     {
       "id": "22296377-0-0",
-      "lat": 39.77604,
-      "lon": -5.62196,
-      "event": "roadworks",
-      "description": "",
-      "road": "CC-411",
-      "direction": "",
-      "municipality": "Valdecañas de Tajo",
-      "province": "Cáceres",
-      "severity": "highest",
-      "startTime": "2026-08-09T17:05:01.000+02:00"
-    },
-    {
-      "id": "22296377-0-1",
-      "lat": 39.774822,
-      "lon": -5.6261106,
-      "event": "roadworks",
-      "description": "",
-      "road": "CC-411",
-      "direction": "",
-      "municipality": "Valdecañas de Tajo",
-      "province": "Cáceres",
-      "severity": "highest",
-      "startTime": "2026-08-09T17:05:01.000+02:00"
-    },
-    {
-      "id": "22296377-1-0",
       "lat": 39.77824,
       "lon": -5.62449,
       "event": "roadworks",
@@ -5010,7 +4984,7 @@
       "startTime": "2026-08-09T17:05:01.000+02:00"
     },
     {
-      "id": "22296377-1-1",
+      "id": "22296377-0-1",
       "lat": 39.78061,
       "lon": -5.6294007,
       "event": "roadworks",
@@ -5023,9 +4997,35 @@
       "startTime": "2026-08-09T17:05:01.000+02:00"
     },
     {
+      "id": "22296377-1-0",
+      "lat": 39.77604,
+      "lon": -5.62196,
+      "event": "roadworks",
+      "description": "",
+      "road": "CC-411",
+      "direction": "",
+      "municipality": "Valdecañas de Tajo",
+      "province": "Cáceres",
+      "severity": "highest",
+      "startTime": "2026-08-09T17:05:01.000+02:00"
+    },
+    {
+      "id": "22296377-1-1",
+      "lat": 39.774822,
+      "lon": -5.6261106,
+      "event": "roadworks",
+      "description": "",
+      "road": "CC-411",
+      "direction": "",
+      "municipality": "Valdecañas de Tajo",
+      "province": "Cáceres",
+      "severity": "highest",
+      "startTime": "2026-08-09T17:05:01.000+02:00"
+    },
+    {
       "id": "22327278-0-0",
-      "lat": 39.976067,
-      "lon": -3.181195,
+      "lat": 39.975807,
+      "lon": -3.1698904,
       "event": "roadworks",
       "description": "",
       "road": "N-400",
@@ -5033,36 +5033,10 @@
       "municipality": "Santa Cruz de la Zarza",
       "province": "Toledo",
       "severity": "highest",
-      "startTime": "2026-08-24T09:05:13.000+02:00"
+      "startTime": "2026-08-24T09:04:57.000+02:00"
     },
     {
       "id": "22327278-0-1",
-      "lat": 39.975807,
-      "lon": -3.1698904,
-      "event": "roadworks",
-      "description": "",
-      "road": "N-400",
-      "direction": "",
-      "municipality": "Santa Cruz de la Zarza",
-      "province": "Toledo",
-      "severity": "highest",
-      "startTime": "2026-08-24T09:05:13.000+02:00"
-    },
-    {
-      "id": "22327278-1-0",
-      "lat": 39.975807,
-      "lon": -3.1698904,
-      "event": "roadworks",
-      "description": "",
-      "road": "N-400",
-      "direction": "",
-      "municipality": "Santa Cruz de la Zarza",
-      "province": "Toledo",
-      "severity": "highest",
-      "startTime": "2026-08-24T09:04:57.000+02:00"
-    },
-    {
-      "id": "22327278-1-1",
       "lat": 39.976067,
       "lon": -3.181195,
       "event": "roadworks",
@@ -5073,6 +5047,32 @@
       "province": "Toledo",
       "severity": "highest",
       "startTime": "2026-08-24T09:04:57.000+02:00"
+    },
+    {
+      "id": "22327278-1-0",
+      "lat": 39.976067,
+      "lon": -3.181195,
+      "event": "roadworks",
+      "description": "",
+      "road": "N-400",
+      "direction": "",
+      "municipality": "Santa Cruz de la Zarza",
+      "province": "Toledo",
+      "severity": "highest",
+      "startTime": "2026-08-24T09:05:13.000+02:00"
+    },
+    {
+      "id": "22327278-1-1",
+      "lat": 39.975807,
+      "lon": -3.1698904,
+      "event": "roadworks",
+      "description": "",
+      "road": "N-400",
+      "direction": "",
+      "municipality": "Santa Cruz de la Zarza",
+      "province": "Toledo",
+      "severity": "highest",
+      "startTime": "2026-08-24T09:05:13.000+02:00"
     },
     {
       "id": "22337312-0-0",
@@ -5215,7 +5215,7 @@
       "municipality": "Moaña",
       "province": "Pontevedra",
       "severity": "",
-      "startTime": "2026-08-31T08:09:27.000+02:00"
+      "startTime": "2026-08-31T08:10:23.000+02:00"
     },
     {
       "id": "22554376-0-1",
@@ -5228,7 +5228,7 @@
       "municipality": "Moaña",
       "province": "Pontevedra",
       "severity": "",
-      "startTime": "2026-08-31T08:09:27.000+02:00"
+      "startTime": "2026-08-31T08:10:23.000+02:00"
     },
     {
       "id": "22554376-1-0",
@@ -5241,7 +5241,7 @@
       "municipality": "Moaña",
       "province": "Pontevedra",
       "severity": "",
-      "startTime": "2026-08-31T08:10:23.000+02:00"
+      "startTime": "2026-08-31T08:09:27.000+02:00"
     },
     {
       "id": "22554376-1-1",
@@ -5254,7 +5254,7 @@
       "municipality": "Moaña",
       "province": "Pontevedra",
       "severity": "",
-      "startTime": "2026-08-31T08:10:23.000+02:00"
+      "startTime": "2026-08-31T08:09:27.000+02:00"
     },
     {
       "id": "22554484-0-0",
@@ -5267,7 +5267,7 @@
       "municipality": "Siero",
       "province": "Asturias",
       "severity": "highest",
-      "startTime": "2026-08-17T08:31:18.000+02:00"
+      "startTime": "2026-08-17T08:31:11.000+02:00"
     },
     {
       "id": "22554484-1-0",
@@ -5280,7 +5280,7 @@
       "municipality": "Siero",
       "province": "Asturias",
       "severity": "highest",
-      "startTime": "2026-08-17T08:31:11.000+02:00"
+      "startTime": "2026-08-17T08:31:18.000+02:00"
     },
     {
       "id": "22600115-0-0",
@@ -5414,8 +5414,8 @@
     },
     {
       "id": "22748202-0-0",
-      "lat": 40.6423,
-      "lon": -1.4698719,
+      "lat": 40.660286,
+      "lon": -1.4535104,
       "event": "roadworks",
       "description": "",
       "road": "TE-V-9024",
@@ -5423,36 +5423,10 @@
       "municipality": "Peracense",
       "province": "Teruel",
       "severity": "highest",
-      "startTime": "2026-09-08T10:05:00.000+02:00"
+      "startTime": "2026-09-08T10:05:10.000+02:00"
     },
     {
       "id": "22748202-0-1",
-      "lat": 40.660286,
-      "lon": -1.4535104,
-      "event": "roadworks",
-      "description": "",
-      "road": "TE-V-9024",
-      "direction": "",
-      "municipality": "Peracense",
-      "province": "Teruel",
-      "severity": "highest",
-      "startTime": "2026-09-08T10:05:00.000+02:00"
-    },
-    {
-      "id": "22748202-1-0",
-      "lat": 40.660286,
-      "lon": -1.4535104,
-      "event": "roadworks",
-      "description": "",
-      "road": "TE-V-9024",
-      "direction": "",
-      "municipality": "Peracense",
-      "province": "Teruel",
-      "severity": "highest",
-      "startTime": "2026-09-08T10:05:10.000+02:00"
-    },
-    {
-      "id": "22748202-1-1",
       "lat": 40.6423,
       "lon": -1.4698719,
       "event": "roadworks",
@@ -5463,6 +5437,32 @@
       "province": "Teruel",
       "severity": "highest",
       "startTime": "2026-09-08T10:05:10.000+02:00"
+    },
+    {
+      "id": "22748202-1-0",
+      "lat": 40.6423,
+      "lon": -1.4698719,
+      "event": "roadworks",
+      "description": "",
+      "road": "TE-V-9024",
+      "direction": "",
+      "municipality": "Peracense",
+      "province": "Teruel",
+      "severity": "highest",
+      "startTime": "2026-09-08T10:05:00.000+02:00"
+    },
+    {
+      "id": "22748202-1-1",
+      "lat": 40.660286,
+      "lon": -1.4535104,
+      "event": "roadworks",
+      "description": "",
+      "road": "TE-V-9024",
+      "direction": "",
+      "municipality": "Peracense",
+      "province": "Teruel",
+      "severity": "highest",
+      "startTime": "2026-09-08T10:05:00.000+02:00"
     },
     {
       "id": "22784550-0-0",
@@ -5635,8 +5635,8 @@
     },
     {
       "id": "22946751-0-0",
-      "lat": 38.098934,
-      "lon": -4.829528,
+      "lat": 38.098415,
+      "lon": -4.829677,
       "event": "roadworks",
       "description": "",
       "road": "CO-3406",
@@ -5644,36 +5644,10 @@
       "municipality": "Obejo",
       "province": "Córdoba",
       "severity": "",
-      "startTime": "2026-08-26T17:31:28.000+02:00"
+      "startTime": "2026-08-26T17:31:30.000+02:00"
     },
     {
       "id": "22946751-0-1",
-      "lat": 38.098415,
-      "lon": -4.829677,
-      "event": "roadworks",
-      "description": "",
-      "road": "CO-3406",
-      "direction": "",
-      "municipality": "Obejo",
-      "province": "Córdoba",
-      "severity": "",
-      "startTime": "2026-08-26T17:31:28.000+02:00"
-    },
-    {
-      "id": "22946751-1-0",
-      "lat": 38.098415,
-      "lon": -4.829677,
-      "event": "roadworks",
-      "description": "",
-      "road": "CO-3406",
-      "direction": "",
-      "municipality": "Obejo",
-      "province": "Córdoba",
-      "severity": "",
-      "startTime": "2026-08-26T17:31:30.000+02:00"
-    },
-    {
-      "id": "22946751-1-1",
       "lat": 38.098934,
       "lon": -4.829528,
       "event": "roadworks",
@@ -5684,6 +5658,32 @@
       "province": "Córdoba",
       "severity": "",
       "startTime": "2026-08-26T17:31:30.000+02:00"
+    },
+    {
+      "id": "22946751-1-0",
+      "lat": 38.098934,
+      "lon": -4.829528,
+      "event": "roadworks",
+      "description": "",
+      "road": "CO-3406",
+      "direction": "",
+      "municipality": "Obejo",
+      "province": "Córdoba",
+      "severity": "",
+      "startTime": "2026-08-26T17:31:28.000+02:00"
+    },
+    {
+      "id": "22946751-1-1",
+      "lat": 38.098415,
+      "lon": -4.829677,
+      "event": "roadworks",
+      "description": "",
+      "road": "CO-3406",
+      "direction": "",
+      "municipality": "Obejo",
+      "province": "Córdoba",
+      "severity": "",
+      "startTime": "2026-08-26T17:31:28.000+02:00"
     },
     {
       "id": "22946809-0-0",
@@ -5774,7 +5774,7 @@
       "municipality": "Miengo",
       "province": "Cantabria",
       "severity": "",
-      "startTime": "2026-08-27T17:10:12.000+02:00"
+      "startTime": "2026-08-27T17:10:09.000+02:00"
     },
     {
       "id": "22964223-0-1",
@@ -5787,7 +5787,7 @@
       "municipality": "Miengo",
       "province": "Cantabria",
       "severity": "",
-      "startTime": "2026-08-27T17:10:12.000+02:00"
+      "startTime": "2026-08-27T17:10:09.000+02:00"
     },
     {
       "id": "22964223-1-0",
@@ -5800,7 +5800,7 @@
       "municipality": "Miengo",
       "province": "Cantabria",
       "severity": "",
-      "startTime": "2026-08-27T17:10:09.000+02:00"
+      "startTime": "2026-08-27T17:10:12.000+02:00"
     },
     {
       "id": "22964223-1-1",
@@ -5813,12 +5813,12 @@
       "municipality": "Miengo",
       "province": "Cantabria",
       "severity": "",
-      "startTime": "2026-08-27T17:10:09.000+02:00"
+      "startTime": "2026-08-27T17:10:12.000+02:00"
     },
     {
       "id": "22965437-0-0",
-      "lat": 37.86721,
-      "lon": -4.7430506,
+      "lat": 37.866722,
+      "lon": -4.743937,
       "event": "roadworks",
       "description": "",
       "road": "CO-3204",
@@ -5826,36 +5826,10 @@
       "municipality": "Córdoba",
       "province": "Córdoba",
       "severity": "",
-      "startTime": "2026-08-27T10:50:08.000+02:00"
+      "startTime": "2026-08-27T10:50:10.000+02:00"
     },
     {
       "id": "22965437-0-1",
-      "lat": 37.866722,
-      "lon": -4.743937,
-      "event": "roadworks",
-      "description": "",
-      "road": "CO-3204",
-      "direction": "",
-      "municipality": "Córdoba",
-      "province": "Córdoba",
-      "severity": "",
-      "startTime": "2026-08-27T10:50:08.000+02:00"
-    },
-    {
-      "id": "22965437-1-0",
-      "lat": 37.866722,
-      "lon": -4.743937,
-      "event": "roadworks",
-      "description": "",
-      "road": "CO-3204",
-      "direction": "",
-      "municipality": "Córdoba",
-      "province": "Córdoba",
-      "severity": "",
-      "startTime": "2026-08-27T10:50:10.000+02:00"
-    },
-    {
-      "id": "22965437-1-1",
       "lat": 37.86721,
       "lon": -4.7430506,
       "event": "roadworks",
@@ -5866,6 +5840,32 @@
       "province": "Córdoba",
       "severity": "",
       "startTime": "2026-08-27T10:50:10.000+02:00"
+    },
+    {
+      "id": "22965437-1-0",
+      "lat": 37.86721,
+      "lon": -4.7430506,
+      "event": "roadworks",
+      "description": "",
+      "road": "CO-3204",
+      "direction": "",
+      "municipality": "Córdoba",
+      "province": "Córdoba",
+      "severity": "",
+      "startTime": "2026-08-27T10:50:08.000+02:00"
+    },
+    {
+      "id": "22965437-1-1",
+      "lat": 37.866722,
+      "lon": -4.743937,
+      "event": "roadworks",
+      "description": "",
+      "road": "CO-3204",
+      "direction": "",
+      "municipality": "Córdoba",
+      "province": "Córdoba",
+      "severity": "",
+      "startTime": "2026-08-27T10:50:08.000+02:00"
     },
     {
       "id": "22965645-0-0",
@@ -5999,8 +5999,8 @@
     },
     {
       "id": "23095954-0-0",
-      "lat": 38.1537,
-      "lon": -3.03391,
+      "lat": 38.152775,
+      "lon": -3.0340376,
       "event": "roadworks",
       "description": "",
       "road": "JV-6003",
@@ -6008,36 +6008,10 @@
       "municipality": "Iznatoraf",
       "province": "Jaén",
       "severity": "highest",
-      "startTime": "2026-09-04T10:17:04.000+02:00"
+      "startTime": "2026-09-04T10:17:28.000+02:00"
     },
     {
       "id": "23095954-0-1",
-      "lat": 38.152775,
-      "lon": -3.0340376,
-      "event": "roadworks",
-      "description": "",
-      "road": "JV-6003",
-      "direction": "",
-      "municipality": "Iznatoraf",
-      "province": "Jaén",
-      "severity": "highest",
-      "startTime": "2026-09-04T10:17:04.000+02:00"
-    },
-    {
-      "id": "23095954-1-0",
-      "lat": 38.152775,
-      "lon": -3.0340376,
-      "event": "roadworks",
-      "description": "",
-      "road": "JV-6003",
-      "direction": "",
-      "municipality": "Iznatoraf",
-      "province": "Jaén",
-      "severity": "highest",
-      "startTime": "2026-09-04T10:17:28.000+02:00"
-    },
-    {
-      "id": "23095954-1-1",
       "lat": 38.1537,
       "lon": -3.03391,
       "event": "roadworks",
@@ -6048,6 +6022,32 @@
       "province": "Jaén",
       "severity": "highest",
       "startTime": "2026-09-04T10:17:28.000+02:00"
+    },
+    {
+      "id": "23095954-1-0",
+      "lat": 38.1537,
+      "lon": -3.03391,
+      "event": "roadworks",
+      "description": "",
+      "road": "JV-6003",
+      "direction": "",
+      "municipality": "Iznatoraf",
+      "province": "Jaén",
+      "severity": "highest",
+      "startTime": "2026-09-04T10:17:04.000+02:00"
+    },
+    {
+      "id": "23095954-1-1",
+      "lat": 38.152775,
+      "lon": -3.0340376,
+      "event": "roadworks",
+      "description": "",
+      "road": "JV-6003",
+      "direction": "",
+      "municipality": "Iznatoraf",
+      "province": "Jaén",
+      "severity": "highest",
+      "startTime": "2026-09-04T10:17:04.000+02:00"
     },
     {
       "id": "23104278-0-0",
@@ -6098,8 +6098,8 @@
       "direction": "",
       "municipality": "Teruel",
       "province": "Teruel",
-      "severity": "",
-      "startTime": "2026-09-01T09:26:11.000+02:00"
+      "severity": "highest",
+      "startTime": "2026-09-01T09:26:06.000+02:00"
     },
     {
       "id": "23121340-0-1",
@@ -6111,8 +6111,8 @@
       "direction": "",
       "municipality": "Teruel",
       "province": "Teruel",
-      "severity": "",
-      "startTime": "2026-09-01T09:26:11.000+02:00"
+      "severity": "highest",
+      "startTime": "2026-09-01T09:26:06.000+02:00"
     },
     {
       "id": "23121340-1-0",
@@ -6124,8 +6124,8 @@
       "direction": "",
       "municipality": "Teruel",
       "province": "Teruel",
-      "severity": "highest",
-      "startTime": "2026-09-01T09:26:06.000+02:00"
+      "severity": "",
+      "startTime": "2026-09-01T09:26:11.000+02:00"
     },
     {
       "id": "23121340-1-1",
@@ -6137,13 +6137,13 @@
       "direction": "",
       "municipality": "Teruel",
       "province": "Teruel",
-      "severity": "highest",
-      "startTime": "2026-09-01T09:26:06.000+02:00"
+      "severity": "",
+      "startTime": "2026-09-01T09:26:11.000+02:00"
     },
     {
       "id": "23138872-0-0",
-      "lat": 37.054314,
-      "lon": -5.1175666,
+      "lat": 37.05043,
+      "lon": -5.1230626,
       "event": "roadworks",
       "description": "",
       "road": "A-406",
@@ -6151,36 +6151,10 @@
       "municipality": "El Saucejo",
       "province": "Sevilla",
       "severity": "",
-      "startTime": "2026-09-30T08:29:36.000+02:00"
+      "startTime": "2026-10-01T07:29:07.000+02:00"
     },
     {
       "id": "23138872-0-1",
-      "lat": 37.05043,
-      "lon": -5.1230626,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-406",
-      "direction": "",
-      "municipality": "El Saucejo",
-      "province": "Sevilla",
-      "severity": "",
-      "startTime": "2026-09-30T08:29:36.000+02:00"
-    },
-    {
-      "id": "23138872-1-0",
-      "lat": 37.05043,
-      "lon": -5.1230626,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-406",
-      "direction": "",
-      "municipality": "El Saucejo",
-      "province": "Sevilla",
-      "severity": "",
-      "startTime": "2026-10-01T07:29:07.000+02:00"
-    },
-    {
-      "id": "23138872-1-1",
       "lat": 37.054314,
       "lon": -5.1175666,
       "event": "roadworks",
@@ -6191,6 +6165,32 @@
       "province": "Sevilla",
       "severity": "",
       "startTime": "2026-10-01T07:29:07.000+02:00"
+    },
+    {
+      "id": "23138872-1-0",
+      "lat": 37.054314,
+      "lon": -5.1175666,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-406",
+      "direction": "",
+      "municipality": "El Saucejo",
+      "province": "Sevilla",
+      "severity": "",
+      "startTime": "2026-09-30T08:29:36.000+02:00"
+    },
+    {
+      "id": "23138872-1-1",
+      "lat": 37.05043,
+      "lon": -5.1230626,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-406",
+      "direction": "",
+      "municipality": "El Saucejo",
+      "province": "Sevilla",
+      "severity": "",
+      "startTime": "2026-09-30T08:29:36.000+02:00"
     },
     {
       "id": "23139307-0-0",
@@ -6363,8 +6363,8 @@
     },
     {
       "id": "23169970-0-0",
-      "lat": 41.922688,
-      "lon": -7.477976,
+      "lat": 41.960876,
+      "lon": -7.515236,
       "event": "roadworks",
       "description": "",
       "road": "A-52",
@@ -6376,8 +6376,8 @@
     },
     {
       "id": "23169970-0-1",
-      "lat": 41.960876,
-      "lon": -7.515236,
+      "lat": 41.922688,
+      "lon": -7.477976,
       "event": "roadworks",
       "description": "",
       "road": "A-52",
@@ -6398,23 +6398,10 @@
       "municipality": "Monterrei",
       "province": "Ourense",
       "severity": "",
-      "startTime": "2026-09-02T00:57:52.000+02:00"
+      "startTime": "2026-09-21T08:04:46.000+02:00"
     },
     {
       "id": "23169970-1-1",
-      "lat": 41.960804,
-      "lon": -7.5154185,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-52",
-      "direction": "",
-      "municipality": "Monterrei",
-      "province": "Ourense",
-      "severity": "",
-      "startTime": "2026-09-02T00:57:52.000+02:00"
-    },
-    {
-      "id": "23169970-2-0",
       "lat": 41.960876,
       "lon": -7.515236,
       "event": "roadworks",
@@ -6427,7 +6414,7 @@
       "startTime": "2026-09-21T08:04:46.000+02:00"
     },
     {
-      "id": "23169970-2-1",
+      "id": "23169970-2-0",
       "lat": 41.922688,
       "lon": -7.477976,
       "event": "roadworks",
@@ -6437,7 +6424,20 @@
       "municipality": "Monterrei",
       "province": "Ourense",
       "severity": "",
-      "startTime": "2026-09-21T08:04:46.000+02:00"
+      "startTime": "2026-09-02T00:57:52.000+02:00"
+    },
+    {
+      "id": "23169970-2-1",
+      "lat": 41.960804,
+      "lon": -7.5154185,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-52",
+      "direction": "",
+      "municipality": "Monterrei",
+      "province": "Ourense",
+      "severity": "",
+      "startTime": "2026-09-02T00:57:52.000+02:00"
     },
     {
       "id": "23226585-0-0",
@@ -6467,32 +6467,6 @@
     },
     {
       "id": "23239204-0-0",
-      "lat": 39.011505,
-      "lon": -0.465777,
-      "event": "roadworks",
-      "description": "",
-      "road": "CV-600",
-      "direction": "",
-      "municipality": "Llocnou d'En Fenollet",
-      "province": "València/Valencia",
-      "severity": "",
-      "startTime": "2026-09-07T18:21:07.000+02:00"
-    },
-    {
-      "id": "23239204-0-1",
-      "lat": 39.010433,
-      "lon": -0.4676571,
-      "event": "roadworks",
-      "description": "",
-      "road": "CV-600",
-      "direction": "",
-      "municipality": "Llocnou d'En Fenollet",
-      "province": "València/Valencia",
-      "severity": "",
-      "startTime": "2026-09-07T18:21:07.000+02:00"
-    },
-    {
-      "id": "23239204-1-0",
       "lat": 39.010433,
       "lon": -0.4676571,
       "event": "roadworks",
@@ -6505,7 +6479,7 @@
       "startTime": "2026-09-07T18:21:17.000+02:00"
     },
     {
-      "id": "23239204-1-1",
+      "id": "23239204-0-1",
       "lat": 39.01157,
       "lon": -0.46578678,
       "event": "roadworks",
@@ -6518,33 +6492,33 @@
       "startTime": "2026-09-07T18:21:17.000+02:00"
     },
     {
+      "id": "23239204-1-0",
+      "lat": 39.011505,
+      "lon": -0.465777,
+      "event": "roadworks",
+      "description": "",
+      "road": "CV-600",
+      "direction": "",
+      "municipality": "Llocnou d'En Fenollet",
+      "province": "València/Valencia",
+      "severity": "",
+      "startTime": "2026-09-07T18:21:07.000+02:00"
+    },
+    {
+      "id": "23239204-1-1",
+      "lat": 39.010433,
+      "lon": -0.4676571,
+      "event": "roadworks",
+      "description": "",
+      "road": "CV-600",
+      "direction": "",
+      "municipality": "Llocnou d'En Fenollet",
+      "province": "València/Valencia",
+      "severity": "",
+      "startTime": "2026-09-07T18:21:07.000+02:00"
+    },
+    {
       "id": "23265948-0-0",
-      "lat": 40.79964,
-      "lon": -3.6157,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-1",
-      "direction": "",
-      "municipality": "Venturada",
-      "province": "Madrid",
-      "severity": "medium",
-      "startTime": "2026-10-10T19:22:35.000+02:00"
-    },
-    {
-      "id": "23265948-0-1",
-      "lat": 40.85521,
-      "lon": -3.6105502,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-1",
-      "direction": "",
-      "municipality": "Venturada",
-      "province": "Madrid",
-      "severity": "medium",
-      "startTime": "2026-10-10T19:22:35.000+02:00"
-    },
-    {
-      "id": "23265948-1-0",
       "lat": 40.799637,
       "lon": -3.6159024,
       "event": "roadworks",
@@ -6557,7 +6531,7 @@
       "startTime": "2026-10-11T15:35:17.000+02:00"
     },
     {
-      "id": "23265948-1-1",
+      "id": "23265948-0-1",
       "lat": 40.843807,
       "lon": -3.6189723,
       "event": "roadworks",
@@ -6568,6 +6542,32 @@
       "province": "Madrid",
       "severity": "",
       "startTime": "2026-10-11T15:35:17.000+02:00"
+    },
+    {
+      "id": "23265948-1-0",
+      "lat": 40.79964,
+      "lon": -3.6157,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-1",
+      "direction": "",
+      "municipality": "Venturada",
+      "province": "Madrid",
+      "severity": "medium",
+      "startTime": "2026-10-10T19:22:35.000+02:00"
+    },
+    {
+      "id": "23265948-1-1",
+      "lat": 40.85521,
+      "lon": -3.6105502,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-1",
+      "direction": "",
+      "municipality": "Venturada",
+      "province": "Madrid",
+      "severity": "medium",
+      "startTime": "2026-10-10T19:22:35.000+02:00"
     },
     {
       "id": "23405720-0-0",
@@ -6662,45 +6662,19 @@
     },
     {
       "id": "23431437-0-0",
-      "lat": 39.07993,
-      "lon": -3.59114,
+      "lat": 39.190887,
+      "lon": -3.583371,
       "event": "roadworks",
       "description": "",
       "road": "CR-201",
       "direction": "",
-      "municipality": "Daimiel",
+      "municipality": "Villarrubia de los Ojos",
       "province": "Ciudad Real",
       "severity": "highest",
-      "startTime": "2026-09-25T13:17:50.000+02:00"
+      "startTime": "2026-09-25T13:17:46.000+02:00"
     },
     {
       "id": "23431437-0-1",
-      "lat": 39.190887,
-      "lon": -3.583371,
-      "event": "roadworks",
-      "description": "",
-      "road": "CR-201",
-      "direction": "",
-      "municipality": "Daimiel",
-      "province": "Ciudad Real",
-      "severity": "highest",
-      "startTime": "2026-09-25T13:17:50.000+02:00"
-    },
-    {
-      "id": "23431437-1-0",
-      "lat": 39.190887,
-      "lon": -3.583371,
-      "event": "roadworks",
-      "description": "",
-      "road": "CR-201",
-      "direction": "",
-      "municipality": "Villarrubia de los Ojos",
-      "province": "Ciudad Real",
-      "severity": "highest",
-      "startTime": "2026-09-25T13:17:46.000+02:00"
-    },
-    {
-      "id": "23431437-1-1",
       "lat": 39.07993,
       "lon": -3.59114,
       "event": "roadworks",
@@ -6711,6 +6685,32 @@
       "province": "Ciudad Real",
       "severity": "highest",
       "startTime": "2026-09-25T13:17:46.000+02:00"
+    },
+    {
+      "id": "23431437-1-0",
+      "lat": 39.07993,
+      "lon": -3.59114,
+      "event": "roadworks",
+      "description": "",
+      "road": "CR-201",
+      "direction": "",
+      "municipality": "Daimiel",
+      "province": "Ciudad Real",
+      "severity": "highest",
+      "startTime": "2026-09-25T13:17:50.000+02:00"
+    },
+    {
+      "id": "23431437-1-1",
+      "lat": 39.190887,
+      "lon": -3.583371,
+      "event": "roadworks",
+      "description": "",
+      "road": "CR-201",
+      "direction": "",
+      "municipality": "Daimiel",
+      "province": "Ciudad Real",
+      "severity": "highest",
+      "startTime": "2026-09-25T13:17:50.000+02:00"
     },
     {
       "id": "23435378-0-0",
@@ -6740,32 +6740,6 @@
     },
     {
       "id": "23444632-0-0",
-      "lat": 36.77613,
-      "lon": -5.81129,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-393",
-      "direction": "",
-      "municipality": "Arcos de la Frontera",
-      "province": "Cádiz",
-      "severity": "highest",
-      "startTime": "2026-09-28T07:47:57.000+02:00"
-    },
-    {
-      "id": "23444632-0-1",
-      "lat": 36.85515,
-      "lon": -5.8087716,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-393",
-      "direction": "",
-      "municipality": "Arcos de la Frontera",
-      "province": "Cádiz",
-      "severity": "highest",
-      "startTime": "2026-09-28T07:47:57.000+02:00"
-    },
-    {
-      "id": "23444632-1-0",
       "lat": 36.853424,
       "lon": -5.809345,
       "event": "roadworks",
@@ -6778,7 +6752,7 @@
       "startTime": "2026-09-28T07:48:12.000+02:00"
     },
     {
-      "id": "23444632-1-1",
+      "id": "23444632-0-1",
       "lat": 36.77613,
       "lon": -5.81129,
       "event": "roadworks",
@@ -6789,6 +6763,32 @@
       "province": "Cádiz",
       "severity": "highest",
       "startTime": "2026-09-28T07:48:12.000+02:00"
+    },
+    {
+      "id": "23444632-1-0",
+      "lat": 36.77613,
+      "lon": -5.81129,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-393",
+      "direction": "",
+      "municipality": "Arcos de la Frontera",
+      "province": "Cádiz",
+      "severity": "highest",
+      "startTime": "2026-09-28T07:47:57.000+02:00"
+    },
+    {
+      "id": "23444632-1-1",
+      "lat": 36.85515,
+      "lon": -5.8087716,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-393",
+      "direction": "",
+      "municipality": "Arcos de la Frontera",
+      "province": "Cádiz",
+      "severity": "highest",
+      "startTime": "2026-09-28T07:47:57.000+02:00"
     },
     {
       "id": "23444736-0-0",
@@ -6931,7 +6931,7 @@
       "municipality": "Alcalalí",
       "province": "Alacant/Alicante",
       "severity": "",
-      "startTime": "2026-09-11T07:52:58.000+02:00"
+      "startTime": "2026-09-11T07:52:49.000+02:00"
     },
     {
       "id": "23468820-1-0",
@@ -6944,7 +6944,7 @@
       "municipality": "Alcalalí",
       "province": "Alacant/Alicante",
       "severity": "",
-      "startTime": "2026-09-11T07:52:49.000+02:00"
+      "startTime": "2026-09-11T07:52:58.000+02:00"
     },
     {
       "id": "23508757-0-0",
@@ -7260,8 +7260,8 @@
     },
     {
       "id": "23592242-0-0",
-      "lat": 38.728607,
-      "lon": -0.35110593,
+      "lat": 38.730297,
+      "lon": -0.35029522,
       "event": "roadworks",
       "description": "",
       "road": "CV-720",
@@ -7269,36 +7269,10 @@
       "municipality": "Gorga",
       "province": "Alacant/Alicante",
       "severity": "",
-      "startTime": "2026-09-15T07:40:32.000+02:00"
+      "startTime": "2026-09-15T07:40:29.000+02:00"
     },
     {
       "id": "23592242-0-1",
-      "lat": 38.730297,
-      "lon": -0.35029522,
-      "event": "roadworks",
-      "description": "",
-      "road": "CV-720",
-      "direction": "",
-      "municipality": "Gorga",
-      "province": "Alacant/Alicante",
-      "severity": "",
-      "startTime": "2026-09-15T07:40:32.000+02:00"
-    },
-    {
-      "id": "23592242-1-0",
-      "lat": 38.730297,
-      "lon": -0.35029522,
-      "event": "roadworks",
-      "description": "",
-      "road": "CV-720",
-      "direction": "",
-      "municipality": "Gorga",
-      "province": "Alacant/Alicante",
-      "severity": "",
-      "startTime": "2026-09-15T07:40:29.000+02:00"
-    },
-    {
-      "id": "23592242-1-1",
       "lat": 38.728607,
       "lon": -0.35110593,
       "event": "roadworks",
@@ -7309,6 +7283,32 @@
       "province": "Alacant/Alicante",
       "severity": "",
       "startTime": "2026-09-15T07:40:29.000+02:00"
+    },
+    {
+      "id": "23592242-1-0",
+      "lat": 38.728607,
+      "lon": -0.35110593,
+      "event": "roadworks",
+      "description": "",
+      "road": "CV-720",
+      "direction": "",
+      "municipality": "Gorga",
+      "province": "Alacant/Alicante",
+      "severity": "",
+      "startTime": "2026-09-15T07:40:32.000+02:00"
+    },
+    {
+      "id": "23592242-1-1",
+      "lat": 38.730297,
+      "lon": -0.35029522,
+      "event": "roadworks",
+      "description": "",
+      "road": "CV-720",
+      "direction": "",
+      "municipality": "Gorga",
+      "province": "Alacant/Alicante",
+      "severity": "",
+      "startTime": "2026-09-15T07:40:32.000+02:00"
     },
     {
       "id": "23596193-0-0",
@@ -7338,8 +7338,8 @@
     },
     {
       "id": "23596720-0-0",
-      "lat": 39.5264,
-      "lon": 2.91564,
+      "lat": 39.52283,
+      "lon": 2.9203541,
       "event": "roadworks",
       "description": "",
       "road": "Ma-5018",
@@ -7347,36 +7347,10 @@
       "municipality": "Algaida",
       "province": "Illes Balears",
       "severity": "",
-      "startTime": "2026-09-29T11:23:34.000+02:00"
+      "startTime": "2026-09-28T13:16:48.000+02:00"
     },
     {
       "id": "23596720-0-1",
-      "lat": 39.52283,
-      "lon": 2.9203541,
-      "event": "roadworks",
-      "description": "",
-      "road": "Ma-5018",
-      "direction": "",
-      "municipality": "Algaida",
-      "province": "Illes Balears",
-      "severity": "",
-      "startTime": "2026-09-29T11:23:34.000+02:00"
-    },
-    {
-      "id": "23596720-1-0",
-      "lat": 39.52283,
-      "lon": 2.9203541,
-      "event": "roadworks",
-      "description": "",
-      "road": "Ma-5018",
-      "direction": "",
-      "municipality": "Algaida",
-      "province": "Illes Balears",
-      "severity": "",
-      "startTime": "2026-09-28T13:16:48.000+02:00"
-    },
-    {
-      "id": "23596720-1-1",
       "lat": 39.5264,
       "lon": 2.91564,
       "event": "roadworks",
@@ -7389,33 +7363,33 @@
       "startTime": "2026-09-28T13:16:48.000+02:00"
     },
     {
+      "id": "23596720-1-0",
+      "lat": 39.5264,
+      "lon": 2.91564,
+      "event": "roadworks",
+      "description": "",
+      "road": "Ma-5018",
+      "direction": "",
+      "municipality": "Algaida",
+      "province": "Illes Balears",
+      "severity": "",
+      "startTime": "2026-09-29T11:23:34.000+02:00"
+    },
+    {
+      "id": "23596720-1-1",
+      "lat": 39.52283,
+      "lon": 2.9203541,
+      "event": "roadworks",
+      "description": "",
+      "road": "Ma-5018",
+      "direction": "",
+      "municipality": "Algaida",
+      "province": "Illes Balears",
+      "severity": "",
+      "startTime": "2026-09-29T11:23:34.000+02:00"
+    },
+    {
       "id": "23634176-0-0",
-      "lat": 42.30839,
-      "lon": -8.73427,
-      "event": "roadworks",
-      "description": "",
-      "road": "AG-46",
-      "direction": "",
-      "municipality": "Moaña",
-      "province": "Pontevedra",
-      "severity": "",
-      "startTime": "2026-09-25T22:49:00.000+02:00"
-    },
-    {
-      "id": "23634176-0-1",
-      "lat": 42.299896,
-      "lon": -8.717562,
-      "event": "roadworks",
-      "description": "",
-      "road": "AG-46",
-      "direction": "",
-      "municipality": "Moaña",
-      "province": "Pontevedra",
-      "severity": "",
-      "startTime": "2026-09-25T22:49:00.000+02:00"
-    },
-    {
-      "id": "23634176-1-0",
       "lat": 42.299915,
       "lon": -8.717581,
       "event": "roadworks",
@@ -7428,7 +7402,7 @@
       "startTime": "2026-09-28T09:46:30.000+02:00"
     },
     {
-      "id": "23634176-1-1",
+      "id": "23634176-0-1",
       "lat": 42.308495,
       "lon": -8.733099,
       "event": "roadworks",
@@ -7439,6 +7413,32 @@
       "province": "Pontevedra",
       "severity": "",
       "startTime": "2026-09-28T09:46:30.000+02:00"
+    },
+    {
+      "id": "23634176-1-0",
+      "lat": 42.30839,
+      "lon": -8.73427,
+      "event": "roadworks",
+      "description": "",
+      "road": "AG-46",
+      "direction": "",
+      "municipality": "Moaña",
+      "province": "Pontevedra",
+      "severity": "",
+      "startTime": "2026-09-25T22:49:00.000+02:00"
+    },
+    {
+      "id": "23634176-1-1",
+      "lat": 42.299896,
+      "lon": -8.717562,
+      "event": "roadworks",
+      "description": "",
+      "road": "AG-46",
+      "direction": "",
+      "municipality": "Moaña",
+      "province": "Pontevedra",
+      "severity": "",
+      "startTime": "2026-09-25T22:49:00.000+02:00"
     },
     {
       "id": "23645344-0-0",
@@ -7572,29 +7572,29 @@
     },
     {
       "id": "23659893-0-0",
-      "lat": 40.57551,
-      "lon": -1.0112714,
-      "event": "roadworks",
-      "description": "",
-      "road": "N-420",
-      "direction": "",
-      "municipality": "Orrios",
-      "province": "Teruel",
-      "severity": "",
-      "startTime": "2026-09-21T12:03:50.000+02:00"
-    },
-    {
-      "id": "23659893-0-1",
       "lat": 40.562973,
       "lon": -1.0227381,
       "event": "roadworks",
       "description": "",
       "road": "N-420",
       "direction": "",
-      "municipality": "Orrios",
+      "municipality": "Alfambra",
       "province": "Teruel",
       "severity": "",
-      "startTime": "2026-09-21T12:03:50.000+02:00"
+      "startTime": "2026-09-21T12:04:38.000+02:00"
+    },
+    {
+      "id": "23659893-0-1",
+      "lat": 40.57551,
+      "lon": -1.0112698,
+      "event": "roadworks",
+      "description": "",
+      "road": "N-420",
+      "direction": "",
+      "municipality": "Alfambra",
+      "province": "Teruel",
+      "severity": "",
+      "startTime": "2026-09-21T12:04:38.000+02:00"
     },
     {
       "id": "23659893-1-0",
@@ -7624,32 +7624,6 @@
     },
     {
       "id": "23659893-2-0",
-      "lat": 40.562973,
-      "lon": -1.0227381,
-      "event": "roadworks",
-      "description": "",
-      "road": "N-420",
-      "direction": "",
-      "municipality": "Alfambra",
-      "province": "Teruel",
-      "severity": "",
-      "startTime": "2026-09-21T12:04:38.000+02:00"
-    },
-    {
-      "id": "23659893-2-1",
-      "lat": 40.57551,
-      "lon": -1.0112698,
-      "event": "roadworks",
-      "description": "",
-      "road": "N-420",
-      "direction": "",
-      "municipality": "Alfambra",
-      "province": "Teruel",
-      "severity": "",
-      "startTime": "2026-09-21T12:04:38.000+02:00"
-    },
-    {
-      "id": "23659893-3-0",
       "lat": 40.57551,
       "lon": -1.0112714,
       "event": "roadworks",
@@ -7662,7 +7636,7 @@
       "startTime": "2026-09-21T12:04:55.000+02:00"
     },
     {
-      "id": "23659893-3-1",
+      "id": "23659893-2-1",
       "lat": 40.562973,
       "lon": -1.0227381,
       "event": "roadworks",
@@ -7673,6 +7647,32 @@
       "province": "Teruel",
       "severity": "",
       "startTime": "2026-09-21T12:04:55.000+02:00"
+    },
+    {
+      "id": "23659893-3-0",
+      "lat": 40.57551,
+      "lon": -1.0112714,
+      "event": "roadworks",
+      "description": "",
+      "road": "N-420",
+      "direction": "",
+      "municipality": "Orrios",
+      "province": "Teruel",
+      "severity": "",
+      "startTime": "2026-09-21T12:03:50.000+02:00"
+    },
+    {
+      "id": "23659893-3-1",
+      "lat": 40.562973,
+      "lon": -1.0227381,
+      "event": "roadworks",
+      "description": "",
+      "road": "N-420",
+      "direction": "",
+      "municipality": "Orrios",
+      "province": "Teruel",
+      "severity": "",
+      "startTime": "2026-09-21T12:03:50.000+02:00"
     },
     {
       "id": "23711180-0-0",
@@ -7702,8 +7702,8 @@
     },
     {
       "id": "23716398-0-0",
-      "lat": 38.699635,
-      "lon": -0.38244358,
+      "lat": 38.699318,
+      "lon": -0.38587314,
       "event": "roadworks",
       "description": "",
       "road": "CV-70",
@@ -7711,36 +7711,10 @@
       "municipality": "Benilloba",
       "province": "Alacant/Alicante",
       "severity": "",
-      "startTime": "2026-09-18T07:25:23.000+02:00"
+      "startTime": "2026-09-18T07:25:27.000+02:00"
     },
     {
       "id": "23716398-0-1",
-      "lat": 38.699318,
-      "lon": -0.38587314,
-      "event": "roadworks",
-      "description": "",
-      "road": "CV-70",
-      "direction": "",
-      "municipality": "Benilloba",
-      "province": "Alacant/Alicante",
-      "severity": "",
-      "startTime": "2026-09-18T07:25:23.000+02:00"
-    },
-    {
-      "id": "23716398-1-0",
-      "lat": 38.699318,
-      "lon": -0.38587314,
-      "event": "roadworks",
-      "description": "",
-      "road": "CV-70",
-      "direction": "",
-      "municipality": "Benilloba",
-      "province": "Alacant/Alicante",
-      "severity": "",
-      "startTime": "2026-09-18T07:25:27.000+02:00"
-    },
-    {
-      "id": "23716398-1-1",
       "lat": 38.699635,
       "lon": -0.38244358,
       "event": "roadworks",
@@ -7751,6 +7725,32 @@
       "province": "Alacant/Alicante",
       "severity": "",
       "startTime": "2026-09-18T07:25:27.000+02:00"
+    },
+    {
+      "id": "23716398-1-0",
+      "lat": 38.699635,
+      "lon": -0.38244358,
+      "event": "roadworks",
+      "description": "",
+      "road": "CV-70",
+      "direction": "",
+      "municipality": "Benilloba",
+      "province": "Alacant/Alicante",
+      "severity": "",
+      "startTime": "2026-09-18T07:25:23.000+02:00"
+    },
+    {
+      "id": "23716398-1-1",
+      "lat": 38.699318,
+      "lon": -0.38587314,
+      "event": "roadworks",
+      "description": "",
+      "road": "CV-70",
+      "direction": "",
+      "municipality": "Benilloba",
+      "province": "Alacant/Alicante",
+      "severity": "",
+      "startTime": "2026-09-18T07:25:23.000+02:00"
     },
     {
       "id": "23718772-0-0",
@@ -7780,8 +7780,8 @@
     },
     {
       "id": "23736303-0-0",
-      "lat": 38.751408,
-      "lon": 0.1069819,
+      "lat": 38.764126,
+      "lon": 0.1054,
       "event": "roadworks",
       "description": "",
       "road": "N-332",
@@ -7793,8 +7793,8 @@
     },
     {
       "id": "23736303-0-1",
-      "lat": 38.764126,
-      "lon": 0.1054,
+      "lat": 38.751408,
+      "lon": 0.1069819,
       "event": "roadworks",
       "description": "",
       "road": "N-332",
@@ -7806,8 +7806,8 @@
     },
     {
       "id": "23736303-1-0",
-      "lat": 38.764126,
-      "lon": 0.1054,
+      "lat": 38.751408,
+      "lon": 0.1069819,
       "event": "roadworks",
       "description": "",
       "road": "N-332",
@@ -7819,8 +7819,8 @@
     },
     {
       "id": "23736303-1-1",
-      "lat": 38.751408,
-      "lon": 0.1069819,
+      "lat": 38.764126,
+      "lon": 0.1054,
       "event": "roadworks",
       "description": "",
       "road": "N-332",
@@ -7910,8 +7910,8 @@
     },
     {
       "id": "23748322-0-0",
-      "lat": 36.755238,
-      "lon": -5.4259853,
+      "lat": 36.755684,
+      "lon": -5.4366703,
       "event": "roadworks",
       "description": "",
       "road": "A-372",
@@ -7919,36 +7919,10 @@
       "municipality": "Grazalema",
       "province": "Cádiz",
       "severity": "",
-      "startTime": "2026-09-21T16:35:03.000+02:00"
+      "startTime": "2026-09-21T16:35:08.000+02:00"
     },
     {
       "id": "23748322-0-1",
-      "lat": 36.755684,
-      "lon": -5.4366703,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-372",
-      "direction": "",
-      "municipality": "Grazalema",
-      "province": "Cádiz",
-      "severity": "",
-      "startTime": "2026-09-21T16:35:03.000+02:00"
-    },
-    {
-      "id": "23748322-1-0",
-      "lat": 36.755684,
-      "lon": -5.4366703,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-372",
-      "direction": "",
-      "municipality": "Grazalema",
-      "province": "Cádiz",
-      "severity": "",
-      "startTime": "2026-09-21T16:35:08.000+02:00"
-    },
-    {
-      "id": "23748322-1-1",
       "lat": 36.755238,
       "lon": -5.4259853,
       "event": "roadworks",
@@ -7959,6 +7933,32 @@
       "province": "Cádiz",
       "severity": "",
       "startTime": "2026-09-21T16:35:08.000+02:00"
+    },
+    {
+      "id": "23748322-1-0",
+      "lat": 36.755238,
+      "lon": -5.4259853,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-372",
+      "direction": "",
+      "municipality": "Grazalema",
+      "province": "Cádiz",
+      "severity": "",
+      "startTime": "2026-09-21T16:35:03.000+02:00"
+    },
+    {
+      "id": "23748322-1-1",
+      "lat": 36.755684,
+      "lon": -5.4366703,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-372",
+      "direction": "",
+      "municipality": "Grazalema",
+      "province": "Cádiz",
+      "severity": "",
+      "startTime": "2026-09-21T16:35:03.000+02:00"
     },
     {
       "id": "23755767-0-0",
@@ -8066,19 +8066,6 @@
     },
     {
       "id": "23825421-0-0",
-      "lat": 42.025597,
-      "lon": 0.13908309,
-      "event": "roadworks",
-      "description": "",
-      "road": "N-123",
-      "direction": "",
-      "municipality": "Barbastro",
-      "province": "Huesca",
-      "severity": "",
-      "startTime": "2026-09-21T11:08:49.000+02:00"
-    },
-    {
-      "id": "23825421-1-0",
       "lat": 42.0225,
       "lon": 0.13771658,
       "event": "roadworks",
@@ -8091,9 +8078,22 @@
       "startTime": "2026-09-21T11:08:49.000+02:00"
     },
     {
-      "id": "23825421-1-1",
+      "id": "23825421-0-1",
       "lat": 42.025623,
       "lon": 0.13911663,
+      "event": "roadworks",
+      "description": "",
+      "road": "N-123",
+      "direction": "",
+      "municipality": "Barbastro",
+      "province": "Huesca",
+      "severity": "",
+      "startTime": "2026-09-21T11:08:49.000+02:00"
+    },
+    {
+      "id": "23825421-1-0",
+      "lat": 42.025597,
+      "lon": 0.13908309,
       "event": "roadworks",
       "description": "",
       "road": "N-123",
@@ -8478,7 +8478,7 @@
       "municipality": "Leganés",
       "province": "Madrid",
       "severity": "",
-      "startTime": "2026-09-23T14:56:51.000+02:00"
+      "startTime": "2026-09-23T14:57:15.000+02:00"
     },
     {
       "id": "23913041-0-1",
@@ -8491,7 +8491,7 @@
       "municipality": "Leganés",
       "province": "Madrid",
       "severity": "",
-      "startTime": "2026-09-23T14:56:51.000+02:00"
+      "startTime": "2026-09-23T14:57:15.000+02:00"
     },
     {
       "id": "23913041-1-0",
@@ -8504,7 +8504,7 @@
       "municipality": "Leganés",
       "province": "Madrid",
       "severity": "",
-      "startTime": "2026-09-23T14:57:15.000+02:00"
+      "startTime": "2026-09-23T14:56:51.000+02:00"
     },
     {
       "id": "23913041-1-1",
@@ -8517,7 +8517,7 @@
       "municipality": "Leganés",
       "province": "Madrid",
       "severity": "",
-      "startTime": "2026-09-23T14:57:15.000+02:00"
+      "startTime": "2026-09-23T14:56:51.000+02:00"
     },
     {
       "id": "23913041-2-0",
@@ -8664,32 +8664,6 @@
     },
     {
       "id": "24013437-0-0",
-      "lat": 39.41735,
-      "lon": -6.4019465,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-66",
-      "direction": "",
-      "municipality": "Cáceres",
-      "province": "Cáceres",
-      "severity": "",
-      "startTime": "2026-09-25T17:47:16.000+02:00"
-    },
-    {
-      "id": "24013437-0-1",
-      "lat": 39.445717,
-      "lon": -6.4131975,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-66",
-      "direction": "",
-      "municipality": "Cáceres",
-      "province": "Cáceres",
-      "severity": "",
-      "startTime": "2026-09-25T17:47:16.000+02:00"
-    },
-    {
-      "id": "24013437-1-0",
       "lat": 39.445755,
       "lon": -6.412915,
       "event": "roadworks",
@@ -8702,7 +8676,7 @@
       "startTime": "2026-09-25T17:47:37.000+02:00"
     },
     {
-      "id": "24013437-1-1",
+      "id": "24013437-0-1",
       "lat": 39.417366,
       "lon": -6.4017253,
       "event": "roadworks",
@@ -8713,6 +8687,32 @@
       "province": "Cáceres",
       "severity": "",
       "startTime": "2026-09-25T17:47:37.000+02:00"
+    },
+    {
+      "id": "24013437-1-0",
+      "lat": 39.41735,
+      "lon": -6.4019465,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-66",
+      "direction": "",
+      "municipality": "Cáceres",
+      "province": "Cáceres",
+      "severity": "",
+      "startTime": "2026-09-25T17:47:16.000+02:00"
+    },
+    {
+      "id": "24013437-1-1",
+      "lat": 39.445717,
+      "lon": -6.4131975,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-66",
+      "direction": "",
+      "municipality": "Cáceres",
+      "province": "Cáceres",
+      "severity": "",
+      "startTime": "2026-09-25T17:47:16.000+02:00"
     },
     {
       "id": "24013437-2-0",
@@ -8898,32 +8898,6 @@
     },
     {
       "id": "24020049-0-0",
-      "lat": 42.442993,
-      "lon": -4.3952193,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-67",
-      "direction": "",
-      "municipality": "Espinosa de Villagonzalo",
-      "province": "Palencia",
-      "severity": "",
-      "startTime": "2026-09-30T15:49:45.000+02:00"
-    },
-    {
-      "id": "24020049-0-1",
-      "lat": 42.45152,
-      "lon": -4.391554,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-67",
-      "direction": "",
-      "municipality": "Espinosa de Villagonzalo",
-      "province": "Palencia",
-      "severity": "",
-      "startTime": "2026-09-30T15:49:45.000+02:00"
-    },
-    {
-      "id": "24020049-1-0",
       "lat": 42.451447,
       "lon": -4.391352,
       "event": "roadworks",
@@ -8936,7 +8910,7 @@
       "startTime": "2026-09-30T15:49:38.000+02:00"
     },
     {
-      "id": "24020049-1-1",
+      "id": "24020049-0-1",
       "lat": 42.442993,
       "lon": -4.3952193,
       "event": "roadworks",
@@ -8947,6 +8921,32 @@
       "province": "Palencia",
       "severity": "",
       "startTime": "2026-09-30T15:49:38.000+02:00"
+    },
+    {
+      "id": "24020049-1-0",
+      "lat": 42.442993,
+      "lon": -4.3952193,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-67",
+      "direction": "",
+      "municipality": "Espinosa de Villagonzalo",
+      "province": "Palencia",
+      "severity": "",
+      "startTime": "2026-09-30T15:49:45.000+02:00"
+    },
+    {
+      "id": "24020049-1-1",
+      "lat": 42.45152,
+      "lon": -4.391554,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-67",
+      "direction": "",
+      "municipality": "Espinosa de Villagonzalo",
+      "province": "Palencia",
+      "severity": "",
+      "startTime": "2026-09-30T15:49:45.000+02:00"
     },
     {
       "id": "24020141-0-0",
@@ -9115,7 +9115,7 @@
       "municipality": "Carmona",
       "province": "Sevilla",
       "severity": "",
-      "startTime": "2026-09-29T09:27:19.000+02:00"
+      "startTime": "2026-09-29T09:27:22.000+02:00"
     },
     {
       "id": "24151786-1-0",
@@ -9128,36 +9128,10 @@
       "municipality": "Carmona",
       "province": "Sevilla",
       "severity": "",
-      "startTime": "2026-09-29T09:27:22.000+02:00"
+      "startTime": "2026-09-29T09:27:19.000+02:00"
     },
     {
       "id": "24152351-0-0",
-      "lat": 38.63522,
-      "lon": 0.0009932069,
-      "event": "roadworks",
-      "description": "",
-      "road": "AP-7",
-      "direction": "",
-      "municipality": "Altea",
-      "province": "Alacant/Alicante",
-      "severity": "",
-      "startTime": "2026-09-29T09:36:51.000+02:00"
-    },
-    {
-      "id": "24152351-0-1",
-      "lat": 38.647152,
-      "lon": 0.00470382,
-      "event": "roadworks",
-      "description": "",
-      "road": "AP-7",
-      "direction": "",
-      "municipality": "Altea",
-      "province": "Alacant/Alicante",
-      "severity": "",
-      "startTime": "2026-09-29T09:36:51.000+02:00"
-    },
-    {
-      "id": "24152351-1-0",
       "lat": 38.641922,
       "lon": 0.00477,
       "event": "roadworks",
@@ -9170,7 +9144,7 @@
       "startTime": "2026-09-29T09:36:51.000+02:00"
     },
     {
-      "id": "24152351-1-1",
+      "id": "24152351-0-1",
       "lat": 38.63417,
       "lon": -0.0128064705,
       "event": "roadworks",
@@ -9178,6 +9152,32 @@
       "road": "AP-7",
       "direction": "",
       "municipality": "Calp",
+      "province": "Alacant/Alicante",
+      "severity": "",
+      "startTime": "2026-09-29T09:36:51.000+02:00"
+    },
+    {
+      "id": "24152351-1-0",
+      "lat": 38.63522,
+      "lon": 0.0009932069,
+      "event": "roadworks",
+      "description": "",
+      "road": "AP-7",
+      "direction": "",
+      "municipality": "Altea",
+      "province": "Alacant/Alicante",
+      "severity": "",
+      "startTime": "2026-09-29T09:36:51.000+02:00"
+    },
+    {
+      "id": "24152351-1-1",
+      "lat": 38.647152,
+      "lon": 0.00470382,
+      "event": "roadworks",
+      "description": "",
+      "road": "AP-7",
+      "direction": "",
+      "municipality": "Altea",
       "province": "Alacant/Alicante",
       "severity": "",
       "startTime": "2026-09-29T09:36:51.000+02:00"
@@ -9262,45 +9262,19 @@
     },
     {
       "id": "24174743-0-0",
-      "lat": 39.999123,
-      "lon": -1.4277886,
+      "lat": 39.96841,
+      "lon": -1.3700626,
       "event": "roadworks",
       "description": "",
       "road": "CU-V-5003",
       "direction": "",
-      "municipality": "Casas de Garcimolina",
+      "municipality": "Moya",
       "province": "Cuenca",
       "severity": "highest",
-      "startTime": "2026-10-05T08:15:52.000+02:00"
+      "startTime": "2026-10-05T08:15:59.000+02:00"
     },
     {
       "id": "24174743-0-1",
-      "lat": 39.96841,
-      "lon": -1.3700626,
-      "event": "roadworks",
-      "description": "",
-      "road": "CU-V-5003",
-      "direction": "",
-      "municipality": "Casas de Garcimolina",
-      "province": "Cuenca",
-      "severity": "highest",
-      "startTime": "2026-10-05T08:15:52.000+02:00"
-    },
-    {
-      "id": "24174743-1-0",
-      "lat": 39.96841,
-      "lon": -1.3700626,
-      "event": "roadworks",
-      "description": "",
-      "road": "CU-V-5003",
-      "direction": "",
-      "municipality": "Moya",
-      "province": "Cuenca",
-      "severity": "highest",
-      "startTime": "2026-10-05T08:15:59.000+02:00"
-    },
-    {
-      "id": "24174743-1-1",
       "lat": 39.999123,
       "lon": -1.4277886,
       "event": "roadworks",
@@ -9311,6 +9285,32 @@
       "province": "Cuenca",
       "severity": "highest",
       "startTime": "2026-10-05T08:15:59.000+02:00"
+    },
+    {
+      "id": "24174743-1-0",
+      "lat": 39.999123,
+      "lon": -1.4277886,
+      "event": "roadworks",
+      "description": "",
+      "road": "CU-V-5003",
+      "direction": "",
+      "municipality": "Casas de Garcimolina",
+      "province": "Cuenca",
+      "severity": "highest",
+      "startTime": "2026-10-05T08:15:52.000+02:00"
+    },
+    {
+      "id": "24174743-1-1",
+      "lat": 39.96841,
+      "lon": -1.3700626,
+      "event": "roadworks",
+      "description": "",
+      "road": "CU-V-5003",
+      "direction": "",
+      "municipality": "Casas de Garcimolina",
+      "province": "Cuenca",
+      "severity": "highest",
+      "startTime": "2026-10-05T08:15:52.000+02:00"
     },
     {
       "id": "24175636-0-0",
@@ -9509,32 +9509,6 @@
     },
     {
       "id": "24177469-0-0",
-      "lat": 36.741867,
-      "lon": -3.322497,
-      "event": "roadworks",
-      "description": "",
-      "road": "N-340a",
-      "direction": "",
-      "municipality": "Rubite",
-      "province": "Granada",
-      "severity": "highest",
-      "startTime": "2026-10-07T17:28:01.000+02:00"
-    },
-    {
-      "id": "24177469-0-1",
-      "lat": 36.73933,
-      "lon": -3.3301656,
-      "event": "roadworks",
-      "description": "",
-      "road": "N-340a",
-      "direction": "",
-      "municipality": "Rubite",
-      "province": "Granada",
-      "severity": "highest",
-      "startTime": "2026-10-07T17:28:01.000+02:00"
-    },
-    {
-      "id": "24177469-1-0",
       "lat": 36.73933,
       "lon": -3.330144,
       "event": "roadworks",
@@ -9547,7 +9521,7 @@
       "startTime": "2026-10-07T17:28:04.000+02:00"
     },
     {
-      "id": "24177469-1-1",
+      "id": "24177469-0-1",
       "lat": 36.74187,
       "lon": -3.3224933,
       "event": "roadworks",
@@ -9560,30 +9534,56 @@
       "startTime": "2026-10-07T17:28:04.000+02:00"
     },
     {
-      "id": "24184633-0-0",
-      "lat": 39.34214,
-      "lon": -0.42893,
+      "id": "24177469-1-0",
+      "lat": 36.741867,
+      "lon": -3.322497,
       "event": "roadworks",
       "description": "",
-      "road": "V-31",
+      "road": "N-340a",
       "direction": "",
-      "municipality": "Silla",
+      "municipality": "Rubite",
+      "province": "Granada",
+      "severity": "highest",
+      "startTime": "2026-10-07T17:28:01.000+02:00"
+    },
+    {
+      "id": "24177469-1-1",
+      "lat": 36.73933,
+      "lon": -3.3301656,
+      "event": "roadworks",
+      "description": "",
+      "road": "N-340a",
+      "direction": "",
+      "municipality": "Rubite",
+      "province": "Granada",
+      "severity": "highest",
+      "startTime": "2026-10-07T17:28:01.000+02:00"
+    },
+    {
+      "id": "24184633-0-0",
+      "lat": 39.43055,
+      "lon": -0.33516,
+      "event": "roadworks",
+      "description": "",
+      "road": "V-30",
+      "direction": "",
+      "municipality": "València",
       "province": "València/Valencia",
       "severity": "",
-      "startTime": "2026-10-11T19:16:21.000+02:00"
+      "startTime": "2026-10-11T19:02:16.000+02:00"
     },
     {
       "id": "24184633-0-1",
-      "lat": 39.3484,
-      "lon": -0.42923412,
+      "lat": 39.43085,
+      "lon": -0.3536546,
       "event": "roadworks",
       "description": "",
-      "road": "V-31",
+      "road": "V-30",
       "direction": "",
-      "municipality": "Silla",
+      "municipality": "València",
       "province": "València/Valencia",
       "severity": "",
-      "startTime": "2026-10-11T19:16:21.000+02:00"
+      "startTime": "2026-10-11T19:02:16.000+02:00"
     },
     {
       "id": "24184633-1-0",
@@ -9596,7 +9596,7 @@
       "municipality": "València",
       "province": "València/Valencia",
       "severity": "",
-      "startTime": "2026-10-11T19:02:16.000+02:00"
+      "startTime": "2026-10-11T19:02:14.000+02:00"
     },
     {
       "id": "24184633-1-1",
@@ -9609,33 +9609,33 @@
       "municipality": "València",
       "province": "València/Valencia",
       "severity": "",
-      "startTime": "2026-10-11T19:02:16.000+02:00"
+      "startTime": "2026-10-11T19:02:14.000+02:00"
     },
     {
       "id": "24184633-2-0",
-      "lat": 39.43055,
-      "lon": -0.33516,
+      "lat": 39.34214,
+      "lon": -0.42893,
       "event": "roadworks",
       "description": "",
-      "road": "V-30",
+      "road": "V-31",
       "direction": "",
-      "municipality": "València",
+      "municipality": "Silla",
       "province": "València/Valencia",
       "severity": "",
-      "startTime": "2026-10-11T19:02:14.000+02:00"
+      "startTime": "2026-10-11T19:16:21.000+02:00"
     },
     {
       "id": "24184633-2-1",
-      "lat": 39.43085,
-      "lon": -0.3536546,
+      "lat": 39.3484,
+      "lon": -0.42923412,
       "event": "roadworks",
       "description": "",
-      "road": "V-30",
+      "road": "V-31",
       "direction": "",
-      "municipality": "València",
+      "municipality": "Silla",
       "province": "València/Valencia",
       "severity": "",
-      "startTime": "2026-10-11T19:02:14.000+02:00"
+      "startTime": "2026-10-11T19:16:21.000+02:00"
     },
     {
       "id": "24186782-0-0",
@@ -9691,58 +9691,6 @@
     },
     {
       "id": "24186919-0-0",
-      "lat": 36.321064,
-      "lon": -5.6003733,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-381",
-      "direction": "",
-      "municipality": "Los Barrios",
-      "province": "Cádiz",
-      "severity": "",
-      "startTime": "2026-10-05T09:20:08.000+02:00"
-    },
-    {
-      "id": "24186919-0-1",
-      "lat": 36.31753,
-      "lon": -5.6007633,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-381",
-      "direction": "",
-      "municipality": "Los Barrios",
-      "province": "Cádiz",
-      "severity": "",
-      "startTime": "2026-10-05T09:20:08.000+02:00"
-    },
-    {
-      "id": "24186919-1-0",
-      "lat": 36.311584,
-      "lon": -5.598942,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-381",
-      "direction": "",
-      "municipality": "Los Barrios",
-      "province": "Cádiz",
-      "severity": "",
-      "startTime": "2026-10-05T09:20:16.000+02:00"
-    },
-    {
-      "id": "24186919-1-1",
-      "lat": 36.31494,
-      "lon": -5.6002703,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-381",
-      "direction": "",
-      "municipality": "Los Barrios",
-      "province": "Cádiz",
-      "severity": "",
-      "startTime": "2026-10-05T09:20:16.000+02:00"
-    },
-    {
-      "id": "24186919-2-0",
       "lat": 36.31752,
       "lon": -5.60093,
       "event": "roadworks",
@@ -9755,7 +9703,7 @@
       "startTime": "2026-10-05T09:19:59.000+02:00"
     },
     {
-      "id": "24186919-2-1",
+      "id": "24186919-0-1",
       "lat": 36.32105,
       "lon": -5.600571,
       "event": "roadworks",
@@ -9768,7 +9716,7 @@
       "startTime": "2026-10-05T09:19:59.000+02:00"
     },
     {
-      "id": "24186919-3-0",
+      "id": "24186919-1-0",
       "lat": 36.31494,
       "lon": -5.6002703,
       "event": "roadworks",
@@ -9781,7 +9729,7 @@
       "startTime": "2026-10-05T09:20:32.000+02:00"
     },
     {
-      "id": "24186919-3-1",
+      "id": "24186919-1-1",
       "lat": 36.311626,
       "lon": -5.598742,
       "event": "roadworks",
@@ -9792,6 +9740,58 @@
       "province": "Cádiz",
       "severity": "",
       "startTime": "2026-10-05T09:20:32.000+02:00"
+    },
+    {
+      "id": "24186919-2-0",
+      "lat": 36.321064,
+      "lon": -5.6003733,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-381",
+      "direction": "",
+      "municipality": "Los Barrios",
+      "province": "Cádiz",
+      "severity": "",
+      "startTime": "2026-10-05T09:20:08.000+02:00"
+    },
+    {
+      "id": "24186919-2-1",
+      "lat": 36.31753,
+      "lon": -5.6007633,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-381",
+      "direction": "",
+      "municipality": "Los Barrios",
+      "province": "Cádiz",
+      "severity": "",
+      "startTime": "2026-10-05T09:20:08.000+02:00"
+    },
+    {
+      "id": "24186919-3-0",
+      "lat": 36.311584,
+      "lon": -5.598942,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-381",
+      "direction": "",
+      "municipality": "Los Barrios",
+      "province": "Cádiz",
+      "severity": "",
+      "startTime": "2026-10-05T09:20:16.000+02:00"
+    },
+    {
+      "id": "24186919-3-1",
+      "lat": 36.31494,
+      "lon": -5.6002703,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-381",
+      "direction": "",
+      "municipality": "Los Barrios",
+      "province": "Cádiz",
+      "severity": "",
+      "startTime": "2026-10-05T09:20:16.000+02:00"
     },
     {
       "id": "24190444-0-0",
@@ -9821,45 +9821,19 @@
     },
     {
       "id": "24191072-0-0",
-      "lat": 36.75796,
-      "lon": -5.17907,
+      "lat": 36.71541,
+      "lon": -5.2438745,
       "event": "roadworks",
       "description": "",
       "road": "MA-7401",
       "direction": "",
-      "municipality": "Ronda",
+      "municipality": "Benaoján",
       "province": "Málaga",
       "severity": "",
-      "startTime": "2026-10-05T07:52:36.000+02:00"
+      "startTime": "2026-10-05T07:51:57.000+02:00"
     },
     {
       "id": "24191072-0-1",
-      "lat": 36.71541,
-      "lon": -5.2438745,
-      "event": "roadworks",
-      "description": "",
-      "road": "MA-7401",
-      "direction": "",
-      "municipality": "Ronda",
-      "province": "Málaga",
-      "severity": "",
-      "startTime": "2026-10-05T07:52:36.000+02:00"
-    },
-    {
-      "id": "24191072-1-0",
-      "lat": 36.71541,
-      "lon": -5.2438745,
-      "event": "roadworks",
-      "description": "",
-      "road": "MA-7401",
-      "direction": "",
-      "municipality": "Benaoján",
-      "province": "Málaga",
-      "severity": "",
-      "startTime": "2026-10-05T07:51:57.000+02:00"
-    },
-    {
-      "id": "24191072-1-1",
       "lat": 36.75796,
       "lon": -5.17907,
       "event": "roadworks",
@@ -9870,6 +9844,32 @@
       "province": "Málaga",
       "severity": "",
       "startTime": "2026-10-05T07:51:57.000+02:00"
+    },
+    {
+      "id": "24191072-1-0",
+      "lat": 36.75796,
+      "lon": -5.17907,
+      "event": "roadworks",
+      "description": "",
+      "road": "MA-7401",
+      "direction": "",
+      "municipality": "Ronda",
+      "province": "Málaga",
+      "severity": "",
+      "startTime": "2026-10-05T07:52:36.000+02:00"
+    },
+    {
+      "id": "24191072-1-1",
+      "lat": 36.71541,
+      "lon": -5.2438745,
+      "event": "roadworks",
+      "description": "",
+      "road": "MA-7401",
+      "direction": "",
+      "municipality": "Ronda",
+      "province": "Málaga",
+      "severity": "",
+      "startTime": "2026-10-05T07:52:36.000+02:00"
     },
     {
       "id": "24207641-0-0",
@@ -9951,32 +9951,6 @@
     },
     {
       "id": "24235277-0-0",
-      "lat": 38.200714,
-      "lon": -0.8325691,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-7",
-      "direction": "",
-      "municipality": "Crevillent",
-      "province": "Alacant/Alicante",
-      "severity": "",
-      "startTime": "2026-10-02T07:26:58.000+02:00"
-    },
-    {
-      "id": "24235277-0-1",
-      "lat": 38.20318,
-      "lon": -0.8313213,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-7",
-      "direction": "",
-      "municipality": "Crevillent",
-      "province": "Alacant/Alicante",
-      "severity": "",
-      "startTime": "2026-10-02T07:26:58.000+02:00"
-    },
-    {
-      "id": "24235277-1-0",
       "lat": 38.20891,
       "lon": -0.82839453,
       "event": "roadworks",
@@ -9989,7 +9963,7 @@
       "startTime": "2026-10-02T07:26:55.000+02:00"
     },
     {
-      "id": "24235277-1-1",
+      "id": "24235277-0-1",
       "lat": 38.209652,
       "lon": -0.8277786,
       "event": "roadworks",
@@ -10002,33 +9976,33 @@
       "startTime": "2026-10-02T07:26:55.000+02:00"
     },
     {
+      "id": "24235277-1-0",
+      "lat": 38.200714,
+      "lon": -0.8325691,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-7",
+      "direction": "",
+      "municipality": "Crevillent",
+      "province": "Alacant/Alicante",
+      "severity": "",
+      "startTime": "2026-10-02T07:26:58.000+02:00"
+    },
+    {
+      "id": "24235277-1-1",
+      "lat": 38.20318,
+      "lon": -0.8313213,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-7",
+      "direction": "",
+      "municipality": "Crevillent",
+      "province": "Alacant/Alicante",
+      "severity": "",
+      "startTime": "2026-10-02T07:26:58.000+02:00"
+    },
+    {
       "id": "24239177-0-0",
-      "lat": 37.104668,
-      "lon": -5.376391,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-406",
-      "direction": "",
-      "municipality": "Morón de la Frontera",
-      "province": "Sevilla",
-      "severity": "",
-      "startTime": "2026-10-05T08:34:40.000+02:00"
-    },
-    {
-      "id": "24239177-0-1",
-      "lat": 37.10538,
-      "lon": -5.381087,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-406",
-      "direction": "",
-      "municipality": "Morón de la Frontera",
-      "province": "Sevilla",
-      "severity": "",
-      "startTime": "2026-10-05T08:34:40.000+02:00"
-    },
-    {
-      "id": "24239177-1-0",
       "lat": 37.059586,
       "lon": -5.219622,
       "event": "roadworks",
@@ -10041,7 +10015,7 @@
       "startTime": "2026-10-05T08:34:30.000+02:00"
     },
     {
-      "id": "24239177-1-1",
+      "id": "24239177-0-1",
       "lat": 37.057827,
       "lon": -5.223445,
       "event": "roadworks",
@@ -10052,6 +10026,32 @@
       "province": "Sevilla",
       "severity": "",
       "startTime": "2026-10-05T08:34:30.000+02:00"
+    },
+    {
+      "id": "24239177-1-0",
+      "lat": 37.104668,
+      "lon": -5.376391,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-406",
+      "direction": "",
+      "municipality": "Morón de la Frontera",
+      "province": "Sevilla",
+      "severity": "",
+      "startTime": "2026-10-05T08:34:40.000+02:00"
+    },
+    {
+      "id": "24239177-1-1",
+      "lat": 37.10538,
+      "lon": -5.381087,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-406",
+      "direction": "",
+      "municipality": "Morón de la Frontera",
+      "province": "Sevilla",
+      "severity": "",
+      "startTime": "2026-10-05T08:34:40.000+02:00"
     },
     {
       "id": "24239177-2-0",
@@ -10081,6 +10081,32 @@
     },
     {
       "id": "24246527-0-0",
+      "lat": 37.61831,
+      "lon": -5.8137226,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-436",
+      "direction": "",
+      "municipality": "Cantillana",
+      "province": "Sevilla",
+      "severity": "highest",
+      "startTime": "2026-10-06T08:24:12.000+02:00"
+    },
+    {
+      "id": "24246527-0-1",
+      "lat": 37.643227,
+      "lon": -5.7406034,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-436",
+      "direction": "",
+      "municipality": "Cantillana",
+      "province": "Sevilla",
+      "severity": "highest",
+      "startTime": "2026-10-06T08:24:12.000+02:00"
+    },
+    {
+      "id": "24246527-1-0",
       "lat": 37.643223,
       "lon": -5.7405367,
       "event": "roadworks",
@@ -10093,7 +10119,7 @@
       "startTime": "2026-10-05T13:48:32.000+02:00"
     },
     {
-      "id": "24246527-0-1",
+      "id": "24246527-1-1",
       "lat": 37.61831,
       "lon": -5.8137226,
       "event": "roadworks",
@@ -10104,32 +10130,6 @@
       "province": "Sevilla",
       "severity": "highest",
       "startTime": "2026-10-05T13:48:32.000+02:00"
-    },
-    {
-      "id": "24246527-1-0",
-      "lat": 37.61831,
-      "lon": -5.8137226,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-436",
-      "direction": "",
-      "municipality": "Cantillana",
-      "province": "Sevilla",
-      "severity": "highest",
-      "startTime": "2026-10-06T08:24:12.000+02:00"
-    },
-    {
-      "id": "24246527-1-1",
-      "lat": 37.643227,
-      "lon": -5.7406034,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-436",
-      "direction": "",
-      "municipality": "Cantillana",
-      "province": "Sevilla",
-      "severity": "highest",
-      "startTime": "2026-10-06T08:24:12.000+02:00"
     },
     {
       "id": "24260401-0-0",
@@ -10263,45 +10263,19 @@
     },
     {
       "id": "24274150-0-0",
-      "lat": 40.206593,
-      "lon": -1.0821893,
+      "lat": 40.19476,
+      "lon": -1.092888,
       "event": "roadworks",
       "description": "",
       "road": "TE-V-6014",
       "direction": "",
-      "municipality": "Cubla",
+      "municipality": "Valacloche",
       "province": "Teruel",
       "severity": "",
-      "startTime": "2026-10-07T07:11:18.000+02:00"
+      "startTime": "2026-10-07T07:11:15.000+02:00"
     },
     {
       "id": "24274150-0-1",
-      "lat": 40.19476,
-      "lon": -1.092888,
-      "event": "roadworks",
-      "description": "",
-      "road": "TE-V-6014",
-      "direction": "",
-      "municipality": "Cubla",
-      "province": "Teruel",
-      "severity": "",
-      "startTime": "2026-10-07T07:11:18.000+02:00"
-    },
-    {
-      "id": "24274150-1-0",
-      "lat": 40.19476,
-      "lon": -1.092888,
-      "event": "roadworks",
-      "description": "",
-      "road": "TE-V-6014",
-      "direction": "",
-      "municipality": "Valacloche",
-      "province": "Teruel",
-      "severity": "",
-      "startTime": "2026-10-07T07:11:15.000+02:00"
-    },
-    {
-      "id": "24274150-1-1",
       "lat": 40.206593,
       "lon": -1.0821893,
       "event": "roadworks",
@@ -10314,9 +10288,35 @@
       "startTime": "2026-10-07T07:11:15.000+02:00"
     },
     {
+      "id": "24274150-1-0",
+      "lat": 40.206593,
+      "lon": -1.0821893,
+      "event": "roadworks",
+      "description": "",
+      "road": "TE-V-6014",
+      "direction": "",
+      "municipality": "Cubla",
+      "province": "Teruel",
+      "severity": "",
+      "startTime": "2026-10-07T07:11:18.000+02:00"
+    },
+    {
+      "id": "24274150-1-1",
+      "lat": 40.19476,
+      "lon": -1.092888,
+      "event": "roadworks",
+      "description": "",
+      "road": "TE-V-6014",
+      "direction": "",
+      "municipality": "Cubla",
+      "province": "Teruel",
+      "severity": "",
+      "startTime": "2026-10-07T07:11:18.000+02:00"
+    },
+    {
       "id": "24274448-0-0",
-      "lat": 40.075222,
-      "lon": -6.30965,
+      "lat": 40.00372,
+      "lon": -6.3292413,
       "event": "roadworks",
       "description": "",
       "road": "Camino General 4",
@@ -10324,36 +10324,10 @@
       "municipality": "Montehermoso",
       "province": "Cáceres",
       "severity": "highest",
-      "startTime": "2026-10-05T10:29:28.000+02:00"
+      "startTime": "2026-10-05T10:29:34.000+02:00"
     },
     {
       "id": "24274448-0-1",
-      "lat": 40.00372,
-      "lon": -6.3292413,
-      "event": "roadworks",
-      "description": "",
-      "road": "Camino General 4",
-      "direction": "",
-      "municipality": "Montehermoso",
-      "province": "Cáceres",
-      "severity": "highest",
-      "startTime": "2026-10-05T10:29:28.000+02:00"
-    },
-    {
-      "id": "24274448-1-0",
-      "lat": 40.00372,
-      "lon": -6.3292413,
-      "event": "roadworks",
-      "description": "",
-      "road": "Camino General 4",
-      "direction": "",
-      "municipality": "Montehermoso",
-      "province": "Cáceres",
-      "severity": "highest",
-      "startTime": "2026-10-05T10:29:34.000+02:00"
-    },
-    {
-      "id": "24274448-1-1",
       "lat": 40.075222,
       "lon": -6.30965,
       "event": "roadworks",
@@ -10364,6 +10338,32 @@
       "province": "Cáceres",
       "severity": "highest",
       "startTime": "2026-10-05T10:29:34.000+02:00"
+    },
+    {
+      "id": "24274448-1-0",
+      "lat": 40.075222,
+      "lon": -6.30965,
+      "event": "roadworks",
+      "description": "",
+      "road": "Camino General 4",
+      "direction": "",
+      "municipality": "Montehermoso",
+      "province": "Cáceres",
+      "severity": "highest",
+      "startTime": "2026-10-05T10:29:28.000+02:00"
+    },
+    {
+      "id": "24274448-1-1",
+      "lat": 40.00372,
+      "lon": -6.3292413,
+      "event": "roadworks",
+      "description": "",
+      "road": "Camino General 4",
+      "direction": "",
+      "municipality": "Montehermoso",
+      "province": "Cáceres",
+      "severity": "highest",
+      "startTime": "2026-10-05T10:29:28.000+02:00"
     },
     {
       "id": "24277808-0-0",
@@ -10549,8 +10549,8 @@
     },
     {
       "id": "24354281-0-0",
-      "lat": 36.312748,
-      "lon": -5.943122,
+      "lat": 36.326473,
+      "lon": -5.93494,
       "event": "roadworks",
       "description": "",
       "road": "A-396",
@@ -10558,36 +10558,10 @@
       "municipality": "Vejer de la Frontera",
       "province": "Cádiz",
       "severity": "",
-      "startTime": "2026-10-05T13:26:14.000+02:00"
+      "startTime": "2026-10-05T13:26:12.000+02:00"
     },
     {
       "id": "24354281-0-1",
-      "lat": 36.326473,
-      "lon": -5.93494,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-396",
-      "direction": "",
-      "municipality": "Vejer de la Frontera",
-      "province": "Cádiz",
-      "severity": "",
-      "startTime": "2026-10-05T13:26:14.000+02:00"
-    },
-    {
-      "id": "24354281-1-0",
-      "lat": 36.326473,
-      "lon": -5.93494,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-396",
-      "direction": "",
-      "municipality": "Vejer de la Frontera",
-      "province": "Cádiz",
-      "severity": "",
-      "startTime": "2026-10-05T13:26:12.000+02:00"
-    },
-    {
-      "id": "24354281-1-1",
       "lat": 36.312748,
       "lon": -5.943122,
       "event": "roadworks",
@@ -10600,33 +10574,33 @@
       "startTime": "2026-10-05T13:26:12.000+02:00"
     },
     {
+      "id": "24354281-1-0",
+      "lat": 36.312748,
+      "lon": -5.943122,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-396",
+      "direction": "",
+      "municipality": "Vejer de la Frontera",
+      "province": "Cádiz",
+      "severity": "",
+      "startTime": "2026-10-05T13:26:14.000+02:00"
+    },
+    {
+      "id": "24354281-1-1",
+      "lat": 36.326473,
+      "lon": -5.93494,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-396",
+      "direction": "",
+      "municipality": "Vejer de la Frontera",
+      "province": "Cádiz",
+      "severity": "",
+      "startTime": "2026-10-05T13:26:14.000+02:00"
+    },
+    {
       "id": "24356327-0-0",
-      "lat": 43.26609,
-      "lon": -5.914237,
-      "event": "roadworks",
-      "description": "",
-      "road": "MO-1",
-      "direction": "",
-      "municipality": "Morcín",
-      "province": "Asturias",
-      "severity": "highest",
-      "startTime": "2026-10-06T09:23:32.000+02:00"
-    },
-    {
-      "id": "24356327-0-1",
-      "lat": 43.265755,
-      "lon": -5.914379,
-      "event": "roadworks",
-      "description": "",
-      "road": "MO-1",
-      "direction": "",
-      "municipality": "Morcín",
-      "province": "Asturias",
-      "severity": "highest",
-      "startTime": "2026-10-06T09:23:32.000+02:00"
-    },
-    {
-      "id": "24356327-1-0",
       "lat": 43.265835,
       "lon": -5.9143486,
       "event": "roadworks",
@@ -10639,7 +10613,7 @@
       "startTime": "2026-10-06T09:23:29.000+02:00"
     },
     {
-      "id": "24356327-1-1",
+      "id": "24356327-0-1",
       "lat": 43.26609,
       "lon": -5.914237,
       "event": "roadworks",
@@ -10652,9 +10626,35 @@
       "startTime": "2026-10-06T09:23:29.000+02:00"
     },
     {
+      "id": "24356327-1-0",
+      "lat": 43.26609,
+      "lon": -5.914237,
+      "event": "roadworks",
+      "description": "",
+      "road": "MO-1",
+      "direction": "",
+      "municipality": "Morcín",
+      "province": "Asturias",
+      "severity": "highest",
+      "startTime": "2026-10-06T09:23:32.000+02:00"
+    },
+    {
+      "id": "24356327-1-1",
+      "lat": 43.265755,
+      "lon": -5.914379,
+      "event": "roadworks",
+      "description": "",
+      "road": "MO-1",
+      "direction": "",
+      "municipality": "Morcín",
+      "province": "Asturias",
+      "severity": "highest",
+      "startTime": "2026-10-06T09:23:32.000+02:00"
+    },
+    {
       "id": "24373916-0-0",
-      "lat": 36.25568,
-      "lon": -5.968126,
+      "lat": 36.25287,
+      "lon": -5.98125,
       "event": "roadworks",
       "description": "",
       "road": "A-2229",
@@ -10662,36 +10662,10 @@
       "municipality": "Vejer de la Frontera",
       "province": "Cádiz",
       "severity": "",
-      "startTime": "2026-10-06T07:02:03.000+02:00"
+      "startTime": "2026-10-06T07:02:00.000+02:00"
     },
     {
       "id": "24373916-0-1",
-      "lat": 36.25287,
-      "lon": -5.98125,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-2229",
-      "direction": "",
-      "municipality": "Vejer de la Frontera",
-      "province": "Cádiz",
-      "severity": "",
-      "startTime": "2026-10-06T07:02:03.000+02:00"
-    },
-    {
-      "id": "24373916-1-0",
-      "lat": 36.25287,
-      "lon": -5.98125,
-      "event": "roadworks",
-      "description": "",
-      "road": "A-2229",
-      "direction": "",
-      "municipality": "Vejer de la Frontera",
-      "province": "Cádiz",
-      "severity": "",
-      "startTime": "2026-10-06T07:02:00.000+02:00"
-    },
-    {
-      "id": "24373916-1-1",
       "lat": 36.25568,
       "lon": -5.968126,
       "event": "roadworks",
@@ -10702,6 +10676,32 @@
       "province": "Cádiz",
       "severity": "",
       "startTime": "2026-10-06T07:02:00.000+02:00"
+    },
+    {
+      "id": "24373916-1-0",
+      "lat": 36.25568,
+      "lon": -5.968126,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-2229",
+      "direction": "",
+      "municipality": "Vejer de la Frontera",
+      "province": "Cádiz",
+      "severity": "",
+      "startTime": "2026-10-06T07:02:03.000+02:00"
+    },
+    {
+      "id": "24373916-1-1",
+      "lat": 36.25287,
+      "lon": -5.98125,
+      "event": "roadworks",
+      "description": "",
+      "road": "A-2229",
+      "direction": "",
+      "municipality": "Vejer de la Frontera",
+      "province": "Cádiz",
+      "severity": "",
+      "startTime": "2026-10-06T07:02:03.000+02:00"
     },
     {
       "id": "24401721-0-0",
@@ -11341,19 +11341,6 @@
       "startTime": "2026-10-11T08:56:16.000+02:00"
     },
     {
-      "id": "24575757-0-0",
-      "lat": 39.714897,
-      "lon": -0.25075546,
-      "event": "Incidencia de tráfico",
-      "description": "",
-      "road": "N-340",
-      "direction": "",
-      "municipality": "Sagunt/Sagunto",
-      "province": "València/Valencia",
-      "severity": "",
-      "startTime": "2026-10-11T09:53:03.000+02:00"
-    },
-    {
       "id": "24579263-0-0",
       "lat": 39.47368,
       "lon": -0.642816,
@@ -11601,19 +11588,6 @@
       "startTime": "2026-10-12T00:17:01.000+02:00"
     },
     {
-      "id": "24590526-0-0",
-      "lat": 42.735237,
-      "lon": -8.973011,
-      "event": "accident",
-      "description": "",
-      "road": "AC-550",
-      "direction": "",
-      "municipality": "Porto do Son",
-      "province": "A Coruña",
-      "severity": "",
-      "startTime": "2026-10-12T01:24:18.000+02:00"
-    },
-    {
       "id": "24590602-0-0",
       "lat": 37.701675,
       "lon": -0.86560315,
@@ -11625,32 +11599,6 @@
       "province": "Murcia",
       "severity": "",
       "startTime": "2026-10-12T01:47:42.000+02:00"
-    },
-    {
-      "id": "24590603-0-0",
-      "lat": 42.009144,
-      "lon": -7.569702,
-      "event": "Incidencia de tráfico",
-      "description": "",
-      "road": "A-52",
-      "direction": "",
-      "municipality": "Cualedro",
-      "province": "Ourense",
-      "severity": "",
-      "startTime": "2026-10-12T01:48:24.000+02:00"
-    },
-    {
-      "id": "24590619-0-0",
-      "lat": 43.39066,
-      "lon": -8.167528,
-      "event": "Incidencia de tráfico",
-      "description": "",
-      "road": "AC-151",
-      "direction": "",
-      "municipality": "Pontedeume",
-      "province": "A Coruña",
-      "severity": "",
-      "startTime": "2026-10-12T01:52:56.000+02:00"
     },
     {
       "id": "24590632-0-0",
@@ -11677,123 +11625,6 @@
       "province": "Alacant/Alicante",
       "severity": "",
       "startTime": "2026-10-12T01:57:34.000+02:00"
-    },
-    {
-      "id": "24591362-0-0",
-      "lat": 38.37994,
-      "lon": -0.51289,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "A-70",
-      "direction": "",
-      "municipality": "Alacant/Alicante",
-      "province": "Alacant/Alicante",
-      "severity": "",
-      "startTime": "2026-10-12T03:11:42.000+02:00"
-    },
-    {
-      "id": "24591377-0-0",
-      "lat": 28.37468,
-      "lon": -16.65153,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "TF-342",
-      "direction": "",
-      "municipality": "La Guancha",
-      "province": "Santa Cruz de Tenerife",
-      "severity": "",
-      "startTime": "2026-10-12T03:14:30.000+02:00"
-    },
-    {
-      "id": "24591378-0-0",
-      "lat": 40.864132,
-      "lon": -6.0118127,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "A-62",
-      "direction": "",
-      "municipality": "Aldehuela de la Bóveda",
-      "province": "Salamanca",
-      "severity": "",
-      "startTime": "2026-10-12T03:14:59.000+02:00"
-    },
-    {
-      "id": "24591390-0-0",
-      "lat": 39.496166,
-      "lon": 2.8877518,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "Ma-5010",
-      "direction": "",
-      "municipality": "Llucmajor",
-      "province": "Illes Balears",
-      "severity": "",
-      "startTime": "2026-10-12T03:19:05.000+02:00"
-    },
-    {
-      "id": "24591394-0-0",
-      "lat": 36.6444,
-      "lon": -4.68215,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "A-404",
-      "direction": "",
-      "municipality": "Alhaurín el Grande",
-      "province": "Málaga",
-      "severity": "",
-      "startTime": "2026-10-12T03:20:05.000+02:00"
-    },
-    {
-      "id": "24591397-0-0",
-      "lat": 39.97731,
-      "lon": -3.56629,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "A-4",
-      "direction": "",
-      "municipality": "Ontígola",
-      "province": "Toledo",
-      "severity": "",
-      "startTime": "2026-10-12T03:20:11.000+02:00"
-    },
-    {
-      "id": "24591401-0-0",
-      "lat": 39.09056,
-      "lon": -0.24888,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "N-332",
-      "direction": "",
-      "municipality": "Tavernes de la Valldigna",
-      "province": "València/Valencia",
-      "severity": "",
-      "startTime": "2026-10-12T03:20:41.000+02:00"
-    },
-    {
-      "id": "24591403-0-0",
-      "lat": 39.47821,
-      "lon": -0.42717,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "V-30",
-      "direction": "",
-      "municipality": "Quart de Poblet",
-      "province": "València/Valencia",
-      "severity": "",
-      "startTime": "2026-10-12T03:21:02.000+02:00"
-    },
-    {
-      "id": "24591412-0-0",
-      "lat": 38.5177,
-      "lon": -3.490775,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "A-4",
-      "direction": "",
-      "municipality": "Almuradiel",
-      "province": "Ciudad Real",
-      "severity": "",
-      "startTime": "2026-10-12T03:23:13.000+02:00"
     },
     {
       "id": "24591418-0-0",
@@ -11848,19 +11679,6 @@
       "startTime": "2026-10-12T03:26:47.000+02:00"
     },
     {
-      "id": "24591433-0-0",
-      "lat": 38.2601,
-      "lon": -0.7218,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "N-340",
-      "direction": "",
-      "municipality": "Elx/Elche",
-      "province": "Alacant/Alicante",
-      "severity": "",
-      "startTime": "2026-10-12T03:27:50.000+02:00"
-    },
-    {
       "id": "24591440-0-0",
       "lat": 39.4836,
       "lon": 2.86551,
@@ -11913,45 +11731,6 @@
       "startTime": "2026-10-12T03:31:27.000+02:00"
     },
     {
-      "id": "24591448-0-0",
-      "lat": 42.26438,
-      "lon": -8.6051,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "N-550",
-      "direction": "",
-      "municipality": "Redondela",
-      "province": "Pontevedra",
-      "severity": "",
-      "startTime": "2026-10-12T03:31:51.000+02:00"
-    },
-    {
-      "id": "24591449-0-0",
-      "lat": 40.45786,
-      "lon": -3.50164,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "VS-A-2-C",
-      "direction": "",
-      "municipality": "San Fernando de Henares",
-      "province": "Madrid",
-      "severity": "",
-      "startTime": "2026-10-12T03:31:52.000+02:00"
-    },
-    {
-      "id": "24591450-0-0",
-      "lat": 36.78451,
-      "lon": -4.11266,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "A-7205",
-      "direction": "",
-      "municipality": "Vélez-Málaga",
-      "province": "Málaga",
-      "severity": "",
-      "startTime": "2026-10-12T03:31:58.000+02:00"
-    },
-    {
       "id": "24591453-0-0",
       "lat": 37.39114,
       "lon": -1.94209,
@@ -11963,32 +11742,6 @@
       "province": "Almería",
       "severity": "",
       "startTime": "2026-10-12T03:32:02.000+02:00"
-    },
-    {
-      "id": "24591454-0-0",
-      "lat": 40.6746,
-      "lon": -4.61823,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "AP-51",
-      "direction": "",
-      "municipality": "Ávila",
-      "province": "Ávila",
-      "severity": "",
-      "startTime": "2026-10-12T03:32:08.000+02:00"
-    },
-    {
-      "id": "24591458-0-0",
-      "lat": 37.270504,
-      "lon": -4.825605,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "SE-9215",
-      "direction": "",
-      "municipality": "Lora de Estepa",
-      "province": "Sevilla",
-      "severity": "",
-      "startTime": "2026-10-12T03:33:39.000+02:00"
     },
     {
       "id": "24591459-0-0",
@@ -12108,32 +11861,6 @@
       "startTime": "2026-10-12T03:38:01.000+02:00"
     },
     {
-      "id": "24591479-0-0",
-      "lat": 36.53897,
-      "lon": -4.63781,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "A-7053",
-      "direction": "",
-      "municipality": "Mijas",
-      "province": "Málaga",
-      "severity": "",
-      "startTime": "2026-10-12T03:38:18.000+02:00"
-    },
-    {
-      "id": "24591480-0-0",
-      "lat": 36.9,
-      "lon": -3.51435,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "A-44",
-      "direction": "",
-      "municipality": "El Pinar",
-      "province": "Granada",
-      "severity": "",
-      "startTime": "2026-10-12T03:38:22.000+02:00"
-    },
-    {
       "id": "24591481-0-0",
       "lat": 37.884087,
       "lon": -0.7669878,
@@ -12147,32 +11874,6 @@
       "startTime": "2026-10-12T03:38:39.000+02:00"
     },
     {
-      "id": "24591483-0-0",
-      "lat": 40.44577,
-      "lon": -3.51838,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "M-21",
-      "direction": "",
-      "municipality": "San Fernando de Henares",
-      "province": "Madrid",
-      "severity": "",
-      "startTime": "2026-10-12T03:38:54.000+02:00"
-    },
-    {
-      "id": "24591484-0-0",
-      "lat": 36.71631,
-      "lon": -4.55563,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "A-357",
-      "direction": "",
-      "municipality": "Málaga",
-      "province": "Málaga",
-      "severity": "",
-      "startTime": "2026-10-12T03:39:50.000+02:00"
-    },
-    {
       "id": "24591485-0-0",
       "lat": 39.72392,
       "lon": 2.91926,
@@ -12184,19 +11885,6 @@
       "province": "Illes Balears",
       "severity": "",
       "startTime": "2026-10-12T03:40:06.000+02:00"
-    },
-    {
-      "id": "24591486-0-0",
-      "lat": 40.3169,
-      "lon": -3.74527,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "M-406",
-      "direction": "",
-      "municipality": "Leganés",
-      "province": "Madrid",
-      "severity": "",
-      "startTime": "2026-10-12T03:40:12.000+02:00"
     },
     {
       "id": "24591489-0-0",
@@ -12264,19 +11952,6 @@
       "startTime": "2026-10-12T03:40:59.000+02:00"
     },
     {
-      "id": "24591498-0-0",
-      "lat": 40.12264,
-      "lon": -3.7991,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "CM-4010",
-      "direction": "",
-      "municipality": "Yeles",
-      "province": "Toledo",
-      "severity": "",
-      "startTime": "2026-10-12T03:41:07.000+02:00"
-    },
-    {
       "id": "24591500-0-0",
       "lat": 37.268955,
       "lon": -5.447209,
@@ -12288,19 +11963,6 @@
       "province": "Sevilla",
       "severity": "",
       "startTime": "2026-10-12T03:41:53.000+02:00"
-    },
-    {
-      "id": "24591503-0-0",
-      "lat": 38.37994,
-      "lon": -0.51285,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "A-70",
-      "direction": "",
-      "municipality": "Alacant/Alicante",
-      "province": "Alacant/Alicante",
-      "severity": "",
-      "startTime": "2026-10-12T03:42:19.000+02:00"
     },
     {
       "id": "24591505-0-0",
@@ -12485,45 +12147,6 @@
       "startTime": "2026-10-12T03:47:58.000+02:00"
     },
     {
-      "id": "24591527-0-0",
-      "lat": 41.02415,
-      "lon": -2.51804,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "A-2",
-      "direction": "",
-      "municipality": "Saúca",
-      "province": "Guadalajara",
-      "severity": "",
-      "startTime": "2026-10-12T03:48:19.000+02:00"
-    },
-    {
-      "id": "24591529-0-0",
-      "lat": 40.20662,
-      "lon": -4.08867,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "CM-4004",
-      "direction": "",
-      "municipality": "Valmojado",
-      "province": "Toledo",
-      "severity": "",
-      "startTime": "2026-10-12T03:50:02.000+02:00"
-    },
-    {
-      "id": "24591534-0-0",
-      "lat": 36.71216,
-      "lon": -4.50972,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "A-357",
-      "direction": "",
-      "municipality": "Málaga",
-      "province": "Málaga",
-      "severity": "",
-      "startTime": "2026-10-12T03:51:13.000+02:00"
-    },
-    {
       "id": "24591536-0-0",
       "lat": 41.62157,
       "lon": -0.85993,
@@ -12535,19 +12158,6 @@
       "province": "Zaragoza",
       "severity": "",
       "startTime": "2026-10-12T03:52:30.000+02:00"
-    },
-    {
-      "id": "24591537-0-0",
-      "lat": 41.61642,
-      "lon": -0.86904,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "Z-40",
-      "direction": "",
-      "municipality": "Zaragoza",
-      "province": "Zaragoza",
-      "severity": "",
-      "startTime": "2026-10-12T03:52:45.000+02:00"
     },
     {
       "id": "24591539-0-0",
@@ -12641,45 +12251,6 @@
       "startTime": "2026-10-12T03:54:49.000+02:00"
     },
     {
-      "id": "24591547-0-0",
-      "lat": 41.6054,
-      "lon": -0.89805,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "Z-40",
-      "direction": "",
-      "municipality": "Zaragoza",
-      "province": "Zaragoza",
-      "severity": "",
-      "startTime": "2026-10-12T03:55:17.000+02:00"
-    },
-    {
-      "id": "24591549-0-0",
-      "lat": 41.60751,
-      "lon": -0.90947,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "Z-40",
-      "direction": "",
-      "municipality": "Zaragoza",
-      "province": "Zaragoza",
-      "severity": "",
-      "startTime": "2026-10-12T03:55:22.000+02:00"
-    },
-    {
-      "id": "24591550-0-0",
-      "lat": 40.43431,
-      "lon": -3.73373,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "M-500",
-      "direction": "",
-      "municipality": "Madrid",
-      "province": "Madrid",
-      "severity": "",
-      "startTime": "2026-10-12T03:55:37.000+02:00"
-    },
-    {
       "id": "24591551-0-0",
       "lat": 37.34228,
       "lon": -6.38824,
@@ -12704,97 +12275,6 @@
       "province": "A Coruña",
       "severity": "",
       "startTime": "2026-10-12T03:57:23.000+02:00"
-    },
-    {
-      "id": "24591555-0-0",
-      "lat": 39.94424,
-      "lon": -0.05531,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "CV-18",
-      "direction": "",
-      "municipality": "Almassora",
-      "province": "Castelló/Castellón",
-      "severity": "",
-      "startTime": "2026-10-12T03:57:59.000+02:00"
-    },
-    {
-      "id": "24591557-0-0",
-      "lat": 36.84681,
-      "lon": -3.49573,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "A-44",
-      "direction": "",
-      "municipality": "Vélez de Benaudalla",
-      "province": "Granada",
-      "severity": "",
-      "startTime": "2026-10-12T03:58:11.000+02:00"
-    },
-    {
-      "id": "24591558-0-0",
-      "lat": 41.60137,
-      "lon": -0.9376,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "A-23",
-      "direction": "",
-      "municipality": "Zaragoza",
-      "province": "Zaragoza",
-      "severity": "",
-      "startTime": "2026-10-12T03:58:12.000+02:00"
-    },
-    {
-      "id": "24591560-0-0",
-      "lat": 40.68859,
-      "lon": -3.42074,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "CM-1009",
-      "direction": "",
-      "municipality": "El Casar",
-      "province": "Guadalajara",
-      "severity": "",
-      "startTime": "2026-10-12T03:58:35.000+02:00"
-    },
-    {
-      "id": "24591562-0-0",
-      "lat": 37.66592,
-      "lon": -5.5146,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "A-431",
-      "direction": "",
-      "municipality": "Lora del Río",
-      "province": "Sevilla",
-      "severity": "",
-      "startTime": "2026-10-12T03:59:09.000+02:00"
-    },
-    {
-      "id": "24591563-0-0",
-      "lat": 43.33671,
-      "lon": -8.42198,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "AC-14",
-      "direction": "",
-      "municipality": "A Coruña",
-      "province": "A Coruña",
-      "severity": "",
-      "startTime": "2026-10-12T03:59:13.000+02:00"
-    },
-    {
-      "id": "24591564-0-0",
-      "lat": 37.766006,
-      "lon": -0.865901,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "RM-F35",
-      "direction": "",
-      "municipality": "San Javier",
-      "province": "Murcia",
-      "severity": "",
-      "startTime": "2026-10-12T03:59:57.000+02:00"
     },
     {
       "id": "24591570-0-0",
@@ -13018,32 +12498,6 @@
       "startTime": "2026-10-12T04:07:16.000+02:00"
     },
     {
-      "id": "24591597-0-0",
-      "lat": 37.934193,
-      "lon": -1.2052971,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "RM-603",
-      "direction": "",
-      "municipality": "Murcia",
-      "province": "Murcia",
-      "severity": "",
-      "startTime": "2026-10-12T04:07:27.000+02:00"
-    },
-    {
-      "id": "24591598-0-0",
-      "lat": 37.262527,
-      "lon": -4.965874,
-      "event": "vehicle Stuck",
-      "description": "",
-      "road": "A-92",
-      "direction": "",
-      "municipality": "Estepa",
-      "province": "Sevilla",
-      "severity": "",
-      "startTime": "2026-10-12T04:07:37.000+02:00"
-    },
-    {
       "id": "24591601-0-0",
       "lat": 39.982838,
       "lon": -6.25458,
@@ -13055,6 +12509,513 @@
       "province": "Cáceres",
       "severity": "",
       "startTime": "2026-10-12T04:08:01.000+02:00"
+    },
+    {
+      "id": "24591602-0-0",
+      "lat": 41.54166,
+      "lon": -0.9955,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "N-330",
+      "direction": "",
+      "municipality": "María de Huerva",
+      "province": "Zaragoza",
+      "severity": "",
+      "startTime": "2026-10-12T04:08:41.000+02:00"
+    },
+    {
+      "id": "24591604-0-0",
+      "lat": 39.85406,
+      "lon": -3.98664,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "A-42",
+      "direction": "",
+      "municipality": "Toledo",
+      "province": "Toledo",
+      "severity": "",
+      "startTime": "2026-10-12T04:08:58.000+02:00"
+    },
+    {
+      "id": "24591606-0-0",
+      "lat": 36.74938,
+      "lon": -3.56481,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "GR-14",
+      "direction": "",
+      "municipality": "Motril",
+      "province": "Granada",
+      "severity": "",
+      "startTime": "2026-10-12T04:09:17.000+02:00"
+    },
+    {
+      "id": "24591609-0-0",
+      "lat": 36.53897,
+      "lon": -4.63781,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "A-7053",
+      "direction": "",
+      "municipality": "Mijas",
+      "province": "Málaga",
+      "severity": "",
+      "startTime": "2026-10-12T04:10:14.000+02:00"
+    },
+    {
+      "id": "24591612-0-0",
+      "lat": 40.44577,
+      "lon": -3.51838,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "M-21",
+      "direction": "",
+      "municipality": "San Fernando de Henares",
+      "province": "Madrid",
+      "severity": "",
+      "startTime": "2026-10-12T04:10:50.000+02:00"
+    },
+    {
+      "id": "24591615-0-0",
+      "lat": 40.418377,
+      "lon": -3.610044,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "M-40",
+      "direction": "",
+      "municipality": "Madrid",
+      "province": "Madrid",
+      "severity": "",
+      "startTime": "2026-10-12T04:11:16.000+02:00"
+    },
+    {
+      "id": "24591617-0-0",
+      "lat": 40.00022,
+      "lon": -0.04473,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "N-340a",
+      "direction": "",
+      "municipality": "Castelló de la Plana",
+      "province": "Castelló/Castellón",
+      "severity": "",
+      "startTime": "2026-10-12T04:11:22.000+02:00"
+    },
+    {
+      "id": "24591619-0-0",
+      "lat": 36.71631,
+      "lon": -4.55563,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "A-357",
+      "direction": "",
+      "municipality": "Málaga",
+      "province": "Málaga",
+      "severity": "",
+      "startTime": "2026-10-12T04:11:36.000+02:00"
+    },
+    {
+      "id": "24591622-0-0",
+      "lat": 42.01808,
+      "lon": -3.7532206,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "N-1",
+      "direction": "",
+      "municipality": "Lerma",
+      "province": "Burgos",
+      "severity": "",
+      "startTime": "2026-10-12T04:12:04.000+02:00"
+    },
+    {
+      "id": "24591624-0-0",
+      "lat": 41.73756,
+      "lon": -0.84655,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "A-23",
+      "direction": "",
+      "municipality": "Villanueva de Gállego",
+      "province": "Zaragoza",
+      "severity": "",
+      "startTime": "2026-10-12T04:12:16.000+02:00"
+    },
+    {
+      "id": "24591625-0-0",
+      "lat": 38.13694,
+      "lon": -6.27117,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "BA-094",
+      "direction": "",
+      "municipality": "Montemolín",
+      "province": "Badajoz",
+      "severity": "",
+      "startTime": "2026-10-12T04:12:42.000+02:00"
+    },
+    {
+      "id": "24591626-0-0",
+      "lat": 42.617996,
+      "lon": -3.188323,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "AP-1",
+      "direction": "",
+      "municipality": "Santa María Rivarredonda",
+      "province": "Burgos",
+      "severity": "",
+      "startTime": "2026-10-12T04:12:50.000+02:00"
+    },
+    {
+      "id": "24591629-0-0",
+      "lat": 36.971596,
+      "lon": -3.187153,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "A-4130",
+      "direction": "",
+      "municipality": "Bérchules",
+      "province": "Granada",
+      "severity": "",
+      "startTime": "2026-10-12T04:13:36.000+02:00"
+    },
+    {
+      "id": "24591630-0-0",
+      "lat": 40.43933,
+      "lon": -3.67363,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "A-2",
+      "direction": "",
+      "municipality": "Madrid",
+      "province": "Madrid",
+      "severity": "",
+      "startTime": "2026-10-12T04:13:56.000+02:00"
+    },
+    {
+      "id": "24591631-0-0",
+      "lat": 42.513298,
+      "lon": -4.013633,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "BU-601",
+      "direction": "",
+      "municipality": "Villadiego",
+      "province": "Burgos",
+      "severity": "",
+      "startTime": "2026-10-12T04:14:00.000+02:00"
+    },
+    {
+      "id": "24591638-0-0",
+      "lat": 43.300728,
+      "lon": -8.371663,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "N-550",
+      "direction": "",
+      "municipality": "Culleredo",
+      "province": "A Coruña",
+      "severity": "",
+      "startTime": "2026-10-12T04:15:07.000+02:00"
+    },
+    {
+      "id": "24591642-0-0",
+      "lat": 39.63982,
+      "lon": 2.76953,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "Ma-3030",
+      "direction": "",
+      "municipality": "Santa María del Camí",
+      "province": "Illes Balears",
+      "severity": "",
+      "startTime": "2026-10-12T04:15:24.000+02:00"
+    },
+    {
+      "id": "24591644-0-0",
+      "lat": 28.102877,
+      "lon": -15.444088,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "GC-23",
+      "direction": "",
+      "municipality": "Las Palmas de Gran Canaria",
+      "province": "Las Palmas",
+      "severity": "",
+      "startTime": "2026-10-12T04:16:28.000+02:00"
+    },
+    {
+      "id": "24591647-0-0",
+      "lat": 37.28652,
+      "lon": -7.1696057,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "N-431",
+      "direction": "",
+      "municipality": "Cartaya",
+      "province": "Huelva",
+      "severity": "",
+      "startTime": "2026-10-12T04:16:48.000+02:00"
+    },
+    {
+      "id": "24591651-0-0",
+      "lat": 41.02415,
+      "lon": -2.51804,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "A-2",
+      "direction": "",
+      "municipality": "Saúca",
+      "province": "Guadalajara",
+      "severity": "",
+      "startTime": "2026-10-12T04:20:09.000+02:00"
+    },
+    {
+      "id": "24591655-0-0",
+      "lat": 39.88473,
+      "lon": -4.3498,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "CM-4009",
+      "direction": "",
+      "municipality": "Escalonilla",
+      "province": "Toledo",
+      "severity": "",
+      "startTime": "2026-10-12T04:21:04.000+02:00"
+    },
+    {
+      "id": "24591656-0-0",
+      "lat": 36.73726,
+      "lon": -3.92789,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "N-340",
+      "direction": "",
+      "municipality": "Torrox",
+      "province": "Málaga",
+      "severity": "",
+      "startTime": "2026-10-12T04:21:08.000+02:00"
+    },
+    {
+      "id": "24591657-0-0",
+      "lat": 41.65591,
+      "lon": -0.83651,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "ZP-2101",
+      "direction": "",
+      "municipality": "Zaragoza",
+      "province": "Zaragoza",
+      "severity": "",
+      "startTime": "2026-10-12T04:21:11.000+02:00"
+    },
+    {
+      "id": "24591658-0-0",
+      "lat": 39.97731,
+      "lon": -3.56629,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "A-4",
+      "direction": "",
+      "municipality": "Ontígola",
+      "province": "Toledo",
+      "severity": "",
+      "startTime": "2026-10-12T04:21:26.000+02:00"
+    },
+    {
+      "id": "24591659-0-0",
+      "lat": 38.02007,
+      "lon": -1.22754,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "N-344",
+      "direction": "",
+      "municipality": "Las Torres de Cotillas",
+      "province": "Murcia",
+      "severity": "",
+      "startTime": "2026-10-12T04:21:31.000+02:00"
+    },
+    {
+      "id": "24591660-0-0",
+      "lat": 39.82004,
+      "lon": -3.98288,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "N-401",
+      "direction": "",
+      "municipality": "Toledo",
+      "province": "Toledo",
+      "severity": "",
+      "startTime": "2026-10-12T04:21:48.000+02:00"
+    },
+    {
+      "id": "24591662-0-0",
+      "lat": 42.627934,
+      "lon": -3.1114883,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "N-1",
+      "direction": "",
+      "municipality": "Pancorbo",
+      "province": "Burgos",
+      "severity": "",
+      "startTime": "2026-10-12T04:22:31.000+02:00"
+    },
+    {
+      "id": "24591664-0-0",
+      "lat": 36.47237,
+      "lon": -6.18922,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "CA-33",
+      "direction": "",
+      "municipality": "San Fernando",
+      "province": "Cádiz",
+      "severity": "",
+      "startTime": "2026-10-12T04:22:31.000+02:00"
+    },
+    {
+      "id": "24591665-0-0",
+      "lat": 42.24216,
+      "lon": -8.60983,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "EP-2906",
+      "direction": "",
+      "municipality": "Redondela",
+      "province": "Pontevedra",
+      "severity": "",
+      "startTime": "2026-10-12T04:22:34.000+02:00"
+    },
+    {
+      "id": "24591666-0-0",
+      "lat": 40.43973,
+      "lon": -3.67057,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "A-2",
+      "direction": "",
+      "municipality": "Madrid",
+      "province": "Madrid",
+      "severity": "",
+      "startTime": "2026-10-12T04:22:34.000+02:00"
+    },
+    {
+      "id": "24591667-0-0",
+      "lat": 36.67206,
+      "lon": -4.47816,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "MA-21",
+      "direction": "",
+      "municipality": "Málaga",
+      "province": "Málaga",
+      "severity": "",
+      "startTime": "2026-10-12T04:23:01.000+02:00"
+    },
+    {
+      "id": "24591669-0-0",
+      "lat": 39.98463,
+      "lon": -4.23721,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "TO-3423",
+      "direction": "",
+      "municipality": "Barcience",
+      "province": "Toledo",
+      "severity": "",
+      "startTime": "2026-10-12T04:23:38.000+02:00"
+    },
+    {
+      "id": "24591671-0-0",
+      "lat": 37.1857,
+      "lon": -5.9107313,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "AP-4",
+      "direction": "",
+      "municipality": "Los Palacios y Villafranca",
+      "province": "Sevilla",
+      "severity": "",
+      "startTime": "2026-10-12T04:24:58.000+02:00"
+    },
+    {
+      "id": "24591672-0-0",
+      "lat": 39.81769,
+      "lon": -3.9831,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "N-401",
+      "direction": "",
+      "municipality": "Toledo",
+      "province": "Toledo",
+      "severity": "",
+      "startTime": "2026-10-12T04:25:00.000+02:00"
+    },
+    {
+      "id": "24591675-0-0",
+      "lat": 41.5075,
+      "lon": 0.09688878,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "AP-2",
+      "direction": "",
+      "municipality": "Candasnos",
+      "province": "Huesca",
+      "severity": "",
+      "startTime": "2026-10-12T04:26:18.000+02:00"
+    },
+    {
+      "id": "24591677-0-0",
+      "lat": 39.84526,
+      "lon": -3.98127,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "A-42",
+      "direction": "",
+      "municipality": "Toledo",
+      "province": "Toledo",
+      "severity": "",
+      "startTime": "2026-10-12T04:26:32.000+02:00"
+    },
+    {
+      "id": "24591681-0-0",
+      "lat": 37.30314,
+      "lon": -4.8779583,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "VS-A-92-D",
+      "direction": "",
+      "municipality": "Estepa",
+      "province": "Sevilla",
+      "severity": "",
+      "startTime": "2026-10-12T04:27:58.000+02:00"
+    },
+    {
+      "id": "24591683-0-0",
+      "lat": 37.98314,
+      "lon": -0.75797063,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "AP-7",
+      "direction": "",
+      "municipality": "Torrevieja",
+      "province": "Alacant/Alicante",
+      "severity": "",
+      "startTime": "2026-10-12T04:28:53.000+02:00"
+    },
+    {
+      "id": "24591684-0-0",
+      "lat": 38.12834,
+      "lon": -3.9658,
+      "event": "vehicle Stuck",
+      "description": "",
+      "road": "A-6177",
+      "direction": "",
+      "municipality": "Andújar",
+      "province": "Jaén",
+      "severity": "",
+      "startTime": "2026-10-12T04:29:14.000+02:00"
     }
   ]
 }
