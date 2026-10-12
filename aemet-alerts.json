@@ -1,315 +1,21 @@
 {
   "source": "AEMET OpenData",
-  "generatedAt": "2026-10-12T09:08:04.812452+00:00",
+  "generatedAt": "2026-10-12T09:45:56.185238+00:00",
   "status": "ok",
-  "count": 181,
+  "count": 179,
   "alerts": [
     {
-      "id": "2.49.0.0.724.0.ES.20261011090446.645402PRP112081791709486",
+      "id": "2.49.0.0.724.0.ES.20261012091605.645403PRP112171791796565",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-11T09:04:46+00:00",
+      "sent": "2026-10-12T09:16:05+00:00",
       "status": "Actual",
       "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-11T11:04:46+02:00",
-      "onset": "2026-10-12T03:00:00+02:00",
-      "expires": "2026-10-12T09:59:59+02:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel amarillo. Norte y nordeste de Mallorca",
-      "description": "Precipitación acumulada en una hora: 20 mm.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Norte y nordeste de Mallorca",
-          "zoneCode": "645402",
-          "polygons": [
-            [
-              [
-                39.81,
-                2.93
-              ],
-              [
-                39.84,
-                2.94
-              ],
-              [
-                39.9,
-                2.93
-              ],
-              [
-                39.92,
-                2.95
-              ],
-              [
-                39.91,
-                2.99
-              ],
-              [
-                39.94,
-                3.03
-              ],
-              [
-                39.91,
-                3.09
-              ],
-              [
-                39.89,
-                3.08
-              ],
-              [
-                39.86,
-                3.11
-              ],
-              [
-                39.88,
-                3.17
-              ],
-              [
-                39.86,
-                3.2
-              ],
-              [
-                39.82,
-                3.12
-              ],
-              [
-                39.77,
-                3.15
-              ],
-              [
-                39.73,
-                3.26
-              ],
-              [
-                39.76,
-                3.33
-              ],
-              [
-                39.79,
-                3.35
-              ],
-              [
-                39.76,
-                3.41
-              ],
-              [
-                39.72,
-                3.45
-              ],
-              [
-                39.69,
-                3.46
-              ],
-              [
-                39.64,
-                3.44
-              ],
-              [
-                39.63,
-                3.44
-              ],
-              [
-                39.67,
-                3.39
-              ],
-              [
-                39.67,
-                3.36
-              ],
-              [
-                39.64,
-                3.31
-              ],
-              [
-                39.68,
-                3.28
-              ],
-              [
-                39.68,
-                3.25
-              ],
-              [
-                39.7,
-                3.23
-              ],
-              [
-                39.7,
-                3.16
-              ],
-              [
-                39.68,
-                3.11
-              ],
-              [
-                39.74,
-                3.02
-              ],
-              [
-                39.73,
-                3.0
-              ],
-              [
-                39.76,
-                2.95
-              ],
-              [
-                39.81,
-                2.93
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261011090446.645501PRP112081791709486",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-11T09:04:46+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-11T11:04:46+02:00",
-      "onset": "2026-10-12T03:00:00+02:00",
-      "expires": "2026-10-12T09:59:59+02:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel amarillo. Menorca",
-      "description": "Precipitación acumulada en una hora: 20 mm.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Menorca",
-          "zoneCode": "645501",
-          "polygons": [
-            [
-              [
-                39.97,
-                3.83
-              ],
-              [
-                40.0,
-                3.83
-              ],
-              [
-                40.02,
-                3.79
-              ],
-              [
-                40.05,
-                3.82
-              ],
-              [
-                40.06,
-                3.88
-              ],
-              [
-                40.05,
-                3.98
-              ],
-              [
-                40.07,
-                4.03
-              ],
-              [
-                40.06,
-                4.17
-              ],
-              [
-                40.03,
-                4.17
-              ],
-              [
-                40.0,
-                4.23
-              ],
-              [
-                40.0,
-                4.25
-              ],
-              [
-                39.93,
-                4.28
-              ],
-              [
-                39.89,
-                4.31
-              ],
-              [
-                39.85,
-                4.31
-              ],
-              [
-                39.81,
-                4.27
-              ],
-              [
-                39.83,
-                4.2
-              ],
-              [
-                39.88,
-                4.1
-              ],
-              [
-                39.92,
-                4.02
-              ],
-              [
-                39.93,
-                3.97
-              ],
-              [
-                39.92,
-                3.86
-              ],
-              [
-                39.93,
-                3.82
-              ],
-              [
-                39.97,
-                3.83
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261011090446.645403PRP112171791709486",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-11T09:04:46+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
       "language": "es-ES",
       "event": "Aviso de lluvias de nivel amarillo",
       "urgency": "Future",
       "severity": "Moderate",
       "certainty": "Possible",
-      "effective": "2026-10-11T11:04:46+02:00",
+      "effective": "2026-10-12T11:16:05+02:00",
       "onset": "2026-10-12T14:00:00+02:00",
       "expires": "2026-10-12T18:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
@@ -440,17 +146,17 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261011090446.645404PRP112171791709486",
+      "id": "2.49.0.0.724.0.ES.20261012091605.645404PRP112171791796565",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-11T09:04:46+00:00",
+      "sent": "2026-10-12T09:16:05+00:00",
       "status": "Actual",
-      "messageType": "Alert",
+      "messageType": "Update",
       "language": "es-ES",
       "event": "Aviso de lluvias de nivel amarillo",
       "urgency": "Future",
       "severity": "Moderate",
       "certainty": "Possible",
-      "effective": "2026-10-11T11:04:46+02:00",
+      "effective": "2026-10-12T11:16:05+02:00",
       "onset": "2026-10-12T14:00:00+02:00",
       "expires": "2026-10-12T18:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
