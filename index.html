@@ -2106,9 +2106,9 @@ body {
           </strong>
 
           <span>
-            La consulta oficial AEMET necesita un proxy seguro
-            (por ejemplo, una Cloud Function de Firebase) para no
-            exponer la API key en este HTML público.
+            PREVISIÓN VIAJES consulta el archivo público aemet-alerts.json,
+            actualizado mediante GitHub Actions. Si el archivo no está disponible,
+            no se puede confirmar si existen avisos; ausencia de datos no significa ausencia de riesgo.
           </span>
 
         </div>
@@ -2202,7 +2202,7 @@ body {
           <div class="source-row">
             <strong>Avisos:</strong>
             <span>
-              No evaluados automáticamente en esta versión
+              Consulta automática de aemet-alerts.json y filtrado por proximidad a la ruta; depende de que la fuente esté disponible.
             </span>
           </div>
 
