@@ -239,6 +239,36 @@ button {
   box-shadow: 0 0 0 3px rgba(59,220,255,.1);
 }
 
+.date-time-picker-row {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  width: 100%;
+}
+
+.date-time-picker-row input {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.native-picker-button {
+  flex: 0 0 52px;
+  min-width: 52px;
+  min-height: 52px;
+  border: 1px solid rgba(35,55,90,.12);
+  border-radius: 15px;
+  background: rgba(248,250,253,.96);
+  color: var(--ui-text, #172033);
+  font-size: 21px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(35,55,90,.05);
+  transition: transform .12s ease, background .12s ease;
+}
+
+.native-picker-button:hover { background: #edf4ff; }
+.native-picker-button:active { transform: scale(.96); }
+.native-picker-button:focus-visible { outline: 3px solid rgba(43,120,239,.25); outline-offset: 2px; }
+
 .analyze-btn {
   width: 100%;
   min-height: 55px;
@@ -1735,11 +1765,14 @@ body {
               Fecha
             </label>
 
-            <input
-              id="travelDate"
-              type="date"
-              required
-            >
+            <div class="date-time-picker-row">
+              <input
+                id="travelDate"
+                type="date"
+                required
+              >
+              <button class="native-picker-button" type="button" data-picker-target="travelDate" aria-label="Abrir calendario para elegir la fecha" title="Elegir fecha">📅</button>
+            </div>
 
           </div>
 
@@ -1750,12 +1783,15 @@ body {
               Salida
             </label>
 
-            <input
-              id="departureTime"
-              type="time"
-              value="08:00"
-              required
-            >
+            <div class="date-time-picker-row">
+              <input
+                id="departureTime"
+                type="time"
+                value="08:00"
+                required
+              >
+              <button class="native-picker-button" type="button" data-picker-target="departureTime" aria-label="Abrir selector para elegir la hora de salida" title="Elegir hora">🕒</button>
+            </div>
 
           </div>
 
@@ -7636,6 +7672,20 @@ window.addEventListener(
 
 <script>
 (function(){
+  document.querySelectorAll('[data-picker-target]').forEach(button => {
+    button.addEventListener('click', () => {
+      const input = document.getElementById(button.dataset.pickerTarget);
+      if (!input) return;
+      try {
+        if (typeof input.showPicker === 'function') input.showPicker();
+        else { input.focus(); input.click(); }
+      } catch (error) {
+        input.focus();
+        input.click();
+      }
+    });
+  });
+
   const items = document.querySelectorAll('.travel-nav-item');
   if (!items.length) return;
   items.forEach(item => {
