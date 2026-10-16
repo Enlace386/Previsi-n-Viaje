@@ -2365,6 +2365,7 @@ function showAuthenticatedApp(user) {
   authUserEmail.textContent = user.email || "Usuario autorizado";
 
   setMinimumDate();
+loadImportedRouteFromUrl();
   renderSavedTrips();
   initMap();
 
@@ -2454,6 +2455,9 @@ let endMarker = null;
 
 let currentAnalysis = null;
 
+// Ruta recibida desde VIAJES. Si no hay importación, el análisis habitual sigue igual.
+let importedRouteStops = null;
+
 let pointMarkers = [];
 let dgtLayer = null;
 let mapMode = "weather";
@@ -2470,6 +2474,61 @@ const $ = id =>
 /* ===========================================================
    FECHA MÍNIMA
    =========================================================== */
+
+function loadImportedRouteFromUrl() {
+  const match = window.location.hash.match(/(?:^#|&)pv=([A-Za-z0-9_-]+)/);
+  if (!match) return;
+
+  try {
+    const encoded = match[1].replace(/-/g, "+").replace(/_/g, "/");
+    const padded = encoded + "=".repeat((4 - encoded.length % 4) % 4);
+    const binary = atob(padded);
+    const bytes = Uint8Array.from(binary, char => char.charCodeAt(0));
+    const payload = JSON.parse(new TextDecoder().decode(bytes));
+
+    if (payload.version !== 1 || !Array.isArray(payload.stops) || payload.stops.length < 2) {
+      throw new Error("La ruta recibida no tiene un formato válido.");
+    }
+
+    const stops = payload.stops.map((stop, index) => {
+      const lat = Number(stop.lat);
+      const lon = Number(stop.lon);
+      if (!Number.isFinite(lat) || !Number.isFinite(lon) || Math.abs(lat) > 90 || Math.abs(lon) > 180) {
+        throw new Error(`Las coordenadas de la parada ${index + 1} no son válidas.`);
+      }
+      return {
+        lat,
+        lon,
+        displayName: String(stop.address || stop.name || `Parada ${index + 1}`),
+        routeLabel: String(stop.name || stop.address || `Parada ${index + 1}`)
+      };
+    });
+
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(payload.date || "") || !/^([01]\d|2[0-3]):[0-5]\d$/.test(payload.departure || "")) {
+      throw new Error("La fecha u hora recibida no es válida.");
+    }
+
+    importedRouteStops = stops;
+    $("origin").value = stops[0].routeLabel;
+    $("destination").value = stops[stops.length - 1].routeLabel;
+    $("travelDate").value = payload.date;
+    $("departureTime").value = payload.departure;
+
+    const button = $("analyzeBtn");
+    if (button) button.textContent = `🔍 ANALIZAR RUTA CON ${stops.length - 2} PARADAS INTERMEDIAS`;
+    const statusMain = $("statusMain");
+    const statusDetail = $("statusDetail");
+    if (statusMain) statusMain.textContent = "RUTA RECIBIDA DESDE VIAJES";
+    if (statusDetail) statusDetail.textContent = `Se analizarán ${stops.length} puntos de ruta (origen, paradas y destino). Comprueba la fecha y la hora antes de analizar.`;
+
+    // Remove the payload from the address bar after importing it; the form keeps the values.
+    history.replaceState(null, "", window.location.pathname + window.location.search);
+  } catch (error) {
+    console.error("No se pudo importar la ruta desde VIAJES", error);
+    showError("No se ha podido importar la ruta recibida desde VIAJES. Puedes introducir el viaje manualmente.");
+    history.replaceState(null, "", window.location.pathname + window.location.search);
+  }
+}
 
 function setMinimumDate() {
 
@@ -2789,17 +2848,19 @@ async function geocode(place) {
 
 async function getRoute(
   origin,
-  destination
+  destination,
+  intermediateStops = []
 ) {
 
   /*
-   OSRM utiliza:
-   longitud,latitud
+   OSRM utiliza longitud,latitud. Si VIAJES ha enviado
+   paradas intermedias, se incluyen todas en su orden real.
   */
 
-  const coordinates =
-    `${origin.lon},${origin.lat};` +
-    `${destination.lon},${destination.lat}`;
+  const routeStops = [origin, ...(intermediateStops || []), destination];
+  const coordinates = routeStops
+    .map(stop => `${stop.lon},${stop.lat}`)
+    .join(";");
 
 
   const params =
@@ -6794,9 +6855,9 @@ async function analyzeTravel() {
 
 
     const origin =
-      await geocode(
-        originInput
-      );
+      importedRouteStops && importedRouteStops.length >= 2
+        ? importedRouteStops[0]
+        : await geocode(originInput);
 
 
     setStatus(
@@ -6806,9 +6867,9 @@ async function analyzeTravel() {
 
 
     const destination =
-      await geocode(
-        destinationInput
-      );
+      importedRouteStops && importedRouteStops.length >= 2
+        ? importedRouteStops[importedRouteStops.length - 1]
+        : await geocode(destinationInput);
 
 
     /* -------------------------------------------------------
@@ -6824,7 +6885,10 @@ async function analyzeTravel() {
     const route =
       await getRoute(
         origin,
-        destination
+        destination,
+        importedRouteStops && importedRouteStops.length >= 2
+          ? importedRouteStops.slice(1, -1)
+          : []
       );
 
 
@@ -7183,9 +7247,9 @@ async function analyzeTravel() {
 
       destination,
 
-      originInput,
+      originInput: importedRouteStops && importedRouteStops.length >= 2 ? importedRouteStops[0].routeLabel : originInput,
 
-      destinationInput,
+      destinationInput: importedRouteStops && importedRouteStops.length >= 2 ? importedRouteStops[importedRouteStops.length - 1].routeLabel : destinationInput,
 
       date,
 
