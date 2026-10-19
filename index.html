@@ -3798,15 +3798,38 @@ function alertTouchesRoute(
 
   }
 
-  /* CAP puede aportar polígonos como [[lat,lon], ...] o
-     como listas planas de coordenadas. Si el aviso tiene
-     geometría, comprobamos si alguno de los puntos de la ruta
-     cae dentro del área oficial. */
-  const polygons =
+  /*
+   * La salida de aemet.yml coloca los polígonos en
+   * alert.areas[].polygons. También admitimos las estructuras
+   * planas que puedan devolver otros proveedores.
+   * Las coordenadas CAP de este flujo son [latitud, longitud].
+   */
+  const candidatePolygons = [];
+  const directGeometry =
     alert.polygons ||
     alert.polygon ||
+    alert.geometry?.coordinates ||
     alert.geometry ||
     alert.coordinates;
+
+  function addPolygonCollection(value) {
+    if (!Array.isArray(value) || !value.length) return;
+    if (Array.isArray(value[0]) && Array.isArray(value[0][0])) {
+      candidatePolygons.push(...value);
+    } else {
+      candidatePolygons.push(value);
+    }
+  }
+
+  addPolygonCollection(directGeometry);
+
+  if (Array.isArray(alert.areas)) {
+    alert.areas.forEach(area => {
+      if (Array.isArray(area?.polygons)) {
+        area.polygons.forEach(polygon => addPolygonCollection(polygon));
+      }
+    });
+  }
 
   function pointInPolygon(lat, lon, polygon) {
     if (!Array.isArray(polygon) || polygon.length < 3) return false;
@@ -3825,15 +3848,9 @@ function alertTouchesRoute(
     return inside;
   }
 
-  if (Array.isArray(polygons)) {
-    const candidatePolygons =
-      Array.isArray(polygons[0]) && Array.isArray(polygons[0][0])
-        ? polygons
-        : [polygons];
-    for (const polygon of candidatePolygons) {
-      if (points.some(point => pointInPolygon(point.lat, point.lon, polygon))) {
-        return true;
-      }
+  for (const polygon of candidatePolygons) {
+    if (points.some(point => pointInPolygon(point.lat, point.lon, polygon))) {
+      return true;
     }
   }
 
@@ -4169,34 +4186,12 @@ function applyOfficialAlertsToRisk(
         bonus = 10;
       }
 
-      const lat =
-        Number(
-          alert.lat ??
-          alert.latitude
-        );
-
-      const lon =
-        Number(
-          alert.lon ??
-          alert.longitude
-        );
-
       analysis.points.forEach(
         point => {
 
-          const relevant =
-            (
-              Number.isFinite(lat) &&
-              Number.isFinite(lon)
-            )
-              ? haversineKm(
-                  lat,
-                  lon,
-                  point.lat,
-                  point.lon
-                ) <= 50
-              : alert.routeRelevant === true ||
-                alert.relevant === true;
+          /* Usa la misma comprobación geográfica que filtra los avisos,
+             incluidos los polígonos anidados de AEMET. */
+          const relevant = alertTouchesRoute(alert, [point]);
 
           if (!relevant) {
             return;
@@ -5619,29 +5614,45 @@ function renderGlobalRisk(
   const score =
     analysis.globalScore;
 
+  /* No convertir la ausencia total de datos meteorológicos en riesgo 0. */
+  if (score === null || score === undefined || !Number.isFinite(Number(score))) {
+    $("scoreNumber").textContent = "—";
+    $("riskName").textContent = "DATOS INSUFICIENTES";
+    $("riskDescription").textContent =
+      "No se puede calcular un nivel global fiable porque no hay datos meteorológicos compatibles para los puntos del recorrido. Consulta las fuentes oficiales antes de viajar.";
+    $("scoreCircle").style.setProperty("--risk-color", "#aab5c0");
+    $("scoreCircle").style.setProperty("--risk-angle", "0deg");
+    $("confidence").innerHTML = `
+      <strong style="color:#aab5c0">Fiabilidad: NO EVALUABLE</strong>
+      <span>No hay datos meteorológicos suficientes para asignar un nivel de riesgo.</span>
+    `;
+    const insufficientMethod = document.getElementById("riskMethod");
+    if (insufficientMethod) {
+      insufficientMethod.innerHTML = `
+        <strong>Evaluación incompleta:</strong>
+        la ausencia de datos no significa que el trayecto esté libre de peligro.
+      `;
+    }
+    return;
+  }
 
   const risk =
     getRiskLevel(score);
 
-
   $("scoreNumber").textContent =
     score;
-
 
   $("riskName").textContent =
     risk.name;
 
-
   $("riskDescription").textContent =
     risk.description;
-
 
   $("scoreCircle").style
     .setProperty(
       "--risk-color",
       risk.color
     );
-
 
   $("scoreCircle").style
     .setProperty(
@@ -6356,8 +6367,11 @@ function renderRecommendation(
 
   let text;
 
-
-  if (score <= 20) {
+  if (score === null || score === undefined || !Number.isFinite(Number(score))) {
+    text =
+      "DATOS INSUFICIENTES: no se puede evaluar de forma fiable el riesgo global porque faltan datos meteorológicos compatibles. No interpretes esta situación como ausencia de peligro; consulta AEMET, DGT y Protección Civil antes de salir.";
+  }
+  else if (score <= 20) {
 
     text =
       "Con los datos meteorológicos disponibles no se han detectado condiciones relevantes que eleven significativamente el riesgo de conducción. Mantén la precaución habitual y revisa las previsiones antes de salir.";
@@ -6436,7 +6450,8 @@ function calculateGlobalScore(
 
   if (!scores.length) {
 
-    return 0;
+    /* null representa ausencia total de datos, no riesgo bajo. */
+    return null;
 
   }
 
