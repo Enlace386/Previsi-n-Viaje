@@ -4141,27 +4141,28 @@ async function fetchHydrologicalStatus(
 }
 
 
-function isGreenOfficialAlert(alert) {
+function normalizeOfficialAlertLevel(alert) {
   /*
-   * En el CAP de AEMET, "severity" puede contener valores como
-   * Minor/Moderate, mientras que "level" contiene el nivel Meteoalerta.
-   * Para puntuar el riesgo, el nivel explícito tiene prioridad.
+   * AEMET puede traer el nivel en `level` o incluirlo en el texto.
+   * No interpretamos la severidad CAP (Minor/Moderate/Severe) como
+   * si fuera directamente el color Meteoalerta.
    */
-  const explicitLevel = String(
-    alert?.level ?? alert?.nivel ?? alert?.colour ?? alert?.color ?? ""
-  ).trim().toLowerCase();
+  const explicit = [
+    alert?.level, alert?.nivel, alert?.colour, alert?.color,
+    alert?.title, alert?.headline, alert?.event,
+    alert?.phenomenon, alert?.fenomeno, alert?.description
+  ].filter(Boolean).join(' ').toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-  if (/\bverde\b|\bgreen\b/.test(explicitLevel)) return true;
+  if (/\bverde\b|\bgreen\b/.test(explicit)) return 'verde';
+  if (/\bnaranja\b|\borange\b/.test(explicit)) return 'naranja';
+  if (/\bamarillo\b|\byellow\b/.test(explicit)) return 'amarillo';
+  if (/\brojo\b|\bred\b/.test(explicit)) return 'rojo';
+  return 'desconocido';
+}
 
-  const descriptiveText = [
-    alert?.title,
-    alert?.headline,
-    alert?.event,
-    alert?.phenomenon,
-    alert?.fenomeno
-  ].filter(Boolean).join(" ").toLowerCase();
-
-  return /nivel\s+(?:de\s+)?verde\b|\bgreen\s+level\b/.test(descriptiveText);
+function isGreenOfficialAlert(alert) {
+  return normalizeOfficialAlertLevel(alert) === 'verde';
 }
 
 function applyOfficialAlertsToRisk(
@@ -4197,14 +4198,14 @@ function applyOfficialAlertsToRisk(
   }
 
   function alertBonus(alert) {
-    const level = String(
-      alert?.level ?? alert?.nivel ?? alert?.colour ?? alert?.color ?? alert?.severity ?? ''
-    ).toLowerCase();
-    if (/\bverde\b|\bgreen\b/.test(level)) return 0;
-    if (/\brojo\b|\bred\b|extreme|extremo/.test(level)) return 30;
-    if (/\bnaranja\b|\borange\b|muy alto/.test(level)) return 20;
-    if (/\bamarillo\b|\byellow\b/.test(level)) return 10;
-    return 8;
+    /* Diferenciación explícita de niveles oficiales. Un nivel no
+       reconocido no suma puntos por defecto: evita falsos positivos. */
+    const level = normalizeOfficialAlertLevel(alert);
+    if (level === 'verde') return 0;
+    if (level === 'amarillo') return 10;
+    if (level === 'naranja') return 20;
+    if (level === 'rojo') return 30;
+    return 0;
   }
 
   analysis.points.forEach(point => {
