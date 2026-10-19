@@ -491,6 +491,9 @@ button {
 .map-layer-switcher{display:flex;flex-wrap:wrap;gap:7px;padding:10px 16px;background:#0b1119;border-top:1px solid var(--border)}
 .map-layer-btn{border:1px solid #2a3745;background:#111a24;color:#b9c5d1;border-radius:999px;padding:7px 11px;font:inherit;font-size:11px;font-weight:850;cursor:pointer}
 .map-layer-btn.active{background:#1b2b3b;border-color:#35d7ff;color:#fff}
+.etraffic-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin:10px 0 12px;padding:10px 14px;border:1px solid rgba(43,120,239,.22);border-radius:999px;background:rgba(43,120,239,.08);color:var(--ui-blue,#2878ef);font:inherit;font-size:12px;font-weight:800;text-decoration:none;cursor:pointer}
+.etraffic-link:hover{background:rgba(43,120,239,.14)}
+.etraffic-note{display:block;margin:0 0 10px;color:var(--ui-soft,#64748b);font-size:12px;line-height:1.45}
 .dgt-map-marker{width:30px;height:30px;display:grid;place-items:center;border-radius:50%;border:3px solid #fff;background:#ff8a00;box-shadow:0 3px 14px rgba(0,0,0,.55);font-size:15px}
 
 
@@ -2166,6 +2169,11 @@ body {
         <div class="section-title">
           🚧 Incidencias DGT
         </div>
+
+        <span class="etraffic-note">Consulta también el mapa oficial de tráfico de la DGT para contrastar las incidencias y el estado actual de la carretera. Se abrirá en una pestaña nueva; no modifica ni sustituye el análisis de esta aplicación.</span>
+        <a class="etraffic-link" href="https://etraffic.dgt.es/etrafficWEB/" target="_blank" rel="noopener noreferrer" aria-label="Abrir el mapa oficial eTraffic de la DGT en una pestaña nueva">
+          🗺️ Consultar tráfico en eTraffic <span aria-hidden="true">↗</span>
+        </a>
 
         <div id="dgtStatus" class="data-state">
           <strong>🚧 Estado: esperando consulta</strong>
