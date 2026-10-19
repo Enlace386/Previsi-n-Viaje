@@ -4171,31 +4171,62 @@ function applyOfficialAlertsToRisk(
   const alerts = analysis.officialAlerts || [];
   if (!alerts.length) return;
 
-  alerts.forEach(alert => {
-    /* Un nivel verde es información oficial, pero no debe incrementar
-       la puntuación de peligro ni añadirse a los factores de riesgo. */
-    if (isGreenOfficialAlert(alert)) return;
+  /*
+   * Puntuar cada fenómeno una sola vez por punto, usando el nivel
+   * más alto recibido para ese fenómeno. AEMET puede publicar, por
+   * ejemplo, avisos amarillo y naranja de lluvia para una misma zona;
+   * sumarlos como peligros independientes exagera el riesgo.
+   */
+  function alertPhenomenon(alert) {
+    const text = [
+      alert?.phenomenon, alert?.fenomeno, alert?.event,
+      alert?.title, alert?.headline, alert?.description
+    ].filter(Boolean).join(' ').toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-    /* Priorizar el nivel Meteoalerta sobre la severidad CAP genérica. */
-    const severity = String(
-      alert.level ?? alert.nivel ?? alert.severity ?? ""
+    if (/lluvia|rain|precipitacion/.test(text)) return 'lluvia';
+    if (/tormenta|thunderstorm/.test(text)) return 'tormenta';
+    if (/viento|wind|rachas/.test(text)) return 'viento';
+    if (/nieve|snow|nevada/.test(text)) return 'nieve';
+    if (/niebla|fog/.test(text)) return 'niebla';
+    if (/temperatura maxima|calor|heat/.test(text)) return 'temperatura-maxima';
+    if (/temperatura minima|frio|cold|helada/.test(text)) return 'temperatura-minima';
+    if (/costero|maritimo|oleaje|coastal|waves/.test(text)) return 'costero';
+    if (/polvo|dust/.test(text)) return 'polvo';
+    return text.trim() || 'otro';
+  }
+
+  function alertBonus(alert) {
+    const level = String(
+      alert?.level ?? alert?.nivel ?? alert?.colour ?? alert?.color ?? alert?.severity ?? ''
     ).toLowerCase();
+    if (/\bverde\b|\bgreen\b/.test(level)) return 0;
+    if (/\brojo\b|\bred\b|extreme|extremo/.test(level)) return 30;
+    if (/\bnaranja\b|\borange\b|muy alto/.test(level)) return 20;
+    if (/\bamarillo\b|\byellow\b/.test(level)) return 10;
+    return 8;
+  }
 
-    let bonus = 8;
-    if (severity.includes("rojo") || severity.includes("extreme") || severity.includes("extremo")) {
-      bonus = 30;
-    } else if (severity.includes("naranja") || severity.includes("orange") || severity.includes("muy alto")) {
-      bonus = 20;
-    } else if (severity.includes("amarillo") || severity.includes("yellow")) {
-      bonus = 10;
-    }
+  analysis.points.forEach(point => {
+    const strongestByPhenomenon = new Map();
 
-    analysis.points.forEach(point => {
-      /* Comprobar la geometría para cada punto; no extender un aviso a toda la ruta. */
+    alerts.forEach(alert => {
+      if (isGreenOfficialAlert(alert)) return;
       if (!alertTouchesRoute(alert, [point])) return;
 
+      const bonus = alertBonus(alert);
+      if (bonus <= 0) return;
+
+      const phenomenon = alertPhenomenon(alert);
+      const previous = strongestByPhenomenon.get(phenomenon);
+      if (!previous || bonus > previous.bonus) {
+        strongestByPhenomenon.set(phenomenon, { alert, bonus });
+      }
+    });
+
+    strongestByPhenomenon.forEach(({ alert, bonus }) => {
       point.risk.score = Math.min(100, point.risk.score + bonus);
-      const label = alert.title || alert.headline || alert.event || alert.phenomenon || alert.fenomeno || "Aviso meteorológico oficial";
+      const label = alert.title || alert.headline || alert.event || alert.phenomenon || alert.fenomeno || 'Aviso meteorológico oficial';
       point.risk.risks = Array.from(new Set([
         ...point.risk.risks,
         `Aviso oficial: ${label}`
@@ -4205,7 +4236,6 @@ function applyOfficialAlertsToRisk(
 
   analysis.globalScore = calculateGlobalScore(analysis.points);
 }
-
 
 /* ===========================================================
    RENDER AVISOS E INUNDACIONES
