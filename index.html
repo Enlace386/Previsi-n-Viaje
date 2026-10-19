@@ -4141,93 +4141,69 @@ async function fetchHydrologicalStatus(
 }
 
 
+function isGreenOfficialAlert(alert) {
+  /*
+   * En el CAP de AEMET, "severity" puede contener valores como
+   * Minor/Moderate, mientras que "level" contiene el nivel Meteoalerta.
+   * Para puntuar el riesgo, el nivel explícito tiene prioridad.
+   */
+  const explicitLevel = String(
+    alert?.level ?? alert?.nivel ?? alert?.colour ?? alert?.color ?? ""
+  ).trim().toLowerCase();
+
+  if (/\bverde\b|\bgreen\b/.test(explicitLevel)) return true;
+
+  const descriptiveText = [
+    alert?.title,
+    alert?.headline,
+    alert?.event,
+    alert?.phenomenon,
+    alert?.fenomeno
+  ].filter(Boolean).join(" ").toLowerCase();
+
+  return /nivel\s+(?:de\s+)?verde\b|\bgreen\s+level\b/.test(descriptiveText);
+}
+
 function applyOfficialAlertsToRisk(
   analysis
 ) {
 
-  const alerts =
-    analysis.officialAlerts || [];
+  const alerts = analysis.officialAlerts || [];
+  if (!alerts.length) return;
 
-  if (!alerts.length) {
-    return;
-  }
+  alerts.forEach(alert => {
+    /* Un nivel verde es información oficial, pero no debe incrementar
+       la puntuación de peligro ni añadirse a los factores de riesgo. */
+    if (isGreenOfficialAlert(alert)) return;
 
-  alerts.forEach(
-    alert => {
+    /* Priorizar el nivel Meteoalerta sobre la severidad CAP genérica. */
+    const severity = String(
+      alert.level ?? alert.nivel ?? alert.severity ?? ""
+    ).toLowerCase();
 
-      const severity =
-        String(
-          alert.severity ||
-          alert.nivel ||
-          alert.level ||
-          ""
-        ).toLowerCase();
-
-      let bonus = 8;
-
-      if (
-        severity.includes("rojo") ||
-        severity.includes("extreme") ||
-        severity.includes("extremo")
-      ) {
-        bonus = 30;
-      }
-      else if (
-        severity.includes("naranja") ||
-        severity.includes("orange") ||
-        severity.includes("muy alto")
-      ) {
-        bonus = 20;
-      }
-      else if (
-        severity.includes("amarillo") ||
-        severity.includes("yellow")
-      ) {
-        bonus = 10;
-      }
-
-      analysis.points.forEach(
-        point => {
-
-          /* Usa la misma comprobación geográfica que filtra los avisos,
-             incluidos los polígonos anidados de AEMET. */
-          const relevant = alertTouchesRoute(alert, [point]);
-
-          if (!relevant) {
-            return;
-          }
-
-          point.risk.score =
-            Math.min(
-              100,
-              point.risk.score + bonus
-            );
-
-          const label =
-            alert.title ||
-            alert.event ||
-            alert.fenomeno ||
-            "Aviso meteorológico oficial";
-
-          point.risk.risks =
-            Array.from(
-              new Set([
-                ...point.risk.risks,
-                `Aviso oficial: ${label}`
-              ])
-            );
-
-        }
-      );
-
+    let bonus = 8;
+    if (severity.includes("rojo") || severity.includes("extreme") || severity.includes("extremo")) {
+      bonus = 30;
+    } else if (severity.includes("naranja") || severity.includes("orange") || severity.includes("muy alto")) {
+      bonus = 20;
+    } else if (severity.includes("amarillo") || severity.includes("yellow")) {
+      bonus = 10;
     }
-  );
 
-  analysis.globalScore =
-    calculateGlobalScore(
-      analysis.points
-    );
+    analysis.points.forEach(point => {
+      /* Comprobar la geometría para cada punto; no extender un aviso a toda la ruta. */
+      if (!alertTouchesRoute(alert, [point])) return;
 
+      point.risk.score = Math.min(100, point.risk.score + bonus);
+      const label = alert.title || alert.headline || alert.event || alert.phenomenon || alert.fenomeno || "Aviso meteorológico oficial";
+      point.risk.risks = Array.from(new Set([
+        ...point.risk.risks,
+        `Aviso oficial: ${label}`
+      ]));
+    });
+  });
+
+  analysis.globalScore = calculateGlobalScore(analysis.points);
 }
 
 
@@ -4292,8 +4268,9 @@ function renderOfficialAlerts(
   status.innerHTML = `
     <strong>🚨 ${alerts.length} aviso(s) oficial(es) relevante(s)</strong>
     <span>
-      Los avisos oficiales relevantes incrementan el riesgo
-      de los puntos afectados.
+      Los avisos de nivel amarillo, naranja o rojo pueden incrementar
+      el riesgo en los puntos afectados. Los niveles verdes son informativos
+      y no suman puntos al riesgo.
     </span>
   `;
 
