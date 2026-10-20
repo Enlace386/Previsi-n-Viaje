@@ -1,9 +1,211 @@
 {
   "source": "AEMET OpenData",
-  "generatedAt": "2026-10-20T10:36:26.147320+00:00",
+  "generatedAt": "2026-10-20T15:27:21.062098+00:00",
   "status": "ok",
   "count": 211,
   "alerts": [
+    {
+      "id": "2.49.0.0.724.0.ES.20261020120409.659501PRP120171792497849",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-20T12:04:09+00:00",
+      "status": "Actual",
+      "messageType": "Update",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel naranja",
+      "urgency": "Immediate",
+      "severity": "Severe",
+      "certainty": "Observed",
+      "effective": "2026-10-20T13:04:09+01:00",
+      "onset": "2026-10-20T13:00:00+01:00",
+      "expires": "2026-10-20T17:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel naranja. El Hierro",
+      "description": "Precipitación acumulada en una hora: 30 mm. Chubascos fuertes que pueden ir acompañados de tormenta.",
+      "instruction": "Esté preparado. Tome precauciones y manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños graves a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "naranja",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "El Hierro",
+          "zoneCode": "659501",
+          "polygons": [
+            [
+              [
+                27.69,
+                -18.05
+              ],
+              [
+                27.71,
+                -18.16
+              ],
+              [
+                27.75,
+                -18.15
+              ],
+              [
+                27.77,
+                -18.13
+              ],
+              [
+                27.75,
+                -18.07
+              ],
+              [
+                27.76,
+                -18.03
+              ],
+              [
+                27.8,
+                -17.99
+              ],
+              [
+                27.84,
+                -17.96
+              ],
+              [
+                27.85,
+                -17.92
+              ],
+              [
+                27.8,
+                -17.88
+              ],
+              [
+                27.78,
+                -17.9
+              ],
+              [
+                27.73,
+                -17.93
+              ],
+              [
+                27.72,
+                -17.96
+              ],
+              [
+                27.65,
+                -17.97
+              ],
+              [
+                27.65,
+                -18.01
+              ],
+              [
+                27.69,
+                -18.05
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261020122807.659501PRP220171792499287",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-20T12:28:07+00:00",
+      "status": "Actual",
+      "messageType": "Update",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel naranja",
+      "urgency": "Immediate",
+      "severity": "Severe",
+      "certainty": "Observed",
+      "effective": "2026-10-20T13:28:07+01:00",
+      "onset": "2026-10-20T13:00:00+01:00",
+      "expires": "2026-10-20T17:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel naranja. El Hierro",
+      "description": "Precipitación acumulada en 12 horas: 100 mm. Chubascos fuertes que pueden ir acompañados de tormenta.",
+      "instruction": "Esté preparado. Tome precauciones y manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños graves a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "naranja",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "El Hierro",
+          "zoneCode": "659501",
+          "polygons": [
+            [
+              [
+                27.69,
+                -18.05
+              ],
+              [
+                27.71,
+                -18.16
+              ],
+              [
+                27.75,
+                -18.15
+              ],
+              [
+                27.77,
+                -18.13
+              ],
+              [
+                27.75,
+                -18.07
+              ],
+              [
+                27.76,
+                -18.03
+              ],
+              [
+                27.8,
+                -17.99
+              ],
+              [
+                27.84,
+                -17.96
+              ],
+              [
+                27.85,
+                -17.92
+              ],
+              [
+                27.8,
+                -17.88
+              ],
+              [
+                27.78,
+                -17.9
+              ],
+              [
+                27.73,
+                -17.93
+              ],
+              [
+                27.72,
+                -17.96
+              ],
+              [
+                27.65,
+                -17.97
+              ],
+              [
+                27.65,
+                -18.01
+              ],
+              [
+                27.69,
+                -18.05
+              ]
+            ]
+          ]
+        }
+      ]
+    },
     {
       "id": "2.49.0.0.724.0.ES.20261019091707.691703PRP120101792401427",
       "sender": "http://www.aemet.es",
@@ -685,208 +887,6 @@
               [
                 42.38,
                 2.85
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261019164917.659501PRP120171792428557",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-19T16:49:17+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel amarillo",
-      "urgency": "Immediate",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-19T17:49:17+01:00",
-      "onset": "2026-10-19T17:00:00+01:00",
-      "expires": "2026-10-20T17:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel amarillo. El Hierro",
-      "description": "Precipitación acumulada en una hora: 15 mm. Chubascos fuertes que pueden ir acompañados de tormenta.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "El Hierro",
-          "zoneCode": "659501",
-          "polygons": [
-            [
-              [
-                27.69,
-                -18.05
-              ],
-              [
-                27.71,
-                -18.16
-              ],
-              [
-                27.75,
-                -18.15
-              ],
-              [
-                27.77,
-                -18.13
-              ],
-              [
-                27.75,
-                -18.07
-              ],
-              [
-                27.76,
-                -18.03
-              ],
-              [
-                27.8,
-                -17.99
-              ],
-              [
-                27.84,
-                -17.96
-              ],
-              [
-                27.85,
-                -17.92
-              ],
-              [
-                27.8,
-                -17.88
-              ],
-              [
-                27.78,
-                -17.9
-              ],
-              [
-                27.73,
-                -17.93
-              ],
-              [
-                27.72,
-                -17.96
-              ],
-              [
-                27.65,
-                -17.97
-              ],
-              [
-                27.65,
-                -18.01
-              ],
-              [
-                27.69,
-                -18.05
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261019164917.659501PRP220171792428557",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-19T16:49:17+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel amarillo",
-      "urgency": "Immediate",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-19T17:49:17+01:00",
-      "onset": "2026-10-19T17:00:00+01:00",
-      "expires": "2026-10-20T17:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel amarillo. El Hierro",
-      "description": "Precipitación acumulada en 12 horas: 60 mm. Chubascos fuertes que pueden ir acompañados de tormenta.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "El Hierro",
-          "zoneCode": "659501",
-          "polygons": [
-            [
-              [
-                27.69,
-                -18.05
-              ],
-              [
-                27.71,
-                -18.16
-              ],
-              [
-                27.75,
-                -18.15
-              ],
-              [
-                27.77,
-                -18.13
-              ],
-              [
-                27.75,
-                -18.07
-              ],
-              [
-                27.76,
-                -18.03
-              ],
-              [
-                27.8,
-                -17.99
-              ],
-              [
-                27.84,
-                -17.96
-              ],
-              [
-                27.85,
-                -17.92
-              ],
-              [
-                27.8,
-                -17.88
-              ],
-              [
-                27.78,
-                -17.9
-              ],
-              [
-                27.73,
-                -17.93
-              ],
-              [
-                27.72,
-                -17.96
-              ],
-              [
-                27.65,
-                -17.97
-              ],
-              [
-                27.65,
-                -18.01
-              ],
-              [
-                27.69,
-                -18.05
               ]
             ]
           ]
@@ -4811,6 +4811,211 @@
       ]
     },
     {
+      "id": "2.49.0.0.724.0.ES.20261020092533.712701VIRM22221792488333",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-20T09:25:33+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de vientos de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-20T11:25:33+02:00",
+      "onset": "2026-10-22T14:00:00+02:00",
+      "expires": "2026-10-22T23:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de vientos de nivel amarillo. A Mariña",
+      "description": "Rachas máximas: 80 km/h. Viento del suroeste girando a oeste.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "A Mariña",
+          "zoneCode": "712701",
+          "polygons": [
+            [
+              [
+                43.56,
+                -7.75
+              ],
+              [
+                43.58,
+                -7.72
+              ],
+              [
+                43.62,
+                -7.73
+              ],
+              [
+                43.66,
+                -7.69
+              ],
+              [
+                43.67,
+                -7.71
+              ],
+              [
+                43.74,
+                -7.7
+              ],
+              [
+                43.75,
+                -7.67
+              ],
+              [
+                43.73,
+                -7.63
+              ],
+              [
+                43.68,
+                -7.59
+              ],
+              [
+                43.73,
+                -7.54
+              ],
+              [
+                43.73,
+                -7.49
+              ],
+              [
+                43.7,
+                -7.47
+              ],
+              [
+                43.67,
+                -7.36
+              ],
+              [
+                43.63,
+                -7.33
+              ],
+              [
+                43.6,
+                -7.29
+              ],
+              [
+                43.56,
+                -7.22
+              ],
+              [
+                43.55,
+                -7.16
+              ],
+              [
+                43.56,
+                -7.06
+              ],
+              [
+                43.55,
+                -7.03
+              ],
+              [
+                43.54,
+                -7.03
+              ],
+              [
+                43.47,
+                -7.05
+              ],
+              [
+                43.42,
+                -7.13
+              ],
+              [
+                43.43,
+                -7.17
+              ],
+              [
+                43.4,
+                -7.18
+              ],
+              [
+                43.3,
+                -7.1
+              ],
+              [
+                43.3,
+                -7.09
+              ],
+              [
+                43.27,
+                -7.16
+              ],
+              [
+                43.26,
+                -7.2
+              ],
+              [
+                43.29,
+                -7.2
+              ],
+              [
+                43.29,
+                -7.26
+              ],
+              [
+                43.39,
+                -7.25
+              ],
+              [
+                43.38,
+                -7.31
+              ],
+              [
+                43.38,
+                -7.43
+              ],
+              [
+                43.42,
+                -7.45
+              ],
+              [
+                43.46,
+                -7.45
+              ],
+              [
+                43.45,
+                -7.52
+              ],
+              [
+                43.47,
+                -7.57
+              ],
+              [
+                43.52,
+                -7.54
+              ],
+              [
+                43.54,
+                -7.59
+              ],
+              [
+                43.53,
+                -7.62
+              ],
+              [
+                43.52,
+                -7.7
+              ],
+              [
+                43.56,
+                -7.75
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
       "id": "2.49.0.0.724.0.ES.20261020092533.711501COCO22221792488333",
       "sender": "http://www.aemet.es",
       "sent": "2026-10-20T09:25:33+00:00",
@@ -5081,211 +5286,6 @@
               [
                 43.46,
                 -9.42
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261020092533.712701VIRM22221792488333",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T09:25:33+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de vientos de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-20T11:25:33+02:00",
-      "onset": "2026-10-22T14:00:00+02:00",
-      "expires": "2026-10-22T23:59:59+02:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de vientos de nivel amarillo. A Mariña",
-      "description": "Rachas máximas: 80 km/h. Viento del suroeste girando a oeste.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "A Mariña",
-          "zoneCode": "712701",
-          "polygons": [
-            [
-              [
-                43.56,
-                -7.75
-              ],
-              [
-                43.58,
-                -7.72
-              ],
-              [
-                43.62,
-                -7.73
-              ],
-              [
-                43.66,
-                -7.69
-              ],
-              [
-                43.67,
-                -7.71
-              ],
-              [
-                43.74,
-                -7.7
-              ],
-              [
-                43.75,
-                -7.67
-              ],
-              [
-                43.73,
-                -7.63
-              ],
-              [
-                43.68,
-                -7.59
-              ],
-              [
-                43.73,
-                -7.54
-              ],
-              [
-                43.73,
-                -7.49
-              ],
-              [
-                43.7,
-                -7.47
-              ],
-              [
-                43.67,
-                -7.36
-              ],
-              [
-                43.63,
-                -7.33
-              ],
-              [
-                43.6,
-                -7.29
-              ],
-              [
-                43.56,
-                -7.22
-              ],
-              [
-                43.55,
-                -7.16
-              ],
-              [
-                43.56,
-                -7.06
-              ],
-              [
-                43.55,
-                -7.03
-              ],
-              [
-                43.54,
-                -7.03
-              ],
-              [
-                43.47,
-                -7.05
-              ],
-              [
-                43.42,
-                -7.13
-              ],
-              [
-                43.43,
-                -7.17
-              ],
-              [
-                43.4,
-                -7.18
-              ],
-              [
-                43.3,
-                -7.1
-              ],
-              [
-                43.3,
-                -7.09
-              ],
-              [
-                43.27,
-                -7.16
-              ],
-              [
-                43.26,
-                -7.2
-              ],
-              [
-                43.29,
-                -7.2
-              ],
-              [
-                43.29,
-                -7.26
-              ],
-              [
-                43.39,
-                -7.25
-              ],
-              [
-                43.38,
-                -7.31
-              ],
-              [
-                43.38,
-                -7.43
-              ],
-              [
-                43.42,
-                -7.45
-              ],
-              [
-                43.46,
-                -7.45
-              ],
-              [
-                43.45,
-                -7.52
-              ],
-              [
-                43.47,
-                -7.57
-              ],
-              [
-                43.52,
-                -7.54
-              ],
-              [
-                43.54,
-                -7.59
-              ],
-              [
-                43.53,
-                -7.62
-              ],
-              [
-                43.52,
-                -7.7
-              ],
-              [
-                43.56,
-                -7.75
               ]
             ]
           ]
