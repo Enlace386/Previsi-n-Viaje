@@ -1,8 +1,8 @@
 {
   "source": "AEMET OpenData",
-  "generatedAt": "2026-10-21T19:45:59.799071+00:00",
+  "generatedAt": "2026-10-21T22:52:47.224769+00:00",
   "status": "ok",
-  "count": 230,
+  "count": 235,
   "alerts": [
     {
       "id": "2.49.0.0.724.0.ES.20261021092932.659303PRP122171792574972",
@@ -8428,9 +8428,934 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.65VV65ATTA23231792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.663901COCO24041792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de costeros de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T05:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de costeros de nivel amarillo. Costa - Litoral cántabro",
+      "description": "Mar combinada del Noroeste de 4 a 5 m.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Costa - Litoral cántabro",
+          "zoneCode": "663901C",
+          "polygons": [
+            [
+              [
+                43.35,
+                -3.15
+              ],
+              [
+                43.36,
+                -3.19
+              ],
+              [
+                43.39,
+                -3.22
+              ],
+              [
+                43.42,
+                -3.33
+              ],
+              [
+                43.41,
+                -3.43
+              ],
+              [
+                43.47,
+                -3.43
+              ],
+              [
+                43.47,
+                -3.49
+              ],
+              [
+                43.51,
+                -3.55
+              ],
+              [
+                43.51,
+                -3.6
+              ],
+              [
+                43.48,
+                -3.69
+              ],
+              [
+                43.45,
+                -3.77
+              ],
+              [
+                43.41,
+                -3.81
+              ],
+              [
+                43.4,
+                -3.81
+              ],
+              [
+                43.44,
+                -3.83
+              ],
+              [
+                43.46,
+                -3.78
+              ],
+              [
+                43.5,
+                -3.81
+              ],
+              [
+                43.48,
+                -3.86
+              ],
+              [
+                43.47,
+                -3.94
+              ],
+              [
+                43.44,
+                -3.98
+              ],
+              [
+                43.44,
+                -4.05
+              ],
+              [
+                43.43,
+                -4.05
+              ],
+              [
+                43.4,
+                -4.22
+              ],
+              [
+                43.39,
+                -4.28
+              ],
+              [
+                43.4,
+                -4.41
+              ],
+              [
+                43.4,
+                -4.5
+              ],
+              [
+                43.39,
+                -4.51
+              ],
+              [
+                43.51,
+                -4.51
+              ],
+              [
+                43.73,
+                -4.52
+              ],
+              [
+                43.73,
+                -4.3
+              ],
+              [
+                43.76,
+                -4.21
+              ],
+              [
+                43.82,
+                -3.94
+              ],
+              [
+                43.83,
+                -3.85
+              ],
+              [
+                43.82,
+                -3.75
+              ],
+              [
+                43.84,
+                -3.66
+              ],
+              [
+                43.85,
+                -3.56
+              ],
+              [
+                43.84,
+                -3.47
+              ],
+              [
+                43.81,
+                -3.38
+              ],
+              [
+                43.74,
+                -3.19
+              ],
+              [
+                43.63,
+                -3.17
+              ],
+              [
+                43.39,
+                -3.15
+              ],
+              [
+                43.35,
+                -3.15
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261021215001.691703COCO24081792619401",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-21T21:50:01+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de costeros de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T09:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de costeros de nivel amarillo. Costa - Ampurdán",
+      "description": "Viento del norte y noroeste de 50 a 60 km/h (fuerza 7) con olas de 2 a 3 m.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Costa - Ampurdán",
+          "zoneCode": "691703C",
+          "polygons": [
+            [
+              [
+                41.82,
+                3.08
+              ],
+              [
+                41.83,
+                3.09
+              ],
+              [
+                41.85,
+                3.15
+              ],
+              [
+                41.89,
+                3.2
+              ],
+              [
+                41.97,
+                3.23
+              ],
+              [
+                42.0,
+                3.2
+              ],
+              [
+                42.05,
+                3.2
+              ],
+              [
+                42.06,
+                3.21
+              ],
+              [
+                42.12,
+                3.17
+              ],
+              [
+                42.13,
+                3.13
+              ],
+              [
+                42.17,
+                3.11
+              ],
+              [
+                42.22,
+                3.12
+              ],
+              [
+                42.26,
+                3.16
+              ],
+              [
+                42.23,
+                3.22
+              ],
+              [
+                42.25,
+                3.28
+              ],
+              [
+                42.28,
+                3.28
+              ],
+              [
+                42.32,
+                3.31
+              ],
+              [
+                42.34,
+                3.27
+              ],
+              [
+                42.34,
+                3.24
+              ],
+              [
+                42.36,
+                3.16
+              ],
+              [
+                42.41,
+                3.16
+              ],
+              [
+                42.44,
+                3.18
+              ],
+              [
+                42.43,
+                3.25
+              ],
+              [
+                42.44,
+                3.71
+              ],
+              [
+                42.41,
+                3.75
+              ],
+              [
+                42.35,
+                3.77
+              ],
+              [
+                42.29,
+                3.77
+              ],
+              [
+                42.22,
+                3.75
+              ],
+              [
+                42.16,
+                3.72
+              ],
+              [
+                42.09,
+                3.67
+              ],
+              [
+                41.94,
+                3.68
+              ],
+              [
+                41.88,
+                3.67
+              ],
+              [
+                41.82,
+                3.64
+              ],
+              [
+                41.72,
+                3.58
+              ],
+              [
+                41.66,
+                3.52
+              ],
+              [
+                41.61,
+                3.46
+              ],
+              [
+                41.82,
+                3.08
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261021215001.694305VIRM24041792619401",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-21T21:50:01+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de vientos de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T05:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de vientos de nivel amarillo. Prelitoral sur de Tarragona",
+      "description": "Rachas máximas: 70 km/h. Viento del noroeste.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Prelitoral sur de Tarragona",
+          "zoneCode": "694305",
+          "polygons": [
+            [
+              [
+                40.82,
+                0.27
+              ],
+              [
+                40.85,
+                0.33
+              ],
+              [
+                40.89,
+                0.37
+              ],
+              [
+                40.93,
+                0.37
+              ],
+              [
+                40.96,
+                0.4
+              ],
+              [
+                40.96,
+                0.44
+              ],
+              [
+                41.03,
+                0.47
+              ],
+              [
+                41.06,
+                0.5
+              ],
+              [
+                41.12,
+                0.56
+              ],
+              [
+                41.14,
+                0.61
+              ],
+              [
+                41.17,
+                0.61
+              ],
+              [
+                41.18,
+                0.65
+              ],
+              [
+                41.22,
+                0.71
+              ],
+              [
+                41.25,
+                0.69
+              ],
+              [
+                41.3,
+                0.72
+              ],
+              [
+                41.32,
+                0.75
+              ],
+              [
+                41.33,
+                0.76
+              ],
+              [
+                41.33,
+                0.82
+              ],
+              [
+                41.36,
+                0.97
+              ],
+              [
+                41.33,
+                1.0
+              ],
+              [
+                41.33,
+                1.07
+              ],
+              [
+                41.29,
+                1.14
+              ],
+              [
+                41.24,
+                1.14
+              ],
+              [
+                41.23,
+                1.1
+              ],
+              [
+                41.24,
+                1.06
+              ],
+              [
+                41.2,
+                1.02
+              ],
+              [
+                41.18,
+                1.04
+              ],
+              [
+                41.14,
+                1.02
+              ],
+              [
+                41.11,
+                0.95
+              ],
+              [
+                41.13,
+                0.92
+              ],
+              [
+                41.1,
+                0.9
+              ],
+              [
+                41.06,
+                0.92
+              ],
+              [
+                41.03,
+                0.91
+              ],
+              [
+                41.03,
+                0.85
+              ],
+              [
+                41.05,
+                0.81
+              ],
+              [
+                41.0,
+                0.78
+              ],
+              [
+                40.94,
+                0.82
+              ],
+              [
+                40.93,
+                0.75
+              ],
+              [
+                40.95,
+                0.67
+              ],
+              [
+                40.93,
+                0.61
+              ],
+              [
+                40.9,
+                0.61
+              ],
+              [
+                40.87,
+                0.67
+              ],
+              [
+                40.81,
+                0.61
+              ],
+              [
+                40.76,
+                0.61
+              ],
+              [
+                40.74,
+                0.51
+              ],
+              [
+                40.74,
+                0.44
+              ],
+              [
+                40.66,
+                0.35
+              ],
+              [
+                40.61,
+                0.33
+              ],
+              [
+                40.63,
+                0.28
+              ],
+              [
+                40.66,
+                0.27
+              ],
+              [
+                40.69,
+                0.29
+              ],
+              [
+                40.7,
+                0.24
+              ],
+              [
+                40.73,
+                0.22
+              ],
+              [
+                40.73,
+                0.17
+              ],
+              [
+                40.82,
+                0.27
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261021215001.752001COCO24041792619401",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-21T21:50:01+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de costeros de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T05:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de costeros de nivel amarillo. Costa - Gipuzkoa litoral",
+      "description": "Mar combinada del Noroeste de 4 a 5 m.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Costa - Gipuzkoa litoral",
+          "zoneCode": "752001C",
+          "polygons": [
+            [
+              [
+                43.69,
+                -2.39
+              ],
+              [
+                43.67,
+                -2.3
+              ],
+              [
+                43.63,
+                -2.21
+              ],
+              [
+                43.7,
+                -1.96
+              ],
+              [
+                43.72,
+                -1.88
+              ],
+              [
+                43.73,
+                -1.74
+              ],
+              [
+                43.65,
+                -1.72
+              ],
+              [
+                43.48,
+                -1.73
+              ],
+              [
+                43.44,
+                -1.74
+              ],
+              [
+                43.37,
+                -1.79
+              ],
+              [
+                43.38,
+                -1.83
+              ],
+              [
+                43.37,
+                -1.86
+              ],
+              [
+                43.34,
+                -1.92
+              ],
+              [
+                43.34,
+                -1.96
+              ],
+              [
+                43.32,
+                -1.99
+              ],
+              [
+                43.32,
+                -2.04
+              ],
+              [
+                43.29,
+                -2.18
+              ],
+              [
+                43.31,
+                -2.21
+              ],
+              [
+                43.3,
+                -2.27
+              ],
+              [
+                43.3,
+                -2.35
+              ],
+              [
+                43.3,
+                -2.36
+              ],
+              [
+                43.32,
+                -2.41
+              ],
+              [
+                43.69,
+                -2.39
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261021215001.754801COCO24041792619401",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-21T21:50:01+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de costeros de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T05:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de costeros de nivel amarillo. Costa - Bizkaia litoral",
+      "description": "Mar combinada del Noroeste de 4 a 5 m.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Costa - Bizkaia litoral",
+          "zoneCode": "754801C",
+          "polygons": [
+            [
+              [
+                43.37,
+                -2.49
+              ],
+              [
+                43.37,
+                -2.54
+              ],
+              [
+                43.39,
+                -2.56
+              ],
+              [
+                43.39,
+                -2.62
+              ],
+              [
+                43.42,
+                -2.72
+              ],
+              [
+                43.46,
+                -2.75
+              ],
+              [
+                43.43,
+                -2.81
+              ],
+              [
+                43.44,
+                -2.94
+              ],
+              [
+                43.39,
+                -2.99
+              ],
+              [
+                43.37,
+                -3.03
+              ],
+              [
+                43.34,
+                -3.01
+              ],
+              [
+                43.36,
+                -3.11
+              ],
+              [
+                43.35,
+                -3.11
+              ],
+              [
+                43.35,
+                -3.15
+              ],
+              [
+                43.39,
+                -3.15
+              ],
+              [
+                43.63,
+                -3.17
+              ],
+              [
+                43.74,
+                -3.19
+              ],
+              [
+                43.73,
+                -3.16
+              ],
+              [
+                43.75,
+                -3.1
+              ],
+              [
+                43.77,
+                -3.01
+              ],
+              [
+                43.79,
+                -2.82
+              ],
+              [
+                43.79,
+                -2.72
+              ],
+              [
+                43.78,
+                -2.62
+              ],
+              [
+                43.75,
+                -2.53
+              ],
+              [
+                43.69,
+                -2.39
+              ],
+              [
+                43.32,
+                -2.41
+              ],
+              [
+                43.33,
+                -2.42
+              ],
+              [
+                43.33,
+                -2.43
+              ],
+              [
+                43.37,
+                -2.49
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261021215001.65VV65ATTA24231792619401",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -8438,9 +9363,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T22:50:01+01:00",
-      "onset": "2026-10-23T00:00:00+01:00",
-      "expires": "2026-10-23T23:59:59+01:00",
+      "effective": "2026-10-21T22:50:01+01:00",
+      "onset": "2026-10-24T00:00:00+01:00",
+      "expires": "2026-10-24T23:59:59+01:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas máximas de nivel verde. CCAA",
       "description": null,
@@ -9707,9 +10632,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.65VV65BTTI23231792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.65VV65BTTI24231792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -9717,9 +10642,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T22:50:01+01:00",
-      "onset": "2026-10-23T00:00:00+01:00",
-      "expires": "2026-10-23T23:59:59+01:00",
+      "effective": "2026-10-21T22:50:01+01:00",
+      "onset": "2026-10-24T00:00:00+01:00",
+      "expires": "2026-10-24T23:59:59+01:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas mínimas de nivel verde. CCAA",
       "description": null,
@@ -10986,9 +11911,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.65VV65COCO23231792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.65VV65COCO24231792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -10996,9 +11921,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T22:50:01+01:00",
-      "onset": "2026-10-23T00:00:00+01:00",
-      "expires": "2026-10-23T23:59:59+01:00",
+      "effective": "2026-10-21T22:50:01+01:00",
+      "onset": "2026-10-24T00:00:00+01:00",
+      "expires": "2026-10-24T23:59:59+01:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de costeros de nivel verde. CCAA",
       "description": null,
@@ -13035,9 +13960,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.65VV65NENV23231792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.65VV65NENV24231792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -13045,9 +13970,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T22:50:01+01:00",
-      "onset": "2026-10-23T00:00:00+01:00",
-      "expires": "2026-10-23T23:59:59+01:00",
+      "effective": "2026-10-21T22:50:01+01:00",
+      "onset": "2026-10-24T00:00:00+01:00",
+      "expires": "2026-10-24T23:59:59+01:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nevadas de nivel verde. CCAA",
       "description": null,
@@ -14314,9 +15239,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.65VV65NINI23231792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.65VV65NINI24231792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -14324,9 +15249,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T22:50:01+01:00",
-      "onset": "2026-10-23T00:00:00+01:00",
-      "expires": "2026-10-23T23:59:59+01:00",
+      "effective": "2026-10-21T22:50:01+01:00",
+      "onset": "2026-10-24T00:00:00+01:00",
+      "expires": "2026-10-24T23:59:59+01:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nieblas de nivel verde. CCAA",
       "description": null,
@@ -15593,9 +16518,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.65VV65PRP123231792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.65VV65PRP124231792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -15603,9 +16528,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T22:50:01+01:00",
-      "onset": "2026-10-23T00:00:00+01:00",
-      "expires": "2026-10-23T23:59:59+01:00",
+      "effective": "2026-10-21T22:50:01+01:00",
+      "onset": "2026-10-24T00:00:00+01:00",
+      "expires": "2026-10-24T23:59:59+01:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel verde. CCAA",
       "description": null,
@@ -16872,9 +17797,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.65VV65TOTO23231792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.65VV65TOTO24231792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -16882,9 +17807,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T22:50:01+01:00",
-      "onset": "2026-10-23T00:00:00+01:00",
-      "expires": "2026-10-23T23:59:59+01:00",
+      "effective": "2026-10-21T22:50:01+01:00",
+      "onset": "2026-10-24T00:00:00+01:00",
+      "expires": "2026-10-24T23:59:59+01:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de tormentas de nivel verde. CCAA",
       "description": null,
@@ -18151,9 +19076,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.65VV65VIRM23231792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.65VV65VIRM24231792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -18161,9 +19086,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T22:50:01+01:00",
-      "onset": "2026-10-23T00:00:00+01:00",
-      "expires": "2026-10-23T23:59:59+01:00",
+      "effective": "2026-10-21T22:50:01+01:00",
+      "onset": "2026-10-24T00:00:00+01:00",
+      "expires": "2026-10-24T23:59:59+01:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel verde. CCAA",
       "description": null,
@@ -19430,9 +20355,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.65VV65VSVI23231792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.65VV65VSVI24231792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -19440,9 +20365,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T22:50:01+01:00",
-      "onset": "2026-10-23T00:00:00+01:00",
-      "expires": "2026-10-23T23:59:59+01:00",
+      "effective": "2026-10-21T22:50:01+01:00",
+      "onset": "2026-10-24T00:00:00+01:00",
+      "expires": "2026-10-24T23:59:59+01:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de polvo en suspensión de nivel verde. CCAA",
       "description": null,
@@ -20709,9 +21634,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.61VV61ATTA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.61VV61ATTA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -20719,9 +21644,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas máximas de nivel verde. CCAA",
       "description": null,
@@ -27204,9 +28129,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.61VV61BTTI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.61VV61BTTI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -27214,9 +28139,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas mínimas de nivel verde. CCAA",
       "description": null,
@@ -33699,9 +34624,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.61VV61COCO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.61VV61COCO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -33709,9 +34634,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de costeros de nivel verde. CCAA",
       "description": null,
@@ -34728,9 +35653,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.61VV61NENV23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.61VV61NENV24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -34738,9 +35663,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nevadas de nivel verde. CCAA",
       "description": null,
@@ -41223,9 +42148,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.61VV61NINI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.61VV61NINI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -41233,9 +42158,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nieblas de nivel verde. CCAA",
       "description": null,
@@ -47718,9 +48643,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.61VV61PRP123221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.61VV61PRP124221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -47728,9 +48653,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel verde. CCAA",
       "description": null,
@@ -54213,9 +55138,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.61VV61TOTO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.61VV61TOTO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -54223,9 +55148,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de tormentas de nivel verde. CCAA",
       "description": null,
@@ -60708,9 +61633,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.61VV61VIRM23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.61VV61VIRM24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -60718,9 +61643,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel verde. CCAA",
       "description": null,
@@ -67203,9 +68128,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.61VV61VSVI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.61VV61VSVI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -67213,9 +68138,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de polvo en suspensión de nivel verde. CCAA",
       "description": null,
@@ -73698,9 +74623,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.62VV62ALAL23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.62VV62ALAL24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -73708,9 +74633,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de aludes de nivel verde. CCAA",
       "description": null,
@@ -74099,9 +75024,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.62VV62ATTA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.62VV62ATTA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -74109,9 +75034,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas máximas de nivel verde. CCAA",
       "description": null,
@@ -77200,9 +78125,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.62VV62BTTI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.62VV62BTTI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -77210,9 +78135,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas mínimas de nivel verde. CCAA",
       "description": null,
@@ -80301,9 +81226,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.62VV62DHDH23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.62VV62DHDH24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -80311,9 +81236,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de deshielos de nivel verde. CCAA",
       "description": null,
@@ -83402,9 +84327,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.62VV62NENV23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.62VV62NENV24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -83412,9 +84337,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nevadas de nivel verde. CCAA",
       "description": null,
@@ -86503,9 +87428,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.62VV62NINI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.62VV62NINI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -86513,9 +87438,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nieblas de nivel verde. CCAA",
       "description": null,
@@ -89604,9 +90529,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.62VV62PRP123221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.62VV62PRP124221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -89614,9 +90539,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel verde. CCAA",
       "description": null,
@@ -92705,9 +93630,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.62VV62TOTO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.62VV62TOTO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -92715,9 +93640,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de tormentas de nivel verde. CCAA",
       "description": null,
@@ -95806,9 +96731,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.62VV62VIRM23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.62VV62VIRM24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -95816,9 +96741,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel verde. CCAA",
       "description": null,
@@ -98907,9 +99832,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.62VV62VSVI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.62VV62VSVI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -98917,9 +99842,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de polvo en suspensión de nivel verde. CCAA",
       "description": null,
@@ -102008,9 +102933,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.63VV63ATTA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.63VV63ATTA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -102018,9 +102943,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas máximas de nivel verde. CCAA",
       "description": null,
@@ -103185,9 +104110,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.63VV63BTTI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.63VV63BTTI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -103195,9 +104120,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas mínimas de nivel verde. CCAA",
       "description": null,
@@ -104362,9 +105287,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.63VV63COCO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.63VV63COCO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -104372,9 +105297,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de costeros de nivel verde. CCAA",
       "description": null,
@@ -104659,9 +105584,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.63VV63GAGA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.63VV63GAGA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -104669,9 +105594,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de galernas de nivel verde. CCAA",
       "description": null,
@@ -104956,9 +105881,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.63VV63NENV23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.63VV63NENV24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -104966,9 +105891,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nevadas de nivel verde. CCAA",
       "description": null,
@@ -106133,9 +107058,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.63VV63NINI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.63VV63NINI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -106143,9 +107068,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nieblas de nivel verde. CCAA",
       "description": null,
@@ -107310,9 +108235,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.63VV63PRP123221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.63VV63PRP124221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -107320,9 +108245,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel verde. CCAA",
       "description": null,
@@ -108487,9 +109412,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.63VV63TOTO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.63VV63TOTO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -108497,9 +109422,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de tormentas de nivel verde. CCAA",
       "description": null,
@@ -109664,9 +110589,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.63VV63VIRM23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.63VV63VIRM24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -109674,9 +110599,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel verde. CCAA",
       "description": null,
@@ -110841,9 +111766,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.63VV63VSVI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.63VV63VSVI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -110851,9 +111776,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de polvo en suspensión de nivel verde. CCAA",
       "description": null,
@@ -112018,9 +112943,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.64VV64ATTA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.64VV64ATTA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -112028,9 +112953,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas máximas de nivel verde. CCAA",
       "description": null,
@@ -112925,9 +113850,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.64VV64BTTI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.64VV64BTTI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -112935,9 +113860,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas mínimas de nivel verde. CCAA",
       "description": null,
@@ -113832,9 +114757,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.64VV64COCO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.64VV64COCO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -113842,9 +114767,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de costeros de nivel verde. CCAA",
       "description": null,
@@ -114965,9 +115890,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.64VV64NENV23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.64VV64NENV24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -114975,9 +115900,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nevadas de nivel verde. CCAA",
       "description": null,
@@ -115872,9 +116797,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.64VV64NINI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.64VV64NINI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -115882,9 +116807,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nieblas de nivel verde. CCAA",
       "description": null,
@@ -116779,9 +117704,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.64VV64PRP123221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.64VV64PRP124221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -116789,9 +117714,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel verde. CCAA",
       "description": null,
@@ -117686,9 +118611,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.64VV64RIRI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.64VV64RIRI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -117696,9 +118621,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de rissagas de nivel verde. CCAA",
       "description": null,
@@ -117951,9 +118876,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.64VV64TOTO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.64VV64TOTO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -117961,9 +118886,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de tormentas de nivel verde. CCAA",
       "description": null,
@@ -118858,9 +119783,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.64VV64VIRM23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.64VV64VIRM24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -118868,9 +119793,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel verde. CCAA",
       "description": null,
@@ -119765,9 +120690,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.64VV64VSVI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.64VV64VSVI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -119775,9 +120700,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de polvo en suspensión de nivel verde. CCAA",
       "description": null,
@@ -120672,9 +121597,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.66VV66ATTA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.66VV66ATTA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -120682,9 +121607,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas máximas de nivel verde. CCAA",
       "description": null,
@@ -121439,9 +122364,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.66VV66BTTI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.66VV66BTTI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -121449,9 +122374,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas mínimas de nivel verde. CCAA",
       "description": null,
@@ -122206,9 +123131,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.66VV66COCO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.66VV66COCO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -122216,9 +123141,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de costeros de nivel verde. CCAA",
       "description": null,
@@ -122403,9 +123328,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.66VV66DHDH23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.66VV66DHDH24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -122413,9 +123338,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de deshielos de nivel verde. CCAA",
       "description": null,
@@ -122568,9 +123493,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.66VV66GAGA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.66VV66GAGA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -122578,9 +123503,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de galernas de nivel verde. CCAA",
       "description": null,
@@ -122765,9 +123690,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.66VV66NENV23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.66VV66NENV24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -122775,9 +123700,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nevadas de nivel verde. CCAA",
       "description": null,
@@ -123532,9 +124457,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.66VV66NINI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.66VV66NINI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -123542,9 +124467,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nieblas de nivel verde. CCAA",
       "description": null,
@@ -124299,9 +125224,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.66VV66PRP123221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.66VV66PRP124221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -124309,9 +125234,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel verde. CCAA",
       "description": null,
@@ -125066,9 +125991,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.66VV66TOTO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.66VV66TOTO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -125076,9 +126001,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de tormentas de nivel verde. CCAA",
       "description": null,
@@ -125833,9 +126758,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.66VV66VIRM23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.66VV66VIRM24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -125843,9 +126768,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel verde. CCAA",
       "description": null,
@@ -126600,9 +127525,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.66VV66VSVI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.66VV66VSVI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -126610,9 +127535,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de polvo en suspensión de nivel verde. CCAA",
       "description": null,
@@ -127367,9 +128292,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.67VV67ATTA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.67VV67ATTA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -127377,9 +128302,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas máximas de nivel verde. CCAA",
       "description": null,
@@ -134888,9 +135813,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.67VV67BTTI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.67VV67BTTI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -134898,9 +135823,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas mínimas de nivel verde. CCAA",
       "description": null,
@@ -142409,9 +143334,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.67VV67DHDH23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.67VV67DHDH24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -142419,9 +143344,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de deshielos de nivel verde. CCAA",
       "description": null,
@@ -149930,9 +150855,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.67VV67NENV23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.67VV67NENV24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -149940,9 +150865,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nevadas de nivel verde. CCAA",
       "description": null,
@@ -157451,9 +158376,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.67VV67NINI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.67VV67NINI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -157461,9 +158386,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nieblas de nivel verde. CCAA",
       "description": null,
@@ -164972,9 +165897,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.67VV67PRP123221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.67VV67PRP124221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -164982,9 +165907,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel verde. CCAA",
       "description": null,
@@ -172493,9 +173418,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.67VV67TOTO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.67VV67TOTO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -172503,9 +173428,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de tormentas de nivel verde. CCAA",
       "description": null,
@@ -180014,9 +180939,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.67VV67VIRM23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.67VV67VIRM24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -180024,9 +180949,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel verde. CCAA",
       "description": null,
@@ -187535,9 +188460,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.67VV67VSVI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.67VV67VSVI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -187545,9 +188470,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de polvo en suspensión de nivel verde. CCAA",
       "description": null,
@@ -195056,9 +195981,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.68VV68ATTA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.68VV68ATTA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -195066,9 +195991,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas máximas de nivel verde. CCAA",
       "description": null,
@@ -200153,9 +201078,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.68VV68BTTI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.68VV68BTTI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -200163,9 +201088,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas mínimas de nivel verde. CCAA",
       "description": null,
@@ -205250,9 +206175,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.68VV68NENV23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.68VV68NENV24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -205260,9 +206185,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nevadas de nivel verde. CCAA",
       "description": null,
@@ -210347,9 +211272,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.68VV68NINI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.68VV68NINI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -210357,9 +211282,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nieblas de nivel verde. CCAA",
       "description": null,
@@ -215444,9 +216369,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.68VV68PRP123221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.68VV68PRP124221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -215454,9 +216379,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel verde. CCAA",
       "description": null,
@@ -220541,9 +221466,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.68VV68TOTO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.68VV68TOTO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -220551,9 +221476,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de tormentas de nivel verde. CCAA",
       "description": null,
@@ -225638,9 +226563,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.68VV68VIRM23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.68VV68VIRM24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -225648,9 +226573,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel verde. CCAA",
       "description": null,
@@ -230735,9 +231660,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.68VV68VSVI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.68VV68VSVI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -230745,9 +231670,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de polvo en suspensión de nivel verde. CCAA",
       "description": null,
@@ -235832,9 +236757,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.69VV69ALAL23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.69VV69ALAL24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -235842,9 +236767,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de aludes de nivel verde. CCAA",
       "description": null,
@@ -236729,9 +237654,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.69VV69ATTA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.69VV69ATTA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -236739,9 +237664,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas máximas de nivel verde. CCAA",
       "description": null,
@@ -240060,9 +240985,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.69VV69BTTI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.69VV69BTTI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -240070,9 +240995,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas mínimas de nivel verde. CCAA",
       "description": null,
@@ -243391,9 +244316,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.69VV69COCO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.69VV69COCO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -243401,9 +244326,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de costeros de nivel verde. CCAA",
       "description": null,
@@ -243928,9 +244853,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.69VV69NENV23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.69VV69NENV24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -243938,9 +244863,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nevadas de nivel verde. CCAA",
       "description": null,
@@ -247259,9 +248184,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.69VV69NINI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.69VV69NINI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -247269,9 +248194,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nieblas de nivel verde. CCAA",
       "description": null,
@@ -250590,9 +251515,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.69VV69PRP123221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.69VV69PRP124221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -250600,9 +251525,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel verde. CCAA",
       "description": null,
@@ -253921,9 +254846,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.69VV69TOTO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.69VV69TOTO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -253931,9 +254856,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de tormentas de nivel verde. CCAA",
       "description": null,
@@ -257252,9 +258177,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.69VV69VIRM23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.69VV69VIRM24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -257262,9 +258187,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel verde. CCAA",
       "description": null,
@@ -260583,9 +261508,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.69VV69VSVI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.69VV69VSVI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -260593,9 +261518,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de polvo en suspensión de nivel verde. CCAA",
       "description": null,
@@ -263914,9 +264839,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.70VV70ATTA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.70VV70ATTA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -263924,9 +264849,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas máximas de nivel verde. CCAA",
       "description": null,
@@ -266827,9 +267752,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.70VV70BTTI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.70VV70BTTI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -266837,9 +267762,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas mínimas de nivel verde. CCAA",
       "description": null,
@@ -269740,9 +270665,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.70VV70NENV23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.70VV70NENV24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -269750,9 +270675,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nevadas de nivel verde. CCAA",
       "description": null,
@@ -272653,9 +273578,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.70VV70NINI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.70VV70NINI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -272663,9 +273588,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nieblas de nivel verde. CCAA",
       "description": null,
@@ -275566,9 +276491,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.70VV70PRP123221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.70VV70PRP124221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -275576,9 +276501,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel verde. CCAA",
       "description": null,
@@ -278479,9 +279404,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.70VV70TOTO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.70VV70TOTO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -278489,9 +279414,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de tormentas de nivel verde. CCAA",
       "description": null,
@@ -281392,9 +282317,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.70VV70VIRM23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.70VV70VIRM24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -281402,9 +282327,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel verde. CCAA",
       "description": null,
@@ -284305,9 +285230,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.70VV70VSVI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.70VV70VSVI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -284315,9 +285240,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de polvo en suspensión de nivel verde. CCAA",
       "description": null,
@@ -287218,9 +288143,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.71VV71ATTA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.71VV71ATTA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -287228,9 +288153,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas máximas de nivel verde. CCAA",
       "description": null,
@@ -290519,9 +291444,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.71VV71BTTI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.71VV71BTTI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -290529,9 +291454,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas mínimas de nivel verde. CCAA",
       "description": null,
@@ -293820,9 +294745,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.71VV71COCO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.71VV71COCO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -293830,9 +294755,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de costeros de nivel verde. CCAA",
       "description": null,
@@ -294741,9 +295666,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.71VV71GAGA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.71VV71GAGA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -294751,9 +295676,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de galernas de nivel verde. CCAA",
       "description": null,
@@ -295130,9 +296055,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.71VV71NENV23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.71VV71NENV24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -295140,9 +296065,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nevadas de nivel verde. CCAA",
       "description": null,
@@ -298431,9 +299356,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.71VV71NINI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.71VV71NINI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -298441,9 +299366,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nieblas de nivel verde. CCAA",
       "description": null,
@@ -301732,9 +302657,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.71VV71PRP123221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.71VV71PRP124221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -301742,9 +302667,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel verde. CCAA",
       "description": null,
@@ -305033,9 +305958,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.71VV71TOTO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.71VV71TOTO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -305043,9 +305968,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de tormentas de nivel verde. CCAA",
       "description": null,
@@ -308334,9 +309259,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.71VV71VIRM23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.71VV71VIRM24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -308344,9 +309269,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel verde. CCAA",
       "description": null,
@@ -311635,9 +312560,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.71VV71VSVI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.71VV71VSVI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -311645,9 +312570,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de polvo en suspensión de nivel verde. CCAA",
       "description": null,
@@ -314936,9 +315861,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.72VV72ATTA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.72VV72ATTA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -314946,9 +315871,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas máximas de nivel verde. CCAA",
       "description": null,
@@ -315767,9 +316692,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.72VV72BTTI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.72VV72BTTI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -315777,9 +316702,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas mínimas de nivel verde. CCAA",
       "description": null,
@@ -316598,9 +317523,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.72VV72NENV23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.72VV72NENV24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -316608,9 +317533,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nevadas de nivel verde. CCAA",
       "description": null,
@@ -317429,9 +318354,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.72VV72NINI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.72VV72NINI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -317439,9 +318364,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nieblas de nivel verde. CCAA",
       "description": null,
@@ -318260,9 +319185,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.72VV72PRP123221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.72VV72PRP124221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -318270,9 +319195,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel verde. CCAA",
       "description": null,
@@ -319091,9 +320016,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.72VV72TOTO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.72VV72TOTO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -319101,9 +320026,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de tormentas de nivel verde. CCAA",
       "description": null,
@@ -319922,9 +320847,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.72VV72VIRM23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.72VV72VIRM24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -319932,9 +320857,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel verde. CCAA",
       "description": null,
@@ -320753,9 +321678,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.72VV72VSVI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.72VV72VSVI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -320763,9 +321688,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de polvo en suspensión de nivel verde. CCAA",
       "description": null,
@@ -321584,9 +322509,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.73VV73ATTA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.73VV73ATTA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -321594,9 +322519,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas máximas de nivel verde. CCAA",
       "description": null,
@@ -322427,9 +323352,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.73VV73BTTI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.73VV73BTTI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -322437,9 +323362,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas mínimas de nivel verde. CCAA",
       "description": null,
@@ -323270,9 +324195,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.73VV73COCO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.73VV73COCO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -323280,9 +324205,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de costeros de nivel verde. CCAA",
       "description": null,
@@ -323511,9 +324436,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.73VV73NENV23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.73VV73NENV24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -323521,9 +324446,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nevadas de nivel verde. CCAA",
       "description": null,
@@ -324354,9 +325279,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.73VV73NINI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.73VV73NINI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -324364,9 +325289,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nieblas de nivel verde. CCAA",
       "description": null,
@@ -325197,9 +326122,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.73VV73PRP123221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.73VV73PRP124221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -325207,9 +326132,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel verde. CCAA",
       "description": null,
@@ -326040,9 +326965,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.73VV73TOTO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.73VV73TOTO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -326050,9 +326975,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de tormentas de nivel verde. CCAA",
       "description": null,
@@ -326883,9 +327808,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.73VV73VIRM23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.73VV73VIRM24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -326893,9 +327818,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel verde. CCAA",
       "description": null,
@@ -327726,9 +328651,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.73VV73VSVI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.73VV73VSVI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -327736,9 +328661,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de polvo en suspensión de nivel verde. CCAA",
       "description": null,
@@ -328569,9 +329494,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.74VV74ALAL23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.74VV74ALAL24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -328579,9 +329504,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de aludes de nivel verde. CCAA",
       "description": null,
@@ -328746,9 +329671,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.74VV74ATTA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.74VV74ATTA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -328756,9 +329681,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas máximas de nivel verde. CCAA",
       "description": null,
@@ -329705,9 +330630,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.74VV74BTTI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.74VV74BTTI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -329715,9 +330640,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas mínimas de nivel verde. CCAA",
       "description": null,
@@ -330664,9 +331589,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.74VV74DHDH23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.74VV74DHDH24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -330674,9 +331599,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de deshielos de nivel verde. CCAA",
       "description": null,
@@ -331491,9 +332416,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.74VV74NENV23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.74VV74NENV24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -331501,9 +332426,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nevadas de nivel verde. CCAA",
       "description": null,
@@ -332450,9 +333375,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.74VV74NINI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.74VV74NINI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -332460,9 +333385,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nieblas de nivel verde. CCAA",
       "description": null,
@@ -333409,9 +334334,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.74VV74PRP123221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.74VV74PRP124221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -333419,9 +334344,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel verde. CCAA",
       "description": null,
@@ -334368,9 +335293,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.74VV74TOTO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.74VV74TOTO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -334378,9 +335303,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de tormentas de nivel verde. CCAA",
       "description": null,
@@ -335327,9 +336252,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.74VV74VIRM23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.74VV74VIRM24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -335337,9 +336262,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel verde. CCAA",
       "description": null,
@@ -336286,9 +337211,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.74VV74VSVI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.74VV74VSVI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -336296,9 +337221,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de polvo en suspensión de nivel verde. CCAA",
       "description": null,
@@ -337245,9 +338170,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.75VV75ATTA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.75VV75ATTA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -337255,9 +338180,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas máximas de nivel verde. CCAA",
       "description": null,
@@ -338412,9 +339337,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.75VV75BTTI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.75VV75BTTI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -338422,9 +339347,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas mínimas de nivel verde. CCAA",
       "description": null,
@@ -339579,9 +340504,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.75VV75COCO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.75VV75COCO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -339589,9 +340514,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de costeros de nivel verde. CCAA",
       "description": null,
@@ -339828,9 +340753,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.75VV75GAGA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.75VV75GAGA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -339838,9 +340763,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de galernas de nivel verde. CCAA",
       "description": null,
@@ -340077,9 +341002,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.75VV75NENV23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.75VV75NENV24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -340087,9 +341012,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nevadas de nivel verde. CCAA",
       "description": null,
@@ -341244,9 +342169,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.75VV75NINI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.75VV75NINI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -341254,9 +342179,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nieblas de nivel verde. CCAA",
       "description": null,
@@ -342411,9 +343336,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.75VV75PRP123221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.75VV75PRP124221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -342421,9 +343346,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel verde. CCAA",
       "description": null,
@@ -343578,9 +344503,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.75VV75TOTO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.75VV75TOTO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -343588,9 +344513,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de tormentas de nivel verde. CCAA",
       "description": null,
@@ -344745,9 +345670,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.75VV75VIRM23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.75VV75VIRM24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -344755,9 +345680,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel verde. CCAA",
       "description": null,
@@ -345912,9 +346837,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.75VV75VSVI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.75VV75VSVI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -345922,9 +346847,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de polvo en suspensión de nivel verde. CCAA",
       "description": null,
@@ -347079,9 +348004,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.76VV76ATTA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.76VV76ATTA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -347089,9 +348014,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas máximas de nivel verde. CCAA",
       "description": null,
@@ -347664,9 +348589,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.76VV76BTTI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.76VV76BTTI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -347674,9 +348599,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas mínimas de nivel verde. CCAA",
       "description": null,
@@ -348249,9 +349174,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.76VV76DHDH23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.76VV76DHDH24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -348259,9 +349184,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de deshielos de nivel verde. CCAA",
       "description": null,
@@ -348834,9 +349759,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.76VV76NENV23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.76VV76NENV24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -348844,9 +349769,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nevadas de nivel verde. CCAA",
       "description": null,
@@ -349419,9 +350344,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.76VV76NINI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.76VV76NINI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -349429,9 +350354,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nieblas de nivel verde. CCAA",
       "description": null,
@@ -350004,9 +350929,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.76VV76PRP123221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.76VV76PRP124221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -350014,9 +350939,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel verde. CCAA",
       "description": null,
@@ -350589,9 +351514,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.76VV76TOTO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.76VV76TOTO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -350599,9 +351524,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de tormentas de nivel verde. CCAA",
       "description": null,
@@ -351174,9 +352099,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.76VV76VIRM23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.76VV76VIRM24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -351184,9 +352109,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel verde. CCAA",
       "description": null,
@@ -351759,9 +352684,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.76VV76VSVI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.76VV76VSVI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -351769,9 +352694,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de polvo en suspensión de nivel verde. CCAA",
       "description": null,
@@ -352344,9 +353269,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.77VV77ATTA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.77VV77ATTA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -352354,9 +353279,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas máximas de nivel verde. CCAA",
       "description": null,
@@ -354443,9 +355368,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.77VV77BTTI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.77VV77BTTI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -354453,9 +355378,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas mínimas de nivel verde. CCAA",
       "description": null,
@@ -356542,9 +357467,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.77VV77COCO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.77VV77COCO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -356552,9 +357477,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de costeros de nivel verde. CCAA",
       "description": null,
@@ -357067,9 +357992,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.77VV77NENV23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.77VV77NENV24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -357077,9 +358002,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nevadas de nivel verde. CCAA",
       "description": null,
@@ -359166,9 +360091,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.77VV77NINI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.77VV77NINI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -359176,9 +360101,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nieblas de nivel verde. CCAA",
       "description": null,
@@ -361265,9 +362190,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.77VV77PRP123221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.77VV77PRP124221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -361275,9 +362200,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel verde. CCAA",
       "description": null,
@@ -363364,9 +364289,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.77VV77TOTO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.77VV77TOTO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -363374,9 +364299,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de tormentas de nivel verde. CCAA",
       "description": null,
@@ -365463,9 +366388,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.77VV77VIRM23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.77VV77VIRM24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -365473,9 +366398,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel verde. CCAA",
       "description": null,
@@ -367562,9 +368487,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.77VV77VSVI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.77VV77VSVI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -367572,9 +368497,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de polvo en suspensión de nivel verde. CCAA",
       "description": null,
@@ -369661,9 +370586,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.78VV78ATTA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.78VV78ATTA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -369671,9 +370596,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas máximas de nivel verde. CCAA",
       "description": null,
@@ -369714,9 +370639,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.78VV78BTTI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.78VV78BTTI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -369724,9 +370649,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas mínimas de nivel verde. CCAA",
       "description": null,
@@ -369767,9 +370692,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.78VV78COCO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.78VV78COCO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -369777,9 +370702,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de costeros de nivel verde. CCAA",
       "description": null,
@@ -369884,9 +370809,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.78VV78NENV23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.78VV78NENV24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -369894,9 +370819,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nevadas de nivel verde. CCAA",
       "description": null,
@@ -369937,9 +370862,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.78VV78NINI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.78VV78NINI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -369947,9 +370872,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nieblas de nivel verde. CCAA",
       "description": null,
@@ -369990,9 +370915,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.78VV78PRP123221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.78VV78PRP124221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -370000,9 +370925,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel verde. CCAA",
       "description": null,
@@ -370043,9 +370968,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.78VV78TOTO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.78VV78TOTO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -370053,9 +370978,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de tormentas de nivel verde. CCAA",
       "description": null,
@@ -370096,9 +371021,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.78VV78VIRM23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.78VV78VIRM24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -370106,9 +371031,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel verde. CCAA",
       "description": null,
@@ -370149,9 +371074,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.78VV78VSVI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.78VV78VSVI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -370159,9 +371084,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de polvo en suspensión de nivel verde. CCAA",
       "description": null,
@@ -370202,9 +371127,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.79VV79ATTA23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.79VV79ATTA24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -370212,9 +371137,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas máximas de nivel verde. CCAA",
       "description": null,
@@ -370255,9 +371180,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.79VV79BTTI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.79VV79BTTI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -370265,9 +371190,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de temperaturas mínimas de nivel verde. CCAA",
       "description": null,
@@ -370308,9 +371233,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.79VV79COCO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.79VV79COCO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -370318,9 +371243,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de costeros de nivel verde. CCAA",
       "description": null,
@@ -370505,9 +371430,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.79VV79NENV23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.79VV79NENV24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -370515,9 +371440,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nevadas de nivel verde. CCAA",
       "description": null,
@@ -370558,9 +371483,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.79VV79NINI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.79VV79NINI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -370568,9 +371493,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de nieblas de nivel verde. CCAA",
       "description": null,
@@ -370611,9 +371536,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.79VV79PRP123221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.79VV79PRP124221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -370621,9 +371546,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel verde. CCAA",
       "description": null,
@@ -370664,9 +371589,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.79VV79TOTO23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.79VV79TOTO24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -370674,9 +371599,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de tormentas de nivel verde. CCAA",
       "description": null,
@@ -370717,9 +371642,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.79VV79VIRM23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.79VV79VIRM24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -370727,9 +371652,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel verde. CCAA",
       "description": null,
@@ -370770,9 +371695,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261020215001.79VV79VSVI23221792533001",
+      "id": "2.49.0.0.724.0.ES.20261021215001.79VV79VSVI24221792619401",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-20T21:50:01+00:00",
+      "sent": "2026-10-21T21:50:01+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
@@ -370780,9 +371705,9 @@
       "urgency": "Future",
       "severity": "Minor",
       "certainty": "Likely",
-      "effective": "2026-10-20T23:50:01+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
+      "effective": "2026-10-21T23:50:01+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T23:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de polvo en suspensión de nivel verde. CCAA",
       "description": null,
