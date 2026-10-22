@@ -1,8 +1,8 @@
 {
   "source": "AEMET OpenData",
-  "generatedAt": "2026-10-22T12:11:01.108669+00:00",
+  "generatedAt": "2026-10-22T17:24:47.916941+00:00",
   "status": "ok",
-  "count": 218,
+  "count": 219,
   "alerts": [
     {
       "id": "2.49.0.0.724.0.ES.20261021092932.659303PRP122171792574972",
@@ -4111,6 +4111,279 @@
       ]
     },
     {
+      "id": "2.49.0.0.724.0.ES.20261022162505.663901VIRM23051792686305",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-22T16:25:05+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de vientos de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-22T18:25:05+02:00",
+      "onset": "2026-10-23T00:00:00+02:00",
+      "expires": "2026-10-23T06:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de vientos de nivel amarillo. Litoral cántabro",
+      "description": "Rachas máximas: 90 km/h. Viento del oeste.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Litoral cántabro",
+          "zoneCode": "663901",
+          "polygons": [
+            [
+              [
+                43.28,
+                -4.52
+              ],
+              [
+                43.31,
+                -4.52
+              ],
+              [
+                43.34,
+                -4.54
+              ],
+              [
+                43.39,
+                -4.51
+              ],
+              [
+                43.4,
+                -4.5
+              ],
+              [
+                43.4,
+                -4.41
+              ],
+              [
+                43.39,
+                -4.28
+              ],
+              [
+                43.4,
+                -4.22
+              ],
+              [
+                43.43,
+                -4.05
+              ],
+              [
+                43.44,
+                -4.05
+              ],
+              [
+                43.44,
+                -3.98
+              ],
+              [
+                43.47,
+                -3.94
+              ],
+              [
+                43.48,
+                -3.86
+              ],
+              [
+                43.5,
+                -3.81
+              ],
+              [
+                43.46,
+                -3.78
+              ],
+              [
+                43.44,
+                -3.83
+              ],
+              [
+                43.4,
+                -3.81
+              ],
+              [
+                43.41,
+                -3.81
+              ],
+              [
+                43.45,
+                -3.77
+              ],
+              [
+                43.48,
+                -3.69
+              ],
+              [
+                43.51,
+                -3.6
+              ],
+              [
+                43.51,
+                -3.55
+              ],
+              [
+                43.47,
+                -3.49
+              ],
+              [
+                43.47,
+                -3.43
+              ],
+              [
+                43.41,
+                -3.43
+              ],
+              [
+                43.42,
+                -3.33
+              ],
+              [
+                43.39,
+                -3.22
+              ],
+              [
+                43.36,
+                -3.19
+              ],
+              [
+                43.35,
+                -3.15
+              ],
+              [
+                43.31,
+                -3.15
+              ],
+              [
+                43.29,
+                -3.22
+              ],
+              [
+                43.32,
+                -3.24
+              ],
+              [
+                43.34,
+                -3.28
+              ],
+              [
+                43.36,
+                -3.28
+              ],
+              [
+                43.39,
+                -3.33
+              ],
+              [
+                43.36,
+                -3.37
+              ],
+              [
+                43.36,
+                -3.44
+              ],
+              [
+                43.32,
+                -3.47
+              ],
+              [
+                43.3,
+                -3.51
+              ],
+              [
+                43.31,
+                -3.55
+              ],
+              [
+                43.34,
+                -3.57
+              ],
+              [
+                43.34,
+                -3.61
+              ],
+              [
+                43.3,
+                -3.65
+              ],
+              [
+                43.32,
+                -3.71
+              ],
+              [
+                43.29,
+                -3.77
+              ],
+              [
+                43.3,
+                -3.8
+              ],
+              [
+                43.34,
+                -3.85
+              ],
+              [
+                43.3,
+                -3.93
+              ],
+              [
+                43.33,
+                -3.95
+              ],
+              [
+                43.33,
+                -4.0
+              ],
+              [
+                43.31,
+                -4.02
+              ],
+              [
+                43.29,
+                -4.11
+              ],
+              [
+                43.33,
+                -4.14
+              ],
+              [
+                43.32,
+                -4.2
+              ],
+              [
+                43.28,
+                -4.24
+              ],
+              [
+                43.27,
+                -4.32
+              ],
+              [
+                43.28,
+                -4.39
+              ],
+              [
+                43.3,
+                -4.41
+              ],
+              [
+                43.28,
+                -4.52
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
       "id": "2.49.0.0.724.0.ES.20261022075517.691703COCO23221792655717",
       "sender": "http://www.aemet.es",
       "sent": "2026-10-22T07:55:17+00:00",
@@ -5953,6 +6226,263 @@
       ]
     },
     {
+      "id": "2.49.0.0.724.0.ES.20261022093129.694305VIRM24041792661489",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-22T09:31:29+00:00",
+      "status": "Actual",
+      "messageType": "Update",
+      "language": "es-ES",
+      "event": "Aviso de vientos de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-22T11:31:29+02:00",
+      "onset": "2026-10-24T00:00:00+02:00",
+      "expires": "2026-10-24T05:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de vientos de nivel amarillo. Prelitoral sur de Tarragona",
+      "description": "Rachas máximas: 70 km/h. Viento del noroeste.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Prelitoral sur de Tarragona",
+          "zoneCode": "694305",
+          "polygons": [
+            [
+              [
+                40.82,
+                0.27
+              ],
+              [
+                40.85,
+                0.33
+              ],
+              [
+                40.89,
+                0.37
+              ],
+              [
+                40.93,
+                0.37
+              ],
+              [
+                40.96,
+                0.4
+              ],
+              [
+                40.96,
+                0.44
+              ],
+              [
+                41.03,
+                0.47
+              ],
+              [
+                41.06,
+                0.5
+              ],
+              [
+                41.12,
+                0.56
+              ],
+              [
+                41.14,
+                0.61
+              ],
+              [
+                41.17,
+                0.61
+              ],
+              [
+                41.18,
+                0.65
+              ],
+              [
+                41.22,
+                0.71
+              ],
+              [
+                41.25,
+                0.69
+              ],
+              [
+                41.3,
+                0.72
+              ],
+              [
+                41.32,
+                0.75
+              ],
+              [
+                41.33,
+                0.76
+              ],
+              [
+                41.33,
+                0.82
+              ],
+              [
+                41.36,
+                0.97
+              ],
+              [
+                41.33,
+                1.0
+              ],
+              [
+                41.33,
+                1.07
+              ],
+              [
+                41.29,
+                1.14
+              ],
+              [
+                41.24,
+                1.14
+              ],
+              [
+                41.23,
+                1.1
+              ],
+              [
+                41.24,
+                1.06
+              ],
+              [
+                41.2,
+                1.02
+              ],
+              [
+                41.18,
+                1.04
+              ],
+              [
+                41.14,
+                1.02
+              ],
+              [
+                41.11,
+                0.95
+              ],
+              [
+                41.13,
+                0.92
+              ],
+              [
+                41.1,
+                0.9
+              ],
+              [
+                41.06,
+                0.92
+              ],
+              [
+                41.03,
+                0.91
+              ],
+              [
+                41.03,
+                0.85
+              ],
+              [
+                41.05,
+                0.81
+              ],
+              [
+                41.0,
+                0.78
+              ],
+              [
+                40.94,
+                0.82
+              ],
+              [
+                40.93,
+                0.75
+              ],
+              [
+                40.95,
+                0.67
+              ],
+              [
+                40.93,
+                0.61
+              ],
+              [
+                40.9,
+                0.61
+              ],
+              [
+                40.87,
+                0.67
+              ],
+              [
+                40.81,
+                0.61
+              ],
+              [
+                40.76,
+                0.61
+              ],
+              [
+                40.74,
+                0.51
+              ],
+              [
+                40.74,
+                0.44
+              ],
+              [
+                40.66,
+                0.35
+              ],
+              [
+                40.61,
+                0.33
+              ],
+              [
+                40.63,
+                0.28
+              ],
+              [
+                40.66,
+                0.27
+              ],
+              [
+                40.69,
+                0.29
+              ],
+              [
+                40.7,
+                0.24
+              ],
+              [
+                40.73,
+                0.22
+              ],
+              [
+                40.73,
+                0.17
+              ],
+              [
+                40.82,
+                0.27
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
       "id": "2.49.0.0.724.0.ES.20261022093129.663901COCO24041792661489",
       "sender": "http://www.aemet.es",
       "sent": "2026-10-22T09:31:29+00:00",
@@ -6332,263 +6862,6 @@
               [
                 41.82,
                 3.08
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261022093129.694305VIRM24041792661489",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-22T09:31:29+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de vientos de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-22T11:31:29+02:00",
-      "onset": "2026-10-24T00:00:00+02:00",
-      "expires": "2026-10-24T05:59:59+02:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de vientos de nivel amarillo. Prelitoral sur de Tarragona",
-      "description": "Rachas máximas: 70 km/h. Viento del noroeste.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Prelitoral sur de Tarragona",
-          "zoneCode": "694305",
-          "polygons": [
-            [
-              [
-                40.82,
-                0.27
-              ],
-              [
-                40.85,
-                0.33
-              ],
-              [
-                40.89,
-                0.37
-              ],
-              [
-                40.93,
-                0.37
-              ],
-              [
-                40.96,
-                0.4
-              ],
-              [
-                40.96,
-                0.44
-              ],
-              [
-                41.03,
-                0.47
-              ],
-              [
-                41.06,
-                0.5
-              ],
-              [
-                41.12,
-                0.56
-              ],
-              [
-                41.14,
-                0.61
-              ],
-              [
-                41.17,
-                0.61
-              ],
-              [
-                41.18,
-                0.65
-              ],
-              [
-                41.22,
-                0.71
-              ],
-              [
-                41.25,
-                0.69
-              ],
-              [
-                41.3,
-                0.72
-              ],
-              [
-                41.32,
-                0.75
-              ],
-              [
-                41.33,
-                0.76
-              ],
-              [
-                41.33,
-                0.82
-              ],
-              [
-                41.36,
-                0.97
-              ],
-              [
-                41.33,
-                1.0
-              ],
-              [
-                41.33,
-                1.07
-              ],
-              [
-                41.29,
-                1.14
-              ],
-              [
-                41.24,
-                1.14
-              ],
-              [
-                41.23,
-                1.1
-              ],
-              [
-                41.24,
-                1.06
-              ],
-              [
-                41.2,
-                1.02
-              ],
-              [
-                41.18,
-                1.04
-              ],
-              [
-                41.14,
-                1.02
-              ],
-              [
-                41.11,
-                0.95
-              ],
-              [
-                41.13,
-                0.92
-              ],
-              [
-                41.1,
-                0.9
-              ],
-              [
-                41.06,
-                0.92
-              ],
-              [
-                41.03,
-                0.91
-              ],
-              [
-                41.03,
-                0.85
-              ],
-              [
-                41.05,
-                0.81
-              ],
-              [
-                41.0,
-                0.78
-              ],
-              [
-                40.94,
-                0.82
-              ],
-              [
-                40.93,
-                0.75
-              ],
-              [
-                40.95,
-                0.67
-              ],
-              [
-                40.93,
-                0.61
-              ],
-              [
-                40.9,
-                0.61
-              ],
-              [
-                40.87,
-                0.67
-              ],
-              [
-                40.81,
-                0.61
-              ],
-              [
-                40.76,
-                0.61
-              ],
-              [
-                40.74,
-                0.51
-              ],
-              [
-                40.74,
-                0.44
-              ],
-              [
-                40.66,
-                0.35
-              ],
-              [
-                40.61,
-                0.33
-              ],
-              [
-                40.63,
-                0.28
-              ],
-              [
-                40.66,
-                0.27
-              ],
-              [
-                40.69,
-                0.29
-              ],
-              [
-                40.7,
-                0.24
-              ],
-              [
-                40.73,
-                0.22
-              ],
-              [
-                40.73,
-                0.17
-              ],
-              [
-                40.82,
-                0.27
               ]
             ]
           ]
