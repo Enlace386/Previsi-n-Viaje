@@ -1,8 +1,8 @@
 {
   "source": "AEMET OpenData",
-  "generatedAt": "2026-10-22T17:24:47.916941+00:00",
+  "generatedAt": "2026-10-22T20:39:59.191652+00:00",
   "status": "ok",
-  "count": 219,
+  "count": 218,
   "alerts": [
     {
       "id": "2.49.0.0.724.0.ES.20261021092932.659303PRP122171792574972",
@@ -1507,6 +1507,207 @@
       ]
     },
     {
+      "id": "2.49.0.0.724.0.ES.20261022202809.663901COCO23221792700889",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-22T20:28:09+00:00",
+      "status": "Actual",
+      "messageType": "Update",
+      "language": "es-ES",
+      "event": "Aviso de costeros de nivel naranja",
+      "urgency": "Future",
+      "severity": "Severe",
+      "certainty": "Likely",
+      "effective": "2026-10-22T22:28:09+02:00",
+      "onset": "2026-10-23T00:00:00+02:00",
+      "expires": "2026-10-23T23:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de costeros de nivel naranja. Costa - Litoral cántabro",
+      "description": "Viento del Oeste de 62 a 74 km/h (fuerza 8) hasta el mediodía. Mar combinada del Noroeste de 5 a 8 m.",
+      "instruction": "Esté preparado. Tome precauciones y manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños graves a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "naranja",
+      "phenomenon": null,
+      "probability": {
+        "min": 70,
+        "max": 70,
+        "text": "mayor 70%"
+      },
+      "areas": [
+        {
+          "name": "Costa - Litoral cántabro",
+          "zoneCode": "663901C",
+          "polygons": [
+            [
+              [
+                43.35,
+                -3.15
+              ],
+              [
+                43.36,
+                -3.19
+              ],
+              [
+                43.39,
+                -3.22
+              ],
+              [
+                43.42,
+                -3.33
+              ],
+              [
+                43.41,
+                -3.43
+              ],
+              [
+                43.47,
+                -3.43
+              ],
+              [
+                43.47,
+                -3.49
+              ],
+              [
+                43.51,
+                -3.55
+              ],
+              [
+                43.51,
+                -3.6
+              ],
+              [
+                43.48,
+                -3.69
+              ],
+              [
+                43.45,
+                -3.77
+              ],
+              [
+                43.41,
+                -3.81
+              ],
+              [
+                43.4,
+                -3.81
+              ],
+              [
+                43.44,
+                -3.83
+              ],
+              [
+                43.46,
+                -3.78
+              ],
+              [
+                43.5,
+                -3.81
+              ],
+              [
+                43.48,
+                -3.86
+              ],
+              [
+                43.47,
+                -3.94
+              ],
+              [
+                43.44,
+                -3.98
+              ],
+              [
+                43.44,
+                -4.05
+              ],
+              [
+                43.43,
+                -4.05
+              ],
+              [
+                43.4,
+                -4.22
+              ],
+              [
+                43.39,
+                -4.28
+              ],
+              [
+                43.4,
+                -4.41
+              ],
+              [
+                43.4,
+                -4.5
+              ],
+              [
+                43.39,
+                -4.51
+              ],
+              [
+                43.51,
+                -4.51
+              ],
+              [
+                43.73,
+                -4.52
+              ],
+              [
+                43.73,
+                -4.3
+              ],
+              [
+                43.76,
+                -4.21
+              ],
+              [
+                43.82,
+                -3.94
+              ],
+              [
+                43.83,
+                -3.85
+              ],
+              [
+                43.82,
+                -3.75
+              ],
+              [
+                43.84,
+                -3.66
+              ],
+              [
+                43.85,
+                -3.56
+              ],
+              [
+                43.84,
+                -3.47
+              ],
+              [
+                43.81,
+                -3.38
+              ],
+              [
+                43.74,
+                -3.19
+              ],
+              [
+                43.63,
+                -3.17
+              ],
+              [
+                43.39,
+                -3.15
+              ],
+              [
+                43.35,
+                -3.15
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
       "id": "2.49.0.0.724.0.ES.20261022093046.713601COCO23121792661446",
       "sender": "http://www.aemet.es",
       "sent": "2026-10-22T09:30:46+00:00",
@@ -1798,207 +1999,6 @@
               [
                 41.96,
                 -8.88
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261022092337.663901COCO23221792661017",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-22T09:23:37+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de costeros de nivel naranja",
-      "urgency": "Future",
-      "severity": "Severe",
-      "certainty": "Likely",
-      "effective": "2026-10-22T11:23:37+02:00",
-      "onset": "2026-10-23T05:00:00+02:00",
-      "expires": "2026-10-23T23:59:59+02:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel naranja. Costa - Litoral cántabro",
-      "description": "Viento del Oeste de 62 a 74 km/h (fuerza 8) hasta el mediodía. Mar combinada del Noroeste de 5 a 8 m.",
-      "instruction": "Esté preparado. Tome precauciones y manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños graves a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "naranja",
-      "phenomenon": null,
-      "probability": {
-        "min": 70,
-        "max": 70,
-        "text": "mayor 70%"
-      },
-      "areas": [
-        {
-          "name": "Costa - Litoral cántabro",
-          "zoneCode": "663901C",
-          "polygons": [
-            [
-              [
-                43.35,
-                -3.15
-              ],
-              [
-                43.36,
-                -3.19
-              ],
-              [
-                43.39,
-                -3.22
-              ],
-              [
-                43.42,
-                -3.33
-              ],
-              [
-                43.41,
-                -3.43
-              ],
-              [
-                43.47,
-                -3.43
-              ],
-              [
-                43.47,
-                -3.49
-              ],
-              [
-                43.51,
-                -3.55
-              ],
-              [
-                43.51,
-                -3.6
-              ],
-              [
-                43.48,
-                -3.69
-              ],
-              [
-                43.45,
-                -3.77
-              ],
-              [
-                43.41,
-                -3.81
-              ],
-              [
-                43.4,
-                -3.81
-              ],
-              [
-                43.44,
-                -3.83
-              ],
-              [
-                43.46,
-                -3.78
-              ],
-              [
-                43.5,
-                -3.81
-              ],
-              [
-                43.48,
-                -3.86
-              ],
-              [
-                43.47,
-                -3.94
-              ],
-              [
-                43.44,
-                -3.98
-              ],
-              [
-                43.44,
-                -4.05
-              ],
-              [
-                43.43,
-                -4.05
-              ],
-              [
-                43.4,
-                -4.22
-              ],
-              [
-                43.39,
-                -4.28
-              ],
-              [
-                43.4,
-                -4.41
-              ],
-              [
-                43.4,
-                -4.5
-              ],
-              [
-                43.39,
-                -4.51
-              ],
-              [
-                43.51,
-                -4.51
-              ],
-              [
-                43.73,
-                -4.52
-              ],
-              [
-                43.73,
-                -4.3
-              ],
-              [
-                43.76,
-                -4.21
-              ],
-              [
-                43.82,
-                -3.94
-              ],
-              [
-                43.83,
-                -3.85
-              ],
-              [
-                43.82,
-                -3.75
-              ],
-              [
-                43.84,
-                -3.66
-              ],
-              [
-                43.85,
-                -3.56
-              ],
-              [
-                43.84,
-                -3.47
-              ],
-              [
-                43.81,
-                -3.38
-              ],
-              [
-                43.74,
-                -3.19
-              ],
-              [
-                43.63,
-                -3.17
-              ],
-              [
-                43.39,
-                -3.15
-              ],
-              [
-                43.35,
-                -3.15
               ]
             ]
           ]
@@ -3628,124 +3628,60 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261022092337.663901COCO23031792661017",
+      "id": "2.49.0.0.724.0.ES.20261022162505.663901VIRM23051792686305",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-22T09:23:37+00:00",
+      "sent": "2026-10-22T16:25:05+00:00",
       "status": "Actual",
       "messageType": "Alert",
       "language": "es-ES",
-      "event": "Aviso de costeros de nivel amarillo",
+      "event": "Aviso de vientos de nivel amarillo",
       "urgency": "Future",
       "severity": "Moderate",
       "certainty": "Likely",
-      "effective": "2026-10-22T11:23:37+02:00",
+      "effective": "2026-10-22T18:25:05+02:00",
       "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T04:59:59+02:00",
+      "expires": "2026-10-23T06:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel amarillo. Costa - Litoral cántabro",
-      "description": "Viento del Oeste de 50 a 61 km/h (fuerza 7). Mar combinada del Noroeste de 4 a 5 m.",
+      "headline": "Aviso de vientos de nivel amarillo. Litoral cántabro",
+      "description": "Rachas máximas: 90 km/h. Viento del oeste.",
       "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
       "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
       "level": "amarillo",
       "phenomenon": null,
       "probability": {
-        "min": 70,
+        "min": 40,
         "max": 70,
-        "text": "mayor 70%"
+        "text": "40%-70%"
       },
       "areas": [
         {
-          "name": "Costa - Litoral cántabro",
-          "zoneCode": "663901C",
+          "name": "Litoral cántabro",
+          "zoneCode": "663901",
           "polygons": [
             [
               [
-                43.35,
-                -3.15
+                43.28,
+                -4.52
               ],
               [
-                43.36,
-                -3.19
+                43.31,
+                -4.52
+              ],
+              [
+                43.34,
+                -4.54
               ],
               [
                 43.39,
-                -3.22
-              ],
-              [
-                43.42,
-                -3.33
-              ],
-              [
-                43.41,
-                -3.43
-              ],
-              [
-                43.47,
-                -3.43
-              ],
-              [
-                43.47,
-                -3.49
-              ],
-              [
-                43.51,
-                -3.55
-              ],
-              [
-                43.51,
-                -3.6
-              ],
-              [
-                43.48,
-                -3.69
-              ],
-              [
-                43.45,
-                -3.77
-              ],
-              [
-                43.41,
-                -3.81
+                -4.51
               ],
               [
                 43.4,
-                -3.81
-              ],
-              [
-                43.44,
-                -3.83
-              ],
-              [
-                43.46,
-                -3.78
-              ],
-              [
-                43.5,
-                -3.81
-              ],
-              [
-                43.48,
-                -3.86
-              ],
-              [
-                43.47,
-                -3.94
-              ],
-              [
-                43.44,
-                -3.98
-              ],
-              [
-                43.44,
-                -4.05
-              ],
-              [
-                43.43,
-                -4.05
+                -4.5
               ],
               [
                 43.4,
-                -4.22
+                -4.41
               ],
               [
                 43.39,
@@ -3753,75 +3689,211 @@
               ],
               [
                 43.4,
-                -4.41
+                -4.22
               ],
               [
-                43.4,
-                -4.5
+                43.43,
+                -4.05
               ],
               [
-                43.39,
-                -4.51
+                43.44,
+                -4.05
               ],
               [
-                43.51,
-                -4.51
+                43.44,
+                -3.98
               ],
               [
-                43.73,
-                -4.52
-              ],
-              [
-                43.73,
-                -4.3
-              ],
-              [
-                43.76,
-                -4.21
-              ],
-              [
-                43.82,
+                43.47,
                 -3.94
               ],
               [
-                43.83,
-                -3.85
+                43.48,
+                -3.86
               ],
               [
-                43.82,
-                -3.75
+                43.5,
+                -3.81
               ],
               [
-                43.84,
-                -3.66
+                43.46,
+                -3.78
               ],
               [
-                43.85,
-                -3.56
+                43.44,
+                -3.83
               ],
               [
-                43.84,
-                -3.47
+                43.4,
+                -3.81
               ],
               [
-                43.81,
-                -3.38
+                43.41,
+                -3.81
               ],
               [
-                43.74,
-                -3.19
+                43.45,
+                -3.77
               ],
               [
-                43.63,
-                -3.17
+                43.48,
+                -3.69
+              ],
+              [
+                43.51,
+                -3.6
+              ],
+              [
+                43.51,
+                -3.55
+              ],
+              [
+                43.47,
+                -3.49
+              ],
+              [
+                43.47,
+                -3.43
+              ],
+              [
+                43.41,
+                -3.43
+              ],
+              [
+                43.42,
+                -3.33
               ],
               [
                 43.39,
-                -3.15
+                -3.22
+              ],
+              [
+                43.36,
+                -3.19
               ],
               [
                 43.35,
                 -3.15
+              ],
+              [
+                43.31,
+                -3.15
+              ],
+              [
+                43.29,
+                -3.22
+              ],
+              [
+                43.32,
+                -3.24
+              ],
+              [
+                43.34,
+                -3.28
+              ],
+              [
+                43.36,
+                -3.28
+              ],
+              [
+                43.39,
+                -3.33
+              ],
+              [
+                43.36,
+                -3.37
+              ],
+              [
+                43.36,
+                -3.44
+              ],
+              [
+                43.32,
+                -3.47
+              ],
+              [
+                43.3,
+                -3.51
+              ],
+              [
+                43.31,
+                -3.55
+              ],
+              [
+                43.34,
+                -3.57
+              ],
+              [
+                43.34,
+                -3.61
+              ],
+              [
+                43.3,
+                -3.65
+              ],
+              [
+                43.32,
+                -3.71
+              ],
+              [
+                43.29,
+                -3.77
+              ],
+              [
+                43.3,
+                -3.8
+              ],
+              [
+                43.34,
+                -3.85
+              ],
+              [
+                43.3,
+                -3.93
+              ],
+              [
+                43.33,
+                -3.95
+              ],
+              [
+                43.33,
+                -4.0
+              ],
+              [
+                43.31,
+                -4.02
+              ],
+              [
+                43.29,
+                -4.11
+              ],
+              [
+                43.33,
+                -4.14
+              ],
+              [
+                43.32,
+                -4.2
+              ],
+              [
+                43.28,
+                -4.24
+              ],
+              [
+                43.27,
+                -4.32
+              ],
+              [
+                43.28,
+                -4.39
+              ],
+              [
+                43.3,
+                -4.41
+              ],
+              [
+                43.28,
+                -4.52
               ]
             ]
           ]
@@ -4104,279 +4176,6 @@
               [
                 43.37,
                 -2.49
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261022162505.663901VIRM23051792686305",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-22T16:25:05+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de vientos de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-22T18:25:05+02:00",
-      "onset": "2026-10-23T00:00:00+02:00",
-      "expires": "2026-10-23T06:59:59+02:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de vientos de nivel amarillo. Litoral cántabro",
-      "description": "Rachas máximas: 90 km/h. Viento del oeste.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Litoral cántabro",
-          "zoneCode": "663901",
-          "polygons": [
-            [
-              [
-                43.28,
-                -4.52
-              ],
-              [
-                43.31,
-                -4.52
-              ],
-              [
-                43.34,
-                -4.54
-              ],
-              [
-                43.39,
-                -4.51
-              ],
-              [
-                43.4,
-                -4.5
-              ],
-              [
-                43.4,
-                -4.41
-              ],
-              [
-                43.39,
-                -4.28
-              ],
-              [
-                43.4,
-                -4.22
-              ],
-              [
-                43.43,
-                -4.05
-              ],
-              [
-                43.44,
-                -4.05
-              ],
-              [
-                43.44,
-                -3.98
-              ],
-              [
-                43.47,
-                -3.94
-              ],
-              [
-                43.48,
-                -3.86
-              ],
-              [
-                43.5,
-                -3.81
-              ],
-              [
-                43.46,
-                -3.78
-              ],
-              [
-                43.44,
-                -3.83
-              ],
-              [
-                43.4,
-                -3.81
-              ],
-              [
-                43.41,
-                -3.81
-              ],
-              [
-                43.45,
-                -3.77
-              ],
-              [
-                43.48,
-                -3.69
-              ],
-              [
-                43.51,
-                -3.6
-              ],
-              [
-                43.51,
-                -3.55
-              ],
-              [
-                43.47,
-                -3.49
-              ],
-              [
-                43.47,
-                -3.43
-              ],
-              [
-                43.41,
-                -3.43
-              ],
-              [
-                43.42,
-                -3.33
-              ],
-              [
-                43.39,
-                -3.22
-              ],
-              [
-                43.36,
-                -3.19
-              ],
-              [
-                43.35,
-                -3.15
-              ],
-              [
-                43.31,
-                -3.15
-              ],
-              [
-                43.29,
-                -3.22
-              ],
-              [
-                43.32,
-                -3.24
-              ],
-              [
-                43.34,
-                -3.28
-              ],
-              [
-                43.36,
-                -3.28
-              ],
-              [
-                43.39,
-                -3.33
-              ],
-              [
-                43.36,
-                -3.37
-              ],
-              [
-                43.36,
-                -3.44
-              ],
-              [
-                43.32,
-                -3.47
-              ],
-              [
-                43.3,
-                -3.51
-              ],
-              [
-                43.31,
-                -3.55
-              ],
-              [
-                43.34,
-                -3.57
-              ],
-              [
-                43.34,
-                -3.61
-              ],
-              [
-                43.3,
-                -3.65
-              ],
-              [
-                43.32,
-                -3.71
-              ],
-              [
-                43.29,
-                -3.77
-              ],
-              [
-                43.3,
-                -3.8
-              ],
-              [
-                43.34,
-                -3.85
-              ],
-              [
-                43.3,
-                -3.93
-              ],
-              [
-                43.33,
-                -3.95
-              ],
-              [
-                43.33,
-                -4.0
-              ],
-              [
-                43.31,
-                -4.02
-              ],
-              [
-                43.29,
-                -4.11
-              ],
-              [
-                43.33,
-                -4.14
-              ],
-              [
-                43.32,
-                -4.2
-              ],
-              [
-                43.28,
-                -4.24
-              ],
-              [
-                43.27,
-                -4.32
-              ],
-              [
-                43.28,
-                -4.39
-              ],
-              [
-                43.3,
-                -4.41
-              ],
-              [
-                43.28,
-                -4.52
               ]
             ]
           ]
