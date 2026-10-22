@@ -4250,6 +4250,19 @@ function applyOfficialAlertsToRisk(
    RENDER AVISOS E INUNDACIONES
    =========================================================== */
 
+function translateOfficialSeverity(value) {
+  const raw = String(value || "").trim();
+  const key = raw.toLowerCase();
+  const translations = {
+    minor: "Leve",
+    moderate: "Moderado",
+    severe: "Grave",
+    extreme: "Extremo",
+    unknown: "No indicado"
+  };
+  return translations[key] || raw || "No indicado";
+}
+
 function renderOfficialAlerts(
   analysis
 ) {
@@ -4335,10 +4348,12 @@ function renderOfficialAlerts(
         <span>
           Nivel:
           ${escapeHtml(
-            alert.severity ||
-            alert.nivel ||
-            alert.level ||
-            "No indicado"
+            translateOfficialSeverity(
+              alert.severity ||
+              alert.nivel ||
+              alert.level ||
+              "No indicado"
+            )
           )}
           <br>
           ${escapeHtml(
