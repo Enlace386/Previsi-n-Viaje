@@ -1322,7 +1322,7 @@ body {
   margin: 0;
   padding: 6px;
   display: grid;
-  grid-template-columns: repeat(5,1fr);
+  grid-template-columns: repeat(6,minmax(0,1fr));
   gap: 4px;
   border: 1px solid rgba(255,255,255,.92);
   border-radius: 24px;
@@ -1333,6 +1333,8 @@ body {
 }
 
 .travel-nav-item {
+  text-decoration: none;
+  min-width: 0;
   min-height: 50px;
   border: 0;
   border-radius: 18px;
@@ -1710,6 +1712,11 @@ body {
         <span class="travel-nav-icon">♡</span>
         <span>Viajes</span>
       </button>
+
+      <a class="travel-nav-item etraffic-nav-item" href="https://etraffic.dgt.es/etrafficWEB/" target="_blank" rel="noopener noreferrer" aria-label="Abrir el mapa oficial eTraffic de la DGT en una pestaña nueva">
+        <span class="travel-nav-icon">🗺️</span>
+        <span>eTraffic ↗</span>
+      </a>
 
     </nav>
 
@@ -6754,6 +6761,10 @@ function renderSavedTrips() {
   );
 
 }
+
+
+// Mostrar los viajes guardados al abrir la aplicación, sin exigir crear uno nuevo.
+renderSavedTrips();
 
 
 /* ===========================================================
