@@ -2523,6 +2523,7 @@ let importedRouteStops = null;
 
 let pointMarkers = [];
 let dgtLayer = null;
+let radarLayer = null;
 let mapMode = "weather";
 
 
@@ -2695,6 +2696,9 @@ function initMap() {
     L.layerGroup().addTo(map);
 
   dgtLayer =
+    L.layerGroup().addTo(map);
+
+  radarLayer =
     L.layerGroup().addTo(map);
 
 
@@ -4127,6 +4131,8 @@ function renderRouteRadars(result) {
   const status = $('radarsStatus'), list = $('radarsList');
   if (!status || !list) return;
   list.innerHTML = '';
+  if (radarLayer) radarLayer.clearLayers();
+
   if (result?.error) {
     status.className = 'data-state warning';
     status.innerHTML = '<strong>⚠️ No se pudieron consultar los radares</strong><span>El servicio gratuito puede estar temporalmente saturado. No significa que no haya radares en la ruta.</span>';
@@ -4139,18 +4145,44 @@ function renderRouteRadars(result) {
     return;
   }
   status.className = 'data-state';
-  status.innerHTML = `<strong>📷 ${radars.length} control(es) cartografiado(s)</strong><span>Ordenados según el avance por la ruta · Fuente: OpenStreetMap.</span>`;
-  for (const radar of radars.slice(0, 100)) {
-    const item = document.createElement('div');
-    item.className = 'official-item';
+  status.innerHTML = `<strong>📷 ${radars.length} control(es) cartografiado(s)</strong><span>Ordenados según el avance por la ruta · Fuente: OpenStreetMap. Los radares también se muestran en el mapa.</span>`;
+
+  for (const [index, radar] of radars.slice(0, 100).entries()) {
     const speed = radar.maxspeed ? `Límite indicado: ${radar.maxspeed}` : 'Límite no indicado en la fuente';
     const direction = radar.direction ? ` · Dirección: ${radar.direction}` : '';
     const name = radar.name ? ` · ${radar.name}` : '';
+    const item = document.createElement('div');
+    item.className = 'official-item';
+    item.style.cursor = 'pointer';
+    item.title = 'Pulsa para localizar este radar en el mapa';
     item.innerHTML = `<strong>📷 ${escapeHtml(radar.type)}</strong><span>A unos ${radar.alongKm.toFixed(1)} km desde el inicio · ${escapeHtml(speed)}${escapeHtml(direction + name)}</span>`;
     list.appendChild(item);
+
+    if (map && radarLayer && Number.isFinite(radar.lat) && Number.isFinite(radar.lon)) {
+      const marker = L.marker([radar.lat, radar.lon], {
+        icon: L.divIcon({
+          className: '',
+          html: `<div style="width:30px;height:30px;border:2px solid #fff;border-radius:50%;background:#7c3aed;box-shadow:0 2px 8px #0008;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:700">📷</div>`,
+          iconSize: [34, 34],
+          iconAnchor: [17, 17]
+        }),
+        title: `${radar.type} · ${radar.alongKm.toFixed(1)} km`
+      }).addTo(radarLayer);
+
+      marker.bindPopup(
+        `<strong>${escapeHtml(radar.type)}</strong><br>` +
+        `Distancia desde el origen: ${radar.alongKm.toFixed(1)} km<br>` +
+        `${escapeHtml(speed)}${escapeHtml(direction + name)}<br>` +
+        `<small>Fuente: OpenStreetMap</small>`
+      );
+
+      item.addEventListener('click', () => {
+        map.setView([radar.lat, radar.lon], Math.max(map.getZoom(), 13));
+        marker.openPopup();
+      });
+    }
   }
 }
-
 function renderDgtIncidents(result) {
   const status = $("dgtStatus");
   const list = $("dgtList");
@@ -5217,6 +5249,7 @@ function renderRoute(
 
   pointLayer.clearLayers();
   if (dgtLayer) dgtLayer.clearLayers();
+  if (radarLayer) radarLayer.clearLayers();
   pointMarkers = [];
 
 
