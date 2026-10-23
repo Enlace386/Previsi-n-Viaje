@@ -2191,6 +2191,18 @@ body {
 
       </section>
 
+      <!-- RADARES DE VELOCIDAD: fuente comunitaria OSM / Overpass -->
+      <section class="panel section" id="radarsSection">
+        <div class="section-title">📷 Radares en la ruta</div>
+        <span class="etraffic-note">Consulta gratuita de radares cartografiados en OpenStreetMap. La cobertura depende de los datos disponibles y no garantiza que aparezcan todos los radares.</span>
+        <div id="radarsStatus" class="data-state">
+          <strong>📷 Radares: esperando consulta</strong>
+          <span>Se buscarán al analizar una ruta.</span>
+        </div>
+        <div id="radarsList" class="official-list"></div>
+        <span class="etraffic-note">Fuente: OpenStreetMap contributors (ODbL) · <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> · <a href="https://overpass-api.de/" target="_blank" rel="noopener noreferrer">Overpass API</a>.</span>
+      </section>
+
 
       <!-- ===================================================
            RECOMMENDATION
@@ -4034,6 +4046,109 @@ async function fetchDgtIncidents(analysis) {
     generatedAt: payload.generatedAt || null,
     source: payload.source || "DGT"
   };
+}
+
+function radarDistanceToRoute(radar, coordinates) {
+  // Distancia punto-segmento en una proyección local, adecuada para
+  // filtrar puntos cercanos a la geometría real de una ruta.
+  if (!Array.isArray(coordinates) || coordinates.length < 2) return null;
+  const lat0 = radar.lat * Math.PI / 180;
+  const scaleX = 111.32 * Math.cos(lat0);
+  const scaleY = 110.574;
+  let bestKm = Infinity;
+  let bestAlongKm = 0;
+  let cumulativeKm = 0;
+  for (let i = 1; i < coordinates.length; i++) {
+    const a = coordinates[i - 1];
+    const b = coordinates[i];
+    const ax = (a[0] - radar.lon) * scaleX;
+    const ay = (a[1] - radar.lat) * scaleY;
+    const bx = (b[0] - radar.lon) * scaleX;
+    const by = (b[1] - radar.lat) * scaleY;
+    const dx = bx - ax, dy = by - ay;
+    const denom = dx * dx + dy * dy;
+    const t = denom ? Math.max(0, Math.min(1, -(ax * dx + ay * dy) / denom)) : 0;
+    const px = ax + t * dx, py = ay + t * dy;
+    const distance = Math.hypot(px, py);
+    const segmentKm = haversineKm(a[1], a[0], b[1], b[0]);
+    if (distance < bestKm) { bestKm = distance; bestAlongKm = cumulativeKm + segmentKm * t; }
+    cumulativeKm += segmentKm;
+  }
+  return { distanceKm: bestKm, alongKm: bestAlongKm };
+}
+
+function radarType(tags = {}) {
+  const detail = String(tags.enforcement || tags.camera || tags.highway || '').toLowerCase();
+  if (detail.includes('average_speed') || detail.includes('section')) return 'Radar de tramo';
+  if (detail.includes('traffic_signals') || tags['traffic_signals:camera'] === 'yes') return 'Control en semáforo';
+  if (tags.highway === 'speed_camera' || detail.includes('speed')) return 'Radar de velocidad';
+  return 'Control de velocidad';
+}
+
+async function fetchRouteRadars(analysis) {
+  const status = $('radarsStatus');
+  const list = $('radarsList');
+  if (status) status.innerHTML = '<strong>📷 Buscando radares…</strong><span>Consultando OpenStreetMap para el trazado completo.</span>';
+  if (list) list.innerHTML = '';
+  const coordinates = analysis?.route?.geometry?.coordinates;
+  if (!Array.isArray(coordinates) || coordinates.length < 2) throw new Error('La geometría de la ruta no está disponible.');
+  const lats = coordinates.map(c => c[1]), lons = coordinates.map(c => c[0]);
+  const south = Math.min(...lats) - 0.025, north = Math.max(...lats) + 0.025;
+  const west = Math.min(...lons) - 0.025, east = Math.max(...lons) + 0.025;
+  const bbox = `${south},${west},${north},${east}`;
+  const query = `[out:json][timeout:35];(node["highway"="speed_camera"](${bbox});way["highway"="speed_camera"](${bbox});node["enforcement"="average_speed"](${bbox});way["enforcement"="average_speed"](${bbox});node["traffic_signals:camera"="yes"](${bbox}););out center tags;`;
+  const endpoints = ['https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter'];
+  let payload = null, lastError = null;
+  for (const endpoint of endpoints) {
+    try {
+      const response = await fetchWithTimeout(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, body: 'data=' + encodeURIComponent(query), cache: 'no-store' }, 40000);
+      if (!response.ok) throw new Error(`Overpass HTTP ${response.status}`);
+      payload = await response.json();
+      break;
+    } catch (error) { lastError = error; }
+  }
+  if (!payload) throw (lastError || new Error('Overpass no disponible'));
+  const unique = new Map();
+  for (const el of (payload.elements || [])) {
+    const lat = Number(el.lat ?? el.center?.lat), lon = Number(el.lon ?? el.center?.lon);
+    if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
+    const tags = el.tags || {};
+    const match = radarDistanceToRoute({ lat, lon }, coordinates);
+    // Mantener un margen pequeño alrededor de la carretera para evitar cámaras de vías cercanas.
+    if (!match || match.distanceKm > 0.12) continue;
+    const id = `${el.type}/${el.id}`;
+    if (!unique.has(id)) unique.set(id, { id, lat, lon, tags, type: radarType(tags), distanceKm: match.distanceKm, alongKm: match.alongKm, maxspeed: tags.maxspeed || tags['maxspeed:forward'] || '', direction: tags.direction || '', name: tags.name || '' });
+  }
+  const radars = [...unique.values()].sort((a,b) => a.alongKm - b.alongKm);
+  return { radars, source: 'OpenStreetMap / Overpass', queriedAt: new Date().toISOString() };
+}
+
+function renderRouteRadars(result) {
+  const status = $('radarsStatus'), list = $('radarsList');
+  if (!status || !list) return;
+  list.innerHTML = '';
+  if (result?.error) {
+    status.className = 'data-state warning';
+    status.innerHTML = '<strong>⚠️ No se pudieron consultar los radares</strong><span>El servicio gratuito puede estar temporalmente saturado. No significa que no haya radares en la ruta.</span>';
+    return;
+  }
+  const radars = result?.radars || [];
+  if (!radars.length) {
+    status.className = 'data-state warning';
+    status.innerHTML = '<strong>ℹ️ No se han encontrado radares cartografiados próximos a la ruta</strong><span>Esto no confirma que la carretera esté libre de radares: OpenStreetMap puede tener datos incompletos.</span>';
+    return;
+  }
+  status.className = 'data-state';
+  status.innerHTML = `<strong>📷 ${radars.length} control(es) cartografiado(s)</strong><span>Ordenados según el avance por la ruta · Fuente: OpenStreetMap.</span>`;
+  for (const radar of radars.slice(0, 100)) {
+    const item = document.createElement('div');
+    item.className = 'official-item';
+    const speed = radar.maxspeed ? `Límite indicado: ${radar.maxspeed}` : 'Límite no indicado en la fuente';
+    const direction = radar.direction ? ` · Dirección: ${radar.direction}` : '';
+    const name = radar.name ? ` · ${radar.name}` : '';
+    item.innerHTML = `<strong>📷 ${escapeHtml(radar.type)}</strong><span>A unos ${radar.alongKm.toFixed(1)} km desde el inicio · ${escapeHtml(speed)}${escapeHtml(direction + name)}</span>`;
+    list.appendChild(item);
+  }
 }
 
 function renderDgtIncidents(result) {
@@ -7299,6 +7414,14 @@ async function analyzeTravel() {
 
     }
 
+    let radarResult = { radars: [], source: 'OpenStreetMap', error: false };
+    try {
+      radarResult = await fetchRouteRadars({ origin, destination, date, departure, points, route });
+    } catch (radarError) {
+      console.warn('Route radar lookup error', radarError);
+      radarResult = { radars: [], source: 'OpenStreetMap', error: true };
+    }
+
     const analysisForOfficialData = {
       origin,
       destination,
@@ -7458,6 +7581,10 @@ async function analyzeTravel() {
 
         renderDgtIncidents(
           dgtResult
+        );
+
+        renderRouteRadars(
+          radarResult
         );
 
         renderHydrologicalStatus(
