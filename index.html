@@ -1992,7 +1992,7 @@ body {
 
         <div class="map-layer-switcher" role="group" aria-label="Información visible en el mapa">
           <button type="button" class="map-layer-btn active" data-map-mode="weather" onclick="setMapMode('weather')">🌦️ Tiempo / Riesgo</button>
-          <button type="button" class="map-layer-btn" data-map-mode="dgt" onclick="setMapMode('dgt')">🚧 DGT</button>
+          <button type="button" class="map-layer-btn" data-map-mode="dgt" onclick="setMapMode('dgt')">🚧 DGT / Radares</button>
           <button type="button" class="map-layer-btn" data-map-mode="all" onclick="setMapMode('all')">🗺️ Todo</button>
         </div>
 
@@ -2189,18 +2189,18 @@ body {
 
         <div id="dgtList" class="official-list"></div>
 
-      </section>
-
-      <!-- RADARES DE VELOCIDAD: fuente comunitaria OSM / Overpass -->
-      <section class="panel section" id="radarsSection">
-        <div class="section-title">📷 Radares en la ruta</div>
-        <span class="etraffic-note">Consulta gratuita de radares cartografiados en OpenStreetMap. La cobertura depende de los datos disponibles y no garantiza que aparezcan todos los radares.</span>
-        <div id="radarsStatus" class="data-state">
-          <strong>📷 Radares: esperando consulta</strong>
-          <span>Se buscarán al analizar una ruta.</span>
+        <!-- RADARES DE VELOCIDAD: agrupados con el tráfico -->
+        <div id="radarsSection" class="traffic-radars-block" style="margin-top:22px;padding-top:18px;border-top:1px solid var(--ui-border,rgba(148,163,184,.25))">
+          <div class="section-title">📷 Radares en la ruta</div>
+          <span class="etraffic-note">Consulta gratuita de radares cartografiados en OpenStreetMap. La cobertura depende de los datos disponibles y no garantiza que aparezcan todos los radares.</span>
+          <div id="radarsStatus" class="data-state">
+            <strong>📷 Radares: esperando consulta</strong>
+            <span>Se buscarán al analizar una ruta.</span>
+          </div>
+          <div id="radarsList" class="official-list"></div>
+          <span class="etraffic-note">Fuente: OpenStreetMap contributors (ODbL) · <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> · <a href="https://overpass-api.de/" target="_blank" rel="noopener noreferrer">Overpass API</a>.</span>
         </div>
-        <div id="radarsList" class="official-list"></div>
-        <span class="etraffic-note">Fuente: OpenStreetMap contributors (ODbL) · <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> · <a href="https://overpass-api.de/" target="_blank" rel="noopener noreferrer">Overpass API</a>.</span>
+
       </section>
 
 
@@ -2719,9 +2719,10 @@ function initMap() {
 function setMapMode(mode) {
   mapMode = ["weather","dgt","all"].includes(mode) ? mode : "weather";
   const showWeather = mapMode === "weather" || mapMode === "all";
-  const showDgt = mapMode === "dgt" || mapMode === "all";
+  const showTraffic = mapMode === "dgt" || mapMode === "all";
   if (pointLayer) { if (showWeather && !map.hasLayer(pointLayer)) pointLayer.addTo(map); if (!showWeather && map.hasLayer(pointLayer)) map.removeLayer(pointLayer); }
-  if (dgtLayer) { if (showDgt && !map.hasLayer(dgtLayer)) dgtLayer.addTo(map); if (!showDgt && map.hasLayer(dgtLayer)) map.removeLayer(dgtLayer); }
+  if (dgtLayer) { if (showTraffic && !map.hasLayer(dgtLayer)) dgtLayer.addTo(map); if (!showTraffic && map.hasLayer(dgtLayer)) map.removeLayer(dgtLayer); }
+  if (radarLayer) { if (showTraffic && !map.hasLayer(radarLayer)) radarLayer.addTo(map); if (!showTraffic && map.hasLayer(radarLayer)) map.removeLayer(radarLayer); }
   document.querySelectorAll(".map-layer-btn").forEach(b => b.classList.toggle("active", b.dataset.mapMode === mapMode));
 }
 
