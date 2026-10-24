@@ -1,6 +1,6 @@
 {
   "source": "AEMET OpenData",
-  "generatedAt": "2026-10-24T16:08:12.627380+00:00",
+  "generatedAt": "2026-10-24T18:53:28.399436+00:00",
   "status": "ok",
   "count": 192,
   "alerts": [
@@ -1807,6 +1807,690 @@
       ]
     },
     {
+      "id": "2.49.0.0.724.0.ES.20261024161620.633301COCO25231792858580",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-24T16:16:20+00:00",
+      "status": "Actual",
+      "messageType": "Update",
+      "language": "es-ES",
+      "event": "Aviso de costeros de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-24T18:16:20+02:00",
+      "onset": "2026-10-25T14:00:00+01:00",
+      "expires": "2026-10-25T23:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de costeros de nivel amarillo. Costa - Litoral occidental asturiano",
+      "description": "Mar combinada del noroeste superior a 4 metros.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Costa - Litoral occidental asturiano",
+          "zoneCode": "633301C",
+          "polygons": [
+            [
+              [
+                43.59,
+                -5.94
+              ],
+              [
+                43.58,
+                -5.96
+              ],
+              [
+                43.59,
+                -6.03
+              ],
+              [
+                43.57,
+                -6.06
+              ],
+              [
+                43.56,
+                -6.12
+              ],
+              [
+                43.57,
+                -6.19
+              ],
+              [
+                43.59,
+                -6.21
+              ],
+              [
+                43.55,
+                -6.35
+              ],
+              [
+                43.56,
+                -6.4
+              ],
+              [
+                43.55,
+                -6.54
+              ],
+              [
+                43.57,
+                -6.64
+              ],
+              [
+                43.56,
+                -6.68
+              ],
+              [
+                43.56,
+                -6.82
+              ],
+              [
+                43.57,
+                -6.91
+              ],
+              [
+                43.54,
+                -7.03
+              ],
+              [
+                43.55,
+                -7.03
+              ],
+              [
+                43.61,
+                -7.03
+              ],
+              [
+                43.88,
+                -7.01
+              ],
+              [
+                43.88,
+                -6.47
+              ],
+              [
+                43.91,
+                -6.39
+              ],
+              [
+                43.93,
+                -6.31
+              ],
+              [
+                43.93,
+                -6.23
+              ],
+              [
+                43.92,
+                -6.15
+              ],
+              [
+                43.96,
+                -6.08
+              ],
+              [
+                43.99,
+                -5.97
+              ],
+              [
+                43.6,
+                -5.95
+              ],
+              [
+                43.59,
+                -5.94
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261024161620.633302COCO25231792858580",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-24T16:16:20+00:00",
+      "status": "Actual",
+      "messageType": "Update",
+      "language": "es-ES",
+      "event": "Aviso de costeros de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-24T18:16:20+02:00",
+      "onset": "2026-10-25T14:00:00+01:00",
+      "expires": "2026-10-25T23:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de costeros de nivel amarillo. Costa - Litoral oriental asturiano",
+      "description": "Mar combinada del noroeste superior a 4 metros.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Costa - Litoral oriental asturiano",
+          "zoneCode": "633302C",
+          "polygons": [
+            [
+              [
+                43.73,
+                -4.52
+              ],
+              [
+                43.51,
+                -4.51
+              ],
+              [
+                43.39,
+                -4.51
+              ],
+              [
+                43.39,
+                -4.58
+              ],
+              [
+                43.42,
+                -4.74
+              ],
+              [
+                43.46,
+                -4.94
+              ],
+              [
+                43.46,
+                -5.04
+              ],
+              [
+                43.49,
+                -5.12
+              ],
+              [
+                43.47,
+                -5.21
+              ],
+              [
+                43.54,
+                -5.29
+              ],
+              [
+                43.54,
+                -5.38
+              ],
+              [
+                43.56,
+                -5.41
+              ],
+              [
+                43.54,
+                -5.68
+              ],
+              [
+                43.57,
+                -5.71
+              ],
+              [
+                43.59,
+                -5.76
+              ],
+              [
+                43.61,
+                -5.78
+              ],
+              [
+                43.64,
+                -5.82
+              ],
+              [
+                43.63,
+                -5.9
+              ],
+              [
+                43.62,
+                -5.9
+              ],
+              [
+                43.59,
+                -5.94
+              ],
+              [
+                43.6,
+                -5.95
+              ],
+              [
+                43.99,
+                -5.97
+              ],
+              [
+                44.0,
+                -5.9
+              ],
+              [
+                44.0,
+                -5.8
+              ],
+              [
+                43.98,
+                -5.71
+              ],
+              [
+                43.96,
+                -5.63
+              ],
+              [
+                43.93,
+                -5.56
+              ],
+              [
+                43.89,
+                -5.5
+              ],
+              [
+                43.89,
+                -5.35
+              ],
+              [
+                43.87,
+                -5.26
+              ],
+              [
+                43.84,
+                -5.18
+              ],
+              [
+                43.79,
+                -5.05
+              ],
+              [
+                43.77,
+                -4.87
+              ],
+              [
+                43.77,
+                -4.82
+              ],
+              [
+                43.76,
+                -4.67
+              ],
+              [
+                43.73,
+                -4.56
+              ],
+              [
+                43.73,
+                -4.52
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261024083856.663901COCO25231792831136",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-24T08:38:56+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de costeros de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-24T10:38:56+02:00",
+      "onset": "2026-10-25T14:00:00+01:00",
+      "expires": "2026-10-25T23:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de costeros de nivel amarillo. Costa - Litoral cántabro",
+      "description": "Mar combinada del noroeste superior a 4 metros.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Costa - Litoral cántabro",
+          "zoneCode": "663901C",
+          "polygons": [
+            [
+              [
+                43.35,
+                -3.15
+              ],
+              [
+                43.36,
+                -3.19
+              ],
+              [
+                43.39,
+                -3.22
+              ],
+              [
+                43.42,
+                -3.33
+              ],
+              [
+                43.41,
+                -3.43
+              ],
+              [
+                43.47,
+                -3.43
+              ],
+              [
+                43.47,
+                -3.49
+              ],
+              [
+                43.51,
+                -3.55
+              ],
+              [
+                43.51,
+                -3.6
+              ],
+              [
+                43.48,
+                -3.69
+              ],
+              [
+                43.45,
+                -3.77
+              ],
+              [
+                43.41,
+                -3.81
+              ],
+              [
+                43.4,
+                -3.81
+              ],
+              [
+                43.44,
+                -3.83
+              ],
+              [
+                43.46,
+                -3.78
+              ],
+              [
+                43.5,
+                -3.81
+              ],
+              [
+                43.48,
+                -3.86
+              ],
+              [
+                43.47,
+                -3.94
+              ],
+              [
+                43.44,
+                -3.98
+              ],
+              [
+                43.44,
+                -4.05
+              ],
+              [
+                43.43,
+                -4.05
+              ],
+              [
+                43.4,
+                -4.22
+              ],
+              [
+                43.39,
+                -4.28
+              ],
+              [
+                43.4,
+                -4.41
+              ],
+              [
+                43.4,
+                -4.5
+              ],
+              [
+                43.39,
+                -4.51
+              ],
+              [
+                43.51,
+                -4.51
+              ],
+              [
+                43.73,
+                -4.52
+              ],
+              [
+                43.73,
+                -4.3
+              ],
+              [
+                43.76,
+                -4.21
+              ],
+              [
+                43.82,
+                -3.94
+              ],
+              [
+                43.83,
+                -3.85
+              ],
+              [
+                43.82,
+                -3.75
+              ],
+              [
+                43.84,
+                -3.66
+              ],
+              [
+                43.85,
+                -3.56
+              ],
+              [
+                43.84,
+                -3.47
+              ],
+              [
+                43.81,
+                -3.38
+              ],
+              [
+                43.74,
+                -3.19
+              ],
+              [
+                43.63,
+                -3.17
+              ],
+              [
+                43.39,
+                -3.15
+              ],
+              [
+                43.35,
+                -3.15
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261024083856.754801COCO25231792831136",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-24T08:38:56+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de costeros de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-24T10:38:56+02:00",
+      "onset": "2026-10-25T14:00:00+01:00",
+      "expires": "2026-10-25T23:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de costeros de nivel amarillo. Costa - Bizkaia litoral",
+      "description": "Mar combinada del noroeste superior a 4 metros.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Costa - Bizkaia litoral",
+          "zoneCode": "754801C",
+          "polygons": [
+            [
+              [
+                43.37,
+                -2.49
+              ],
+              [
+                43.37,
+                -2.54
+              ],
+              [
+                43.39,
+                -2.56
+              ],
+              [
+                43.39,
+                -2.62
+              ],
+              [
+                43.42,
+                -2.72
+              ],
+              [
+                43.46,
+                -2.75
+              ],
+              [
+                43.43,
+                -2.81
+              ],
+              [
+                43.44,
+                -2.94
+              ],
+              [
+                43.39,
+                -2.99
+              ],
+              [
+                43.37,
+                -3.03
+              ],
+              [
+                43.34,
+                -3.01
+              ],
+              [
+                43.36,
+                -3.11
+              ],
+              [
+                43.35,
+                -3.11
+              ],
+              [
+                43.35,
+                -3.15
+              ],
+              [
+                43.39,
+                -3.15
+              ],
+              [
+                43.63,
+                -3.17
+              ],
+              [
+                43.74,
+                -3.19
+              ],
+              [
+                43.73,
+                -3.16
+              ],
+              [
+                43.75,
+                -3.1
+              ],
+              [
+                43.77,
+                -3.01
+              ],
+              [
+                43.79,
+                -2.82
+              ],
+              [
+                43.79,
+                -2.72
+              ],
+              [
+                43.78,
+                -2.62
+              ],
+              [
+                43.75,
+                -2.53
+              ],
+              [
+                43.69,
+                -2.39
+              ],
+              [
+                43.32,
+                -2.41
+              ],
+              [
+                43.33,
+                -2.42
+              ],
+              [
+                43.33,
+                -2.43
+              ],
+              [
+                43.37,
+                -2.49
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
       "id": "2.49.0.0.724.0.ES.20261024083827.711501COCO25231792831107",
       "sender": "http://www.aemet.es",
       "sent": "2026-10-24T08:38:27+00:00",
@@ -2229,372 +2913,18 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261024083856.663901COCO25231792831136",
+      "id": "2.49.0.0.724.0.ES.20261024161645.752001COCO25231792858605",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-24T08:38:56+00:00",
+      "sent": "2026-10-24T16:16:45+00:00",
       "status": "Actual",
-      "messageType": "Alert",
+      "messageType": "Update",
       "language": "es-ES",
       "event": "Aviso de costeros de nivel amarillo",
       "urgency": "Future",
       "severity": "Moderate",
       "certainty": "Likely",
-      "effective": "2026-10-24T10:38:56+02:00",
+      "effective": "2026-10-24T18:16:45+02:00",
       "onset": "2026-10-25T14:00:00+01:00",
-      "expires": "2026-10-25T23:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel amarillo. Costa - Litoral cántabro",
-      "description": "Mar combinada del noroeste superior a 4 metros.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Costa - Litoral cántabro",
-          "zoneCode": "663901C",
-          "polygons": [
-            [
-              [
-                43.35,
-                -3.15
-              ],
-              [
-                43.36,
-                -3.19
-              ],
-              [
-                43.39,
-                -3.22
-              ],
-              [
-                43.42,
-                -3.33
-              ],
-              [
-                43.41,
-                -3.43
-              ],
-              [
-                43.47,
-                -3.43
-              ],
-              [
-                43.47,
-                -3.49
-              ],
-              [
-                43.51,
-                -3.55
-              ],
-              [
-                43.51,
-                -3.6
-              ],
-              [
-                43.48,
-                -3.69
-              ],
-              [
-                43.45,
-                -3.77
-              ],
-              [
-                43.41,
-                -3.81
-              ],
-              [
-                43.4,
-                -3.81
-              ],
-              [
-                43.44,
-                -3.83
-              ],
-              [
-                43.46,
-                -3.78
-              ],
-              [
-                43.5,
-                -3.81
-              ],
-              [
-                43.48,
-                -3.86
-              ],
-              [
-                43.47,
-                -3.94
-              ],
-              [
-                43.44,
-                -3.98
-              ],
-              [
-                43.44,
-                -4.05
-              ],
-              [
-                43.43,
-                -4.05
-              ],
-              [
-                43.4,
-                -4.22
-              ],
-              [
-                43.39,
-                -4.28
-              ],
-              [
-                43.4,
-                -4.41
-              ],
-              [
-                43.4,
-                -4.5
-              ],
-              [
-                43.39,
-                -4.51
-              ],
-              [
-                43.51,
-                -4.51
-              ],
-              [
-                43.73,
-                -4.52
-              ],
-              [
-                43.73,
-                -4.3
-              ],
-              [
-                43.76,
-                -4.21
-              ],
-              [
-                43.82,
-                -3.94
-              ],
-              [
-                43.83,
-                -3.85
-              ],
-              [
-                43.82,
-                -3.75
-              ],
-              [
-                43.84,
-                -3.66
-              ],
-              [
-                43.85,
-                -3.56
-              ],
-              [
-                43.84,
-                -3.47
-              ],
-              [
-                43.81,
-                -3.38
-              ],
-              [
-                43.74,
-                -3.19
-              ],
-              [
-                43.63,
-                -3.17
-              ],
-              [
-                43.39,
-                -3.15
-              ],
-              [
-                43.35,
-                -3.15
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261024083856.754801COCO25231792831136",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-24T08:38:56+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de costeros de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-24T10:38:56+02:00",
-      "onset": "2026-10-25T14:00:00+01:00",
-      "expires": "2026-10-25T23:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel amarillo. Costa - Bizkaia litoral",
-      "description": "Mar combinada del noroeste superior a 4 metros.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Costa - Bizkaia litoral",
-          "zoneCode": "754801C",
-          "polygons": [
-            [
-              [
-                43.37,
-                -2.49
-              ],
-              [
-                43.37,
-                -2.54
-              ],
-              [
-                43.39,
-                -2.56
-              ],
-              [
-                43.39,
-                -2.62
-              ],
-              [
-                43.42,
-                -2.72
-              ],
-              [
-                43.46,
-                -2.75
-              ],
-              [
-                43.43,
-                -2.81
-              ],
-              [
-                43.44,
-                -2.94
-              ],
-              [
-                43.39,
-                -2.99
-              ],
-              [
-                43.37,
-                -3.03
-              ],
-              [
-                43.34,
-                -3.01
-              ],
-              [
-                43.36,
-                -3.11
-              ],
-              [
-                43.35,
-                -3.11
-              ],
-              [
-                43.35,
-                -3.15
-              ],
-              [
-                43.39,
-                -3.15
-              ],
-              [
-                43.63,
-                -3.17
-              ],
-              [
-                43.74,
-                -3.19
-              ],
-              [
-                43.73,
-                -3.16
-              ],
-              [
-                43.75,
-                -3.1
-              ],
-              [
-                43.77,
-                -3.01
-              ],
-              [
-                43.79,
-                -2.82
-              ],
-              [
-                43.79,
-                -2.72
-              ],
-              [
-                43.78,
-                -2.62
-              ],
-              [
-                43.75,
-                -2.53
-              ],
-              [
-                43.69,
-                -2.39
-              ],
-              [
-                43.32,
-                -2.41
-              ],
-              [
-                43.33,
-                -2.42
-              ],
-              [
-                43.33,
-                -2.43
-              ],
-              [
-                43.37,
-                -2.49
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261024083856.752001COCO25231792831136",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-24T08:38:56+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de costeros de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-24T10:38:56+02:00",
-      "onset": "2026-10-25T16:00:00+01:00",
       "expires": "2026-10-25T23:59:59+01:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de costeros de nivel amarillo. Costa - Gipuzkoa litoral",
@@ -2705,336 +3035,6 @@
               [
                 43.69,
                 -2.39
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261024083827.633301COCO25231792831107",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-24T08:38:27+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de costeros de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-24T10:38:27+02:00",
-      "onset": "2026-10-25T17:00:00+01:00",
-      "expires": "2026-10-25T23:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel amarillo. Costa - Litoral occidental asturiano",
-      "description": "Mar combinada del noroeste superior a 4 metros.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Costa - Litoral occidental asturiano",
-          "zoneCode": "633301C",
-          "polygons": [
-            [
-              [
-                43.59,
-                -5.94
-              ],
-              [
-                43.58,
-                -5.96
-              ],
-              [
-                43.59,
-                -6.03
-              ],
-              [
-                43.57,
-                -6.06
-              ],
-              [
-                43.56,
-                -6.12
-              ],
-              [
-                43.57,
-                -6.19
-              ],
-              [
-                43.59,
-                -6.21
-              ],
-              [
-                43.55,
-                -6.35
-              ],
-              [
-                43.56,
-                -6.4
-              ],
-              [
-                43.55,
-                -6.54
-              ],
-              [
-                43.57,
-                -6.64
-              ],
-              [
-                43.56,
-                -6.68
-              ],
-              [
-                43.56,
-                -6.82
-              ],
-              [
-                43.57,
-                -6.91
-              ],
-              [
-                43.54,
-                -7.03
-              ],
-              [
-                43.55,
-                -7.03
-              ],
-              [
-                43.61,
-                -7.03
-              ],
-              [
-                43.88,
-                -7.01
-              ],
-              [
-                43.88,
-                -6.47
-              ],
-              [
-                43.91,
-                -6.39
-              ],
-              [
-                43.93,
-                -6.31
-              ],
-              [
-                43.93,
-                -6.23
-              ],
-              [
-                43.92,
-                -6.15
-              ],
-              [
-                43.96,
-                -6.08
-              ],
-              [
-                43.99,
-                -5.97
-              ],
-              [
-                43.6,
-                -5.95
-              ],
-              [
-                43.59,
-                -5.94
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261024083827.633302COCO25231792831107",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-24T08:38:27+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de costeros de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-24T10:38:27+02:00",
-      "onset": "2026-10-25T17:00:00+01:00",
-      "expires": "2026-10-25T23:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel amarillo. Costa - Litoral oriental asturiano",
-      "description": "Mar combinada del noroeste superior a 4 metros.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Costa - Litoral oriental asturiano",
-          "zoneCode": "633302C",
-          "polygons": [
-            [
-              [
-                43.73,
-                -4.52
-              ],
-              [
-                43.51,
-                -4.51
-              ],
-              [
-                43.39,
-                -4.51
-              ],
-              [
-                43.39,
-                -4.58
-              ],
-              [
-                43.42,
-                -4.74
-              ],
-              [
-                43.46,
-                -4.94
-              ],
-              [
-                43.46,
-                -5.04
-              ],
-              [
-                43.49,
-                -5.12
-              ],
-              [
-                43.47,
-                -5.21
-              ],
-              [
-                43.54,
-                -5.29
-              ],
-              [
-                43.54,
-                -5.38
-              ],
-              [
-                43.56,
-                -5.41
-              ],
-              [
-                43.54,
-                -5.68
-              ],
-              [
-                43.57,
-                -5.71
-              ],
-              [
-                43.59,
-                -5.76
-              ],
-              [
-                43.61,
-                -5.78
-              ],
-              [
-                43.64,
-                -5.82
-              ],
-              [
-                43.63,
-                -5.9
-              ],
-              [
-                43.62,
-                -5.9
-              ],
-              [
-                43.59,
-                -5.94
-              ],
-              [
-                43.6,
-                -5.95
-              ],
-              [
-                43.99,
-                -5.97
-              ],
-              [
-                44.0,
-                -5.9
-              ],
-              [
-                44.0,
-                -5.8
-              ],
-              [
-                43.98,
-                -5.71
-              ],
-              [
-                43.96,
-                -5.63
-              ],
-              [
-                43.93,
-                -5.56
-              ],
-              [
-                43.89,
-                -5.5
-              ],
-              [
-                43.89,
-                -5.35
-              ],
-              [
-                43.87,
-                -5.26
-              ],
-              [
-                43.84,
-                -5.18
-              ],
-              [
-                43.79,
-                -5.05
-              ],
-              [
-                43.77,
-                -4.87
-              ],
-              [
-                43.77,
-                -4.82
-              ],
-              [
-                43.76,
-                -4.67
-              ],
-              [
-                43.73,
-                -4.56
-              ],
-              [
-                43.73,
-                -4.52
               ]
             ]
           ]
