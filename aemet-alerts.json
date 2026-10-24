@@ -1,8 +1,8 @@
 {
   "source": "AEMET OpenData",
-  "generatedAt": "2026-10-23T23:39:05.438729+00:00",
+  "generatedAt": "2026-10-24T02:25:47.382003+00:00",
   "status": "ok",
-  "count": 205,
+  "count": 206,
   "alerts": [
     {
       "id": "2.49.0.0.724.0.ES.20261023063343.663901COCO23221792737223",
@@ -1881,6 +1881,219 @@
               [
                 41.96,
                 -8.88
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261023235840.690804PRP124031792799920",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-23T23:58:40+00:00",
+      "status": "Actual",
+      "messageType": "Update",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel naranja",
+      "urgency": "Immediate",
+      "severity": "Severe",
+      "certainty": "Observed",
+      "effective": "2026-10-24T01:58:40+02:00",
+      "onset": "2026-10-24T01:00:00+02:00",
+      "expires": "2026-10-24T04:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel naranja. Litoral de Barcelona",
+      "description": "Precipitación acumulada en una hora: 40 mm.",
+      "instruction": "Esté preparado. Tome precauciones y manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños graves a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "naranja",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Litoral de Barcelona",
+          "zoneCode": "690804",
+          "polygons": [
+            [
+              [
+                41.31,
+                1.6
+              ],
+              [
+                41.31,
+                1.63
+              ],
+              [
+                41.31,
+                1.64
+              ],
+              [
+                41.29,
+                1.69
+              ],
+              [
+                41.32,
+                1.7
+              ],
+              [
+                41.35,
+                1.74
+              ],
+              [
+                41.32,
+                1.79
+              ],
+              [
+                41.32,
+                1.84
+              ],
+              [
+                41.36,
+                1.9
+              ],
+              [
+                41.38,
+                1.87
+              ],
+              [
+                41.43,
+                1.9
+              ],
+              [
+                41.46,
+                2.02
+              ],
+              [
+                41.44,
+                2.03
+              ],
+              [
+                41.43,
+                2.12
+              ],
+              [
+                41.45,
+                2.14
+              ],
+              [
+                41.49,
+                2.25
+              ],
+              [
+                41.53,
+                2.32
+              ],
+              [
+                41.63,
+                2.42
+              ],
+              [
+                41.63,
+                2.52
+              ],
+              [
+                41.66,
+                2.55
+              ],
+              [
+                41.66,
+                2.59
+              ],
+              [
+                41.72,
+                2.65
+              ],
+              [
+                41.71,
+                2.67
+              ],
+              [
+                41.74,
+                2.73
+              ],
+              [
+                41.74,
+                2.78
+              ],
+              [
+                41.68,
+                2.76
+              ],
+              [
+                41.65,
+                2.78
+              ],
+              [
+                41.58,
+                2.56
+              ],
+              [
+                41.54,
+                2.46
+              ],
+              [
+                41.49,
+                2.38
+              ],
+              [
+                41.47,
+                2.3
+              ],
+              [
+                41.45,
+                2.25
+              ],
+              [
+                41.41,
+                2.22
+              ],
+              [
+                41.37,
+                2.18
+              ],
+              [
+                41.32,
+                2.15
+              ],
+              [
+                41.29,
+                2.12
+              ],
+              [
+                41.27,
+                2.02
+              ],
+              [
+                41.26,
+                1.92
+              ],
+              [
+                41.23,
+                1.85
+              ],
+              [
+                41.22,
+                1.78
+              ],
+              [
+                41.2,
+                1.65
+              ],
+              [
+                41.22,
+                1.62
+              ],
+              [
+                41.26,
+                1.62
+              ],
+              [
+                41.31,
+                1.6
               ]
             ]
           ]
@@ -4765,7 +4978,7 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261023232016.690804PRP124051792797616",
+      "id": "2.49.0.0.724.0.ES.20261023232016.691704PRP124051792797616",
       "sender": "http://www.aemet.es",
       "sent": "2026-10-23T23:20:16+00:00",
       "status": "Actual",
@@ -4774,9 +4987,114 @@
       "event": "Aviso de lluvias de nivel amarillo",
       "urgency": "Immediate",
       "severity": "Moderate",
-      "certainty": "Observed",
+      "certainty": "Likely",
       "effective": "2026-10-24T01:20:16+02:00",
       "onset": "2026-10-24T01:00:00+02:00",
+      "expires": "2026-10-24T06:59:59+02:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel amarillo. Litoral sur de Girona",
+      "description": "Precipitación acumulada en una hora: 20 mm.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Litoral sur de Girona",
+          "zoneCode": "691704",
+          "polygons": [
+            [
+              [
+                41.74,
+                2.78
+              ],
+              [
+                41.76,
+                2.85
+              ],
+              [
+                41.82,
+                2.85
+              ],
+              [
+                41.85,
+                2.86
+              ],
+              [
+                41.87,
+                2.94
+              ],
+              [
+                41.88,
+                2.96
+              ],
+              [
+                41.87,
+                3.02
+              ],
+              [
+                41.85,
+                3.03
+              ],
+              [
+                41.82,
+                3.08
+              ],
+              [
+                41.8,
+                3.07
+              ],
+              [
+                41.75,
+                2.97
+              ],
+              [
+                41.72,
+                2.94
+              ],
+              [
+                41.7,
+                2.85
+              ],
+              [
+                41.67,
+                2.79
+              ],
+              [
+                41.65,
+                2.78
+              ],
+              [
+                41.68,
+                2.76
+              ],
+              [
+                41.74,
+                2.78
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261023235840.690804PRP124051792799920",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-23T23:58:40+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-24T01:58:40+02:00",
+      "onset": "2026-10-24T05:00:00+02:00",
       "expires": "2026-10-24T06:59:59+02:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel amarillo. Litoral de Barcelona",
@@ -4971,111 +5289,6 @@
               [
                 41.31,
                 1.6
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261023232016.691704PRP124051792797616",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-23T23:20:16+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel amarillo",
-      "urgency": "Immediate",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-24T01:20:16+02:00",
-      "onset": "2026-10-24T01:00:00+02:00",
-      "expires": "2026-10-24T06:59:59+02:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel amarillo. Litoral sur de Girona",
-      "description": "Precipitación acumulada en una hora: 20 mm.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Litoral sur de Girona",
-          "zoneCode": "691704",
-          "polygons": [
-            [
-              [
-                41.74,
-                2.78
-              ],
-              [
-                41.76,
-                2.85
-              ],
-              [
-                41.82,
-                2.85
-              ],
-              [
-                41.85,
-                2.86
-              ],
-              [
-                41.87,
-                2.94
-              ],
-              [
-                41.88,
-                2.96
-              ],
-              [
-                41.87,
-                3.02
-              ],
-              [
-                41.85,
-                3.03
-              ],
-              [
-                41.82,
-                3.08
-              ],
-              [
-                41.8,
-                3.07
-              ],
-              [
-                41.75,
-                2.97
-              ],
-              [
-                41.72,
-                2.94
-              ],
-              [
-                41.7,
-                2.85
-              ],
-              [
-                41.67,
-                2.79
-              ],
-              [
-                41.65,
-                2.78
-              ],
-              [
-                41.68,
-                2.76
-              ],
-              [
-                41.74,
-                2.78
               ]
             ]
           ]
