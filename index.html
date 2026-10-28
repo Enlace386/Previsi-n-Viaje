@@ -4095,34 +4095,90 @@ async function fetchRouteRadars(analysis) {
   const list = $('radarsList');
   if (status) status.innerHTML = '<strong>📷 Buscando radares…</strong><span>Consultando OpenStreetMap para el trazado completo.</span>';
   if (list) list.innerHTML = '';
-  const coordinates = analysis?.route?.geometry?.coordinates;
-  if (!Array.isArray(coordinates) || coordinates.length < 2) throw new Error('La geometría de la ruta no está disponible.');
-  const lats = coordinates.map(c => c[1]), lons = coordinates.map(c => c[0]);
+
+  // Aceptar tanto el objeto completo del análisis como la ruta directa.
+  const coordinates =
+    analysis?.route?.geometry?.coordinates ||
+    analysis?.geometry?.coordinates ||
+    analysis?.route?.coordinates;
+
+  if (!Array.isArray(coordinates) || coordinates.length < 2) {
+    throw new Error('No se ha recibido la geometría completa de la ruta.');
+  }
+
+  const lats = coordinates.map(c => Number(c[1])).filter(Number.isFinite);
+  const lons = coordinates.map(c => Number(c[0])).filter(Number.isFinite);
+  if (lats.length < 2 || lons.length < 2) throw new Error('La geometría de la ruta no contiene coordenadas válidas.');
+
   const south = Math.min(...lats) - 0.025, north = Math.max(...lats) + 0.025;
   const west = Math.min(...lons) - 0.025, east = Math.max(...lons) + 0.025;
   const bbox = `${south},${west},${north},${east}`;
-  const query = `[out:json][timeout:35];(node["highway"="speed_camera"](${bbox});way["highway"="speed_camera"](${bbox});node["enforcement"="average_speed"](${bbox});way["enforcement"="average_speed"](${bbox});node["traffic_signals:camera"="yes"](${bbox}););out center tags;`;
-  const endpoints = ['https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter'];
-  let payload = null, lastError = null;
+  const query = `[out:json][timeout:25];(node["highway"="speed_camera"](${bbox});way["highway"="speed_camera"](${bbox});node["enforcement"="average_speed"](${bbox});way["enforcement"="average_speed"](${bbox});node["traffic_signals:camera"="yes"](${bbox}););out center tags;`;
+
+  // Overpass es un servicio comunitario; probar varios servidores y POST/GET
+  // evita que una caída puntual de un único endpoint deje la función inutilizable.
+  const endpoints = [
+    'https://overpass-api.de/api/interpreter',
+    'https://overpass.kumi.systems/api/interpreter',
+    'https://overpass.private.coffee/api/interpreter'
+  ];
+  let payload = null;
+  const failures = [];
+
   for (const endpoint of endpoints) {
+    // POST primero: no expone la consulta larga en la URL.
     try {
-      const response = await fetchWithTimeout(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, body: 'data=' + encodeURIComponent(query), cache: 'no-store' }, 40000);
-      if (!response.ok) throw new Error(`Overpass HTTP ${response.status}`);
-      payload = await response.json();
+      const response = await fetchWithTimeout(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+        body: 'data=' + encodeURIComponent(query),
+        cache: 'no-store'
+      }, 30000);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const json = await response.json();
+      if (!Array.isArray(json.elements)) throw new Error('Respuesta de datos no válida');
+      payload = json;
       break;
-    } catch (error) { lastError = error; }
+    } catch (error) {
+      failures.push(`${new URL(endpoint).hostname} POST: ${error?.message || 'error'}`);
+    }
+
+    // Algunos servidores aceptan GET de forma más fiable desde ciertos navegadores.
+    try {
+      const response = await fetchWithTimeout(`${endpoint}?data=${encodeURIComponent(query)}`, {
+        method: 'GET',
+        cache: 'no-store'
+      }, 30000);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const json = await response.json();
+      if (!Array.isArray(json.elements)) throw new Error('Respuesta de datos no válida');
+      payload = json;
+      break;
+    } catch (error) {
+      failures.push(`${new URL(endpoint).hostname} GET: ${error?.message || 'error'}`);
+    }
   }
-  if (!payload) throw (lastError || new Error('Overpass no disponible'));
+
+  if (!payload) {
+    const err = new Error('Overpass no respondió en los servidores probados. Puede ser una saturación temporal o un bloqueo de conexión/CORS.');
+    err.details = failures.slice(-4).join(' · ');
+    throw err;
+  }
+
   const unique = new Map();
   for (const el of (payload.elements || [])) {
     const lat = Number(el.lat ?? el.center?.lat), lon = Number(el.lon ?? el.center?.lon);
     if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
     const tags = el.tags || {};
     const match = radarDistanceToRoute({ lat, lon }, coordinates);
-    // Mantener un margen pequeño alrededor de la carretera para evitar cámaras de vías cercanas.
     if (!match || match.distanceKm > 0.12) continue;
     const id = `${el.type}/${el.id}`;
-    if (!unique.has(id)) unique.set(id, { id, lat, lon, tags, type: radarType(tags), distanceKm: match.distanceKm, alongKm: match.alongKm, maxspeed: tags.maxspeed || tags['maxspeed:forward'] || '', direction: tags.direction || '', name: tags.name || '' });
+    if (!unique.has(id)) unique.set(id, {
+      id, lat, lon, tags, type: radarType(tags),
+      distanceKm: match.distanceKm, alongKm: match.alongKm,
+      maxspeed: tags.maxspeed || tags['maxspeed:forward'] || '',
+      direction: tags.direction || '', name: tags.name || ''
+    });
   }
   const radars = [...unique.values()].sort((a,b) => a.alongKm - b.alongKm);
   return { radars, source: 'OpenStreetMap / Overpass', queriedAt: new Date().toISOString() };
