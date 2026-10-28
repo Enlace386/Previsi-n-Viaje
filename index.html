@@ -1992,7 +1992,7 @@ body {
 
         <div class="map-layer-switcher" role="group" aria-label="Información visible en el mapa">
           <button type="button" class="map-layer-btn active" data-map-mode="weather" onclick="setMapMode('weather')">🌦️ Tiempo / Riesgo</button>
-          <button type="button" class="map-layer-btn" data-map-mode="dgt" onclick="setMapMode('dgt')">🚧 DGT</button>
+          <button type="button" class="map-layer-btn" data-map-mode="dgt" onclick="setMapMode('dgt')">🚧 DGT / Incidencias</button>
           <button type="button" class="map-layer-btn" data-map-mode="all" onclick="setMapMode('all')">🗺️ Todo</button>
         </div>
 
@@ -2188,8 +2188,6 @@ body {
         </div>
 
         <div id="dgtList" class="official-list"></div>
-
-
       </section>
 
 
@@ -2685,6 +2683,7 @@ function initMap() {
 
   dgtLayer =
     L.layerGroup().addTo(map);
+
 
 
   /*
@@ -3991,8 +3990,8 @@ function dgtDistanceToRouteKm(incident, analysis) {
     analysis?.geometry?.coordinates ||
     analysis?.route?.coordinates;
 
-  if (Array.isArray(coordinates) && coordinates.length >= 2 && typeof radarDistanceToRoute === 'function') {
-    const match = radarDistanceToRoute({ lat: incident.lat, lon: incident.lon }, coordinates);
+  if (Array.isArray(coordinates) && coordinates.length >= 2 && typeof distancePointToRouteGeometry === 'function') {
+    const match = distancePointToRouteGeometry({ lat: incident.lat, lon: incident.lon }, coordinates);
     if (match && Number.isFinite(match.distanceKm)) return match.distanceKm;
   }
 
@@ -4044,11 +4043,11 @@ async function fetchDgtIncidents(analysis) {
   };
 }
 
-function radarDistanceToRoute(radar, coordinates) {
+function distancePointToRouteGeometry(point, coordinates) {
   // Distancia punto-segmento en una proyección local, adecuada para
   // filtrar puntos cercanos a la geometría real de una ruta.
   if (!Array.isArray(coordinates) || coordinates.length < 2) return null;
-  const lat0 = radar.lat * Math.PI / 180;
+  const lat0 = point.lat * Math.PI / 180;
   const scaleX = 111.32 * Math.cos(lat0);
   const scaleY = 110.574;
   let bestKm = Infinity;
@@ -4057,10 +4056,10 @@ function radarDistanceToRoute(radar, coordinates) {
   for (let i = 1; i < coordinates.length; i++) {
     const a = coordinates[i - 1];
     const b = coordinates[i];
-    const ax = (a[0] - radar.lon) * scaleX;
-    const ay = (a[1] - radar.lat) * scaleY;
-    const bx = (b[0] - radar.lon) * scaleX;
-    const by = (b[1] - radar.lat) * scaleY;
+    const ax = (a[0] - point.lon) * scaleX;
+    const ay = (a[1] - point.lat) * scaleY;
+    const bx = (b[0] - point.lon) * scaleX;
+    const by = (b[1] - point.lat) * scaleY;
     const dx = bx - ax, dy = by - ay;
     const denom = dx * dx + dy * dy;
     const t = denom ? Math.max(0, Math.min(1, -(ax * dx + ay * dy) / denom)) : 0;
@@ -4072,6 +4071,351 @@ function radarDistanceToRoute(radar, coordinates) {
   }
   return { distanceKm: bestKm, alongKm: bestAlongKm };
 }
+
+
+function renderDgtIncidents(result) {
+  const status = $("dgtStatus");
+  const list = $("dgtList");
+
+  if (!status || !list) return;
+
+  list.innerHTML = "";
+
+  if (result?.error) {
+    status.className = "data-state warning";
+    status.innerHTML = `
+      <strong>⚠️ DGT no disponible</strong>
+      <span>No se ha podido consultar la última actualización de incidencias.</span>
+    `;
+    return;
+  }
+
+  const incidents = result?.incidents || [];
+
+  if (!incidents.length) {
+    status.className = "data-state";
+    status.innerHTML = `
+      <strong>✅ Sin incidencias DGT relevantes</strong>
+      <span>No se han encontrado incidencias próximas a la ruta analizada.</span>
+    `;
+    return;
+  }
+
+  const updated = result.generatedAt
+    ? new Date(result.generatedAt).toLocaleString("es-ES", {
+        dateStyle: "short",
+        timeStyle: "short"
+      })
+    : "última actualización disponible";
+
+  status.className = "data-state warning";
+  status.innerHTML = `
+    <strong>🚧 ${incidents.length} incidencia(s) DGT</strong>
+    <span>Última actualización disponible: ${escapeHtml(updated)}.</span>
+  `;
+
+  incidents.slice(0, 20).forEach(incident => {
+    const item = document.createElement("div");
+    item.className = "official-item";
+
+    const location = [
+      incident.road,
+      incident.direction,
+      incident.municipality,
+      incident.province
+    ].filter(Boolean).join(" · ");
+
+    const distance = Number.isFinite(incident.distanceKm)
+      ? `${incident.distanceKm.toFixed(1)} km de la ruta`
+      : "";
+
+    const detail = [
+      incident.description,
+      location,
+      distance
+    ].filter(Boolean).join(" · ");
+
+    item.innerHTML = `
+      <strong>🚧 ${escapeHtml(translateDgtEvent(incident.event))}</strong>
+      <span>${escapeHtml(detail || "Incidencia DGT próxima a la ruta.")}</span>
+    `;
+
+    list.appendChild(item);
+  });
+}
+
+async function fetchHydrologicalStatus(
+  analysis
+) {
+
+  if (!CONFIG.HYDRO_PROXY_URL) {
+
+    return {
+      configured: false,
+      items: []
+    };
+
+  }
+
+  const response =
+    await fetchWithTimeout(
+      CONFIG.HYDRO_PROXY_URL,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          type: "hydrology",
+          date: analysis.date,
+          departure: analysis.departure,
+          points: analysis.points.map(
+            point => ({
+              lat: point.lat,
+              lon: point.lon,
+              passTime: point.passTime,
+              distanceKm: point.distanceKm
+            })
+          )
+        })
+      }
+    );
+
+  const payload =
+    await response.json();
+
+  return {
+    configured: true,
+    items:
+      normalizeOfficialItems(payload)
+  };
+
+}
+
+
+function normalizeOfficialAlertLevel(alert) {
+  /*
+   * AEMET puede traer el nivel en `level` o incluirlo en el texto.
+   * No interpretamos la severidad CAP (Minor/Moderate/Severe) como
+   * si fuera directamente el color Meteoalerta.
+   */
+  const explicit = [
+    alert?.level, alert?.nivel, alert?.colour, alert?.color,
+    alert?.title, alert?.headline, alert?.event,
+    alert?.phenomenon, alert?.fenomeno, alert?.description
+  ].filter(Boolean).join(' ').toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+  if (/\bverde\b|\bgreen\b/.test(explicit)) return 'verde';
+  if (/\bnaranja\b|\borange\b/.test(explicit)) return 'naranja';
+  if (/\bamarillo\b|\byellow\b/.test(explicit)) return 'amarillo';
+  if (/\brojo\b|\bred\b/.test(explicit)) return 'rojo';
+  return 'desconocido';
+}
+
+function isGreenOfficialAlert(alert) {
+  return normalizeOfficialAlertLevel(alert) === 'verde';
+}
+
+function applyOfficialAlertsToRisk(
+  analysis
+) {
+
+  const alerts = analysis.officialAlerts || [];
+  if (!alerts.length) return;
+
+  /*
+   * Puntuar cada fenómeno una sola vez por punto, usando el nivel
+   * más alto recibido para ese fenómeno. AEMET puede publicar, por
+   * ejemplo, avisos amarillo y naranja de lluvia para una misma zona;
+   * sumarlos como peligros independientes exagera el riesgo.
+   */
+  function alertPhenomenon(alert) {
+    const text = [
+      alert?.phenomenon, alert?.fenomeno, alert?.event,
+      alert?.title, alert?.headline, alert?.description
+    ].filter(Boolean).join(' ').toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+    if (/lluvia|rain|precipitacion/.test(text)) return 'lluvia';
+    if (/tormenta|thunderstorm/.test(text)) return 'tormenta';
+    if (/viento|wind|rachas/.test(text)) return 'viento';
+    if (/nieve|snow|nevada/.test(text)) return 'nieve';
+    if (/niebla|fog/.test(text)) return 'niebla';
+    if (/temperatura maxima|calor|heat/.test(text)) return 'temperatura-maxima';
+    if (/temperatura minima|frio|cold|helada/.test(text)) return 'temperatura-minima';
+    if (/costero|maritimo|oleaje|coastal|waves/.test(text)) return 'costero';
+    if (/polvo|dust/.test(text)) return 'polvo';
+    return text.trim() || 'otro';
+  }
+
+  function alertBonus(alert) {
+    /* Diferenciación explícita de niveles oficiales. Un nivel no
+       reconocido no suma puntos por defecto: evita falsos positivos. */
+    const level = normalizeOfficialAlertLevel(alert);
+    if (level === 'verde') return 0;
+    if (level === 'amarillo') return 10;
+    if (level === 'naranja') return 20;
+    if (level === 'rojo') return 30;
+    return 0;
+  }
+
+  analysis.points.forEach(point => {
+    const strongestByPhenomenon = new Map();
+
+    alerts.forEach(alert => {
+      if (isGreenOfficialAlert(alert)) return;
+      if (!alertTouchesRoute(alert, [point])) return;
+
+      const bonus = alertBonus(alert);
+      if (bonus <= 0) return;
+
+      const phenomenon = alertPhenomenon(alert);
+      const previous = strongestByPhenomenon.get(phenomenon);
+      if (!previous || bonus > previous.bonus) {
+        strongestByPhenomenon.set(phenomenon, { alert, bonus });
+      }
+    });
+
+    strongestByPhenomenon.forEach(({ alert, bonus }) => {
+      point.risk.score = Math.min(100, point.risk.score + bonus);
+      const label = alert.title || alert.headline || alert.event || alert.phenomenon || alert.fenomeno || 'Aviso meteorológico oficial';
+      point.risk.risks = Array.from(new Set([
+        ...point.risk.risks,
+        `Aviso oficial: ${label}`
+      ]));
+    });
+  });
+
+  analysis.globalScore = calculateGlobalScore(analysis.points);
+}
+
+/* ===========================================================
+   RENDER AVISOS E INUNDACIONES
+   =========================================================== */
+
+function translateOfficialSeverity(value) {
+  const raw = String(value || "").trim();
+  const key = raw.toLowerCase();
+  const translations = {
+    minor: "Leve",
+    moderate: "Moderado",
+    severe: "Grave",
+    extreme: "Extremo",
+    unknown: "No indicado"
+  };
+  return translations[key] || raw || "No indicado";
+}
+
+function renderOfficialAlerts(
+  analysis
+) {
+
+  const status =
+    $("alertsStatus");
+
+  const list =
+    $("alertsList");
+
+  list.innerHTML = "";
+
+  if (
+    !analysis.officialAlertsConfigured
+  ) {
+
+    status.className =
+      "data-state danger";
+
+    status.innerHTML = `
+      <strong>⚠️ Avisos AEMET: datos no disponibles</strong>
+      <span>
+        No se ha podido cargar el archivo oficial publicado por GitHub Actions.
+        Esto no significa que no existan avisos.
+      </span>
+    `;
+
+    return;
+
+  }
+
+  const alerts =
+    analysis.officialAlerts || [];
+
+  if (!alerts.length) {
+
+    status.className =
+      "data-state success";
+
+    status.innerHTML = `
+      <strong>✅ No se han recibido avisos oficiales relevantes para la ruta</strong>
+      <span>
+        No hay avisos oficiales AEMET que afecten a los puntos de la ruta analizados.
+        Esto no equivale a garantía de ausencia de peligro meteorológico.
+      </span>
+    `;
+
+    return;
+
+  }
+
+  status.className =
+    "data-state danger";
+
+  status.innerHTML = `
+    <strong>🚨 ${alerts.length} aviso(s) oficial(es) relevante(s)</strong>
+    <span>
+      Los avisos de nivel amarillo, naranja o rojo pueden incrementar
+      el riesgo en los puntos afectados. Los niveles verdes son informativos
+      y no suman puntos al riesgo.
+    </span>
+  `;
+
+  alerts.forEach(
+    alert => {
+
+      const item =
+        document.createElement("div");
+
+      item.className =
+        "official-alert";
+
+      item.innerHTML = `
+        <strong>
+          ${escapeHtml(
+            alert.title ||
+            alert.event ||
+            alert.fenomeno ||
+            "Aviso meteorológico oficial"
+          )}
+        </strong>
+
+        <span>
+          Nivel:
+          ${escapeHtml(
+            translateOfficialSeverity(
+              alert.severity ||
+              alert.nivel ||
+              alert.level ||
+              "No indicado"
+            )
+          )}
+          <br>
+          ${escapeHtml(
+            alert.description ||
+            alert.descripcion ||
+            alert.text ||
+            "Sin descripción adicional."
+          )}
+        </span>
+      `;
+
+      list.appendChild(item);
+
+    }
+  );
+
+}
+
 
 function renderHydrologicalStatus(
   analysis
@@ -6992,81 +7336,6 @@ async function analyzeTravel() {
 
     }
 
-
-
-function applyOfficialAlertsToRisk(
-  analysis
-) {
-
-  const alerts = analysis.officialAlerts || [];
-  if (!alerts.length) return;
-
-  /*
-   * Puntuar cada fenómeno una sola vez por punto, usando el nivel
-   * más alto recibido para ese fenómeno. AEMET puede publicar, por
-   * ejemplo, avisos amarillo y naranja de lluvia para una misma zona;
-   * sumarlos como peligros independientes exagera el riesgo.
-   */
-  function alertPhenomenon(alert) {
-    const text = [
-      alert?.phenomenon, alert?.fenomeno, alert?.event,
-      alert?.title, alert?.headline, alert?.description
-    ].filter(Boolean).join(' ').toLowerCase()
-      .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-
-    if (/lluvia|rain|precipitacion/.test(text)) return 'lluvia';
-    if (/tormenta|thunderstorm/.test(text)) return 'tormenta';
-    if (/viento|wind|rachas/.test(text)) return 'viento';
-    if (/nieve|snow|nevada/.test(text)) return 'nieve';
-    if (/niebla|fog/.test(text)) return 'niebla';
-    if (/temperatura maxima|calor|heat/.test(text)) return 'temperatura-maxima';
-    if (/temperatura minima|frio|cold|helada/.test(text)) return 'temperatura-minima';
-    if (/costero|maritimo|oleaje|coastal|waves/.test(text)) return 'costero';
-    if (/polvo|dust/.test(text)) return 'polvo';
-    return text.trim() || 'otro';
-  }
-
-  function alertBonus(alert) {
-    /* Diferenciación explícita de niveles oficiales. Un nivel no
-       reconocido no suma puntos por defecto: evita falsos positivos. */
-    const level = normalizeOfficialAlertLevel(alert);
-    if (level === 'verde') return 0;
-    if (level === 'amarillo') return 10;
-    if (level === 'naranja') return 20;
-    if (level === 'rojo') return 30;
-    return 0;
-  }
-
-  analysis.points.forEach(point => {
-    const strongestByPhenomenon = new Map();
-
-    alerts.forEach(alert => {
-      if (isGreenOfficialAlert(alert)) return;
-      if (!alertTouchesRoute(alert, [point])) return;
-
-      const bonus = alertBonus(alert);
-      if (bonus <= 0) return;
-
-      const phenomenon = alertPhenomenon(alert);
-      const previous = strongestByPhenomenon.get(phenomenon);
-      if (!previous || bonus > previous.bonus) {
-        strongestByPhenomenon.set(phenomenon, { alert, bonus });
-      }
-    });
-
-    strongestByPhenomenon.forEach(({ alert, bonus }) => {
-      point.risk.score = Math.min(100, point.risk.score + bonus);
-      const label = alert.title || alert.headline || alert.event || alert.phenomenon || alert.fenomeno || 'Aviso meteorológico oficial';
-      point.risk.risks = Array.from(new Set([
-        ...point.risk.risks,
-        `Aviso oficial: ${label}`
-      ]));
-    });
-  });
-
-  analysis.globalScore = calculateGlobalScore(analysis.points);
-}
-
     const analysisForOfficialData = {
       origin,
       destination,
@@ -7227,8 +7496,7 @@ function applyOfficialAlertsToRisk(
         renderDgtIncidents(
           dgtResult
         );
-
-        renderHydrologicalStatus(
+renderHydrologicalStatus(
           currentAnalysis
         );
 
