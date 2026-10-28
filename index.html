@@ -1992,7 +1992,7 @@ body {
 
         <div class="map-layer-switcher" role="group" aria-label="Información visible en el mapa">
           <button type="button" class="map-layer-btn active" data-map-mode="weather" onclick="setMapMode('weather')">🌦️ Tiempo / Riesgo</button>
-          <button type="button" class="map-layer-btn" data-map-mode="dgt" onclick="setMapMode('dgt')">🚧 DGT / Radares</button>
+          <button type="button" class="map-layer-btn" data-map-mode="dgt" onclick="setMapMode('dgt')">🚧 DGT</button>
           <button type="button" class="map-layer-btn" data-map-mode="all" onclick="setMapMode('all')">🗺️ Todo</button>
         </div>
 
@@ -2189,17 +2189,6 @@ body {
 
         <div id="dgtList" class="official-list"></div>
 
-        <!-- RADARES DE VELOCIDAD: agrupados con el tráfico -->
-        <div id="radarsSection" class="traffic-radars-block" style="margin-top:22px;padding-top:18px;border-top:1px solid var(--ui-border,rgba(148,163,184,.25))">
-          <div class="section-title">📷 Radares en la ruta</div>
-          <span class="etraffic-note">Consulta gratuita de radares cartografiados en OpenStreetMap. La cobertura depende de los datos disponibles y no garantiza que aparezcan todos los radares.</span>
-          <div id="radarsStatus" class="data-state">
-            <strong>📷 Radares: esperando consulta</strong>
-            <span>Se buscarán al analizar una ruta.</span>
-          </div>
-          <div id="radarsList" class="official-list"></div>
-          <span class="etraffic-note">Fuente: OpenStreetMap contributors (ODbL) · <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> · <a href="https://overpass-api.de/" target="_blank" rel="noopener noreferrer">Overpass API</a>.</span>
-        </div>
 
       </section>
 
@@ -2523,7 +2512,6 @@ let importedRouteStops = null;
 
 let pointMarkers = [];
 let dgtLayer = null;
-let radarLayer = null;
 let mapMode = "weather";
 
 
@@ -2698,9 +2686,6 @@ function initMap() {
   dgtLayer =
     L.layerGroup().addTo(map);
 
-  radarLayer =
-    L.layerGroup().addTo(map);
-
 
   /*
    Leaflet necesita recalcular tamaño cuando
@@ -2722,7 +2707,6 @@ function setMapMode(mode) {
   const showTraffic = mapMode === "dgt" || mapMode === "all";
   if (pointLayer) { if (showWeather && !map.hasLayer(pointLayer)) pointLayer.addTo(map); if (!showWeather && map.hasLayer(pointLayer)) map.removeLayer(pointLayer); }
   if (dgtLayer) { if (showTraffic && !map.hasLayer(dgtLayer)) dgtLayer.addTo(map); if (!showTraffic && map.hasLayer(dgtLayer)) map.removeLayer(dgtLayer); }
-  if (radarLayer) { if (showTraffic && !map.hasLayer(radarLayer)) radarLayer.addTo(map); if (!showTraffic && map.hasLayer(radarLayer)) map.removeLayer(radarLayer); }
   document.querySelectorAll(".map-layer-btn").forEach(b => b.classList.toggle("active", b.dataset.mapMode === mapMode));
 }
 
@@ -3999,18 +3983,25 @@ function normalizeDgtIncident(item) {
   };
 }
 
-function dgtDistanceToRouteKm(incident, points) {
-  let best = Infinity;
+function dgtDistanceToRouteKm(incident, analysis) {
+  // Priorizar la geometría completa de la carretera: los puntos meteorológicos
+  // están separados y podrían dejar fuera incidencias situadas entre ellos.
+  const coordinates =
+    analysis?.route?.geometry?.coordinates ||
+    analysis?.geometry?.coordinates ||
+    analysis?.route?.coordinates;
 
-  for (const point of points || []) {
-    if (!Number.isFinite(point.lat) || !Number.isFinite(point.lon)) continue;
-
-    best = Math.min(
-      best,
-      haversineKm(incident.lat, incident.lon, point.lat, point.lon)
-    );
+  if (Array.isArray(coordinates) && coordinates.length >= 2 && typeof radarDistanceToRoute === 'function') {
+    const match = radarDistanceToRoute({ lat: incident.lat, lon: incident.lon }, coordinates);
+    if (match && Number.isFinite(match.distanceKm)) return match.distanceKm;
   }
 
+  // Compatibilidad de respaldo si el proveedor no entrega geometría.
+  let best = Infinity;
+  for (const point of (Array.isArray(analysis) ? analysis : analysis?.points) || []) {
+    if (!Number.isFinite(point.lat) || !Number.isFinite(point.lon)) continue;
+    best = Math.min(best, haversineKm(incident.lat, incident.lon, point.lat, point.lon));
+  }
   return best;
 }
 
@@ -4034,7 +4025,7 @@ async function fetchDgtIncidents(analysis) {
     .filter(Boolean)
     .map(item => ({
       ...item,
-      distanceKm: dgtDistanceToRouteKm(item, analysis.points)
+      distanceKm: dgtDistanceToRouteKm(item, analysis)
     }))
     .filter(item => item.distanceKm <= 3)
     .sort((a, b) => a.distanceKm - b.distanceKm);
@@ -4081,509 +4072,6 @@ function radarDistanceToRoute(radar, coordinates) {
   }
   return { distanceKm: bestKm, alongKm: bestAlongKm };
 }
-
-function radarType(tags = {}) {
-  const detail = String(tags.enforcement || tags.camera || tags.highway || '').toLowerCase();
-  if (detail.includes('average_speed') || detail.includes('section')) return 'Radar de tramo';
-  if (detail.includes('traffic_signals') || tags['traffic_signals:camera'] === 'yes') return 'Control en semáforo';
-  if (tags.highway === 'speed_camera' || detail.includes('speed')) return 'Radar de velocidad';
-  return 'Control de velocidad';
-}
-
-async function fetchRouteRadars(analysis) {
-  const status = $('radarsStatus');
-  const list = $('radarsList');
-  if (status) status.innerHTML = '<strong>📷 Buscando radares…</strong><span>Consultando OpenStreetMap para el trazado completo.</span>';
-  if (list) list.innerHTML = '';
-
-  // Aceptar tanto el objeto completo del análisis como la ruta directa.
-  const coordinates =
-    analysis?.route?.geometry?.coordinates ||
-    analysis?.geometry?.coordinates ||
-    analysis?.route?.coordinates;
-
-  if (!Array.isArray(coordinates) || coordinates.length < 2) {
-    throw new Error('No se ha recibido la geometría completa de la ruta.');
-  }
-
-  const lats = coordinates.map(c => Number(c[1])).filter(Number.isFinite);
-  const lons = coordinates.map(c => Number(c[0])).filter(Number.isFinite);
-  if (lats.length < 2 || lons.length < 2) throw new Error('La geometría de la ruta no contiene coordenadas válidas.');
-
-  const south = Math.min(...lats) - 0.025, north = Math.max(...lats) + 0.025;
-  const west = Math.min(...lons) - 0.025, east = Math.max(...lons) + 0.025;
-  const bbox = `${south},${west},${north},${east}`;
-  const query = `[out:json][timeout:25];(node["highway"="speed_camera"](${bbox});way["highway"="speed_camera"](${bbox});node["enforcement"="average_speed"](${bbox});way["enforcement"="average_speed"](${bbox});node["traffic_signals:camera"="yes"](${bbox}););out center tags;`;
-
-  // Overpass es un servicio comunitario; probar varios servidores y POST/GET
-  // evita que una caída puntual de un único endpoint deje la función inutilizable.
-  const endpoints = [
-    'https://overpass-api.de/api/interpreter',
-    'https://overpass.kumi.systems/api/interpreter',
-    'https://overpass.private.coffee/api/interpreter'
-  ];
-  let payload = null;
-  const failures = [];
-
-  for (const endpoint of endpoints) {
-    // POST primero: no expone la consulta larga en la URL.
-    try {
-      const response = await fetchWithTimeout(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-        body: 'data=' + encodeURIComponent(query),
-        cache: 'no-store'
-      }, 30000);
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const json = await response.json();
-      if (!Array.isArray(json.elements)) throw new Error('Respuesta de datos no válida');
-      payload = json;
-      break;
-    } catch (error) {
-      failures.push(`${new URL(endpoint).hostname} POST: ${error?.message || 'error'}`);
-    }
-
-    // Algunos servidores aceptan GET de forma más fiable desde ciertos navegadores.
-    try {
-      const response = await fetchWithTimeout(`${endpoint}?data=${encodeURIComponent(query)}`, {
-        method: 'GET',
-        cache: 'no-store'
-      }, 30000);
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const json = await response.json();
-      if (!Array.isArray(json.elements)) throw new Error('Respuesta de datos no válida');
-      payload = json;
-      break;
-    } catch (error) {
-      failures.push(`${new URL(endpoint).hostname} GET: ${error?.message || 'error'}`);
-    }
-  }
-
-  if (!payload) {
-    const err = new Error('Overpass no respondió en los servidores probados. Puede ser una saturación temporal o un bloqueo de conexión/CORS.');
-    err.details = failures.slice(-4).join(' · ');
-    throw err;
-  }
-
-  const unique = new Map();
-  for (const el of (payload.elements || [])) {
-    const lat = Number(el.lat ?? el.center?.lat), lon = Number(el.lon ?? el.center?.lon);
-    if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
-    const tags = el.tags || {};
-    const match = radarDistanceToRoute({ lat, lon }, coordinates);
-    if (!match || match.distanceKm > 0.12) continue;
-    const id = `${el.type}/${el.id}`;
-    if (!unique.has(id)) unique.set(id, {
-      id, lat, lon, tags, type: radarType(tags),
-      distanceKm: match.distanceKm, alongKm: match.alongKm,
-      maxspeed: tags.maxspeed || tags['maxspeed:forward'] || '',
-      direction: tags.direction || '', name: tags.name || ''
-    });
-  }
-  const radars = [...unique.values()].sort((a,b) => a.alongKm - b.alongKm);
-  return { radars, source: 'OpenStreetMap / Overpass', queriedAt: new Date().toISOString() };
-}
-
-function renderRouteRadars(result) {
-  const status = $('radarsStatus'), list = $('radarsList');
-  if (!status || !list) return;
-  list.innerHTML = '';
-  if (radarLayer) radarLayer.clearLayers();
-
-  if (result?.error) {
-    status.className = 'data-state warning';
-    const detail = result?.details ? `<span>Detalle técnico: ${escapeHtml(result.details)}</span>` : '';
-    status.innerHTML = '<strong>⚠️ No se pudieron consultar los radares</strong><span>Se probaron varios servidores gratuitos. Puede ser una saturación temporal o un problema de conexión. No significa que no haya radares en la ruta.</span>' + detail;
-    return;
-  }
-  const radars = result?.radars || [];
-  if (!radars.length) {
-    status.className = 'data-state warning';
-    status.innerHTML = '<strong>ℹ️ No se han encontrado radares cartografiados próximos a la ruta</strong><span>Esto no confirma que la carretera esté libre de radares: OpenStreetMap puede tener datos incompletos.</span>';
-    return;
-  }
-  status.className = 'data-state';
-  status.innerHTML = `<strong>📷 ${radars.length} control(es) cartografiado(s)</strong><span>Ordenados según el avance por la ruta · Fuente: OpenStreetMap. Los radares también se muestran en el mapa.</span>`;
-
-  for (const [index, radar] of radars.slice(0, 100).entries()) {
-    const speed = radar.maxspeed ? `Límite indicado: ${radar.maxspeed}` : 'Límite no indicado en la fuente';
-    const direction = radar.direction ? ` · Dirección: ${radar.direction}` : '';
-    const name = radar.name ? ` · ${radar.name}` : '';
-    const item = document.createElement('div');
-    item.className = 'official-item';
-    item.style.cursor = 'pointer';
-    item.title = 'Pulsa para localizar este radar en el mapa';
-    item.innerHTML = `<strong>📷 ${escapeHtml(radar.type)}</strong><span>A unos ${radar.alongKm.toFixed(1)} km desde el inicio · ${escapeHtml(speed)}${escapeHtml(direction + name)}</span>`;
-    list.appendChild(item);
-
-    if (map && radarLayer && Number.isFinite(radar.lat) && Number.isFinite(radar.lon)) {
-      const marker = L.marker([radar.lat, radar.lon], {
-        icon: L.divIcon({
-          className: '',
-          html: `<div style="width:30px;height:30px;border:2px solid #fff;border-radius:50%;background:#7c3aed;box-shadow:0 2px 8px #0008;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:700">📷</div>`,
-          iconSize: [34, 34],
-          iconAnchor: [17, 17]
-        }),
-        title: `${radar.type} · ${radar.alongKm.toFixed(1)} km`
-      }).addTo(radarLayer);
-
-      marker.bindPopup(
-        `<strong>${escapeHtml(radar.type)}</strong><br>` +
-        `Distancia desde el origen: ${radar.alongKm.toFixed(1)} km<br>` +
-        `${escapeHtml(speed)}${escapeHtml(direction + name)}<br>` +
-        `<small>Fuente: OpenStreetMap</small>`
-      );
-
-      item.addEventListener('click', () => {
-        map.setView([radar.lat, radar.lon], Math.max(map.getZoom(), 13));
-        marker.openPopup();
-      });
-    }
-  }
-}
-function renderDgtIncidents(result) {
-  const status = $("dgtStatus");
-  const list = $("dgtList");
-
-  if (!status || !list) return;
-
-  list.innerHTML = "";
-
-  if (result?.error) {
-    status.className = "data-state warning";
-    status.innerHTML = `
-      <strong>⚠️ DGT no disponible</strong>
-      <span>No se ha podido consultar la última actualización de incidencias.</span>
-    `;
-    return;
-  }
-
-  const incidents = result?.incidents || [];
-
-  if (!incidents.length) {
-    status.className = "data-state";
-    status.innerHTML = `
-      <strong>✅ Sin incidencias DGT relevantes</strong>
-      <span>No se han encontrado incidencias próximas a la ruta analizada.</span>
-    `;
-    return;
-  }
-
-  const updated = result.generatedAt
-    ? new Date(result.generatedAt).toLocaleString("es-ES", {
-        dateStyle: "short",
-        timeStyle: "short"
-      })
-    : "última actualización disponible";
-
-  status.className = "data-state warning";
-  status.innerHTML = `
-    <strong>🚧 ${incidents.length} incidencia(s) DGT</strong>
-    <span>Última actualización disponible: ${escapeHtml(updated)}.</span>
-  `;
-
-  incidents.slice(0, 20).forEach(incident => {
-    const item = document.createElement("div");
-    item.className = "official-item";
-
-    const location = [
-      incident.road,
-      incident.direction,
-      incident.municipality,
-      incident.province
-    ].filter(Boolean).join(" · ");
-
-    const distance = Number.isFinite(incident.distanceKm)
-      ? `${incident.distanceKm.toFixed(1)} km de la ruta`
-      : "";
-
-    const detail = [
-      incident.description,
-      location,
-      distance
-    ].filter(Boolean).join(" · ");
-
-    item.innerHTML = `
-      <strong>🚧 ${escapeHtml(translateDgtEvent(incident.event))}</strong>
-      <span>${escapeHtml(detail || "Incidencia DGT próxima a la ruta.")}</span>
-    `;
-
-    list.appendChild(item);
-  });
-}
-
-async function fetchHydrologicalStatus(
-  analysis
-) {
-
-  if (!CONFIG.HYDRO_PROXY_URL) {
-
-    return {
-      configured: false,
-      items: []
-    };
-
-  }
-
-  const response =
-    await fetchWithTimeout(
-      CONFIG.HYDRO_PROXY_URL,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          type: "hydrology",
-          date: analysis.date,
-          departure: analysis.departure,
-          points: analysis.points.map(
-            point => ({
-              lat: point.lat,
-              lon: point.lon,
-              passTime: point.passTime,
-              distanceKm: point.distanceKm
-            })
-          )
-        })
-      }
-    );
-
-  const payload =
-    await response.json();
-
-  return {
-    configured: true,
-    items:
-      normalizeOfficialItems(payload)
-  };
-
-}
-
-
-function normalizeOfficialAlertLevel(alert) {
-  /*
-   * AEMET puede traer el nivel en `level` o incluirlo en el texto.
-   * No interpretamos la severidad CAP (Minor/Moderate/Severe) como
-   * si fuera directamente el color Meteoalerta.
-   */
-  const explicit = [
-    alert?.level, alert?.nivel, alert?.colour, alert?.color,
-    alert?.title, alert?.headline, alert?.event,
-    alert?.phenomenon, alert?.fenomeno, alert?.description
-  ].filter(Boolean).join(' ').toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-
-  if (/\bverde\b|\bgreen\b/.test(explicit)) return 'verde';
-  if (/\bnaranja\b|\borange\b/.test(explicit)) return 'naranja';
-  if (/\bamarillo\b|\byellow\b/.test(explicit)) return 'amarillo';
-  if (/\brojo\b|\bred\b/.test(explicit)) return 'rojo';
-  return 'desconocido';
-}
-
-function isGreenOfficialAlert(alert) {
-  return normalizeOfficialAlertLevel(alert) === 'verde';
-}
-
-function applyOfficialAlertsToRisk(
-  analysis
-) {
-
-  const alerts = analysis.officialAlerts || [];
-  if (!alerts.length) return;
-
-  /*
-   * Puntuar cada fenómeno una sola vez por punto, usando el nivel
-   * más alto recibido para ese fenómeno. AEMET puede publicar, por
-   * ejemplo, avisos amarillo y naranja de lluvia para una misma zona;
-   * sumarlos como peligros independientes exagera el riesgo.
-   */
-  function alertPhenomenon(alert) {
-    const text = [
-      alert?.phenomenon, alert?.fenomeno, alert?.event,
-      alert?.title, alert?.headline, alert?.description
-    ].filter(Boolean).join(' ').toLowerCase()
-      .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-
-    if (/lluvia|rain|precipitacion/.test(text)) return 'lluvia';
-    if (/tormenta|thunderstorm/.test(text)) return 'tormenta';
-    if (/viento|wind|rachas/.test(text)) return 'viento';
-    if (/nieve|snow|nevada/.test(text)) return 'nieve';
-    if (/niebla|fog/.test(text)) return 'niebla';
-    if (/temperatura maxima|calor|heat/.test(text)) return 'temperatura-maxima';
-    if (/temperatura minima|frio|cold|helada/.test(text)) return 'temperatura-minima';
-    if (/costero|maritimo|oleaje|coastal|waves/.test(text)) return 'costero';
-    if (/polvo|dust/.test(text)) return 'polvo';
-    return text.trim() || 'otro';
-  }
-
-  function alertBonus(alert) {
-    /* Diferenciación explícita de niveles oficiales. Un nivel no
-       reconocido no suma puntos por defecto: evita falsos positivos. */
-    const level = normalizeOfficialAlertLevel(alert);
-    if (level === 'verde') return 0;
-    if (level === 'amarillo') return 10;
-    if (level === 'naranja') return 20;
-    if (level === 'rojo') return 30;
-    return 0;
-  }
-
-  analysis.points.forEach(point => {
-    const strongestByPhenomenon = new Map();
-
-    alerts.forEach(alert => {
-      if (isGreenOfficialAlert(alert)) return;
-      if (!alertTouchesRoute(alert, [point])) return;
-
-      const bonus = alertBonus(alert);
-      if (bonus <= 0) return;
-
-      const phenomenon = alertPhenomenon(alert);
-      const previous = strongestByPhenomenon.get(phenomenon);
-      if (!previous || bonus > previous.bonus) {
-        strongestByPhenomenon.set(phenomenon, { alert, bonus });
-      }
-    });
-
-    strongestByPhenomenon.forEach(({ alert, bonus }) => {
-      point.risk.score = Math.min(100, point.risk.score + bonus);
-      const label = alert.title || alert.headline || alert.event || alert.phenomenon || alert.fenomeno || 'Aviso meteorológico oficial';
-      point.risk.risks = Array.from(new Set([
-        ...point.risk.risks,
-        `Aviso oficial: ${label}`
-      ]));
-    });
-  });
-
-  analysis.globalScore = calculateGlobalScore(analysis.points);
-}
-
-/* ===========================================================
-   RENDER AVISOS E INUNDACIONES
-   =========================================================== */
-
-function translateOfficialSeverity(value) {
-  const raw = String(value || "").trim();
-  const key = raw.toLowerCase();
-  const translations = {
-    minor: "Leve",
-    moderate: "Moderado",
-    severe: "Grave",
-    extreme: "Extremo",
-    unknown: "No indicado"
-  };
-  return translations[key] || raw || "No indicado";
-}
-
-function renderOfficialAlerts(
-  analysis
-) {
-
-  const status =
-    $("alertsStatus");
-
-  const list =
-    $("alertsList");
-
-  list.innerHTML = "";
-
-  if (
-    !analysis.officialAlertsConfigured
-  ) {
-
-    status.className =
-      "data-state danger";
-
-    status.innerHTML = `
-      <strong>⚠️ Avisos AEMET: datos no disponibles</strong>
-      <span>
-        No se ha podido cargar el archivo oficial publicado por GitHub Actions.
-        Esto no significa que no existan avisos.
-      </span>
-    `;
-
-    return;
-
-  }
-
-  const alerts =
-    analysis.officialAlerts || [];
-
-  if (!alerts.length) {
-
-    status.className =
-      "data-state success";
-
-    status.innerHTML = `
-      <strong>✅ No se han recibido avisos oficiales relevantes para la ruta</strong>
-      <span>
-        No hay avisos oficiales AEMET que afecten a los puntos de la ruta analizados.
-        Esto no equivale a garantía de ausencia de peligro meteorológico.
-      </span>
-    `;
-
-    return;
-
-  }
-
-  status.className =
-    "data-state danger";
-
-  status.innerHTML = `
-    <strong>🚨 ${alerts.length} aviso(s) oficial(es) relevante(s)</strong>
-    <span>
-      Los avisos de nivel amarillo, naranja o rojo pueden incrementar
-      el riesgo en los puntos afectados. Los niveles verdes son informativos
-      y no suman puntos al riesgo.
-    </span>
-  `;
-
-  alerts.forEach(
-    alert => {
-
-      const item =
-        document.createElement("div");
-
-      item.className =
-        "official-alert";
-
-      item.innerHTML = `
-        <strong>
-          ${escapeHtml(
-            alert.title ||
-            alert.event ||
-            alert.fenomeno ||
-            "Aviso meteorológico oficial"
-          )}
-        </strong>
-
-        <span>
-          Nivel:
-          ${escapeHtml(
-            translateOfficialSeverity(
-              alert.severity ||
-              alert.nivel ||
-              alert.level ||
-              "No indicado"
-            )
-          )}
-          <br>
-          ${escapeHtml(
-            alert.description ||
-            alert.descripcion ||
-            alert.text ||
-            "Sin descripción adicional."
-          )}
-        </span>
-      `;
-
-      list.appendChild(item);
-
-    }
-  );
-
-}
-
 
 function renderHydrologicalStatus(
   analysis
@@ -5307,7 +4795,6 @@ function renderRoute(
 
   pointLayer.clearLayers();
   if (dgtLayer) dgtLayer.clearLayers();
-  if (radarLayer) radarLayer.clearLayers();
   pointMarkers = [];
 
 
@@ -7505,13 +6992,7 @@ async function analyzeTravel() {
 
     }
 
-    let radarResult = { radars: [], source: 'OpenStreetMap', error: false };
-    try {
-      radarResult = await fetchRouteRadars({ origin, destination, date, departure, points, route });
-    } catch (radarError) {
-      console.warn('Route radar lookup error', radarError);
-      radarResult = { radars: [], source: 'OpenStreetMap', error: true, details: radarError?.details || radarError?.message || 'Error desconocido' };
-    }
+
 
     const analysisForOfficialData = {
       origin,
@@ -7672,10 +7153,6 @@ async function analyzeTravel() {
 
         renderDgtIncidents(
           dgtResult
-        );
-
-        renderRouteRadars(
-          radarResult
         );
 
         renderHydrologicalStatus(
