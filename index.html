@@ -4117,13 +4117,43 @@ async function fetchRouteRadars(analysis) {
   const lons = coordinates.map(c => Number(c[0])).filter(Number.isFinite);
   if (lats.length < 2 || lons.length < 2) throw new Error('La geometría de la ruta no contiene coordenadas válidas.');
 
-  const south = Math.min(...lats) - 0.025, north = Math.max(...lats) + 0.025;
-  const west = Math.min(...lons) - 0.025, east = Math.max(...lons) + 0.025;
-  const bbox = `${south},${west},${north},${east}`;
-  const query = `[out:json][timeout:25];(node["highway"="speed_camera"](${bbox});way["highway"="speed_camera"](${bbox});node["enforcement"="average_speed"](${bbox});way["enforcement"="average_speed"](${bbox});node["traffic_signals:camera"="yes"](${bbox}););out center tags;`;
+  // No consultar una única caja rectangular que abarque todo el viaje:
+  // en rutas largas esa caja incluye provincias enteras y Overpass suele agotar
+  // el tiempo. En su lugar, crear puntos de consulta a lo largo de la carretera.
+  const queryPoints = [];
+  let travelledKm = 0;
+  let nextSampleKm = 0;
+  for (let i = 0; i < coordinates.length; i++) {
+    const c = coordinates[i];
+    if (!Array.isArray(c) || !Number.isFinite(Number(c[0])) || !Number.isFinite(Number(c[1]))) continue;
+    if (i === 0 || travelledKm >= nextSampleKm) {
+      queryPoints.push([Number(c[1]), Number(c[0])]); // lat, lon
+      nextSampleKm = travelledKm + 4;
+    }
+    if (i > 0) {
+      const prev = coordinates[i - 1];
+      if (Array.isArray(prev) && Number.isFinite(Number(prev[0])) && Number.isFinite(Number(prev[1]))) {
+        travelledKm += haversineKm(Number(prev[1]), Number(prev[0]), Number(c[1]), Number(c[0]));
+      }
+    }
+  }
+  const last = coordinates[coordinates.length - 1];
+  if (Array.isArray(last) && Number.isFinite(Number(last[0])) && Number.isFinite(Number(last[1]))) {
+    const finalPoint = [Number(last[1]), Number(last[0])];
+    if (!queryPoints.length || haversineKm(queryPoints[queryPoints.length - 1][0], queryPoints[queryPoints.length - 1][1], finalPoint[0], finalPoint[1]) > 1) queryPoints.push(finalPoint);
+  }
+  // 400 m de corredor de búsqueda. Se filtra después contra la geometría real
+  // para no atribuir a la ruta radares de carreteras paralelas.
+  const clauses = queryPoints.map(([lat, lon]) =>
+    `node(around:400,${lat},${lon})["highway"="speed_camera"];` +
+    `way(around:400,${lat},${lon})["highway"="speed_camera"];` +
+    `node(around:400,${lat},${lon})["enforcement"="average_speed"];` +
+    `way(around:400,${lat},${lon})["enforcement"="average_speed"];` +
+    `node(around:400,${lat},${lon})["traffic_signals:camera"="yes"];`
+  ).join('');
+  const query = `[out:json][timeout:25];(${clauses});out center tags;`;
 
-  // Overpass es un servicio comunitario y puede saturarse. Limitar la espera
-  // para que los radares nunca bloqueen varios minutos el análisis principal.
+  // Probar dos servidores comunitarios con un límite por servidor.
   const endpoints = [
     'https://overpass-api.de/api/interpreter',
     'https://overpass.kumi.systems/api/interpreter'
@@ -4161,7 +4191,7 @@ async function fetchRouteRadars(analysis) {
     if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
     const tags = el.tags || {};
     const match = radarDistanceToRoute({ lat, lon }, coordinates);
-    if (!match || match.distanceKm > 0.12) continue;
+    if (!match || match.distanceKm > 0.20) continue;
     const id = `${el.type}/${el.id}`;
     if (!unique.has(id)) unique.set(id, {
       id, lat, lon, tags, type: radarType(tags),
