@@ -3999,25 +3999,18 @@ function normalizeDgtIncident(item) {
   };
 }
 
-function dgtDistanceToRouteKm(incident, analysis) {
-  // Priorizar la geometría completa de la carretera: los puntos meteorológicos
-  // están separados y podrían dejar fuera incidencias situadas entre ellos.
-  const coordinates =
-    analysis?.route?.geometry?.coordinates ||
-    analysis?.geometry?.coordinates ||
-    analysis?.route?.coordinates;
-
-  if (Array.isArray(coordinates) && coordinates.length >= 2 && typeof radarDistanceToRoute === 'function') {
-    const match = radarDistanceToRoute({ lat: incident.lat, lon: incident.lon }, coordinates);
-    if (match && Number.isFinite(match.distanceKm)) return match.distanceKm;
-  }
-
-  // Compatibilidad de respaldo si el proveedor no entrega geometría.
+function dgtDistanceToRouteKm(incident, points) {
   let best = Infinity;
-  for (const point of (Array.isArray(analysis) ? analysis : analysis?.points) || []) {
+
+  for (const point of points || []) {
     if (!Number.isFinite(point.lat) || !Number.isFinite(point.lon)) continue;
-    best = Math.min(best, haversineKm(incident.lat, incident.lon, point.lat, point.lon));
+
+    best = Math.min(
+      best,
+      haversineKm(incident.lat, incident.lon, point.lat, point.lon)
+    );
   }
+
   return best;
 }
 
@@ -4041,7 +4034,7 @@ async function fetchDgtIncidents(analysis) {
     .filter(Boolean)
     .map(item => ({
       ...item,
-      distanceKm: dgtDistanceToRouteKm(item, analysis)
+      distanceKm: dgtDistanceToRouteKm(item, analysis.points)
     }))
     .filter(item => item.distanceKm <= 3)
     .sort((a, b) => a.distanceKm - b.distanceKm);
@@ -4102,103 +4095,34 @@ async function fetchRouteRadars(analysis) {
   const list = $('radarsList');
   if (status) status.innerHTML = '<strong>📷 Buscando radares…</strong><span>Consultando OpenStreetMap para el trazado completo.</span>';
   if (list) list.innerHTML = '';
-
-  // Aceptar tanto el objeto completo del análisis como la ruta directa.
-  const coordinates =
-    analysis?.route?.geometry?.coordinates ||
-    analysis?.geometry?.coordinates ||
-    analysis?.route?.coordinates;
-
-  if (!Array.isArray(coordinates) || coordinates.length < 2) {
-    throw new Error('No se ha recibido la geometría completa de la ruta.');
-  }
-
-  const lats = coordinates.map(c => Number(c[1])).filter(Number.isFinite);
-  const lons = coordinates.map(c => Number(c[0])).filter(Number.isFinite);
-  if (lats.length < 2 || lons.length < 2) throw new Error('La geometría de la ruta no contiene coordenadas válidas.');
-
-  // No consultar una única caja rectangular que abarque todo el viaje:
-  // en rutas largas esa caja incluye provincias enteras y Overpass suele agotar
-  // el tiempo. En su lugar, crear puntos de consulta a lo largo de la carretera.
-  const queryPoints = [];
-  let travelledKm = 0;
-  let nextSampleKm = 0;
-  for (let i = 0; i < coordinates.length; i++) {
-    const c = coordinates[i];
-    if (!Array.isArray(c) || !Number.isFinite(Number(c[0])) || !Number.isFinite(Number(c[1]))) continue;
-    if (i === 0 || travelledKm >= nextSampleKm) {
-      queryPoints.push([Number(c[1]), Number(c[0])]); // lat, lon
-      nextSampleKm = travelledKm + 4;
-    }
-    if (i > 0) {
-      const prev = coordinates[i - 1];
-      if (Array.isArray(prev) && Number.isFinite(Number(prev[0])) && Number.isFinite(Number(prev[1]))) {
-        travelledKm += haversineKm(Number(prev[1]), Number(prev[0]), Number(c[1]), Number(c[0]));
-      }
-    }
-  }
-  const last = coordinates[coordinates.length - 1];
-  if (Array.isArray(last) && Number.isFinite(Number(last[0])) && Number.isFinite(Number(last[1]))) {
-    const finalPoint = [Number(last[1]), Number(last[0])];
-    if (!queryPoints.length || haversineKm(queryPoints[queryPoints.length - 1][0], queryPoints[queryPoints.length - 1][1], finalPoint[0], finalPoint[1]) > 1) queryPoints.push(finalPoint);
-  }
-  // 400 m de corredor de búsqueda. Se filtra después contra la geometría real
-  // para no atribuir a la ruta radares de carreteras paralelas.
-  const clauses = queryPoints.map(([lat, lon]) =>
-    `node(around:400,${lat},${lon})["highway"="speed_camera"];` +
-    `way(around:400,${lat},${lon})["highway"="speed_camera"];` +
-    `node(around:400,${lat},${lon})["enforcement"="average_speed"];` +
-    `way(around:400,${lat},${lon})["enforcement"="average_speed"];` +
-    `node(around:400,${lat},${lon})["traffic_signals:camera"="yes"];`
-  ).join('');
-  const query = `[out:json][timeout:25];(${clauses});out center tags;`;
-
-  // Probar dos servidores comunitarios con un límite por servidor.
-  const endpoints = [
-    'https://overpass-api.de/api/interpreter',
-    'https://overpass.kumi.systems/api/interpreter'
-  ];
-  let payload = null;
-  const failures = [];
-
+  const coordinates = analysis?.route?.geometry?.coordinates;
+  if (!Array.isArray(coordinates) || coordinates.length < 2) throw new Error('La geometría de la ruta no está disponible.');
+  const lats = coordinates.map(c => c[1]), lons = coordinates.map(c => c[0]);
+  const south = Math.min(...lats) - 0.025, north = Math.max(...lats) + 0.025;
+  const west = Math.min(...lons) - 0.025, east = Math.max(...lons) + 0.025;
+  const bbox = `${south},${west},${north},${east}`;
+  const query = `[out:json][timeout:35];(node["highway"="speed_camera"](${bbox});way["highway"="speed_camera"](${bbox});node["enforcement"="average_speed"](${bbox});way["enforcement"="average_speed"](${bbox});node["traffic_signals:camera"="yes"](${bbox}););out center tags;`;
+  const endpoints = ['https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter'];
+  let payload = null, lastError = null;
   for (const endpoint of endpoints) {
     try {
-      const response = await fetchWithTimeout(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-        body: 'data=' + encodeURIComponent(query),
-        cache: 'no-store'
-      }, 9000);
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const json = await response.json();
-      if (!Array.isArray(json.elements)) throw new Error('Respuesta de datos no válida');
-      payload = json;
+      const response = await fetchWithTimeout(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, body: 'data=' + encodeURIComponent(query), cache: 'no-store' }, 40000);
+      if (!response.ok) throw new Error(`Overpass HTTP ${response.status}`);
+      payload = await response.json();
       break;
-    } catch (error) {
-      failures.push(`${new URL(endpoint).hostname}: ${error?.message || 'error'}`);
-    }
+    } catch (error) { lastError = error; }
   }
-
-  if (!payload) {
-    const err = new Error('Overpass no respondió dentro del tiempo limitado en los servidores probados. Puede ser saturación temporal o un bloqueo de conexión/CORS.');
-    err.details = failures.slice(-4).join(' · ');
-    throw err;
-  }
-
+  if (!payload) throw (lastError || new Error('Overpass no disponible'));
   const unique = new Map();
   for (const el of (payload.elements || [])) {
     const lat = Number(el.lat ?? el.center?.lat), lon = Number(el.lon ?? el.center?.lon);
     if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
     const tags = el.tags || {};
     const match = radarDistanceToRoute({ lat, lon }, coordinates);
-    if (!match || match.distanceKm > 0.20) continue;
+    // Mantener un margen pequeño alrededor de la carretera para evitar cámaras de vías cercanas.
+    if (!match || match.distanceKm > 0.12) continue;
     const id = `${el.type}/${el.id}`;
-    if (!unique.has(id)) unique.set(id, {
-      id, lat, lon, tags, type: radarType(tags),
-      distanceKm: match.distanceKm, alongKm: match.alongKm,
-      maxspeed: tags.maxspeed || tags['maxspeed:forward'] || '',
-      direction: tags.direction || '', name: tags.name || ''
-    });
+    if (!unique.has(id)) unique.set(id, { id, lat, lon, tags, type: radarType(tags), distanceKm: match.distanceKm, alongKm: match.alongKm, maxspeed: tags.maxspeed || tags['maxspeed:forward'] || '', direction: tags.direction || '', name: tags.name || '' });
   }
   const radars = [...unique.values()].sort((a,b) => a.alongKm - b.alongKm);
   return { radars, source: 'OpenStreetMap / Overpass', queriedAt: new Date().toISOString() };
@@ -4213,7 +4137,7 @@ function renderRouteRadars(result) {
   if (result?.error) {
     status.className = 'data-state warning';
     const detail = result?.details ? `<span>Detalle técnico: ${escapeHtml(result.details)}</span>` : '';
-    status.innerHTML = '<strong>⚠️ No se pudieron consultar los radares</strong><span>La consulta tiene un límite de espera para no bloquear el análisis. Puede ser saturación temporal o un problema de conexión. No significa que no haya radares en la ruta.</span>' + detail;
+    status.innerHTML = '<strong>⚠️ No se pudieron consultar los radares</strong><span>Se probaron varios servidores gratuitos. Puede ser una saturación temporal o un problema de conexión. No significa que no haya radares en la ruta.</span>' + detail;
     return;
   }
   const radars = result?.radars || [];
