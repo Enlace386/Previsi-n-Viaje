@@ -1,21 +1,21 @@
 {
   "source": "AEMET OpenData",
-  "generatedAt": "2026-10-28T02:28:05.416282+00:00",
+  "generatedAt": "2026-10-28T08:50:52.451872+00:00",
   "status": "ok",
   "count": 178,
   "alerts": [
     {
-      "id": "2.49.0.0.724.0.ES.20261027102051.733005PRP128181793096451",
+      "id": "2.49.0.0.724.0.ES.20261028075343.733005PRP128181793174023",
       "sender": "http://www.aemet.es",
-      "sent": "2026-10-27T10:20:51+00:00",
+      "sent": "2026-10-28T07:53:43+00:00",
       "status": "Actual",
-      "messageType": "Alert",
+      "messageType": "Update",
       "language": "es-ES",
       "event": "Aviso de lluvias de nivel amarillo",
       "urgency": "Future",
       "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-10-27T11:20:51+01:00",
+      "certainty": "Possible",
+      "effective": "2026-10-28T08:53:43+01:00",
       "onset": "2026-10-28T12:00:00+01:00",
       "expires": "2026-10-28T18:59:59+01:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
@@ -26,9 +26,9 @@
       "level": "amarillo",
       "phenomenon": null,
       "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
+        "min": 10,
+        "max": 40,
+        "text": "10%-40%"
       },
       "areas": [
         {
