@@ -8,7 +8,7 @@
   content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"
 >
 
-<meta name="theme-color" content="#f4f7fc">
+<meta name="theme-color" content="#f6f8fc">
 <meta name="color-scheme" content="light">
 
 <title>PREVISIÓN VIAJES</title>
@@ -1618,81 +1618,137 @@ body {
 
 
 /* =========================================================
-   AJUSTES ESTÉTICOS CONSERVADORES — SIN CAMBIAR FUNCIONALIDAD
-   Base: Untitled-2(1).html (versión de referencia funcional)
+   PREVISIÓN VIAJES — ACABADO VISUAL REFINADO
+   Solo presentación: no modifica JavaScript ni eventos.
    ========================================================= */
 :root {
-  --ui-bg: #f4f7fc;
-  --ui-surface: rgba(255,255,255,.88);
-  --ui-surface-solid: #ffffff;
-  --ui-text: #172033;
-  --ui-soft: #586579;
-  --ui-muted: #69768a;
-  --ui-blue: #286fe8;
+  --ui-bg: #f3f6fb;
+  --ui-panel: rgba(255,255,255,.90);
+  --ui-text: #172338;
+  --ui-soft: #53647b;
+  --ui-muted: #718096;
+  --ui-border: rgba(38,62,99,.12);
+  --ui-blue: #246fe5;
   --ui-blue-soft: #eaf2ff;
-  --ui-border: rgba(35,55,90,.12);
-  --ui-shadow: 0 12px 30px rgba(35,55,90,.08);
-  --ui-shadow-soft: 0 5px 18px rgba(35,55,90,.07);
+  --ui-green: #16845b;
+  --ui-shadow: 0 14px 36px rgba(31,55,92,.10), inset 0 1px 0 rgba(255,255,255,.95);
+  --ui-shadow-soft: 0 5px 18px rgba(31,55,92,.07), inset 0 1px 0 rgba(255,255,255,.92);
 }
-
-/* Tarjetas claras y jerarquía visual limpia */
-.panel, .section, .risk-panel, .map-panel {
-  background: var(--ui-surface-solid);
-  color: var(--ui-text);
-  border-color: var(--ui-border);
-  box-shadow: var(--ui-shadow-soft);
+html, body {
+  background: #f3f6fb !important;
+  color: var(--ui-text) !important;
 }
-.panel-title, .section-title, .map-heading-title,
-.risk-name, .risk-item strong {
-  color: var(--ui-text);
+body {
+  background-image: radial-gradient(ellipse at 8% 0%, rgba(93,151,255,.10), transparent 34%),
+                    radial-gradient(ellipse at 95% 18%, rgba(95,206,190,.08), transparent 28%) !important;
 }
-.panel p, .section p, .risk-description, .risk-item span,
-.map-heading-info, .logo-subtitle, .auth-user-email {
-  color: var(--ui-soft);
+.header { padding-top: 20px !important; padding-bottom: 20px !important; }
+.logo-icon {
+  border: 1px solid rgba(255,255,255,.95) !important;
+  border-radius: 18px !important;
+  background: linear-gradient(145deg,#fff,#eaf1fb) !important;
+  color: #246fe5 !important;
+  box-shadow: 7px 7px 18px rgba(37,61,97,.10), -5px -5px 14px rgba(255,255,255,.9) !important;
 }
-input, select, textarea {
-  color: var(--ui-text);
-  border-color: var(--ui-border);
+.logo-title { color: #172338 !important; letter-spacing: -.035em !important; }
+.logo-title span { color: #246fe5 !important; }
+.logo-subtitle { color: #66768d !important; letter-spacing: .09em !important; }
+.panel, .search-panel, .risk-panel, .trip-header, .section, .sources {
+  border: 1px solid rgba(255,255,255,.96) !important;
+  border-radius: 23px !important;
+  background: rgba(255,255,255,.88) !important;
+  color: var(--ui-text) !important;
+  box-shadow: var(--ui-shadow) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
-input::placeholder, textarea::placeholder { color: #778398; opacity: 1; }
-
-/* Controles del mapa con contraste claro; no altera tamaño ni capas */
+.panel-title, .section-title, .map-heading-title { color: #172338 !important; }
+.panel-title, .section-title { letter-spacing: -.025em !important; }
+.field label, .status-detail, .trip-meta, .source-row, .footer,
+.risk-description, .data-state span, .point-time, .point-risks {
+  color: #53647b !important;
+}
+.field input, .field select, .field textarea, .auth-form input, input, select, textarea {
+  color: #172338;
+}
+.field input, .auth-form input, .field select, .field textarea {
+  border: 1px solid #dfe7f1 !important;
+  border-radius: 15px !important;
+  background: #f9fbfe !important;
+  box-shadow: inset 0 1px 2px rgba(28,52,88,.025) !important;
+}
+button { touch-action: manipulation; }
+.analyze-btn {
+  border: 0 !important;
+  border-radius: 17px !important;
+  background: linear-gradient(135deg,#438fff,#2469dc) !important;
+  box-shadow: 0 9px 22px rgba(36,111,229,.22) !important;
+}
+.report-btn, .map-layer-btn, .travel-nav-item { transition: background-color .16s ease, box-shadow .16s ease, transform .16s ease; }
+.report-btn { border-radius: 15px !important; }
+.map-container, .map-panel, .map-card { border-radius: 22px !important; overflow: hidden; }
+#map {
+  border-radius: 0 !important;
+  background: #e8eef5 !important;
+  min-height: 320px;
+}
+.map-heading { background: rgba(255,255,255,.94) !important; }
 .map-layer-switcher {
-  background: #f7f9fd;
-  border-top-color: var(--ui-border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px !important;
+  background: rgba(255,255,255,.94) !important;
 }
 .map-layer-btn {
-  background: #fff;
-  border-color: #d9e1ed;
-  color: #344258;
+  min-height: 36px;
+  padding: 8px 13px !important;
+  background: #f7f9fd !important;
+  color: #53647b !important;
+  border: 1px solid #dfe7f1 !important;
+  font-weight: 750 !important;
 }
 .map-layer-btn.active {
-  background: #eaf2ff;
-  border-color: #286fe8;
-  color: #174fae;
+  background: #eaf2ff !important;
+  color: #1f66d4 !important;
+  border-color: #c7dcff !important;
+  box-shadow: inset 0 1px 2px rgba(255,255,255,.95) !important;
 }
-
-/* Navegación inferior tipo píldora, conservando sus eventos originales */
-.travel-pill-nav {
-  background: rgba(255,255,255,.88);
-  border-color: rgba(255,255,255,.96);
-  box-shadow: 0 12px 34px rgba(35,55,90,.16), inset 1px 1px 0 rgba(255,255,255,.95);
+.map-legend { border: 1px solid rgba(220,229,241,.95) !important; border-radius: 14px !important; color: #43536a !important; }
+.point-card, .segment-card, .risk-card, .official-alert, .saved-trip,
+.recommendation-item, .risk-item, .weather-item, .meta-item, .data-state,
+.status, .confidence, .risk-method, .recommendation {
+  border-radius: 17px !important;
+  border-color: #e1e8f1 !important;
+  color: #26364d !important;
 }
-.travel-nav-item { color: #647188; }
+.risk-item strong, .segment-route, .risk-name, .weather-value, .meta-item strong { color: #1b2b43 !important; }
+.risk-item span, .segment-meta, .weather-label { color: #53647b !important; }
+.score-circle { filter: drop-shadow(0 5px 8px rgba(31,55,92,.08)); }
+.leaflet-popup-content-wrapper { border-radius: 15px !important; box-shadow: 0 12px 34px rgba(20,35,55,.22) !important; }
+.leaflet-popup-content { color: #172338 !important; }
+.leaflet-control-zoom a { color: #24344a !important; }
+/* Navegación inferior tipo píldora: se conserva el posicionamiento original. */
+.travel-nav-item { color: #627189 !important; border-radius: 16px !important; }
 .travel-nav-item.active {
-  color: #205fc9;
-  background: linear-gradient(145deg,#edf4ff,#e4eeff);
+  color: #1f66d4 !important;
+  background: linear-gradient(145deg,#f1f6ff,#e7f0ff) !important;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.98), 0 4px 12px rgba(36,111,229,.09) !important;
 }
-
-/* Lectura accesible en listas de riesgos */
-.risk-item, .risk-item.interactive {
-  color: var(--ui-text);
-  border-color: var(--ui-border);
+.travel-nav-item span:last-child { font-weight: 800 !important; }
+@media (max-width: 600px) {
+  body { padding-bottom: calc(96px + env(safe-area-inset-bottom)) !important; }
+  .header { padding: 14px 2px 17px !important; }
+  .logo-icon { width: 44px !important; height: 44px !important; }
+  .panel, .search-panel, .risk-panel, .trip-header, .section, .sources {
+    border-radius: 19px !important;
+  }
+  #map { min-height: 300px; }
+  .map-layer-switcher { gap: 6px !important; padding: 10px !important; }
+  .map-layer-btn { flex: 1 1 auto; font-size: 11px !important; }
+  .travel-nav-item { min-height: 46px !important; }
 }
-.risk-item .risk-click-hint { color: #53647d; }
-
 @media (prefers-reduced-motion: reduce) {
-  .travel-nav-item { transition: none !important; }
+  .report-btn, .map-layer-btn, .travel-nav-item { transition: none !important; }
 }
 
 </style>
