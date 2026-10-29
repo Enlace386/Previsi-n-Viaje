@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 
-<!DOCTYPE html>
-
 <html lang="es">
 <head>
 <meta charset="utf-8"/>
@@ -795,12 +793,6 @@ button, input {
 .leaflet-container { background: #02050c !important; }
 .leaflet-popup-content-wrapper { background: rgba(6, 14, 27, 0.96) !important; color: var(--text-main) !important; border: 1px solid var(--border-cyan) !important; border-radius: 12px !important; backdrop-filter: blur(16px) !important; }
 .leaflet-popup-tip { background: rgba(6, 14, 27, 0.96) !important; }
-/* Popups limitados para que nunca cubran ni bloqueen el resto de la interfaz */
-.leaflet-popup { max-width: min(320px, calc(100vw - 36px)) !important; }
-.leaflet-popup-content-wrapper { pointer-events:auto !important; }
-.leaflet-popup-content { max-height: min(240px, 38vh); overflow-y:auto; overflow-x:hidden; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
-.leaflet-popup-pane { pointer-events:none; }
-.leaflet-popup-pane .leaflet-popup { pointer-events:auto; }
 
 /* =========================================================
    MOBILE & RESPONSIVE TACTICAL OVERRIDES
@@ -889,33 +881,7 @@ html, body { min-height:100%; }
 .risk-marker.end { width: 22px; height: 22px; border-color: #fff; background: #ff4d5f !important; }
 .leaflet-div-icon { background: transparent !important; border: 0 !important; }
 </style>
-<style id="final-header-risk-placement-fix">
-/* Ajuste final solicitado: planificar ruta primero, riesgo global justo después. */
-.cockpit-workspace { display:flex !important; flex-direction:column !important; align-items:stretch; gap:12px; }
-.command-sidebar { display:flex !important; flex-direction:column !important; width:100%; max-height:none; overflow:visible; order:0 !important; }
-#section-analyze { order:0 !important; width:100%; box-sizing:border-box; }
-#section-risks { order:1 !important; width:100% !important; box-sizing:border-box; margin:0 !important; }
-#section-route { order:2 !important; width:100%; box-sizing:border-box; }
-/* La identidad de sesión y el botón permanecen dentro de la cabecera, sin desbordarse. */
-.header { box-sizing:border-box; width:100%; display:flex !important; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px 14px; padding:12px 16px; }
-.header .logo-row { flex:0 1 auto; min-width:0; }
-.header .top-telemetry-dock { flex:1 1 260px; min-width:0; display:flex; flex-wrap:wrap; justify-content:center; gap:6px 12px; }
-.header .auth-userbar { flex:0 1 auto; min-width:0; max-width:100%; margin:0 0 0 auto !important; display:flex !important; align-items:center; justify-content:flex-end; flex-wrap:wrap; gap:8px; position:static !important; float:none !important; box-sizing:border-box; }
-.header .auth-user-email { display:block; min-width:0; max-width:min(42vw, 300px); overflow-wrap:anywhere; }
-.header .logout-btn { flex:0 0 auto; white-space:nowrap; }
-@media (max-width:1024px) {
- .cockpit-workspace { display:flex !important; flex-direction:column !important; }
- .command-sidebar { width:100% !important; order:0 !important; }
- #section-analyze { order:0 !important; }
- #section-risks { order:1 !important; }
- #section-route { order:2 !important; }
- .header { align-items:flex-start; gap:10px; }
- .header .logo-row { flex:1 1 100%; }
- .header .top-telemetry-dock { flex:1 1 100%; justify-content:flex-start; }
- .header .auth-userbar { flex:1 1 100%; width:100%; margin:0 !important; justify-content:space-between; }
- .header .auth-user-email { max-width:calc(100% - 120px); }
-}
-</style></head>
+</head>
 <body>
 <!-- AUTHENTICATION GATEWAY -->
 <div aria-live="polite" class="auth-screen" id="authScreen">
@@ -945,6 +911,7 @@ html, body { min-height:100%; }
 <div class="logo-icon">🛰️</div>
 <div>
 <div class="logo-title">PREVISIÓN<span> VIAJES</span></div>
+<div class="logo-subtitle">FLIGHT COMMAND TELEMETRY</div>
 </div>
 </div>
 <div class="top-telemetry-dock">
@@ -955,7 +922,8 @@ html, body { min-height:100%; }
 <div class="auth-userbar">
 <span class="auth-user-email" id="authUserEmail"></span>
 <button class="logout-btn" id="logoutBtn" type="button">Desconectar</button>
-</div></header>
+</div>
+</header>
 <!-- SPLIT COCKPIT WORKSPACE -->
 <main class="cockpit-workspace">
 <!-- LEFT COMMAND SIDEBAR -->
@@ -997,20 +965,6 @@ html, body { min-height:100%; }
 <div class="status-detail" id="statusDetail"></div>
 </div>
 <div aria-live="assertive" class="error" id="error"></div>
-</section><section class="panel section" id="section-risks">
-<div class="panel-title">Riesgo global</div>
-<div class="radar-target-box">
-<div class="radar-hud-circle" id="scoreCircle">
-<div>
-<div class="score-number" id="scoreNumber">—</div>
-<div class="score-label">INDEX / 100</div>
-</div>
-</div>
-<div class="risk-name" id="riskName">—</div>
-<div class="risk-description" id="riskDescription">—</div>
-</div>
-<div class="confidence" id="confidence" style="margin-top:10px;"></div>
-<div class="risk-method" id="riskMethod" style="margin-top:8px;"></div>
 </section>
 <!-- SAVED TRIPS PANEL -->
 <section class="panel" id="section-trips">
@@ -1024,7 +978,7 @@ html, body { min-height:100%; }
 <!-- CENTER CANVAS MAP -->
 <section class="center-canvas map-panel" id="section-route">
 <div class="map-heading">
-<div class="map-heading-title">Ruta</div>
+<div class="map-heading-title">🗺️ TARGET CANVAS &amp; RUTA GEOJSON</div>
 <div class="map-heading-info" id="mapInfo">Esperando datos de ruta...</div>
 </div>
 <div id="map"></div>
@@ -1052,6 +1006,24 @@ html, body { min-height:100%; }
 <button class="report-btn" id="printReportBtn" type="button">🖨️ Exportar Informe PDF</button>
 </section>
 <!-- RADAR TARGET RISK HUD -->
+<section class="panel section" id="section-risks">
+<div class="panel-title">
+<span>🎯 RIESGO GLOBAL TARGET HUD</span>
+<span style="font-size:9px; opacity:0.6;">INDEX</span>
+</div>
+<div class="radar-target-box">
+<div class="radar-hud-circle" id="scoreCircle">
+<div>
+<div class="score-number" id="scoreNumber">—</div>
+<div class="score-label">INDEX / 100</div>
+</div>
+</div>
+<div class="risk-name" id="riskName">—</div>
+<div class="risk-description" id="riskDescription">—</div>
+</div>
+<div class="confidence" id="confidence" style="margin-top:10px;"></div>
+<div class="risk-method" id="riskMethod" style="margin-top:8px;"></div>
+</section>
 <!-- WEATHER POINTS -->
 <section class="panel section" id="section-weather">
 <div class="panel-title">🌦️ PUNTOS METEOROLÓGICOS</div>
@@ -1539,21 +1511,15 @@ function translateDgtEvent(value) {
 function renderDgtMapMarkers(incidents) {
   if (!dgtLayer) return;
   dgtLayer.clearLayers();
-  (Array.isArray(incidents) ? incidents : []).forEach(incident => {
-    try {
-      if (!incident || !Number.isFinite(Number(incident.lat)) || !Number.isFinite(Number(incident.lon))) return;
-      const lat = Number(incident.lat), lon = Number(incident.lon);
-      if (lat < -90 || lat > 90 || lon < -180 || lon > 180) return;
-      const eventName = translateDgtEvent(incident.event);
-      const location = [incident.road,incident.direction,incident.municipality,incident.province].filter(Boolean).map(String).join(" · ");
-      const distance = Number.isFinite(Number(incident.distanceKm)) ? `${Number(incident.distanceKm).toFixed(1)} km de la ruta` : "";
-      const detail = [incident.description,location,distance].filter(Boolean).map(String).join(" · ");
-      L.marker([lat,lon],{bubblingMouseEvents:false,icon:L.divIcon({className:"",html:`<div class="dgt-map-marker">🚧</div>`,iconSize:[30,30],iconAnchor:[15,15]})})
-        .bindPopup(`<div style="min-width:220px;max-width:280px;overflow-wrap:anywhere"><strong>🚧 ${escapeHtml(String(eventName))}</strong>${location ? `<br><br>🛣️ ${escapeHtml(location)}` : ""}${detail ? `<br><br>${escapeHtml(detail)}` : ""}</div>`, { maxWidth: 320, maxHeight: 240, autoPan: false, closeButton: true, autoClose: true, closeOnClick: true })
-        .addTo(dgtLayer);
-    } catch (error) {
-      console.warn("No se pudo dibujar una incidencia DGT; se omite este registro.", error);
-    }
+  (incidents || []).forEach(incident => {
+    if (!Number.isFinite(incident.lat) || !Number.isFinite(incident.lon)) return;
+    const eventName = translateDgtEvent(incident.event);
+    const location = [incident.road,incident.direction,incident.municipality,incident.province].filter(Boolean).join(" · ");
+    const distance = Number.isFinite(incident.distanceKm) ? `${incident.distanceKm.toFixed(1)} km de la ruta` : "";
+    const detail = [incident.description,location,distance].filter(Boolean).join(" · ");
+    L.marker([incident.lat,incident.lon],{icon:L.divIcon({className:"",html:`<div class="dgt-map-marker">🚧</div>`,iconSize:[30,30],iconAnchor:[15,15]})})
+      .bindPopup(`<div style="min-width:220px"><strong>🚧 ${escapeHtml(eventName)}</strong>${location ? `<br><br>🛣️ ${escapeHtml(location)}` : ""}${detail ? `<br><br>${escapeHtml(detail)}` : ""}</div>`)
+      .addTo(dgtLayer);
   });
 }
 
@@ -4183,8 +4149,6 @@ function renderRoute(
             ],
             {
 
-              bubblingMouseEvents: false,
-
               icon:
                 L.divIcon({
 
@@ -4208,10 +4172,15 @@ function renderRoute(
 
         marker
           .bindPopup(
-            createPointPopup(point, risk, index),
-            { maxWidth: 320, maxHeight: 240, autoPan: false, closeButton: true, autoClose: true, closeOnClick: true }
+            createPointPopup(
+              point,
+              risk,
+              index
+            )
           )
-          .addTo(pointLayer);
+          .addTo(
+            pointLayer
+          );
 
         pointMarkers[index] = marker;
 
@@ -4272,35 +4241,94 @@ function renderRoute(
    POPUP MAPA
    =========================================================== */
 
-function createPointPopup(point, risk, index) {
-  // Los puntos pueden existir aunque Open-Meteo no devuelva datos.
-  const w = point && point.weather ? point.weather : null;
-  const pointRisk = point && point.risk ? point.risk : {};
-  const riskItems = Array.isArray(pointRisk.risks) ? pointRisk.risks : [];
-  const score = Number.isFinite(Number(pointRisk.score)) ? Number(pointRisk.score) : null;
-  const risks = riskItems.length
-    ? riskItems.map(x => `• ${escapeHtml(String(x))}`).join("<br>")
-    : (w ? "No se han detectado riesgos meteorológicos relevantes" : "No hay datos suficientes para evaluar el riesgo de este punto.");
-  const safeRisk = risk || { color: "#a8b3c7", name: "Datos insuficientes" };
-  const weatherRows = w ? `
-    🌡️ ${fmt(w.temperature," °C",1)}<br>
-    🌧️ ${fmt(w.precipitationProbability," %")}<br>
-    💧 ${fmt(w.precipitation," mm",1)}<br>
-    💨 ${fmt(w.wind," km/h")}<br>
-    💨 Rachas ${fmt(w.gusts," km/h")}<br>
-    👁️ ${formatVisibility(w.visibility)}<br>
-    ☁️ ${fmt(w.cloudCover," %")}<br>
-    ${escapeHtml(weatherDescription(w.weatherCode))}
-  ` : `<div style="padding:8px;background:#f1f5f9;border-radius:6px;color:#475569">No hay datos meteorológicos disponibles para este punto. Esto no significa que no exista riesgo.</div>`;
-  return `<div style="min-width:220px;max-width:280px;overflow-wrap:anywhere">
-    <strong>Punto de análisis ${Number(index) + 1}</strong><br>
-    <span style="color:#666">Hora estimada:</span>
-    <strong>${escapeHtml(String(point?.passTime || "No disponible"))}</strong><br><br>
-    <strong style="color:${safeRisk.color}">${escapeHtml(String(safeRisk.name || "Datos insuficientes"))}</strong>
-    ${score === null ? "" : ` · ${score}/100`}
-    <hr>${weatherRows}<hr>${risks}<br><br>
-    <small>${w ? "Fuente: Open-Meteo" : "Fuente meteorológica: sin datos para este punto"}</small>
-  </div>`;
+function createPointPopup(
+  point,
+  risk,
+  index
+) {
+
+  const w =
+    point.weather;
+
+
+  const risks =
+    point.risk.risks.length
+      ? point.risk.risks
+          .map(
+            x =>
+              `• ${escapeHtml(x)}`
+          )
+          .join("<br>")
+      : "No se han detectado riesgos meteorológicos relevantes";
+
+
+  return `
+
+    <div style="min-width:220px">
+
+      <strong>
+        Punto de análisis ${index + 1}
+      </strong>
+
+      <br>
+
+      <span style="color:#666">
+        Hora estimada:
+      </span>
+
+      <strong>
+        ${point.passTime}
+      </strong>
+
+      <br><br>
+
+      <strong style="color:${risk.color}">
+        ${risk.name}
+      </strong>
+
+      · ${point.risk.score}/100
+
+      <hr>
+
+      🌡️ ${fmt(w.temperature," °C",1)}
+      <br>
+
+      🌧️ ${fmt(w.precipitationProbability," %")}
+      <br>
+
+      💧 ${fmt(w.precipitation," mm",1)}
+      <br>
+
+      💨 ${fmt(w.wind," km/h")}
+      <br>
+
+      💨 Rachas ${fmt(w.gusts," km/h")}
+      <br>
+
+      👁️ ${formatVisibility(w.visibility)}
+      <br>
+
+      ☁️ ${fmt(w.cloudCover," %")}
+      <br>
+
+      ${escapeHtml(
+        weatherDescription(w.weatherCode)
+      )}
+
+      <hr>
+
+      ${risks}
+
+      <br><br>
+
+      <small>
+        Fuente: Open-Meteo
+      </small>
+
+    </div>
+
+  `;
+
 }
 
 
@@ -6574,46 +6602,7 @@ window.addEventListener(
   }
 })();
 </script>
-<style id="risk-map-order-and-controls-fix">
-/* Ajustes puntuales: orden, título y controles del mapa */
-#section-risks { order: 0; min-width: 0; margin:0 0 10px 0; }
-#section-route { order: 2; min-width: 0; }
-.map-heading-title { text-transform: none !important; letter-spacing: .01em !important; }
-#section-route.center-canvas { height: auto; min-height: 0; overflow: visible; }
-#section-route #map { display:block; width:100%; height: min(48vh, 360px); min-height: 250px; flex: 0 0 auto; }
-#section-route .map-layer-switcher { display:flex; flex-wrap:wrap; align-items:stretch; gap:8px; padding:10px; width:100%; box-sizing:border-box; }
-#section-route .map-layer-btn { flex:1 1 145px; min-width:0; min-height:42px; white-space:normal; line-height:1.25; overflow-wrap:anywhere; touch-action:manipulation; }
-#section-route .map-legend { display:flex; flex-wrap:wrap; justify-content:flex-start; gap:8px 14px; padding:10px; box-sizing:border-box; }
-@media (max-width: 1024px) {
-  #section-risks { order: 1; }
-  #section-route { order: 2; }
-  #section-route.center-canvas { height:auto !important; min-height:0 !important; }
-  #section-route #map { height: min(45vh, 330px) !important; min-height:250px !important; flex:none !important; }
-  #section-route .map-layer-switcher { position:relative; z-index:5; }
-  #section-route .map-layer-btn { flex:1 1 140px; font-size:11px !important; }
-}
-
-#section-route { display:flex; flex-direction:column; }
-#section-route > #section-risks { width:100%; box-sizing:border-box; }
-</style><style id="final-layout-menu-fix">
-/* Corrección de orden y cabecera: riesgo global al inicio */
-.cockpit-workspace { display:flex; flex-direction:column; gap:12px; }
-#section-risks { order:0 !important; width:100%; margin:0 !important; }
-.command-sidebar { order:1; }
-#section-route { order:2; }
-.hud-drawer { order:3; }
-.header { display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; }
-.header .auth-userbar { margin-left:auto; display:flex; align-items:center; gap:10px; position:static !important; float:none !important; }
-.logo-subtitle { display:none !important; }
-@media (max-width:1024px) {
- .cockpit-workspace { display:flex !important; flex-direction:column !important; }
- #section-risks { order:0 !important; }
- .command-sidebar { order:1 !important; }
- #section-route { order:2 !important; }
- .hud-drawer { order:3 !important; }
- .header .auth-userbar { width:100%; margin-left:0; justify-content:flex-end; }
-}
-</style></body>
+</body>
 </html>
 <style id="mobile-map-navigation-repair">
 @media (max-width: 1024px) {
@@ -6623,10 +6612,7 @@ window.addEventListener(
   .command-sidebar, .hud-drawer { display:flex !important; flex-direction:column !important; width:100% !important; max-height:none !important; height:auto !important; overflow:visible !important; }
   #section-route.center-canvas { display:flex !important; flex-direction:column !important; width:100% !important; height: min(62dvh, 520px) !important; min-height:380px !important; flex:0 0 auto !important; visibility:visible !important; opacity:1 !important; }
   #section-route #map, #map { display:block !important; position:relative !important; width:100% !important; height:100% !important; min-height:320px !important; flex:1 1 auto !important; z-index:1; }
-  .travel-pill-nav { z-index:1000000 !important; pointer-events:auto !important; }
-  .travel-pill-nav .travel-nav-item { position:relative; z-index:1000001; }
-  #section-route .map-layer-switcher { position:relative; z-index:1000 !important; pointer-events:auto !important; }
-  #section-route .map-layer-btn { position:relative; z-index:1001; pointer-events:auto !important; }
+  .travel-pill-nav { z-index:999999 !important; pointer-events:auto !important; }
   .travel-pill-nav .travel-nav-item { pointer-events:auto !important; touch-action:manipulation; }
 }
 </style>
