@@ -7591,6 +7591,162 @@ window.addEventListener(
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded',watchRender,{once:true}); else watchRender();
 })();
+<!-- ===== TEMA COCKPIT NOCTURNO v2 · pegar justo antes de </body> (después del último </script>) ===== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style id="cockpit-theme">
+:root{--ui-bg:#070B16;--ui-text:#EAF0FF;--ui-soft:#9AA7C2;--ui-muted:#7F8BA8;--ui-blue:#3DE0FF;--ui-blue-soft:rgba(61,224,255,.12);--ui-border:rgba(130,160,255,.2);--glass:rgba(16,24,48,.74);--glass-b:rgba(130,160,255,.24);--hd:'Space Grotesk',Inter,sans-serif}
+html,body{background:#070B16!important;color:#EAF0FF!important}
+body{background:radial-gradient(circle at 90% -5%,rgba(26,45,92,.9),transparent 45%),radial-gradient(circle at -5% 40%,rgba(61,224,255,.06),transparent 30%),#070B16!important;font-family:Inter,system-ui,sans-serif!important}
+.header{background:rgba(7,11,22,.82)!important}
+.logo-icon{background:linear-gradient(135deg,#3DE0FF,#7C8CFF)!important;border:0!important;color:#04101F!important;box-shadow:0 8px 24px rgba(61,224,255,.28)!important}
+.logo-icon svg{width:26px;height:26px}
+.logo-title{color:#EAF0FF!important}
+.logo-title,.trip-route,.risk-name,.section-title,.panel-title,.score-number,.weather-value,.auth-logo,.map-heading-title{font-family:var(--hd)!important}
+.panel,.auth-card{background:var(--glass)!important;border:1px solid var(--glass-b)!important;box-shadow:0 12px 36px rgba(0,0,0,.45)!important;backdrop-filter:blur(14px)!important;-webkit-backdrop-filter:blur(14px)!important}
+.auth-screen{background:radial-gradient(circle at 90% 5%,rgba(26,45,92,.9),transparent 45%),#070B16!important}
+.logout-btn{background:rgba(255,255,255,.05)!important;color:#C9D4F0!important;border-color:var(--glass-b)!important;box-shadow:none!important}
+.travel-pill-nav{background:rgba(10,17,39,.92)!important;border:1px solid var(--glass-b)!important;box-shadow:0 12px 34px rgba(0,0,0,.5)!important}
+.travel-nav-item{color:#9AA7C2!important}
+.travel-nav-item.active{color:#3DE0FF!important;background:rgba(61,224,255,.12)!important;box-shadow:none!important}
+.travel-nav-icon svg{width:22px;height:22px;display:block}
+.field input,.auth-form input{background:#0A1127!important;border:1px solid rgba(130,160,255,.22)!important;color:#EAF0FF!important;box-shadow:none!important;color-scheme:dark}
+.field input:focus,.auth-form input:focus{border-color:#3DE0FF!important;box-shadow:0 0 0 4px rgba(61,224,255,.12)!important}
+.native-picker-button{background:#0A1127!important;border:1px solid rgba(130,160,255,.22)!important;color:#EAF0FF!important;box-shadow:none!important}
+.native-picker-button:hover{background:#131D3F!important}
+.analyze-btn,.auth-submit{background:linear-gradient(90deg,#3DE0FF,#7C8CFF)!important;color:#04101F!important;font-family:var(--hd)!important;font-weight:700!important;box-shadow:0 8px 24px rgba(61,224,255,.32)!important}
+.status,.data-state,.confidence,.risk-method,.recommendation,.segment,.risk-item,.phenomenon-points,.source-row,.saved-trip,.point-card,.official-alert,.official-item{background:rgba(255,255,255,.04)!important;border-color:rgba(130,160,255,.18)!important;color:#EAF0FF!important;box-shadow:none!important}
+.error{background:rgba(255,77,95,.1)!important;border-color:rgba(255,77,95,.45)!important;color:#FFADB5!important}
+.data-state.danger{border-color:rgba(255,77,95,.5)!important}.data-state.success{border-color:rgba(53,226,138,.4)!important}.data-state.warning{border-color:rgba(255,179,71,.45)!important}
+.weather-item{background:rgba(255,255,255,.05)!important;border:1px solid rgba(130,160,255,.14)!important}
+.segment-chip{background:rgba(61,224,255,.08)!important;color:#C9D4F0!important;border-color:rgba(61,224,255,.25)!important}
+.phenomenon-point{background:#0D1530!important;color:#EAF0FF!important;border-color:rgba(130,160,255,.2)!important}
+.risk-click-hint{color:#3DE0FF!important}
+.point-top{border-color:rgba(130,160,255,.14)!important}
+.report-btn{background:rgba(255,255,255,.06)!important;color:#EAF0FF!important;border-color:var(--glass-b)!important;box-shadow:none!important}
+.score-circle{background:radial-gradient(circle at center,#0D1530 56%,transparent 57%),conic-gradient(var(--risk-color,#35e28a) var(--risk-angle,0deg),#1B2850 0deg)!important;box-shadow:0 0 30px rgba(61,224,255,.12)!important}
+.map-layer-switcher,.map-legend{background:rgba(10,17,39,.92)!important;border-top:1px solid rgba(130,160,255,.18)!important}
+.map-layer-btn{background:rgba(255,255,255,.05)!important;color:#C9D4F0!important;border:1px solid rgba(130,160,255,.22)!important}
+.map-layer-btn.active{background:rgba(61,224,255,.14)!important;color:#3DE0FF!important;border-color:rgba(61,224,255,.5)!important}
+#map,.leaflet-container{background:#0A1127!important}
+.etraffic-link{background:rgba(61,224,255,.1)!important;border-color:rgba(61,224,255,.3)!important;color:#3DE0FF!important}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:rgba(13,21,48,.96)!important;color:#EAF0FF!important;box-shadow:0 10px 30px rgba(0,0,0,.55)!important}
+.leaflet-popup-content-wrapper{border-radius:18px!important;border:1px solid rgba(130,160,255,.3)}
+.leaflet-popup-content hr{border:0;border-top:1px solid rgba(130,160,255,.2)}
+.leaflet-popup-content span[style*="666"]{color:#9AA7C2!important}
+.leaflet-popup-close-button{color:#9AA7C2!important}
+.leaflet-bar a{background:#0D1530!important;color:#EAF0FF!important;border-color:rgba(130,160,255,.25)!important}
+.leaflet-control-attribution{background:rgba(7,11,22,.7)!important;color:#9AA7C2!important}.leaflet-control-attribution a{color:#3DE0FF!important}
+.pv-pin{width:30px;height:30px;border-radius:50%;background:#0A1127;border:4px solid var(--c);display:grid;place-items:center;box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 28%,transparent),0 3px 12px rgba(0,0,0,.6)}
+.pv-pin svg{width:15px;height:15px}
+.pv-pin.dot{width:22px;height:22px;background:#0A1127;border:4px solid var(--c)}
+.pv-strip{display:flex;align-items:flex-end;gap:3px;height:46px;margin:0 0 16px}
+.pv-strip button{flex:1;min-width:0;border:0;padding:0;border-radius:3px;cursor:pointer}
+.risk-wrap{display:block}
+
+/* v2: ajustes para igualar las 4 pantallas */
+.auth-screen{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 300'%3E%3Cpolyline points='-10,240 60,200 110,215 170,150 230,160 290,90 340,100 400,40' fill='none' stroke='%233DE0FF' stroke-width='3' stroke-linejoin='round' opacity='.5'/%3E%3C/svg%3E") no-repeat top/100% auto,radial-gradient(circle at 90% 5%,rgba(26,45,92,.9),transparent 45%),#070B16!important}
+.auth-card{padding:22px!important;border-radius:22px!important}
+.auth-brand::before{content:"";display:block;width:64px;height:64px;margin:0 auto 18px;border-radius:16px;background:linear-gradient(135deg,#3DE0FF,#7C8CFF);box-shadow:0 8px 24px rgba(61,224,255,.28)}
+.auth-logo{font-size:26px!important}
+.weather-grid{grid-template-columns:repeat(4,1fr)!important;gap:7px!important}
+.weather-item{padding:8px 9px!important;border-radius:11px!important}
+.weather-label{font-size:10px!important;text-transform:none!important;letter-spacing:0!important}
+.weather-value{font-size:13px!important}
+.score-circle{width:104px!important;height:104px!important;min-width:104px!important}
+.small-btn{background:transparent!important;border:1px solid rgba(61,224,255,.4)!important;color:#3DE0FF!important;border-radius:11px!important}
+.small-btn[data-action="delete"]{border-color:transparent!important;color:#9AA7C2!important}
+.travel-nav-item span:last-child{font-size:10px!important;font-weight:500!important}
+.panel-title,.section-title{font-size:17px!important;font-weight:600!important}
+.trip-route{font-size:clamp(22px,6vw,28px)!important;font-weight:700!important}
+</style>
+<script id="cockpit-theme-js">
+(function(){
+"use strict";
+try{
+var svg=function(d){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+d+'</svg>';};
+var G={wind:'<path d="M3 8h10a3 3 0 10-3-3M3 12h15a3 3 0 11-3 3M3 16h7"/>',rain:'<path d="M8 19l-1 2M12 19l-1 2M16 19l-1 2M7 15a4 4 0 010-8 5 5 0 019.5 1A3.5 3.5 0 0116 15z"/>',fog:'<path d="M4 8h16M3 12h14M6 16h15M4 20h10"/>',snow:'<path d="M12 3v18M5 7l14 10M19 7L5 17"/>',storm:'<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>'};
+var NAV={'section-analyze':'<path d="M3 11l9-8 9 8M5 10v10h14V10"/>','section-route':'<path d="M5 19a2 2 0 100-4 2 2 0 000 4zM19 9a2 2 0 100-4 2 2 0 000 4zM7 17h6a3 3 0 000-6h-2a3 3 0 010-6h6"/>','section-weather':'<path d="M7 18a4 4 0 010-8 5 5 0 019.5 1A3.5 3.5 0 0116 18z"/>','section-risks':'<path d="M12 3l10 18H2zM12 10v5M12 18v.5"/>','section-trips':'<path d="M12 21s-8-5-8-11a5 5 0 018-4 5 5 0 018 4c0 6-8 11-8 11z"/>'};
+var tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.setAttribute('content','#070B16');
+var cs=document.querySelector('meta[name="color-scheme"]');if(cs)cs.setAttribute('content','dark');
+document.querySelectorAll('.travel-nav-item').forEach(function(el){var ic=el.querySelector('.travel-nav-icon');if(!ic)return;ic.innerHTML=svg(NAV[el.dataset.target]||'<path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2zM9 4v14M15 6v14"/>');});
+var li=document.querySelector('.logo-icon');if(li)li.innerHTML=svg('<path d="M3 17l4-9h10l4 9M6 17v2M18 17v2M7 13h10"/>');
+document.querySelectorAll('.section-title,.panel-title,.map-heading-title').forEach(function(el){el.textContent=el.textContent.trim().replace(/^[^\p{L}\p{N}]+/u,'');});
+
+/* Mapa base oscuro (CARTO Dark Matter + OpenStreetMap) */
+initMap=function(){
+  if(map){setTimeout(function(){map.invalidateSize();},100);return;}
+  map=L.map("map",{zoomControl:true,attributionControl:true,scrollWheelZoom:true,dragging:true,doubleClickZoom:true,boxZoom:true,keyboard:true,touchZoom:true});
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",{subdomains:"abcd",maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>'}).addTo(map);
+  map.setView([40.4168,-3.7038],6);
+  routeLayer=L.layerGroup().addTo(map);pointLayer=L.layerGroup().addTo(map);dgtLayer=L.layerGroup().addTo(map);
+  setTimeout(function(){map.invalidateSize();},300);
+};
+
+function glyphFor(w){
+  if(hasSnow(w))return"snow";
+  if([45,48].indexOf(Number(w.weatherCode))>-1||Number(w.visibility)<1000)return"fog";
+  if(isStorm(w))return"storm";
+  if(Number(w.precipitation)>=0.5||Number(w.precipitationProbability)>=60)return"rain";
+  if(Number(w.gusts)>=50)return"wind";
+  return null;
+}
+
+/* Ruta coloreada por riesgo + marcadores con icono */
+var baseRenderRoute=renderRoute;
+renderRoute=function(route,analysis){
+  baseRenderRoute(route,analysis);
+  try{
+    var co=route.geometry.coordinates,m=buildRouteMetrics(co),pts=analysis.points;
+    L.polyline(co.map(function(c){return[c[1],c[0]];}),{color:"#3DE0FF",weight:15,opacity:.12,lineCap:"round",lineJoin:"round"}).addTo(routeLayer);
+    for(var i=0;i<pts.length-1;i++){
+      var a=pts[i],b=pts[i+1],line=[],s=coordinateAtDistance(co,m.distances,a.distanceKm);
+      line.push([s[1],s[0]]);
+      for(var j=0;j<co.length;j++){if(m.distances[j]>a.distanceKm&&m.distances[j]<b.distanceKm)line.push([co[j][1],co[j][0]]);}
+      var e=coordinateAtDistance(co,m.distances,b.distanceKm);line.push([e[1],e[0]]);
+      var color=(a.weather||b.weather)?getRiskLevel(Math.round((a.risk.score+b.risk.score)/2)).color:"#6B7A99";
+      L.polyline(line,{color:color,weight:5,opacity:.95,lineCap:"round",lineJoin:"round"}).addTo(routeLayer);
+    }
+    pts.forEach(function(p,i){
+      var mk=pointMarkers[i];if(!mk||!p.weather)return;
+      var c=getRiskLevel(p.risk.score).color,g=glyphFor(p.weather);
+      mk.setIcon(L.divIcon({className:"",html:g?'<div class="pv-pin" style="--c:'+c+';color:'+c+'">'+svg(G[g])+'</div>':'<div class="pv-pin dot" style="--c:'+c+'"></div>',iconSize:g?[30,30]:[22,22],iconAnchor:g?[15,15]:[11,11]}));
+    });
+  }catch(err){console.warn("Tema cockpit (ruta):",err);}
+};
+
+/* Tira de 18 barras */
+var baseRenderPoints=renderPoints;
+renderPoints=function(analysis){
+  baseRenderPoints(analysis);
+  try{
+    var host=document.getElementById("pointsList");if(!host)return;
+    var s=document.getElementById("pvStrip");
+    if(!s){s=document.createElement("div");s.id="pvStrip";s.className="pv-strip";host.parentNode.insertBefore(s,host);}
+    s.innerHTML="";
+    analysis.points.forEach(function(p,i){
+      var b=document.createElement("button");b.type="button";
+      var r=p.weather?getRiskLevel(p.risk.score):null;
+      b.style.height=(10+(p.weather?p.risk.score:0)*0.36)+"px";
+      b.style.background=r?r.color:"#3A4670";
+      b.style.opacity=(r&&p.risk.score>20)?"1":".55";
+      b.setAttribute("aria-label","Punto "+(i+1)+", "+p.passTime);
+      b.title="Punto "+(i+1)+" · "+p.passTime;
+      b.addEventListener("click",function(){var t=document.getElementById("section-route");if(t)t.scrollIntoView({behavior:"smooth",block:"start"});setTimeout(function(){focusAnalysisPoint(i);},450);});
+      s.appendChild(b);
+    });
+  }catch(err){console.warn("Tema cockpit (tira):",err);}
+};
+
+/* Corrige la tarjeta doble en "Principales riesgos" */
+var baseRenderRisks=renderRisks;
+renderRisks=function(analysis){
+  baseRenderRisks(analysis);
+  try{document.querySelectorAll("#risksList > .risk-item.interactive").forEach(function(d){d.className="risk-wrap";});}catch(err){}
+};
+}catch(err){console.warn("Tema cockpit:",err);}
+})();
+
 </script>
 
 </body>
