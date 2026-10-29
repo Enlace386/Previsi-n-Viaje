@@ -8,10 +8,14 @@
   content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"
 >
 
-<meta name="theme-color" content="#f6f8fc">
-<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#070B16">
+<meta name="color-scheme" content="dark">
 
 <title>PREVISIÓN VIAJES</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- =========================================================
      LEAFLET
@@ -1221,400 +1225,86 @@ button {
 
 
 /* =========================================================
-   PREMIUM MOBILE REDESIGN — VISUAL LAYER ONLY
-   Existing application logic and component IDs are preserved.
+   COCKPIT NOCTURNO — CAPA VISUAL
+   No sustituye la lógica de datos ni los identificadores existentes.
    ========================================================= */
-
 :root {
-  --ui-bg: #f5f7fb;
-  --ui-surface: rgba(255,255,255,.84);
-  --ui-surface-solid: #ffffff;
-  --ui-text: #172033;
-  --ui-soft: #6e788a;
-  --ui-muted: #98a1b1;
-  --ui-blue: #2b78ef;
-  --ui-blue-soft: #eaf2ff;
-  --ui-green: #18b978;
-  --ui-orange: #f19a32;
-  --ui-red: #ef4a5b;
-  --ui-border: rgba(35,55,90,.08);
-  --ui-shadow: 0 12px 34px rgba(35,55,90,.08);
-  --ui-shadow-soft: 0 5px 20px rgba(35,55,90,.06);
+  color-scheme: dark;
+  --ui-bg:#070B16;
+  --ui-surface:rgba(16,24,48,.74);
+  --ui-surface-solid:#101830;
+  --ui-text:#EAF0FF;
+  --ui-soft:#B2BED8;
+  --ui-muted:#9AA7C2;
+  --ui-blue:#3DE0FF;
+  --ui-blue-soft:rgba(61,224,255,.12);
+  --ui-green:#35e28a;
+  --ui-yellow:#ffd34d;
+  --ui-orange:#ff9f43;
+  --ui-red:#ff4d5f;
+  --ui-magenta:#ff2e88;
+  --ui-border:rgba(130,160,255,.24);
+  --ui-shadow:0 18px 50px rgba(0,0,0,.28);
+  --ui-shadow-soft:0 8px 26px rgba(0,0,0,.22);
 }
+html,body {background:#070B16!important;color:#EAF0FF!important;color-scheme:dark;}
+body {font-family:'Inter',sans-serif!important;background:radial-gradient(circle at 92% 0%,rgba(26,45,92,.72),transparent 34%),radial-gradient(circle at 0% 45%,rgba(35,66,125,.16),transparent 35%),#070B16!important;}
+h1,h2,h3,.auth-logo,.trip-route,.score-number,.risk-name,.point-name,.point-temp,.meta-item strong,.analyze-btn,.report-btn,.panel-title {font-family:'Space Grotesk','Inter',sans-serif!important;letter-spacing:-.025em;}
+.app {padding:0 14px calc(112px + env(safe-area-inset-bottom))!important;}
+.container {width:min(1180px,100%)!important;margin:0 auto!important;}
+.header {background:rgba(7,11,22,.86)!important;border-bottom:1px solid rgba(130,160,255,.14)!important;backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important;}
+.auth-screen {background:radial-gradient(circle at 80% 10%,rgba(26,45,92,.72),transparent 40%),#070B16!important;}
+.auth-card,.panel,.point-card,.trip-card,.segment-card,.alert-card,.recommendation-card,.confidence,.map-shell,.map-panel,.weather-card,.risk-group {background:rgba(16,24,48,.74)!important;color:#EAF0FF!important;border:1px solid rgba(130,160,255,.24)!important;border-radius:22px!important;box-shadow:0 18px 50px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.035)!important;backdrop-filter:blur(14px)!important;-webkit-backdrop-filter:blur(14px)!important;}
+.panel {padding:clamp(16px,3vw,26px)!important;margin-bottom:18px!important;}
+.panel-title {font-size:clamp(18px,2vw,22px)!important;color:#EAF0FF!important;font-weight:700!important;}
+.auth-logo {color:#EAF0FF!important;font-size:25px!important;font-weight:700!important;}
+.auth-logo span {background:linear-gradient(100deg,#3DE0FF,#7C8CFF);-webkit-background-clip:text;background-clip:text;color:transparent!important;}
+.auth-subtitle,.auth-user-email,.status-detail,.panel-subtitle,.point-time,.risk-description,.score-label,.confidence span {color:#B2BED8!important;}
+.auth-card input,.auth-form input,.app input,.app select,.app textarea, input[type=date],input[type=time] {background:rgba(5,10,24,.72)!important;color:#EAF0FF!important;border:1px solid rgba(130,160,255,.28)!important;border-radius:14px!important;min-height:46px;}
+input:focus,select:focus,textarea:focus {outline:2px solid rgba(61,224,255,.75)!important;outline-offset:2px!important;border-color:#3DE0FF!important;}
+input[type=date]::-webkit-calendar-picker-indicator,input[type=time]::-webkit-calendar-picker-indicator {filter:invert(1) brightness(1.5);cursor:pointer;}
+.native-picker-button,.logout-btn,.report-btn,.map-layer-btn {background:rgba(16,24,48,.82)!important;color:#EAF0FF!important;border:1px solid rgba(130,160,255,.3)!important;border-radius:13px!important;min-height:44px!important;}
+.analyze-btn,.auth-submit {width:100%!important;min-height:52px!important;border:0!important;border-radius:16px!important;background:linear-gradient(105deg,#3DE0FF 0%,#7C8CFF 100%)!important;color:#06101e!important;font-family:'Space Grotesk',sans-serif!important;font-weight:800!important;box-shadow:0 0 28px rgba(61,224,255,.18),0 8px 24px rgba(70,94,255,.15)!important;}
+.analyze-btn:hover,.auth-submit:hover {filter:brightness(1.08);transform:translateY(-1px);}
+#map,.leaflet-container {background:#101830!important;border-radius:18px!important;}
+.leaflet-control-attribution,.leaflet-control-zoom a {background:rgba(7,11,22,.88)!important;color:#D9E4FF!important;border-color:rgba(130,160,255,.24)!important;}
+.leaflet-control-attribution a {color:#3DE0FF!important;}
+.map-layer-switcher {gap:8px!important;}
+.map-layer-btn {backdrop-filter:blur(14px)!important;-webkit-backdrop-filter:blur(14px)!important;font-size:12px!important;padding:9px 12px!important;}
+.map-layer-btn.active {background:rgba(61,224,255,.16)!important;border-color:rgba(61,224,255,.7)!important;color:#3DE0FF!important;box-shadow:0 0 20px rgba(61,224,255,.08)!important;}
+.travel-pill-nav {background:rgba(10,16,34,.9)!important;border:1px solid rgba(130,160,255,.24)!important;box-shadow:0 14px 42px rgba(0,0,0,.4)!important;backdrop-filter:blur(22px)!important;-webkit-backdrop-filter:blur(22px)!important;}
+.travel-nav-item {color:#9AA7C2!important;min-height:52px!important;border-radius:16px!important;gap:4px!important;}
+.travel-nav-item.active {color:#3DE0FF!important;background:rgba(61,224,255,.11)!important;box-shadow:inset 0 0 0 1px rgba(61,224,255,.2),0 0 20px rgba(61,224,255,.06)!important;}
+.travel-nav-icon {display:flex;align-items:center;justify-content:center;font-size:0!important;line-height:1;}
+.travel-nav-icon svg {width:20px;height:20px;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;fill:none;}
+.travel-nav-item span:last-child {font-size:10px!important;font-weight:650!important;}
+.trip-route {font-size:clamp(21px,4vw,32px)!important;font-weight:700!important;color:#EAF0FF!important;}
+.trip-meta {display:flex;flex-wrap:wrap;gap:10px!important;}
+.meta-item {background:rgba(5,10,24,.48)!important;border:1px solid rgba(130,160,255,.16)!important;border-radius:13px!important;padding:12px!important;color:#B2BED8!important;}
+.meta-item strong {color:#EAF0FF!important;font-size:19px!important;}
+.score-circle {background:radial-gradient(circle at center,#101830 57%,transparent 59%),conic-gradient(var(--risk-color,#35e28a) var(--risk-angle,0deg),rgba(130,160,255,.15) 0deg)!important;filter:drop-shadow(0 0 14px color-mix(in srgb,var(--risk-color,#35e28a) 18%,transparent));}
+.score-number {color:#EAF0FF!important;font-weight:700!important;}
+.risk-name {font-size:clamp(22px,4vw,30px)!important;font-weight:700!important;}
+.risk-item,.phenomenon-points,.confidence,.data-state {background:rgba(5,10,24,.52)!important;border-color:rgba(130,160,255,.2)!important;color:#EAF0FF!important;border-radius:16px!important;}
+.risk-item.interactive {width:100%;min-height:64px;padding:16px!important;text-align:left;color:#EAF0FF!important;cursor:pointer;}
+.risk-item strong,.point-name,.segment-title,.alert-title {color:#EAF0FF!important;font-family:'Space Grotesk',sans-serif!important;}
+.risk-item span,.point-card span,.panel p,.legend-item,.map-heading-info {color:#B2BED8!important;}
+.point-card,.segment-card,.alert-card {padding:18px!important;margin-bottom:12px!important;}
+.point-risk,.risk-chip,.data-chip,.weather-chip {border-radius:999px!important;padding:6px 10px!important;}
+.point-temp,.temperature,.weather-value {font-family:'Space Grotesk',sans-serif!important;font-size:clamp(24px,4vw,34px)!important;font-weight:700!important;color:#EAF0FF!important;}
+button,a {touch-action:manipulation;}
+button:focus-visible,a:focus-visible {outline:2px solid #3DE0FF!important;outline-offset:3px!important;}
+button:disabled {opacity:.55;cursor:not-allowed;}
+#pointRiskStrip {display:flex;align-items:flex-end;gap:5px;min-height:58px;padding:12px 0 2px;}
+#pointRiskStrip .risk-strip-bar {flex:1;min-width:3px;height:var(--bar-height,12px);border-radius:5px 5px 2px 2px;background:var(--bar-color,#35e28a);box-shadow:0 0 12px color-mix(in srgb,var(--bar-color) 24%,transparent);opacity:.92;}
+#pointRiskStrip .risk-strip-bar:focus-visible {outline:2px solid #EAF0FF;outline-offset:2px;}
+.risk-group {padding:0!important;overflow:hidden;margin-bottom:10px;}
+.risk-group .risk-item {border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;}
+.risk-group .phenomenon-points {margin:0 12px 12px!important;}
+@media (min-width:760px) {.app{padding-left:24px!important;padding-right:24px!important}.risk-layout{grid-template-columns:auto 1fr;align-items:center}.travel-nav-item span:last-child{font-size:11px!important}.panel{margin-bottom:22px!important}}
+@media (max-width:600px) {.app{padding-left:12px!important;padding-right:12px!important}.travel-pill-nav{width:calc(100% - 20px)!important;bottom:calc(8px + env(safe-area-inset-bottom))!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;padding:6px!important;border-radius:22px!important}.travel-nav-item{min-height:48px!important}.travel-nav-item span:last-child{font-size:8px!important}.panel{border-radius:20px!important}}
+@media (prefers-reduced-motion:reduce) {*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
-html, body {
-  background: var(--ui-bg) !important;
-  color: var(--ui-text) !important;
-}
-
-body {
-  background:
-    radial-gradient(circle at 92% -4%, rgba(76,139,255,.10), transparent 28%),
-    radial-gradient(circle at -5% 32%, rgba(94,184,255,.07), transparent 26%),
-    var(--ui-bg) !important;
-}
-
-.app {
-  padding: 0 14px 112px !important;
-}
-
-.container {
-  width: min(1180px, 100%) !important;
-  margin: 0 auto !important;
-}
-
-.header {
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 1000 !important;
-  padding: calc(env(safe-area-inset-top) + 12px) 2px 12px !important;
-  background: rgba(245,247,251,.78) !important;
-  backdrop-filter: blur(22px) !important;
-  -webkit-backdrop-filter: blur(22px) !important;
-}
-
-.logo-row { gap: 11px !important; }
-
-.logo-icon {
-  width: 46px !important;
-  height: 46px !important;
-  border: 1px solid rgba(255,255,255,.92) !important;
-  border-radius: 16px !important;
-  background: linear-gradient(145deg,#3d8bff,#2166d4) !important;
-  color: #fff !important;
-  box-shadow: 0 8px 20px rgba(43,120,239,.20) !important;
-}
-
-.logo-title {
-  color: #172033 !important;
-  font-size: clamp(20px,5vw,31px) !important;
-  letter-spacing: -.035em !important;
-}
-
-.logo-title span { color: var(--ui-blue) !important; }
-
-.logo-subtitle {
-  color: var(--ui-soft) !important;
-  font-size: 10px !important;
-  letter-spacing: .08em !important;
-}
-
-.auth-userbar { gap: 8px !important; }
-.auth-user-email { color: var(--ui-soft) !important; }
-
-.logout-btn {
-  border: 1px solid var(--ui-border) !important;
-  border-radius: 14px !important;
-  background: rgba(255,255,255,.82) !important;
-  color: var(--ui-text) !important;
-  box-shadow: var(--ui-shadow-soft) !important;
-}
-
-/* Floating pill navigation */
-.travel-pill-nav {
-  position: fixed !important;
-  left: 50%;
-  bottom: max(12px, env(safe-area-inset-bottom));
-  top: auto !important;
-  transform: translateX(-50%);
-  z-index: 99990;
-  width: min(680px, calc(100% - 24px));
-  margin: 0;
-  padding: 6px;
-  display: grid;
-  grid-template-columns: repeat(6,minmax(0,1fr));
-  gap: 4px;
-  border: 1px solid rgba(255,255,255,.92);
-  border-radius: 24px;
-  background: rgba(255,255,255,.76);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 12px 34px rgba(35,55,90,.12), inset 1px 1px 0 rgba(255,255,255,.95);
-}
-
-.travel-nav-item {
-  text-decoration: none;
-  min-width: 0;
-  min-height: 50px;
-  border: 0;
-  border-radius: 18px;
-  background: transparent;
-  color: #8992a3;
-  font: inherit;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  flex-direction: column;
-  transition: transform .18s ease, background .18s ease, color .18s ease, box-shadow .18s ease;
-}
-
-.travel-nav-item:active { transform: scale(.97); }
-
-.travel-nav-item.active {
-  color: var(--ui-blue);
-  background: linear-gradient(145deg,#edf4ff,#e7f0ff);
-  box-shadow: inset 0 1px 2px rgba(255,255,255,.9), 0 4px 12px rgba(43,120,239,.08);
-}
-
-.travel-nav-icon {
-  font-size: 17px;
-  line-height: 1;
-}
-
-.travel-nav-item span:last-child {
-  font-size: 9px;
-  font-weight: 750;
-}
-
-.panel {
-  border: 1px solid rgba(255,255,255,.88) !important;
-  border-radius: 24px !important;
-  background: rgba(255,255,255,.82) !important;
-  color: var(--ui-text) !important;
-  box-shadow: var(--ui-shadow), inset 1px 1px 0 rgba(255,255,255,.95) !important;
-  backdrop-filter: blur(18px) !important;
-  -webkit-backdrop-filter: blur(18px) !important;
-}
-
-.panel + .panel { margin-top: 14px !important; }
-
-.search-panel,
-.risk-panel,
-.trip-header,
-.section,
-.sources { padding: 20px !important; }
-
-.panel-title,
-.section-title {
-  color: var(--ui-text) !important;
-  letter-spacing: -.02em !important;
-  text-transform: none !important;
-  font-size: 17px !important;
-}
-
-.panel-title { font-weight: 800 !important; }
-
-.section-title { font-weight: 850 !important; }
-
-.field label {
-  color: var(--ui-soft) !important;
-  letter-spacing: .02em !important;
-  text-transform: none !important;
-}
-
-.field input,
-.auth-form input {
-  min-height: 54px !important;
-  border: 1px solid rgba(35,55,90,.08) !important;
-  border-radius: 17px !important;
-  background: rgba(248,250,253,.96) !important;
-  color: var(--ui-text) !important;
-  box-shadow: inset 0 1px 3px rgba(35,55,90,.025) !important;
-}
-
-.field input:focus,
-.auth-form input:focus {
-  border-color: rgba(43,120,239,.28) !important;
-  box-shadow: 0 0 0 4px rgba(43,120,239,.08), inset 0 1px 3px rgba(35,55,90,.025) !important;
-}
-
-.analyze-btn {
-  min-height: 56px !important;
-  border-radius: 18px !important;
-  color: #fff !important;
-  background: linear-gradient(135deg,#3a8cff,#2169dd) !important;
-  box-shadow: 0 12px 28px rgba(43,120,239,.22) !important;
-  font-weight: 800 !important;
-  letter-spacing: -.01em !important;
-}
-
-.status,
-.error,
-.data-state,
-.confidence,
-.risk-method,
-.recommendation {
-  border-radius: 17px !important;
-  background: rgba(248,250,253,.9) !important;
-  border-color: rgba(35,55,90,.07) !important;
-  color: var(--ui-text) !important;
-}
-
-.status-detail,
-.data-state span,
-.risk-description,
-.trip-meta,
-.source-row,
-.point-time,
-.point-risks,
-.footer { color: var(--ui-soft) !important; }
-
-.trip-route {
-  color: var(--ui-text) !important;
-  letter-spacing: -.045em !important;
-}
-
-.meta-item strong { color: var(--ui-text) !important; }
-
-.report-btn {
-  border: 1px solid var(--ui-border) !important;
-  border-radius: 15px !important;
-  background: rgba(255,255,255,.9) !important;
-  color: var(--ui-text) !important;
-  box-shadow: var(--ui-shadow-soft) !important;
-}
-
-.score-circle {
-  background:
-    radial-gradient(circle at center,#fff 56%,transparent 57%),
-    conic-gradient(var(--risk-color,var(--ui-green)) var(--risk-angle,0deg),#e8edf3 0deg) !important;
-  box-shadow: 0 8px 20px rgba(35,55,90,.07) !important;
-}
-
-.score-number { color: var(--ui-text) !important; }
-.score-label { color: var(--ui-muted) !important; }
-
-.map-heading { padding: 18px 20px 14px !important; }
-.map-heading-title { color: var(--ui-text) !important; }
-.map-heading-info { color: var(--ui-soft) !important; }
-
-#map {
-  height: 430px !important;
-  min-height: 430px !important;
-}
-
-.map-layer-switcher {
-  padding: 11px 16px !important;
-  background: rgba(255,255,255,.82) !important;
-  border-top: 1px solid rgba(35,55,90,.06) !important;
-}
-
-.map-layer-btn {
-  border: 1px solid rgba(35,55,90,.08) !important;
-  background: rgba(255,255,255,.92) !important;
-  color: var(--ui-soft) !important;
-  border-radius: 999px !important;
-}
-
-.map-layer-btn.active {
-  background: var(--ui-blue-soft) !important;
-  border-color: rgba(43,120,239,.20) !important;
-  color: var(--ui-blue) !important;
-}
-
-.map-legend { background: rgba(255,255,255,.86) !important; color: var(--ui-soft) !important; }
-
-.point-card,
-.segment-card,
-.risk-card,
-.official-alert,
-.source-row,
-.saved-trip,
-.recommendation-item {
-  border-color: rgba(35,55,90,.07) !important;
-  background: rgba(248,250,253,.86) !important;
-  color: var(--ui-text) !important;
-  box-shadow: var(--ui-shadow-soft) !important;
-  border-radius: 18px !important;
-}
-
-.point-top,
-.point-body { border-color: rgba(35,55,90,.06) !important; }
-.weather-item { background: #fff !important; border: 1px solid rgba(35,55,90,.05); }
-.weather-label { color: var(--ui-soft) !important; }
-.weather-value { color: var(--ui-text) !important; }
-
-/* Contraste de riesgos: tramos y principales riesgos */
-.segment {
-  background: rgba(248,250,253,.96) !important;
-  color: var(--ui-text) !important;
-  border-color: rgba(35,55,90,.09) !important;
-}
-.segment-route { color: var(--ui-text) !important; }
-.segment-meta .segment-chip {
-  background: #fff !important;
-  color: var(--ui-text) !important;
-  border-color: rgba(35,55,90,.08) !important;
-}
-.risk-item {
-  background: rgba(248,250,253,.96) !important;
-  color: var(--ui-text) !important;
-  border-color: rgba(35,55,90,.09) !important;
-}
-.risk-item strong { color: var(--ui-text) !important; }
-.risk-item span { color: var(--ui-soft) !important; }
-.risk-item.interactive { color: var(--ui-text) !important; }
-.phenomenon-points {
-  background: rgba(248,250,253,.98) !important;
-  border-color: rgba(35,55,90,.09) !important;
-}
-.phenomenon-point {
-  background: #fff !important;
-  color: var(--ui-text) !important;
-  border-color: rgba(35,55,90,.08) !important;
-}
-.phenomenon-point span { color: var(--ui-soft) !important; }
-
-.footer {
-  padding-bottom: 12px !important;
-}
-
-/* Login */
-.auth-screen {
-  background:
-    radial-gradient(circle at 90% 5%, rgba(76,139,255,.13), transparent 32%),
-    radial-gradient(circle at 0% 60%, rgba(94,184,255,.08), transparent 28%),
-    #f5f7fb !important;
-}
-
-.auth-card {
-  border: 1px solid rgba(255,255,255,.92) !important;
-  border-radius: 28px !important;
-  background: rgba(255,255,255,.82) !important;
-  box-shadow: 0 24px 70px rgba(35,55,90,.12), inset 1px 1px 0 rgba(255,255,255,.95) !important;
-  backdrop-filter: blur(22px) !important;
-  -webkit-backdrop-filter: blur(22px) !important;
-}
-
-.auth-logo { color: var(--ui-text) !important; letter-spacing: -.04em !important; }
-.auth-logo span { color: var(--ui-blue) !important; }
-.auth-subtitle { color: var(--ui-soft) !important; }
-.auth-form label { color: var(--ui-soft) !important; }
-.auth-submit {
-  border-radius: 17px !important;
-  background: linear-gradient(135deg,#3a8cff,#2169dd) !important;
-  box-shadow: 0 12px 28px rgba(43,120,239,.20) !important;
-}
-
-/* Desktop: retain the same visual language while using available width. */
-@media (min-width:760px) {
-  .travel-pill-nav { margin-bottom: 18px; }
-  .search-panel,
-  .risk-panel,
-  .trip-header,
-  .section,
-  .sources { padding: 24px !important; }
-}
-
-/* Small phones */
-@media (max-width:500px) {
-  .app { padding-left: 9px !important; padding-right: 9px !important; padding-bottom: 102px !important; }
-  .header { padding-left: 2px !important; padding-right: 2px !important; }
-  .auth-user-email { display:none !important; }
-  .logout-btn { padding: 9px 11px !important; }
-  .travel-pill-nav {
-    left: 50%;
-    bottom: max(10px, env(safe-area-inset-bottom));
-    width: calc(100% - 18px);
-    border-radius: 22px;
-  }
-  .travel-nav-item { min-height: 48px; border-radius: 17px; }
-  .travel-nav-item span:last-child { font-size: 8px; }
-  .travel-nav-icon { font-size: 16px; }
-  .panel { border-radius: 22px !important; }
-}
 </style>
 </head>
 
@@ -2459,7 +2149,7 @@ const CONFIG = {
     "https://api.open-meteo.com/v1/forecast",
 
   MAP_TILE:
-    "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
 
   /*
    * AEMET se publica mediante GitHub Actions en un JSON estático.
@@ -2654,7 +2344,7 @@ function initMap() {
       maxZoom: 19,
 
       attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
+        '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>',
 
       crossOrigin: true
     }
@@ -6357,7 +6047,7 @@ function renderRisks(analysis) {
     .forEach((phenomenon, phenomenonIndex) => {
 
       const item = document.createElement("div");
-      item.className = "risk-item interactive";
+      item.className = "risk-group";
 
       const pointsHtml = phenomenon.points
         .map(entry => formatPhenomenonPoint(entry, entry.index, phenomenon))
@@ -7814,6 +7504,92 @@ window.addEventListener(
     }, {rootMargin:'-18% 0px -65% 0px', threshold:[0,.15,.35,.6]});
     observed.forEach(el => observer.observe(el));
   }
+})();
+</script>
+
+
+<script>
+/* Mejoras visuales aisladas: no sustituyen las funciones de análisis existentes. */
+(function () {
+  const iconPaths = {
+    home:'<path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-6h6v6"/>',
+    route:'<circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M8 18h3a3 3 0 0 0 3-3v-3a3 3 0 0 1 3-3h1"/>',
+    weather:'<path d="M7 18h10a4 4 0 0 0 .4-8A6 6 0 0 0 6 9a4.5 4.5 0 0 0 1 9Z"/><path d="m9 21 1-2m4 2 1-2"/>',
+    risks:'<path d="m12 3 9 17H3L12 3Z"/><path d="M12 9v5m0 3h.01"/>',
+    trips:'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/>',
+    external:'<path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>'
+  };
+  function installNavIcons() {
+    document.querySelectorAll('.travel-nav-item').forEach(function (item) {
+      const holder = item.querySelector('.travel-nav-icon');
+      if (!holder || holder.dataset.svgReady === '1') return;
+      const target = item.getAttribute('data-target') || '';
+      const key = target.includes('analyze') ? 'home' : target.includes('route') ? 'route' : target.includes('weather') ? 'weather' : target.includes('risks') ? 'risks' : target.includes('trips') ? 'trips' : 'external';
+      holder.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' + iconPaths[key] + '</svg>';
+      holder.dataset.svgReady = '1';
+      if (!item.getAttribute('aria-label')) item.setAttribute('aria-label', (item.innerText || 'Abrir sección').trim().replace(/\s+/g,' '));
+    });
+  }
+  function ensureRiskStrip() {
+    const summary = document.getElementById('section-summary');
+    if (!summary || document.getElementById('pointRiskStrip')) return;
+    const title = document.createElement('div');
+    title.className = 'risk-strip-title';
+    title.textContent = 'Riesgo por puntos del trayecto';
+    title.style.cssText = 'margin-top:18px;color:#B2BED8;font-size:12px;font-weight:650;';
+    const strip = document.createElement('div');
+    strip.id = 'pointRiskStrip';
+    strip.setAttribute('role','img');
+    strip.setAttribute('aria-label','Resumen visual del nivel de riesgo de cada punto del trayecto');
+    const meta = document.getElementById('tripMeta');
+    (meta || summary).insertAdjacentElement('afterend', title);
+    title.insertAdjacentElement('afterend', strip);
+  }
+  function riskColor(score) {
+    if (!Number.isFinite(score)) return '#9AA7C2';
+    if (score <= 20) return '#35e28a';
+    if (score <= 40) return '#ffd34d';
+    if (score <= 60) return '#ff9f43';
+    if (score <= 80) return '#ff4d5f';
+    return '#ff2e88';
+  }
+  function renderRiskStrip(analysis) {
+    ensureRiskStrip();
+    const strip = document.getElementById('pointRiskStrip');
+    const points = analysis && Array.isArray(analysis.points) ? analysis.points : null;
+    if (!strip || !points || !points.length) return;
+    strip.innerHTML = '';
+    points.forEach(function (point, i) {
+      const raw = point && point.risk ? Number(point.risk.score) : NaN;
+      const score = Number.isFinite(raw) ? Math.max(0,Math.min(100,raw)) : NaN;
+      const bar = document.createElement('span');
+      bar.className = 'risk-strip-bar';
+      bar.style.setProperty('--bar-height', (Number.isFinite(score) ? 12 + score * .34 : 12) + 'px');
+      bar.style.setProperty('--bar-color', riskColor(score));
+      bar.title = 'Punto ' + (i + 1) + ': ' + (Number.isFinite(score) ? score + '/100' : 'datos insuficientes');
+      bar.setAttribute('aria-label', bar.title);
+      strip.appendChild(bar);
+    });
+  }
+  function watchRender() {
+    installNavIcons();
+    ensureRiskStrip();
+    const results = document.getElementById('results') || document.body;
+    const observer = new MutationObserver(function () { installNavIcons(); });
+    observer.observe(results,{childList:true,subtree:true,characterData:true});
+    if (typeof window.renderGlobalRisk === 'function' && !window.renderGlobalRisk.__cockpitWrapped) {
+      const original = window.renderGlobalRisk;
+      const wrapped = function (analysis) {
+        const result = original.apply(this, arguments);
+        renderRiskStrip(analysis);
+        return result;
+      };
+      wrapped.__cockpitWrapped = true;
+      window.renderGlobalRisk = wrapped;
+    }
+    renderRiskStrip();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded',watchRender,{once:true}); else watchRender();
 })();
 </script>
 
