@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <!DOCTYPE html>
 
 <html lang="es">
@@ -882,7 +883,33 @@ html, body { min-height:100%; }
 .risk-marker.end { width: 22px; height: 22px; border-color: #fff; background: #ff4d5f !important; }
 .leaflet-div-icon { background: transparent !important; border: 0 !important; }
 </style>
-</head>
+<style id="final-header-risk-placement-fix">
+/* Ajuste final solicitado: planificar ruta primero, riesgo global justo después. */
+.cockpit-workspace { display:flex !important; flex-direction:column !important; align-items:stretch; gap:12px; }
+.command-sidebar { display:flex !important; flex-direction:column !important; width:100%; max-height:none; overflow:visible; order:0 !important; }
+#section-analyze { order:0 !important; width:100%; box-sizing:border-box; }
+#section-risks { order:1 !important; width:100% !important; box-sizing:border-box; margin:0 !important; }
+#section-route { order:2 !important; width:100%; box-sizing:border-box; }
+/* La identidad de sesión y el botón permanecen dentro de la cabecera, sin desbordarse. */
+.header { box-sizing:border-box; width:100%; display:flex !important; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px 14px; padding:12px 16px; }
+.header .logo-row { flex:0 1 auto; min-width:0; }
+.header .top-telemetry-dock { flex:1 1 260px; min-width:0; display:flex; flex-wrap:wrap; justify-content:center; gap:6px 12px; }
+.header .auth-userbar { flex:0 1 auto; min-width:0; max-width:100%; margin:0 0 0 auto !important; display:flex !important; align-items:center; justify-content:flex-end; flex-wrap:wrap; gap:8px; position:static !important; float:none !important; box-sizing:border-box; }
+.header .auth-user-email { display:block; min-width:0; max-width:min(42vw, 300px); overflow-wrap:anywhere; }
+.header .logout-btn { flex:0 0 auto; white-space:nowrap; }
+@media (max-width:1024px) {
+ .cockpit-workspace { display:flex !important; flex-direction:column !important; }
+ .command-sidebar { width:100% !important; order:0 !important; }
+ #section-analyze { order:0 !important; }
+ #section-risks { order:1 !important; }
+ #section-route { order:2 !important; }
+ .header { align-items:flex-start; gap:10px; }
+ .header .logo-row { flex:1 1 100%; }
+ .header .top-telemetry-dock { flex:1 1 100%; justify-content:flex-start; }
+ .header .auth-userbar { flex:1 1 100%; width:100%; margin:0 !important; justify-content:space-between; }
+ .header .auth-user-email { max-width:calc(100% - 120px); }
+}
+</style></head>
 <body>
 <!-- AUTHENTICATION GATEWAY -->
 <div aria-live="polite" class="auth-screen" id="authScreen">
@@ -912,7 +939,6 @@ html, body { min-height:100%; }
 <div class="logo-icon">🛰️</div>
 <div>
 <div class="logo-title">PREVISIÓN<span> VIAJES</span></div>
-
 </div>
 </div>
 <div class="top-telemetry-dock">
@@ -920,27 +946,12 @@ html, body { min-height:100%; }
 <div class="telemetry-tag">SYS: <strong>OSRM v1.8</strong></div>
 <div class="telemetry-tag">RADAR: <strong>OPEN-METEO</strong></div>
 </div>
-
 <div class="auth-userbar">
 <span class="auth-user-email" id="authUserEmail"></span>
 <button class="logout-btn" id="logoutBtn" type="button">Desconectar</button>
 </div></header>
 <!-- SPLIT COCKPIT WORKSPACE -->
-<main class="cockpit-workspace"><section class="panel section" id="section-risks">
-<div class="panel-title">Riesgo global</div>
-<div class="radar-target-box">
-<div class="radar-hud-circle" id="scoreCircle">
-<div>
-<div class="score-number" id="scoreNumber">—</div>
-<div class="score-label">INDEX / 100</div>
-</div>
-</div>
-<div class="risk-name" id="riskName">—</div>
-<div class="risk-description" id="riskDescription">—</div>
-</div>
-<div class="confidence" id="confidence" style="margin-top:10px;"></div>
-<div class="risk-method" id="riskMethod" style="margin-top:8px;"></div>
-</section>
+<main class="cockpit-workspace">
 <!-- LEFT COMMAND SIDEBAR -->
 <aside class="command-sidebar">
 <section class="panel search-panel" id="section-analyze">
@@ -980,6 +991,20 @@ html, body { min-height:100%; }
 <div class="status-detail" id="statusDetail"></div>
 </div>
 <div aria-live="assertive" class="error" id="error"></div>
+</section><section class="panel section" id="section-risks">
+<div class="panel-title">Riesgo global</div>
+<div class="radar-target-box">
+<div class="radar-hud-circle" id="scoreCircle">
+<div>
+<div class="score-number" id="scoreNumber">—</div>
+<div class="score-label">INDEX / 100</div>
+</div>
+</div>
+<div class="risk-name" id="riskName">—</div>
+<div class="risk-description" id="riskDescription">—</div>
+</div>
+<div class="confidence" id="confidence" style="margin-top:10px;"></div>
+<div class="risk-method" id="riskMethod" style="margin-top:8px;"></div>
 </section>
 <!-- SAVED TRIPS PANEL -->
 <section class="panel" id="section-trips">
@@ -1508,15 +1533,21 @@ function translateDgtEvent(value) {
 function renderDgtMapMarkers(incidents) {
   if (!dgtLayer) return;
   dgtLayer.clearLayers();
-  (incidents || []).forEach(incident => {
-    if (!Number.isFinite(incident.lat) || !Number.isFinite(incident.lon)) return;
-    const eventName = translateDgtEvent(incident.event);
-    const location = [incident.road,incident.direction,incident.municipality,incident.province].filter(Boolean).join(" · ");
-    const distance = Number.isFinite(incident.distanceKm) ? `${incident.distanceKm.toFixed(1)} km de la ruta` : "";
-    const detail = [incident.description,location,distance].filter(Boolean).join(" · ");
-    L.marker([incident.lat,incident.lon],{icon:L.divIcon({className:"",html:`<div class="dgt-map-marker">🚧</div>`,iconSize:[30,30],iconAnchor:[15,15]})})
-      .bindPopup(`<div style="min-width:220px"><strong>🚧 ${escapeHtml(eventName)}</strong>${location ? `<br><br>🛣️ ${escapeHtml(location)}` : ""}${detail ? `<br><br>${escapeHtml(detail)}` : ""}</div>`)
-      .addTo(dgtLayer);
+  (Array.isArray(incidents) ? incidents : []).forEach(incident => {
+    try {
+      if (!incident || !Number.isFinite(Number(incident.lat)) || !Number.isFinite(Number(incident.lon))) return;
+      const lat = Number(incident.lat), lon = Number(incident.lon);
+      if (lat < -90 || lat > 90 || lon < -180 || lon > 180) return;
+      const eventName = translateDgtEvent(incident.event);
+      const location = [incident.road,incident.direction,incident.municipality,incident.province].filter(Boolean).map(String).join(" · ");
+      const distance = Number.isFinite(Number(incident.distanceKm)) ? `${Number(incident.distanceKm).toFixed(1)} km de la ruta` : "";
+      const detail = [incident.description,location,distance].filter(Boolean).map(String).join(" · ");
+      L.marker([lat,lon],{icon:L.divIcon({className:"",html:`<div class="dgt-map-marker">🚧</div>`,iconSize:[30,30],iconAnchor:[15,15]})})
+        .bindPopup(`<div style="min-width:220px;max-width:280px;overflow-wrap:anywhere"><strong>🚧 ${escapeHtml(String(eventName))}</strong>${location ? `<br><br>🛣️ ${escapeHtml(location)}` : ""}${detail ? `<br><br>${escapeHtml(detail)}` : ""}</div>`, { maxWidth: 320, autoPan: true })
+        .addTo(dgtLayer);
+    } catch (error) {
+      console.warn("No se pudo dibujar una incidencia DGT; se omite este registro.", error);
+    }
   });
 }
 
@@ -4169,15 +4200,10 @@ function renderRoute(
 
         marker
           .bindPopup(
-            createPointPopup(
-              point,
-              risk,
-              index
-            )
+            createPointPopup(point, risk, index),
+            { maxWidth: 320, autoPan: true }
           )
-          .addTo(
-            pointLayer
-          );
+          .addTo(pointLayer);
 
         pointMarkers[index] = marker;
 
@@ -4238,94 +4264,35 @@ function renderRoute(
    POPUP MAPA
    =========================================================== */
 
-function createPointPopup(
-  point,
-  risk,
-  index
-) {
-
-  const w =
-    point.weather;
-
-
-  const risks =
-    point.risk.risks.length
-      ? point.risk.risks
-          .map(
-            x =>
-              `• ${escapeHtml(x)}`
-          )
-          .join("<br>")
-      : "No se han detectado riesgos meteorológicos relevantes";
-
-
-  return `
-
-    <div style="min-width:220px">
-
-      <strong>
-        Punto de análisis ${index + 1}
-      </strong>
-
-      <br>
-
-      <span style="color:#666">
-        Hora estimada:
-      </span>
-
-      <strong>
-        ${point.passTime}
-      </strong>
-
-      <br><br>
-
-      <strong style="color:${risk.color}">
-        ${risk.name}
-      </strong>
-
-      · ${point.risk.score}/100
-
-      <hr>
-
-      🌡️ ${fmt(w.temperature," °C",1)}
-      <br>
-
-      🌧️ ${fmt(w.precipitationProbability," %")}
-      <br>
-
-      💧 ${fmt(w.precipitation," mm",1)}
-      <br>
-
-      💨 ${fmt(w.wind," km/h")}
-      <br>
-
-      💨 Rachas ${fmt(w.gusts," km/h")}
-      <br>
-
-      👁️ ${formatVisibility(w.visibility)}
-      <br>
-
-      ☁️ ${fmt(w.cloudCover," %")}
-      <br>
-
-      ${escapeHtml(
-        weatherDescription(w.weatherCode)
-      )}
-
-      <hr>
-
-      ${risks}
-
-      <br><br>
-
-      <small>
-        Fuente: Open-Meteo
-      </small>
-
-    </div>
-
-  `;
-
+function createPointPopup(point, risk, index) {
+  // Los puntos pueden existir aunque Open-Meteo no devuelva datos.
+  const w = point && point.weather ? point.weather : null;
+  const pointRisk = point && point.risk ? point.risk : {};
+  const riskItems = Array.isArray(pointRisk.risks) ? pointRisk.risks : [];
+  const score = Number.isFinite(Number(pointRisk.score)) ? Number(pointRisk.score) : null;
+  const risks = riskItems.length
+    ? riskItems.map(x => `• ${escapeHtml(String(x))}`).join("<br>")
+    : (w ? "No se han detectado riesgos meteorológicos relevantes" : "No hay datos suficientes para evaluar el riesgo de este punto.");
+  const safeRisk = risk || { color: "#a8b3c7", name: "Datos insuficientes" };
+  const weatherRows = w ? `
+    🌡️ ${fmt(w.temperature," °C",1)}<br>
+    🌧️ ${fmt(w.precipitationProbability," %")}<br>
+    💧 ${fmt(w.precipitation," mm",1)}<br>
+    💨 ${fmt(w.wind," km/h")}<br>
+    💨 Rachas ${fmt(w.gusts," km/h")}<br>
+    👁️ ${formatVisibility(w.visibility)}<br>
+    ☁️ ${fmt(w.cloudCover," %")}<br>
+    ${escapeHtml(weatherDescription(w.weatherCode))}
+  ` : `<div style="padding:8px;background:#f1f5f9;border-radius:6px;color:#475569">No hay datos meteorológicos disponibles para este punto. Esto no significa que no exista riesgo.</div>`;
+  return `<div style="min-width:220px;max-width:280px;overflow-wrap:anywhere">
+    <strong>Punto de análisis ${Number(index) + 1}</strong><br>
+    <span style="color:#666">Hora estimada:</span>
+    <strong>${escapeHtml(String(point?.passTime || "No disponible"))}</strong><br><br>
+    <strong style="color:${safeRisk.color}">${escapeHtml(String(safeRisk.name || "Datos insuficientes"))}</strong>
+    ${score === null ? "" : ` · ${score}/100`}
+    <hr>${weatherRows}<hr>${risks}<br><br>
+    <small>${w ? "Fuente: Open-Meteo" : "Fuente meteorológica: sin datos para este punto"}</small>
+  </div>`;
 }
 
 
