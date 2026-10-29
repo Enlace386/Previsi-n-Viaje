@@ -977,8 +977,22 @@ html, body { min-height:100%; }
 </aside>
 <!-- CENTER CANVAS MAP -->
 <section class="center-canvas map-panel" id="section-route">
-<div class="map-heading">
-<div class="map-heading-title">🗺️ TARGET CANVAS &amp; RUTA GEOJSON</div>
+<section class="panel section" id="section-risks">
+<div class="panel-title">Riesgo global</div>
+<div class="radar-target-box">
+<div class="radar-hud-circle" id="scoreCircle">
+<div>
+<div class="score-number" id="scoreNumber">—</div>
+<div class="score-label">INDEX / 100</div>
+</div>
+</div>
+<div class="risk-name" id="riskName">—</div>
+<div class="risk-description" id="riskDescription">—</div>
+</div>
+<div class="confidence" id="confidence" style="margin-top:10px;"></div>
+<div class="risk-method" id="riskMethod" style="margin-top:8px;"></div>
+</section><div class="map-heading">
+<div class="map-heading-title">Ruta</div>
 <div class="map-heading-info" id="mapInfo">Esperando datos de ruta...</div>
 </div>
 <div id="map"></div>
@@ -1006,24 +1020,6 @@ html, body { min-height:100%; }
 <button class="report-btn" id="printReportBtn" type="button">🖨️ Exportar Informe PDF</button>
 </section>
 <!-- RADAR TARGET RISK HUD -->
-<section class="panel section" id="section-risks">
-<div class="panel-title">
-<span>🎯 RIESGO GLOBAL TARGET HUD</span>
-<span style="font-size:9px; opacity:0.6;">INDEX</span>
-</div>
-<div class="radar-target-box">
-<div class="radar-hud-circle" id="scoreCircle">
-<div>
-<div class="score-number" id="scoreNumber">—</div>
-<div class="score-label">INDEX / 100</div>
-</div>
-</div>
-<div class="risk-name" id="riskName">—</div>
-<div class="risk-description" id="riskDescription">—</div>
-</div>
-<div class="confidence" id="confidence" style="margin-top:10px;"></div>
-<div class="risk-method" id="riskMethod" style="margin-top:8px;"></div>
-</section>
 <!-- WEATHER POINTS -->
 <section class="panel section" id="section-weather">
 <div class="panel-title">🌦️ PUNTOS METEOROLÓGICOS</div>
@@ -6602,7 +6598,28 @@ window.addEventListener(
   }
 })();
 </script>
-</body>
+<style id="risk-map-order-and-controls-fix">
+/* Ajustes puntuales: orden, título y controles del mapa */
+#section-risks { order: 0; min-width: 0; margin:0 0 10px 0; }
+#section-route { order: 2; min-width: 0; }
+.map-heading-title { text-transform: none !important; letter-spacing: .01em !important; }
+#section-route.center-canvas { height: auto; min-height: 0; overflow: visible; }
+#section-route #map { display:block; width:100%; height: min(48vh, 360px); min-height: 250px; flex: 0 0 auto; }
+#section-route .map-layer-switcher { display:flex; flex-wrap:wrap; align-items:stretch; gap:8px; padding:10px; width:100%; box-sizing:border-box; }
+#section-route .map-layer-btn { flex:1 1 145px; min-width:0; min-height:42px; white-space:normal; line-height:1.25; overflow-wrap:anywhere; touch-action:manipulation; }
+#section-route .map-legend { display:flex; flex-wrap:wrap; justify-content:flex-start; gap:8px 14px; padding:10px; box-sizing:border-box; }
+@media (max-width: 1024px) {
+  #section-risks { order: 1; }
+  #section-route { order: 2; }
+  #section-route.center-canvas { height:auto !important; min-height:0 !important; }
+  #section-route #map { height: min(45vh, 330px) !important; min-height:250px !important; flex:none !important; }
+  #section-route .map-layer-switcher { position:relative; z-index:5; }
+  #section-route .map-layer-btn { flex:1 1 140px; font-size:11px !important; }
+}
+
+#section-route { display:flex; flex-direction:column; }
+#section-route > #section-risks { width:100%; box-sizing:border-box; }
+</style></body>
 </html>
 <style id="mobile-map-navigation-repair">
 @media (max-width: 1024px) {
