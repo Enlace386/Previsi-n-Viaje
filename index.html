@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+<!DOCTYPE html>
+
 <html lang="es">
 <head>
 <meta charset="utf-8"/>
@@ -793,6 +795,12 @@ button, input {
 .leaflet-container { background: #02050c !important; }
 .leaflet-popup-content-wrapper { background: rgba(6, 14, 27, 0.96) !important; color: var(--text-main) !important; border: 1px solid var(--border-cyan) !important; border-radius: 12px !important; backdrop-filter: blur(16px) !important; }
 .leaflet-popup-tip { background: rgba(6, 14, 27, 0.96) !important; }
+/* Popups limitados para que nunca cubran ni bloqueen el resto de la interfaz */
+.leaflet-popup { max-width: min(320px, calc(100vw - 36px)) !important; }
+.leaflet-popup-content-wrapper { pointer-events:auto !important; }
+.leaflet-popup-content { max-height: min(240px, 38vh); overflow-y:auto; overflow-x:hidden; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
+.leaflet-popup-pane { pointer-events:none; }
+.leaflet-popup-pane .leaflet-popup { pointer-events:auto; }
 
 /* =========================================================
    MOBILE & RESPONSIVE TACTICAL OVERRIDES
@@ -1540,8 +1548,8 @@ function renderDgtMapMarkers(incidents) {
       const location = [incident.road,incident.direction,incident.municipality,incident.province].filter(Boolean).map(String).join(" · ");
       const distance = Number.isFinite(Number(incident.distanceKm)) ? `${Number(incident.distanceKm).toFixed(1)} km de la ruta` : "";
       const detail = [incident.description,location,distance].filter(Boolean).map(String).join(" · ");
-      L.marker([lat,lon],{icon:L.divIcon({className:"",html:`<div class="dgt-map-marker">🚧</div>`,iconSize:[30,30],iconAnchor:[15,15]})})
-        .bindPopup(`<div style="min-width:220px;max-width:280px;overflow-wrap:anywhere"><strong>🚧 ${escapeHtml(String(eventName))}</strong>${location ? `<br><br>🛣️ ${escapeHtml(location)}` : ""}${detail ? `<br><br>${escapeHtml(detail)}` : ""}</div>`, { maxWidth: 320, autoPan: true })
+      L.marker([lat,lon],{bubblingMouseEvents:false,icon:L.divIcon({className:"",html:`<div class="dgt-map-marker">🚧</div>`,iconSize:[30,30],iconAnchor:[15,15]})})
+        .bindPopup(`<div style="min-width:220px;max-width:280px;overflow-wrap:anywhere"><strong>🚧 ${escapeHtml(String(eventName))}</strong>${location ? `<br><br>🛣️ ${escapeHtml(location)}` : ""}${detail ? `<br><br>${escapeHtml(detail)}` : ""}</div>`, { maxWidth: 320, maxHeight: 240, autoPan: false, closeButton: true, autoClose: true, closeOnClick: true })
         .addTo(dgtLayer);
     } catch (error) {
       console.warn("No se pudo dibujar una incidencia DGT; se omite este registro.", error);
@@ -4175,6 +4183,8 @@ function renderRoute(
             ],
             {
 
+              bubblingMouseEvents: false,
+
               icon:
                 L.divIcon({
 
@@ -4199,7 +4209,7 @@ function renderRoute(
         marker
           .bindPopup(
             createPointPopup(point, risk, index),
-            { maxWidth: 320, autoPan: true }
+            { maxWidth: 320, maxHeight: 240, autoPan: false, closeButton: true, autoClose: true, closeOnClick: true }
           )
           .addTo(pointLayer);
 
@@ -6613,7 +6623,10 @@ window.addEventListener(
   .command-sidebar, .hud-drawer { display:flex !important; flex-direction:column !important; width:100% !important; max-height:none !important; height:auto !important; overflow:visible !important; }
   #section-route.center-canvas { display:flex !important; flex-direction:column !important; width:100% !important; height: min(62dvh, 520px) !important; min-height:380px !important; flex:0 0 auto !important; visibility:visible !important; opacity:1 !important; }
   #section-route #map, #map { display:block !important; position:relative !important; width:100% !important; height:100% !important; min-height:320px !important; flex:1 1 auto !important; z-index:1; }
-  .travel-pill-nav { z-index:999999 !important; pointer-events:auto !important; }
+  .travel-pill-nav { z-index:1000000 !important; pointer-events:auto !important; }
+  .travel-pill-nav .travel-nav-item { position:relative; z-index:1000001; }
+  #section-route .map-layer-switcher { position:relative; z-index:1000 !important; pointer-events:auto !important; }
+  #section-route .map-layer-btn { position:relative; z-index:1001; pointer-events:auto !important; }
   .travel-pill-nav .travel-nav-item { pointer-events:auto !important; touch-action:manipulation; }
 }
 </style>
