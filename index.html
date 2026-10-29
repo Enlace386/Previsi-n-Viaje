@@ -1545,7 +1545,7 @@ function renderDgtMapMarkers(incidents) {
       const location = [incident.road,incident.direction,incident.municipality,incident.province].filter(Boolean).map(String).join(" · ");
       const distance = Number.isFinite(Number(incident.distanceKm)) ? `${Number(incident.distanceKm).toFixed(1)} km de la ruta` : "";
       const detail = [incident.description,location,distance].filter(Boolean).map(String).join(" · ");
-      L.marker([lat,lon],{bubblingMouseEvents:false,icon:L.divIcon({className:"",html:`<div class="dgt-map-marker">🚧</div>`,iconSize:[30,30],iconAnchor:[15,15]})})
+      L.marker([lat,lon],{icon:L.divIcon({className:"",html:`<div class="dgt-map-marker">🚧</div>`,iconSize:[30,30],iconAnchor:[15,15]})})
         .bindPopup(`<div style="min-width:220px;max-width:280px;overflow-wrap:anywhere"><strong>🚧 ${escapeHtml(String(eventName))}</strong>${location ? `<br><br>🛣️ ${escapeHtml(location)}` : ""}${detail ? `<br><br>${escapeHtml(detail)}` : ""}</div>`, { maxWidth: 320, maxHeight: 240, autoPan: false, closeButton: true, autoClose: true, closeOnClick: true })
         .addTo(dgtLayer);
     } catch (error) {
@@ -4205,8 +4205,7 @@ function renderRoute(
 
         marker
           .bindPopup(
-            createPointPopup(point, risk, index),
-            { maxWidth: 320, maxHeight: 240, autoPan: false, closeButton: true, autoClose: true, closeOnClick: true }
+            createPointPopup(point, risk, index)
           )
           .addTo(pointLayer);
 
@@ -6611,55 +6610,5 @@ window.addEventListener(
  .header .auth-userbar { width:100%; margin-left:0; justify-content:flex-end; }
 }
 </style>
-
-<style id="mobile-map-navigation-repair">
-@media (max-width: 1024px) {
-  html, body { width:100%; min-height:100%; overflow-x:hidden !important; overflow-y:auto !important; }
-  .app { display:flex !important; flex-direction:column !important; height:auto !important; min-height:100dvh !important; overflow:visible !important; padding-bottom:100px !important; }
-  .cockpit-workspace { display:flex !important; flex-direction:column !important; height:auto !important; min-height:0 !important; overflow:visible !important; }
-  .command-sidebar, .hud-drawer { display:flex !important; flex-direction:column !important; width:100% !important; max-height:none !important; height:auto !important; overflow:visible !important; }
-  #section-route.center-canvas { display:flex !important; flex-direction:column !important; width:100% !important; height: min(62dvh, 520px) !important; min-height:380px !important; flex:0 0 auto !important; visibility:visible !important; opacity:1 !important; }
-  #section-route #map, #map { display:block !important; position:relative !important; width:100% !important; height:100% !important; min-height:320px !important; flex:1 1 auto !important; z-index:1; }
-  .travel-pill-nav { z-index:1000000 !important; pointer-events:auto !important; }
-  .travel-pill-nav .travel-nav-item { position:relative; z-index:1000001; }
-  #section-route .map-layer-switcher { position:relative; z-index:1000 !important; pointer-events:auto !important; }
-  #section-route .map-layer-btn { position:relative; z-index:1001; pointer-events:auto !important; }
-  .travel-pill-nav .travel-nav-item { pointer-events:auto !important; touch-action:manipulation; }
-}
-</style>
-<script id="navigation-map-repair">
-(function () {
-  function goToTarget(targetId, clicked) {
-    var target = document.getElementById(targetId);
-    if (!target) return;
-    document.querySelectorAll('.travel-nav-item').forEach(function (el) { el.classList.toggle('active', el === clicked); });
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    if (targetId === 'section-route' || targetId === 'dgtList') {
-      window.setTimeout(function () {
-        try { if (window.map && typeof window.map.invalidateSize === 'function') window.map.invalidateSize(true); } catch (e) {}
-        try { if (typeof map !== 'undefined' && map && typeof map.invalidateSize === 'function') map.invalidateSize(true); } catch (e) {}
-      }, 350);
-    }
-  }
-  document.addEventListener('click', function (event) {
-    var item = event.target.closest && event.target.closest('.travel-nav-item[data-target]');
-    if (!item) return;
-    event.preventDefault();
-    goToTarget(item.getAttribute('data-target'), item);
-  }, true);
-  window.addEventListener('resize', function () {
-    window.setTimeout(function () {
-      try { if (window.map && typeof window.map.invalidateSize === 'function') window.map.invalidateSize(true); } catch (e) {}
-      try { if (typeof map !== 'undefined' && map && typeof map.invalidateSize === 'function') map.invalidateSize(true); } catch (e) {}
-    }, 250);
-  });
-  window.addEventListener('orientationchange', function () {
-    window.setTimeout(function () {
-      try { if (window.map && typeof window.map.invalidateSize === 'function') window.map.invalidateSize(true); } catch (e) {}
-      try { if (typeof map !== 'undefined' && map && typeof map.invalidateSize === 'function') map.invalidateSize(true); } catch (e) {}
-    }, 500);
-  });
-})();
-</script>
 </body>
 </html>
