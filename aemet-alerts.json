@@ -1,230 +1,9 @@
 {
   "source": "AEMET OpenData",
-  "generatedAt": "2026-10-29T13:49:43.250257+00:00",
+  "generatedAt": "2026-10-29T19:20:25.313643+00:00",
   "status": "ok",
   "count": 179,
   "alerts": [
-    {
-      "id": "2.49.0.0.724.0.ES.20261028075343.733005PRP128181793174023",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-10-28T07:53:43+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Possible",
-      "effective": "2026-10-28T08:53:43+01:00",
-      "onset": "2026-10-28T12:00:00+01:00",
-      "expires": "2026-10-28T18:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel amarillo. Campo de Cartagena y Mazarrón",
-      "description": "Precipitación acumulada en una hora: 15 mm.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 10,
-        "max": 40,
-        "text": "10%-40%"
-      },
-      "areas": [
-        {
-          "name": "Campo de Cartagena y Mazarrón",
-          "zoneCode": "733005",
-          "polygons": [
-            [
-              [
-                37.85,
-                -1.27
-              ],
-              [
-                37.81,
-                -1.19
-              ],
-              [
-                37.79,
-                -1.16
-              ],
-              [
-                37.75,
-                -1.14
-              ],
-              [
-                37.74,
-                -1.1
-              ],
-              [
-                37.72,
-                -1.08
-              ],
-              [
-                37.72,
-                -1.05
-              ],
-              [
-                37.76,
-                -1.06
-              ],
-              [
-                37.74,
-                -1.099999
-              ],
-              [
-                37.75,
-                -1.139999
-              ],
-              [
-                37.81,
-                -1.03
-              ],
-              [
-                37.85,
-                -1.0
-              ],
-              [
-                37.82,
-                -0.98
-              ],
-              [
-                37.83,
-                -0.94
-              ],
-              [
-                37.86,
-                -0.86
-              ],
-              [
-                37.88,
-                -0.85
-              ],
-              [
-                37.85,
-                -0.78
-              ],
-              [
-                37.85,
-                -0.76
-              ],
-              [
-                37.82,
-                -0.76
-              ],
-              [
-                37.81,
-                -0.8
-              ],
-              [
-                37.78,
-                -0.8
-              ],
-              [
-                37.75,
-                -0.85
-              ],
-              [
-                37.72,
-                -0.86
-              ],
-              [
-                37.66,
-                -0.8
-              ],
-              [
-                37.63,
-                -0.74
-              ],
-              [
-                37.6,
-                -0.73
-              ],
-              [
-                37.6,
-                -0.77
-              ],
-              [
-                37.58,
-                -0.82
-              ],
-              [
-                37.58,
-                -0.85
-              ],
-              [
-                37.56,
-                -0.92
-              ],
-              [
-                37.58,
-                -0.97
-              ],
-              [
-                37.58,
-                -1.07
-              ],
-              [
-                37.55,
-                -1.13
-              ],
-              [
-                37.57,
-                -1.2
-              ],
-              [
-                37.58,
-                -1.25
-              ],
-              [
-                37.56,
-                -1.27
-              ],
-              [
-                37.56,
-                -1.32
-              ],
-              [
-                37.52,
-                -1.4
-              ],
-              [
-                37.56,
-                -1.46
-              ],
-              [
-                37.58,
-                -1.45
-              ],
-              [
-                37.62,
-                -1.46
-              ],
-              [
-                37.68,
-                -1.46
-              ],
-              [
-                37.72,
-                -1.37
-              ],
-              [
-                37.74,
-                -1.28
-              ],
-              [
-                37.83,
-                -1.29
-              ],
-              [
-                37.85,
-                -1.27
-              ]
-            ]
-          ]
-        }
-      ]
-    },
     {
       "id": "2.49.0.0.724.0.ES.20261029102035.645301PRP130171793269235",
       "sender": "http://www.aemet.es",
@@ -390,6 +169,175 @@
               [
                 38.72,
                 1.41
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261029181352.645402PRP131111793297632",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-10-29T18:13:52+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-10-29T19:13:52+01:00",
+      "onset": "2026-10-31T00:00:00+01:00",
+      "expires": "2026-10-31T11:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel amarillo. Norte y nordeste de Mallorca",
+      "description": "Precipitación acumulada en una hora: 20 mm.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Norte y nordeste de Mallorca",
+          "zoneCode": "645402",
+          "polygons": [
+            [
+              [
+                39.81,
+                2.93
+              ],
+              [
+                39.84,
+                2.94
+              ],
+              [
+                39.9,
+                2.93
+              ],
+              [
+                39.92,
+                2.95
+              ],
+              [
+                39.91,
+                2.99
+              ],
+              [
+                39.94,
+                3.03
+              ],
+              [
+                39.91,
+                3.09
+              ],
+              [
+                39.89,
+                3.08
+              ],
+              [
+                39.86,
+                3.11
+              ],
+              [
+                39.88,
+                3.17
+              ],
+              [
+                39.86,
+                3.2
+              ],
+              [
+                39.82,
+                3.12
+              ],
+              [
+                39.77,
+                3.15
+              ],
+              [
+                39.73,
+                3.26
+              ],
+              [
+                39.76,
+                3.33
+              ],
+              [
+                39.79,
+                3.35
+              ],
+              [
+                39.76,
+                3.41
+              ],
+              [
+                39.72,
+                3.45
+              ],
+              [
+                39.69,
+                3.46
+              ],
+              [
+                39.64,
+                3.44
+              ],
+              [
+                39.63,
+                3.44
+              ],
+              [
+                39.67,
+                3.39
+              ],
+              [
+                39.67,
+                3.36
+              ],
+              [
+                39.64,
+                3.31
+              ],
+              [
+                39.68,
+                3.28
+              ],
+              [
+                39.68,
+                3.25
+              ],
+              [
+                39.7,
+                3.23
+              ],
+              [
+                39.7,
+                3.16
+              ],
+              [
+                39.68,
+                3.11
+              ],
+              [
+                39.74,
+                3.02
+              ],
+              [
+                39.73,
+                3.0
+              ],
+              [
+                39.76,
+                2.95
+              ],
+              [
+                39.81,
+                2.93
               ]
             ]
           ]
