@@ -795,15 +795,9 @@ button, input {
 .leaflet-container { background: #02050c !important; }
 .leaflet-popup-content-wrapper { background: rgba(6, 14, 27, 0.96) !important; color: var(--text-main) !important; border: 1px solid var(--border-cyan) !important; border-radius: 12px !important; backdrop-filter: blur(16px) !important; }
 .leaflet-popup-tip { background: rgba(6, 14, 27, 0.96) !important; }
-/* Popups Leaflet: el panel no captura clics fuera de la propia ficha.
-   No se cambia el comportamiento de eventos del resto del mapa. */
-.leaflet-popup-pane { pointer-events: none !important; z-index: 700 !important; }
-.leaflet-popup-pane .leaflet-popup { pointer-events: auto !important; max-width: min(320px, calc(100vw - 36px)) !important; }
-.leaflet-popup-pane .leaflet-popup-content-wrapper,
-.leaflet-popup-pane .leaflet-popup-tip-container { pointer-events: auto !important; }
+/* Mantener la gestión de eventos nativa de Leaflet. */
+.leaflet-popup { max-width: min(320px, calc(100vw - 36px)); }
 .leaflet-popup-content { max-height: min(220px, 32vh); overflow-y:auto; overflow-x:hidden; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
-.leaflet-control-container { pointer-events:none; }
-.leaflet-control-container .leaflet-control { pointer-events:auto; }
 
 /* =========================================================
    MOBILE & RESPONSIVE TACTICAL OVERRIDES
@@ -6616,30 +6610,8 @@ window.addEventListener(
  .hud-drawer { order:3 !important; }
  .header .auth-userbar { width:100%; margin-left:0; justify-content:flex-end; }
 }
-</style><script id="map-popup-interaction-guard">
-(function () {
-  function closeMapPopups() {
-    try {
-      if (window.map && typeof window.map.closePopup === "function") window.map.closePopup();
-      if (typeof map !== "undefined" && map && typeof map.closePopup === "function") map.closePopup();
-    } catch (e) { /* No debe interferir con la navegación */ }
-    document.querySelectorAll(".leaflet-popup").forEach(function (popup) {
-      popup.style.pointerEvents = "none";
-      popup.setAttribute("aria-hidden", "true");
-    });
-  }
-  document.addEventListener("click", function (event) {
-    if (event.target.closest(".map-layer-btn, .travel-nav-item[data-target]")) {
-      closeMapPopups();
-    }
-  }, true);
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") closeMapPopups();
-  });
-})();
-</script>
-</body>
-</html>
+</style>
+
 <style id="mobile-map-navigation-repair">
 @media (max-width: 1024px) {
   html, body { width:100%; min-height:100%; overflow-x:hidden !important; overflow-y:auto !important; }
@@ -6689,3 +6661,5 @@ window.addEventListener(
   });
 })();
 </script>
+</body>
+</html>
