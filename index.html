@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="es">
 <head>
@@ -911,7 +912,7 @@ html, body { min-height:100%; }
 <div class="logo-icon">🛰️</div>
 <div>
 <div class="logo-title">PREVISIÓN<span> VIAJES</span></div>
-<div class="logo-subtitle">FLIGHT COMMAND TELEMETRY</div>
+
 </div>
 </div>
 <div class="top-telemetry-dock">
@@ -919,13 +920,27 @@ html, body { min-height:100%; }
 <div class="telemetry-tag">SYS: <strong>OSRM v1.8</strong></div>
 <div class="telemetry-tag">RADAR: <strong>OPEN-METEO</strong></div>
 </div>
+
 <div class="auth-userbar">
 <span class="auth-user-email" id="authUserEmail"></span>
 <button class="logout-btn" id="logoutBtn" type="button">Desconectar</button>
-</div>
-</header>
+</div></header>
 <!-- SPLIT COCKPIT WORKSPACE -->
-<main class="cockpit-workspace">
+<main class="cockpit-workspace"><section class="panel section" id="section-risks">
+<div class="panel-title">Riesgo global</div>
+<div class="radar-target-box">
+<div class="radar-hud-circle" id="scoreCircle">
+<div>
+<div class="score-number" id="scoreNumber">—</div>
+<div class="score-label">INDEX / 100</div>
+</div>
+</div>
+<div class="risk-name" id="riskName">—</div>
+<div class="risk-description" id="riskDescription">—</div>
+</div>
+<div class="confidence" id="confidence" style="margin-top:10px;"></div>
+<div class="risk-method" id="riskMethod" style="margin-top:8px;"></div>
+</section>
 <!-- LEFT COMMAND SIDEBAR -->
 <aside class="command-sidebar">
 <section class="panel search-panel" id="section-analyze">
@@ -977,21 +992,7 @@ html, body { min-height:100%; }
 </aside>
 <!-- CENTER CANVAS MAP -->
 <section class="center-canvas map-panel" id="section-route">
-<section class="panel section" id="section-risks">
-<div class="panel-title">Riesgo global</div>
-<div class="radar-target-box">
-<div class="radar-hud-circle" id="scoreCircle">
-<div>
-<div class="score-number" id="scoreNumber">—</div>
-<div class="score-label">INDEX / 100</div>
-</div>
-</div>
-<div class="risk-name" id="riskName">—</div>
-<div class="risk-description" id="riskDescription">—</div>
-</div>
-<div class="confidence" id="confidence" style="margin-top:10px;"></div>
-<div class="risk-method" id="riskMethod" style="margin-top:8px;"></div>
-</section><div class="map-heading">
+<div class="map-heading">
 <div class="map-heading-title">Ruta</div>
 <div class="map-heading-info" id="mapInfo">Esperando datos de ruta...</div>
 </div>
@@ -6619,6 +6620,24 @@ window.addEventListener(
 
 #section-route { display:flex; flex-direction:column; }
 #section-route > #section-risks { width:100%; box-sizing:border-box; }
+</style><style id="final-layout-menu-fix">
+/* Corrección de orden y cabecera: riesgo global al inicio */
+.cockpit-workspace { display:flex; flex-direction:column; gap:12px; }
+#section-risks { order:0 !important; width:100%; margin:0 !important; }
+.command-sidebar { order:1; }
+#section-route { order:2; }
+.hud-drawer { order:3; }
+.header { display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; }
+.header .auth-userbar { margin-left:auto; display:flex; align-items:center; gap:10px; position:static !important; float:none !important; }
+.logo-subtitle { display:none !important; }
+@media (max-width:1024px) {
+ .cockpit-workspace { display:flex !important; flex-direction:column !important; }
+ #section-risks { order:0 !important; }
+ .command-sidebar { order:1 !important; }
+ #section-route { order:2 !important; }
+ .hud-drawer { order:3 !important; }
+ .header .auth-userbar { width:100%; margin-left:0; justify-content:flex-end; }
+}
 </style></body>
 </html>
 <style id="mobile-map-navigation-repair">
