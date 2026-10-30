@@ -1,1062 +1,89 @@
 <!DOCTYPE html>
+
+<!DOCTYPE html>
+
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"
->
-
-<meta name="theme-color" content="#f6f8fc">
-<meta name="color-scheme" content="light">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" name="viewport"/>
+<meta content="#030712" name="theme-color"/>
+<meta content="dark" name="color-scheme"/>
 <title>PREVISIÓN VIAJES</title>
-
 <!-- =========================================================
      LEAFLET
      ========================================================= -->
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  crossorigin=""
->
-
-<script
-  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-  crossorigin=""
-></script>
-
+<link crossorigin="" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
+<script crossorigin="" src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <!-- =========================================================
      FIREBASE AUTHENTICATION
      ========================================================= -->
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
-
 <style>
 /* =========================================================
-   RESET
+   AEROSPACE CYBER-COCKPIT HUD ARCHITECTURE & STYLES
    ========================================================= */
+:root {
+  --bg-space: #02050b;
+  --panel-bg: rgba(7, 14, 27, 0.78);
+  --panel-solid: #09111f;
+  --input-bg: rgba(3, 8, 16, 0.9);
+  
+  --cyan: #00f0ff;
+  --cyan-glow: rgba(0, 240, 255, 0.35);
+  --blue-neon: #3b82f6;
+  --amber-alert: #f59e0b;
+  --red-alert: #ef4444;
+  
+  --border-cyan: rgba(0, 240, 255, 0.25);
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-glow: rgba(0, 240, 255, 0.5);
+
+  --text-main: #f3f4f6;
+  --text-muted: #8293a8;
+
+  --green: #10b981;
+  --yellow: #f59e0b;
+  --orange: #f97316;
+  --red: #ef4444;
+  --extreme: #ec4899;
+
+  --glass-blur: blur(28px);
+  --radius-xl: 20px;
+  --radius-md: 12px;
+}
 
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
 
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
   width: 100%;
-  min-height: 100%;
-  background: #070a0f;
-  color: #edf2f7;
-  font-family:
-    Inter,
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
+  height: 100%;
+  background: var(--bg-space);
+  color: var(--text-main);
+  font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  overflow: hidden;
 }
 
 body {
-  overflow-x: hidden;
-  padding-bottom: calc(92px + env(safe-area-inset-bottom));
+  background: 
+    radial-gradient(circle at 15% 15%, rgba(0, 240, 255, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(59, 130, 246, 0.1) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, #040914 0%, #010307 100%);
+  background-attachment: fixed;
 }
 
-button,
-input {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-/* =========================================================
-   VARIABLES
-   ========================================================= */
-
-:root {
-  --bg: #070a0f;
-  --panel: #0d121a;
-  --panel-2: #111823;
-  --panel-3: #151d28;
-  --border: #202b38;
-
-  --text: #edf2f7;
-  --muted: #8e9bab;
-
-  --green: #35e28a;
-  --yellow: #ffd34d;
-  --orange: #ff9f43;
-  --red: #ff4d5f;
-  --extreme: #ff2e88;
-  --cyan: #3bdcff;
-
-  --radius: 18px;
-}
-
-/* =========================================================
-   APP
-   ========================================================= */
-
-.app {
-  width: 100%;
-  min-height: 100vh;
-  padding:
-    max(14px, env(safe-area-inset-top))
-    max(14px, env(safe-area-inset-right))
-    max(24px, env(safe-area-inset-bottom))
-    max(14px, env(safe-area-inset-left));
-}
-
-.container {
-  width: min(1180px, 100%);
-  margin: 0 auto;
-}
-
-/* =========================================================
-   HEADER
-   ========================================================= */
-
-.header {
-  padding: 18px 4px 22px;
-}
-
-.logo-row {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-}
-
-.logo-icon {
-  width: 50px;
-  height: 50px;
-  border: 1px solid #263444;
-  border-radius: 15px;
-  background:
-    linear-gradient(145deg, #15202d, #090d13);
-  display: grid;
-  place-items: center;
-  font-size: 26px;
-  box-shadow:
-    0 10px 35px rgba(0,0,0,.35);
-}
-
-.logo-title {
-  font-size: clamp(24px, 5vw, 36px);
-  font-weight: 900;
-  letter-spacing: .04em;
-  line-height: 1;
-}
-
-.logo-title span {
-  color: var(--cyan);
-}
-
-.logo-subtitle {
-  margin-top: 6px;
-  color: var(--muted);
-  font-size: 12px;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-}
-
-/* =========================================================
-   PANELS
-   ========================================================= */
-
-.panel {
-  background:
-    linear-gradient(
-      145deg,
-      rgba(18,25,35,.98),
-      rgba(10,14,20,.98)
-    );
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow:
-    0 20px 70px rgba(0,0,0,.22);
-}
-
-.panel + .panel {
-  margin-top: 16px;
-}
-
-/* =========================================================
-   SEARCH
-   ========================================================= */
-
-.search-panel {
-  padding: 18px;
-}
-
-.panel-title {
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: #cbd5df;
-  margin-bottom: 15px;
-}
-
-.form-grid {
-  display: grid;
-  gap: 12px;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.field label {
-  font-size: 11px;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  font-weight: 800;
-}
-
-.field input {
-  width: 100%;
-  min-height: 52px;
-  padding: 13px 14px;
-  border-radius: 13px;
-  border: 1px solid #263443;
-  background: #090e15;
-  color: var(--text);
-  outline: none;
-  transition: .2s ease;
-}
-
-.field input:focus {
-  border-color: var(--cyan);
-  box-shadow: 0 0 0 3px rgba(59,220,255,.1);
-}
-
-.date-time-picker-row {
-  display: flex;
-  align-items: stretch;
-  gap: 8px;
-  width: 100%;
-}
-
-.date-time-picker-row input {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-.native-picker-button {
-  flex: 0 0 52px;
-  min-width: 52px;
-  min-height: 52px;
-  border: 1px solid rgba(35,55,90,.12);
-  border-radius: 15px;
-  background: rgba(248,250,253,.96);
-  color: var(--ui-text, #172033);
-  font-size: 21px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(35,55,90,.05);
-  transition: transform .12s ease, background .12s ease;
-}
-
-.native-picker-button:hover { background: #edf4ff; }
-.native-picker-button:active { transform: scale(.96); }
-.native-picker-button:focus-visible { outline: 3px solid rgba(43,120,239,.25); outline-offset: 2px; }
-
-.analyze-btn {
-  width: 100%;
-  min-height: 55px;
-  margin-top: 4px;
-  border: 0;
-  border-radius: 14px;
-  color: #031014;
-  background:
-    linear-gradient(135deg, #3bdcff, #58f1c7);
-  font-weight: 950;
-  letter-spacing: .03em;
-  box-shadow:
-    0 12px 35px rgba(59,220,255,.16);
-  transition: transform .15s ease, opacity .15s ease;
-}
-
-.analyze-btn:active {
-  transform: scale(.985);
-}
-
-.analyze-btn:disabled {
-  opacity: .55;
-  cursor: wait;
-}
-
-/* =========================================================
-   STATUS
-   ========================================================= */
-
-.status {
-  display: none;
-  margin-top: 14px;
-  padding: 14px;
-  border-radius: 13px;
-  background: #090e15;
-  border: 1px solid #1f2b38;
-}
-
-.status.visible {
-  display: block;
-}
-
-.status-main {
-  font-weight: 800;
-}
-
-.status-detail {
-  color: var(--muted);
-  font-size: 12px;
-  margin-top: 5px;
-}
-
-/* =========================================================
-   ERROR
-   ========================================================= */
-
-.error {
-  display: none;
-  margin-top: 14px;
-  padding: 14px;
-  border-radius: 13px;
-  background: rgba(255,77,95,.08);
-  border: 1px solid rgba(255,77,95,.35);
-  color: #ffadb5;
-  line-height: 1.5;
-}
-
-.error.visible {
-  display: block;
-}
-
-/* =========================================================
-   RESULTS
-   ========================================================= */
-
-#results {
-  display: none;
-}
-
-#results.visible {
-  display: block;
-}
-
-/* =========================================================
-   TRIP HEADER
-   ========================================================= */
-
-.trip-header {
-  padding: 18px;
-}
-
-.trip-route {
-  font-size: clamp(20px, 5vw, 30px);
-  font-weight: 900;
-  line-height: 1.15;
-}
-
-.trip-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-  margin-top: 12px;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.meta-item strong {
-  color: #dce4ec;
-}
-
-/* =========================================================
-   RISK
-   ========================================================= */
-
-.risk-panel {
-  padding: 18px;
-}
-
-.risk-layout {
-  display: grid;
-  gap: 18px;
-}
-
-.risk-score-box {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.score-circle {
-  width: 108px;
-  height: 108px;
-  min-width: 108px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background:
-    radial-gradient(circle at center, #0b1017 56%, transparent 57%),
-    conic-gradient(
-      var(--risk-color, var(--green))
-      var(--risk-angle, 0deg),
-      #202a35 0deg
-    );
-  position: relative;
-}
-
-.score-number {
-  font-size: 31px;
-  font-weight: 950;
-}
-
-.score-label {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.risk-name {
-  font-size: 23px;
-  font-weight: 950;
-  color: var(--risk-color, var(--green));
-}
-
-.risk-description {
-  color: var(--muted);
-  margin-top: 5px;
-  line-height: 1.45;
-  font-size: 13px;
-}
-
-.confidence {
-  margin-top: 14px;
-  padding: 11px 13px;
-  border-radius: 12px;
-  background: #090e15;
-  border: 1px solid #1e2a36;
-}
-
-.confidence strong {
-  display: block;
-  margin-bottom: 4px;
-}
-
-.confidence span {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-/* =========================================================
-   MAP
-   ========================================================= */
-
-.map-panel {
-  overflow: hidden;
-}
-
-.map-heading {
-  padding: 16px 18px 13px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.map-heading-title {
-  font-weight: 900;
-}
-
-.map-heading-info {
-  color: var(--muted);
-  font-size: 11px;
-  text-align: right;
-}
-
-#map {
-  width: 100%;
-  height: 430px;
-  min-height: 430px;
-  background: #dfe5ea;
-}
-.map-layer-switcher{display:flex;flex-wrap:wrap;gap:7px;padding:10px 16px;background:#0b1119;border-top:1px solid var(--border)}
-.map-layer-btn{border:1px solid #2a3745;background:#111a24;color:#b9c5d1;border-radius:999px;padding:7px 11px;font:inherit;font-size:11px;font-weight:850;cursor:pointer}
-.map-layer-btn.active{background:#1b2b3b;border-color:#35d7ff;color:#fff}
-.etraffic-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin:10px 0 12px;padding:10px 14px;border:1px solid rgba(43,120,239,.22);border-radius:999px;background:rgba(43,120,239,.08);color:var(--ui-blue,#2878ef);font:inherit;font-size:12px;font-weight:800;text-decoration:none;cursor:pointer}
-.etraffic-link:hover{background:rgba(43,120,239,.14)}
-.etraffic-note{display:block;margin:0 0 10px;color:var(--ui-soft,#64748b);font-size:12px;line-height:1.45}
-.dgt-map-marker{width:30px;height:30px;display:grid;place-items:center;border-radius:50%;border:3px solid #fff;background:#ff8a00;box-shadow:0 3px 14px rgba(0,0,0,.55);font-size:15px}
-
-
-/*
- IMPORTANT:
- Leaflet necesita que el contenedor tenga altura real.
- No se utiliza ninguna imagen de mapa como sustituto.
-*/
-
-.leaflet-container {
-  width: 100%;
-  height: 100%;
+button, input {
   font-family: inherit;
-  background: #dfe5ea;
-}
-
-.leaflet-control-attribution {
-  font-size: 9px;
 }
 
 /* =========================================================
-   MAP MARKERS
+   AUTH SCREEN (CYBER GATEWAY)
    ========================================================= */
-
-.risk-marker {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  border: 3px solid white;
-  box-shadow:
-    0 3px 12px rgba(0,0,0,.5);
-}
-
-.risk-marker.start {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  transform: rotate(45deg);
-}
-
-.risk-marker.start::after {
-  content: "S";
-  display: grid;
-  place-items: center;
-  height: 100%;
-  color: #07110c;
-  font-size: 12px;
-  font-weight: 950;
-  transform: rotate(-45deg);
-}
-
-.risk-marker.end {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-}
-
-.risk-marker.end::after {
-  content: "F";
-  display: grid;
-  place-items: center;
-  height: 100%;
-  color: #16070a;
-  font-size: 12px;
-  font-weight: 950;
-}
-
-/* =========================================================
-   LEGEND
-   ========================================================= */
-
-.map-legend {
-  padding: 12px 16px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px 15px;
-  background: #090e15;
-  border-top: 1px solid var(--border);
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  color: var(--muted);
-}
-
-.legend-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-
-/* =========================================================
-   WEATHER POINTS
-   ========================================================= */
-
-.section {
-  padding: 18px;
-}
-
-.section-title {
-  font-size: 16px;
-  font-weight: 950;
-  margin-bottom: 13px;
-}
-
-.points-list {
-  display: grid;
-  gap: 10px;
-}
-
-.point-card {
-  border: 1px solid #202b37;
-  border-radius: 14px;
-  background: #090e15;
-  overflow: hidden;
-}
-
-.point-top {
-  padding: 13px 14px;
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  border-bottom: 1px solid #18222d;
-}
-
-.point-name {
-  font-weight: 850;
-}
-
-.point-time {
-  color: var(--muted);
-  font-size: 12px;
-  margin-top: 3px;
-}
-
-.point-risk {
-  white-space: nowrap;
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: .05em;
-  padding: 5px 8px;
-  border-radius: 999px;
-  height: fit-content;
-}
-
-.point-body {
-  padding: 13px 14px;
-}
-
-.weather-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 9px;
-}
-
-.weather-item {
-  padding: 9px;
-  border-radius: 10px;
-  background: #0e151e;
-}
-
-.weather-label {
-  color: var(--muted);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-}
-
-.weather-value {
-  margin-top: 4px;
-  font-weight: 800;
-  font-size: 14px;
-}
-
-.point-risks {
-  margin-top: 12px;
-  padding-top: 11px;
-  border-top: 1px solid #1b2631;
-  color: #d8e0e8;
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-/* =========================================================
-   SEGMENTS
-   ========================================================= */
-
-.segments {
-  display: grid;
-  gap: 10px;
-}
-
-.segment {
-  border-left: 4px solid var(--segment-color, var(--green));
-  border-radius: 12px;
-  padding: 14px;
-  background: #090e15;
-  border-top: 1px solid #1b2631;
-  border-right: 1px solid #1b2631;
-  border-bottom: 1px solid #1b2631;
-}
-
-.segment-head {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.segment-route {
-  font-weight: 850;
-  line-height: 1.3;
-}
-
-.segment-risk {
-  color: var(--segment-color, var(--green));
-  font-weight: 950;
-  font-size: 11px;
-  white-space: nowrap;
-}
-
-.segment-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 9px;
-}
-
-.segment-chip {
-  background: #111923;
-  border: 1px solid #202d39;
-  border-radius: 999px;
-  padding: 5px 8px;
-  color: #c6d0da;
-  font-size: 11px;
-}
-
-/* =========================================================
-   RISKS
-   ========================================================= */
-
-.risks-list {
-  display: grid;
-  gap: 9px;
-}
-
-.risk-item {
-  padding: 13px;
-  border-radius: 12px;
-  background: #090e15;
-  border: 1px solid #1d2935;
-}
-
-.risk-item strong {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.risk-item span {
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.45;
-}
-
-/* =========================================================
-   RIESGOS INTERACTIVOS / FENOMENOS
-   ========================================================= */
-.risk-item.interactive {
-  width:100%;
-  text-align:left;
-  color:inherit;
-  cursor:pointer;
-  transition:transform .15s ease, border-color .15s ease, background .15s ease;
-}
-.risk-item.interactive:hover {
-  transform:translateY(-1px);
-  border-color:#35d7ff;
-  background:#0c141d;
-}
-.risk-item.interactive:focus-visible {
-  outline:2px solid #35d7ff;
-  outline-offset:2px;
-}
-.risk-item.interactive .risk-click-hint {
-  display:block;
-  margin-top:7px;
-  color:#35d7ff;
-  font-size:11px;
-  font-weight:800;
-}
-.phenomenon-points {
-  display:none;
-  margin-top:10px;
-  padding:10px;
-  border-radius:12px;
-  background:#070c12;
-  border:1px solid #263542;
-}
-.phenomenon-points.open {
-  display:grid;
-  gap:7px;
-}
-.phenomenon-point {
-  width:100%;
-  text-align:left;
-  padding:10px 11px;
-  border:1px solid #1c2a36;
-  border-radius:10px;
-  background:#0d151e;
-  color:#dce5ed;
-  cursor:pointer;
-}
-.phenomenon-point:hover {
-  border-color:#35d7ff;
-}
-.phenomenon-point strong {
-  display:block;
-  margin-bottom:3px;
-}
-.phenomenon-point span {
-  display:block;
-  color:#93a1af;
-  font-size:11px;
-  line-height:1.45;
-}
-.phenomenon-empty {
-  color:#8996a3;
-  font-size:11px;
-  padding:4px;
-}
-
-/* =========================================================
-   DATA STATUS
-   ========================================================= */
-
-.data-state {
-  padding: 14px;
-  border-radius: 13px;
-  border: 1px solid #273441;
-  background: #090e15;
-  line-height: 1.5;
-}
-
-.data-state strong {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.data-state span {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-/* =========================================================
-   RECOMMENDATION
-   ========================================================= */
-
-.recommendation {
-  padding: 17px;
-  border-radius: 15px;
-  border: 1px solid #2a3845;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(59,220,255,.07),
-      rgba(255,255,255,.015)
-    );
-}
-
-.recommendation-title {
-  font-weight: 950;
-  margin-bottom: 8px;
-}
-
-.recommendation-text {
-  color: #c9d3dc;
-  line-height: 1.55;
-  font-size: 13px;
-}
-
-/* =========================================================
-   SOURCES
-   ========================================================= */
-
-.sources {
-  padding: 18px;
-}
-
-.source-list {
-  display: grid;
-  gap: 7px;
-}
-
-.source-row {
-  padding: 10px 12px;
-  border-radius: 10px;
-  background: #090e15;
-  border: 1px solid #1c2733;
-  font-size: 12px;
-}
-
-.source-row strong {
-  color: #dce5ed;
-}
-
-.source-row span {
-  color: var(--muted);
-}
-
-/* =========================================================
-   SAVED TRIPS
-   ========================================================= */
-
-.saved-list {
-  display: grid;
-  gap: 9px;
-}
-
-.saved-trip {
-  padding: 12px;
-  background: #090e15;
-  border: 1px solid #1c2733;
-  border-radius: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-}
-
-.saved-info strong {
-  display: block;
-}
-
-.saved-info span {
-  color: var(--muted);
-  font-size: 11px;
-}
-
-.saved-actions {
-  display: flex;
-  gap: 6px;
-}
-
-.small-btn {
-  border: 1px solid #293744;
-  background: #111923;
-  color: #dce5ed;
-  border-radius: 9px;
-  padding: 8px 10px;
-  font-size: 11px;
-}
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-.footer {
-  padding: 24px 4px 5px;
-  color: #647180;
-  font-size: 10px;
-  line-height: 1.5;
-  text-align: center;
-}
-
-/* =========================================================
-   DESKTOP
-   ========================================================= */
-
-@media (min-width: 760px) {
-
-  .form-grid {
-    grid-template-columns: 1.2fr 1.2fr .75fr .65fr;
-    align-items: end;
-  }
-
-  .analyze-field {
-    display: flex;
-  }
-
-  .analyze-btn {
-    margin-top: 0;
-  }
-
-  .risk-layout {
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-  }
-
-  .weather-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .points-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1050px) {
-
-  #map {
-    height: 540px;
-    min-height: 540px;
-  }
-
-  .points-list {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .weather-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 500px) {
-
-  .app {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  .header {
-    padding-top: 12px;
-  }
-
-  .search-panel,
-  .risk-panel,
-  .section,
-  .sources,
-  .trip-header {
-    padding: 14px;
-  }
-
-  #map {
-    height: 390px;
-    min-height: 390px;
-  }
-
-  .score-circle {
-    width: 94px;
-    height: 94px;
-    min-width: 94px;
-  }
-
-  .score-number {
-    font-size: 27px;
-  }
-
-  .risk-name {
-    font-size: 20px;
-  }
-}
-
-
-/* =========================================================
-   AUTHENTICATION GATE
-   ========================================================= */
-
 .auth-screen {
   position: fixed;
   inset: 0;
@@ -1065,1390 +92,1050 @@ button {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background:
-    radial-gradient(circle at 50% 15%, rgba(48, 88, 125, .20), transparent 42%),
-    #070a0f;
+  background: radial-gradient(circle at 50% 30%, rgba(0, 240, 255, 0.15), transparent 70%), #010408;
+  backdrop-filter: blur(35px);
 }
 
 .auth-card {
-  width: min(430px, 100%);
-  padding: 28px;
-  border: 1px solid #263341;
-  border-radius: 20px;
-  background: rgba(12, 17, 24, .96);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, .45);
+  width: min(440px, 100%);
+  padding: 36px 32px;
+  border: 1px solid var(--border-cyan);
+  border-radius: var(--radius-xl);
+  background: rgba(8, 16, 30, 0.9);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 50px rgba(0, 240, 255, 0.12);
+  backdrop-filter: var(--glass-blur);
+  position: relative;
+}
+
+.auth-card::before {
+  content: "SECURITY CHECK CLEARANCE LEVEL-4";
+  position: absolute;
+  top: 12px;
+  left: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  color: var(--cyan);
+  letter-spacing: 0.2em;
+  opacity: 0.7;
 }
 
 .auth-brand {
   text-align: center;
-  margin-bottom: 24px;
+  margin-top: 10px;
+  margin-bottom: 28px;
 }
 
 .auth-logo {
-  font-size: 28px;
-  font-weight: 900;
-  letter-spacing: .08em;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--text-main);
+  text-transform: uppercase;
 }
 
 .auth-logo span {
-  color: #63b3ff;
+  color: var(--cyan);
+  text-shadow: 0 0 16px var(--cyan-glow);
 }
 
 .auth-subtitle {
-  margin-top: 7px;
-  color: #8e9aaa;
-  font-size: 12px;
-  letter-spacing: .06em;
+  margin-top: 6px;
+  color: var(--text-muted);
+  font-size: 10px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .auth-form {
   display: grid;
-  gap: 13px;
+  gap: 16px;
 }
 
 .auth-form label {
   display: grid;
-  gap: 7px;
-  color: #aeb8c5;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .08em;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .auth-form input {
   width: 100%;
-  min-height: 50px;
-  padding: 0 14px;
-  border: 1px solid #2a3745;
-  border-radius: 12px;
+  min-height: 48px;
+  padding: 0 16px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
   outline: none;
-  background: #0a0f15;
-  color: #edf2f7;
-  font: inherit;
+  background: var(--input-bg);
+  color: var(--text-main);
+  font-size: 13px;
+  font-family: 'JetBrains Mono', monospace;
+  transition: all 0.2s ease;
 }
 
 .auth-form input:focus {
-  border-color: #4d8fc2;
-  box-shadow: 0 0 0 3px rgba(77, 143, 194, .14);
+  border-color: var(--cyan);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.22);
 }
 
 .auth-submit {
   min-height: 50px;
-  margin-top: 4px;
+  margin-top: 8px;
   border: 0;
-  border-radius: 12px;
-  background: #2f78a9;
-  color: white;
-  font: inherit;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--cyan), var(--blue-neon));
+  color: #010408;
+  font-family: 'JetBrains Mono', monospace;
   font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 240, 255, 0.3);
+  transition: all 0.2s ease;
 }
 
-.auth-submit:disabled {
-  opacity: .65;
-  cursor: wait;
+.auth-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px rgba(0, 240, 255, 0.45);
 }
 
 .auth-error {
   display: none;
-  padding: 11px 12px;
-  border: 1px solid rgba(239, 68, 68, .35);
-  border-radius: 10px;
-  background: rgba(127, 29, 29, .18);
+  padding: 12px 14px;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: var(--radius-md);
+  background: rgba(239, 68, 68, 0.12);
   color: #fca5a5;
-  font-size: 13px;
-  line-height: 1.45;
+  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
 }
 
-.auth-error.visible {
-  display: block;
+.auth-error.visible { display: block; }
+.app.auth-locked { display: none; }
+
+/* =========================================================
+   COMMAND CENTER APP LAYOUT (SPLIT COCKPIT WORKSPACE)
+   ========================================================= */
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 12px 16px;
+  gap: 12px;
 }
 
-.app.auth-locked {
-  display: none;
+/* TOP HUD TELEMETRY BAR */
+.header {
+  height: 64px;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border: 1px solid var(--border-cyan);
+  border-radius: var(--radius-md);
+  background: rgba(6, 13, 25, 0.82);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+.logo-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--border-cyan);
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(59, 130, 246, 0.1));
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.25);
+}
+
+.logo-title {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.logo-title span {
+  color: var(--cyan);
+  text-shadow: 0 0 12px var(--cyan-glow);
+}
+
+.logo-subtitle {
+  color: var(--text-muted);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.top-telemetry-dock {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  background: rgba(2, 6, 13, 0.6);
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border-subtle);
+}
+
+.telemetry-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+}
+
+.telemetry-tag strong {
+  color: var(--cyan);
 }
 
 .auth-userbar {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 9px;
-  margin-top: 10px;
+  gap: 12px;
 }
 
 .auth-user-email {
-  max-width: 280px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: #8996a5;
+  color: var(--text-muted);
   font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .logout-btn {
-  min-height: 34px;
-  padding: 0 12px;
-  border: 1px solid #334250;
-  border-radius: 9px;
-  background: #0d131b;
-  color: #cbd5e1;
-  font: inherit;
+  padding: 6px 14px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-main);
   font-size: 11px;
-  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .logout-btn:hover {
-  border-color: #557089;
+  border-color: var(--cyan);
+  background: rgba(0, 240, 255, 0.12);
+  color: var(--cyan);
 }
 
-@media (max-width: 600px) {
-  .auth-card {
-    padding: 22px;
-  }
-
-  .auth-userbar {
-    justify-content: space-between;
-  }
-
-  .auth-user-email {
-    max-width: 210px;
-  }
-}
-
-
-
-/* =========================================================
-   PREMIUM MOBILE REDESIGN — VISUAL LAYER ONLY
-   Existing application logic and component IDs are preserved.
-   ========================================================= */
-
-:root {
-  --ui-bg: #f5f7fb;
-  --ui-surface: rgba(255,255,255,.84);
-  --ui-surface-solid: #ffffff;
-  --ui-text: #172033;
-  --ui-soft: #6e788a;
-  --ui-muted: #98a1b1;
-  --ui-blue: #2b78ef;
-  --ui-blue-soft: #eaf2ff;
-  --ui-green: #18b978;
-  --ui-orange: #f19a32;
-  --ui-red: #ef4a5b;
-  --ui-border: rgba(35,55,90,.08);
-  --ui-shadow: 0 12px 34px rgba(35,55,90,.08);
-  --ui-shadow-soft: 0 5px 20px rgba(35,55,90,.06);
-}
-
-html, body {
-  background: var(--ui-bg) !important;
-  color: var(--ui-text) !important;
-}
-
-body {
-  background:
-    radial-gradient(circle at 92% -4%, rgba(76,139,255,.10), transparent 28%),
-    radial-gradient(circle at -5% 32%, rgba(94,184,255,.07), transparent 26%),
-    var(--ui-bg) !important;
-}
-
-.app {
-  padding: 0 14px 112px !important;
-}
-
-.container {
-  width: min(1180px, 100%) !important;
-  margin: 0 auto !important;
-}
-
-.header {
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 1000 !important;
-  padding: calc(env(safe-area-inset-top) + 12px) 2px 12px !important;
-  background: rgba(245,247,251,.78) !important;
-  backdrop-filter: blur(22px) !important;
-  -webkit-backdrop-filter: blur(22px) !important;
-}
-
-.logo-row { gap: 11px !important; }
-
-.logo-icon {
-  width: 46px !important;
-  height: 46px !important;
-  border: 1px solid rgba(255,255,255,.92) !important;
-  border-radius: 16px !important;
-  background: linear-gradient(145deg,#3d8bff,#2166d4) !important;
-  color: #fff !important;
-  box-shadow: 0 8px 20px rgba(43,120,239,.20) !important;
-}
-
-.logo-title {
-  color: #172033 !important;
-  font-size: clamp(20px,5vw,31px) !important;
-  letter-spacing: -.035em !important;
-}
-
-.logo-title span { color: var(--ui-blue) !important; }
-
-.logo-subtitle {
-  color: var(--ui-soft) !important;
-  font-size: 10px !important;
-  letter-spacing: .08em !important;
-}
-
-.auth-userbar { gap: 8px !important; }
-.auth-user-email { color: var(--ui-soft) !important; }
-
-.logout-btn {
-  border: 1px solid var(--ui-border) !important;
-  border-radius: 14px !important;
-  background: rgba(255,255,255,.82) !important;
-  color: var(--ui-text) !important;
-  box-shadow: var(--ui-shadow-soft) !important;
-}
-
-/* Floating pill navigation */
-.travel-pill-nav {
-  position: fixed !important;
-  left: 50%;
-  bottom: max(12px, env(safe-area-inset-bottom));
-  top: auto !important;
-  transform: translateX(-50%);
-  z-index: 99990;
-  width: min(680px, calc(100% - 24px));
-  margin: 0;
-  padding: 6px;
+/* MAIN COCKPIT GRID WORKSPACE */
+.cockpit-workspace {
+  flex: 1;
   display: grid;
-  grid-template-columns: repeat(6,minmax(0,1fr));
-  gap: 4px;
-  border: 1px solid rgba(255,255,255,.92);
-  border-radius: 24px;
-  background: rgba(255,255,255,.76);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 12px 34px rgba(35,55,90,.12), inset 1px 1px 0 rgba(255,255,255,.95);
+  grid-template-columns: 340px 1fr 380px;
+  gap: 12px;
+  min-height: 0;
+  width: 100%;
 }
 
-.travel-nav-item {
-  text-decoration: none;
-  min-width: 0;
-  min-height: 50px;
-  border: 0;
-  border-radius: 18px;
-  background: transparent;
-  color: #8992a3;
-  font: inherit;
-  cursor: pointer;
+/* LEFT COMMAND SIDEBAR */
+.command-sidebar {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
   flex-direction: column;
-  transition: transform .18s ease, background .18s ease, color .18s ease, box-shadow .18s ease;
-}
-
-.travel-nav-item:active { transform: scale(.97); }
-
-.travel-nav-item.active {
-  color: var(--ui-blue);
-  background: linear-gradient(145deg,#edf4ff,#e7f0ff);
-  box-shadow: inset 0 1px 2px rgba(255,255,255,.9), 0 4px 12px rgba(43,120,239,.08);
-}
-
-.travel-nav-icon {
-  font-size: 17px;
-  line-height: 1;
-}
-
-.travel-nav-item span:last-child {
-  font-size: 9px;
-  font-weight: 750;
+  gap: 12px;
+  overflow-y: auto;
+  padding-right: 2px;
 }
 
 .panel {
-  border: 1px solid rgba(255,255,255,.88) !important;
-  border-radius: 24px !important;
-  background: rgba(255,255,255,.82) !important;
-  color: var(--ui-text) !important;
-  box-shadow: var(--ui-shadow), inset 1px 1px 0 rgba(255,255,255,.95) !important;
-  backdrop-filter: blur(18px) !important;
-  -webkit-backdrop-filter: blur(18px) !important;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--panel-bg);
+  backdrop-filter: var(--glass-blur);
+  padding: 18px;
+  position: relative;
 }
 
-.panel + .panel { margin-top: 14px !important; }
-
-.search-panel,
-.risk-panel,
-.trip-header,
-.section,
-.sources { padding: 20px !important; }
-
-.panel-title,
-.section-title {
-  color: var(--ui-text) !important;
-  letter-spacing: -.02em !important;
-  text-transform: none !important;
-  font-size: 17px !important;
+.panel::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 8px; height: 8px;
+  border-top: 1px solid var(--cyan);
+  border-left: 1px solid var(--cyan);
 }
 
-.panel-title { font-weight: 800 !important; }
+.panel-title {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+}
 
-.section-title { font-weight: 850 !important; }
+/* SEARCH FORM */
+.form-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 
 .field label {
-  color: var(--ui-soft) !important;
-  letter-spacing: .02em !important;
-  text-transform: none !important;
+  font-size: 9px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
 }
 
-.field input,
-.auth-form input {
-  min-height: 54px !important;
-  border: 1px solid rgba(35,55,90,.08) !important;
-  border-radius: 17px !important;
-  background: rgba(248,250,253,.96) !important;
-  color: var(--ui-text) !important;
-  box-shadow: inset 0 1px 3px rgba(35,55,90,.025) !important;
+.field input {
+  width: 100%;
+  min-height: 42px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: var(--input-bg);
+  color: var(--text-main);
+  outline: none;
+  font-size: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  transition: all 0.2s ease;
 }
 
-.field input:focus,
-.auth-form input:focus {
-  border-color: rgba(43,120,239,.28) !important;
-  box-shadow: 0 0 0 4px rgba(43,120,239,.08), inset 0 1px 3px rgba(35,55,90,.025) !important;
+.field input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+}
+
+.date-time-picker-row {
+  display: flex;
+  gap: 6px;
+}
+
+.date-time-picker-row input { flex: 1; }
+
+.native-picker-button {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: var(--input-bg);
+  color: var(--cyan);
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.native-picker-button:hover {
+  border-color: var(--cyan);
+  background: rgba(0, 240, 255, 0.15);
 }
 
 .analyze-btn {
-  min-height: 56px !important;
-  border-radius: 18px !important;
-  color: #fff !important;
-  background: linear-gradient(135deg,#3a8cff,#2169dd) !important;
-  box-shadow: 0 12px 28px rgba(43,120,239,.22) !important;
-  font-weight: 800 !important;
-  letter-spacing: -.01em !important;
+  width: 100%;
+  min-height: 46px;
+  margin-top: 6px;
+  border: 0;
+  border-radius: 8px;
+  color: #010408;
+  background: linear-gradient(135deg, var(--cyan), var(--blue-neon));
+  font-size: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 25px rgba(0, 240, 255, 0.25);
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.status,
-.error,
-.data-state,
-.confidence,
-.risk-method,
-.recommendation {
-  border-radius: 17px !important;
-  background: rgba(248,250,253,.9) !important;
-  border-color: rgba(35,55,90,.07) !important;
-  color: var(--ui-text) !important;
+.analyze-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(0, 240, 255, 0.4);
 }
 
-.status-detail,
-.data-state span,
-.risk-description,
-.trip-meta,
-.source-row,
-.point-time,
-.point-risks,
-.footer { color: var(--ui-soft) !important; }
+.analyze-btn:disabled { opacity: 0.5; cursor: wait; transform: none; }
 
-.trip-route {
-  color: var(--ui-text) !important;
-  letter-spacing: -.045em !important;
+/* STATUS & ERRORS */
+.status, .error {
+  border-radius: 8px;
+  padding: 12px;
+  background: rgba(2, 6, 13, 0.85);
+  border: 1px solid var(--border-subtle);
+  font-size: 11px;
+  line-height: 1.4;
+  margin-top: 12px;
 }
 
-.meta-item strong { color: var(--ui-text) !important; }
+.status { display: none; border-color: var(--border-cyan); }
+.status.visible { display: block; }
+.status-main { font-weight: 800; color: var(--cyan); font-family: 'JetBrains Mono', monospace; }
+.status-detail { color: var(--text-muted); font-size: 10px; margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
 
-.report-btn {
-  border: 1px solid var(--ui-border) !important;
-  border-radius: 15px !important;
-  background: rgba(255,255,255,.9) !important;
-  color: var(--ui-text) !important;
-  box-shadow: var(--ui-shadow-soft) !important;
+.error { display: none; border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.12); color: #fca5a5; }
+.error.visible { display: block; }
+
+/* CENTER CANVAS (MAP & ROUTE TARGET) */
+.center-canvas {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-cyan);
+  border-radius: var(--radius-md);
+  background: var(--panel-bg);
+  backdrop-filter: var(--glass-blur);
+  overflow: hidden;
+  position: relative;
 }
 
-.score-circle {
-  background:
-    radial-gradient(circle at center,#fff 56%,transparent 57%),
-    conic-gradient(var(--risk-color,var(--ui-green)) var(--risk-angle,0deg),#e8edf3 0deg) !important;
-  box-shadow: 0 8px 20px rgba(35,55,90,.07) !important;
+.map-heading {
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(3, 8, 16, 0.8);
 }
 
-.score-number { color: var(--ui-text) !important; }
-.score-label { color: var(--ui-muted) !important; }
-
-.map-heading { padding: 18px 20px 14px !important; }
-.map-heading-title { color: var(--ui-text) !important; }
-.map-heading-info { color: var(--ui-soft) !important; }
+.map-heading-title { font-weight: 800; font-size: 13px; color: var(--text-main); font-family: 'JetBrains Mono', monospace; }
+.map-heading-info { color: var(--cyan); font-size: 11px; font-family: 'JetBrains Mono', monospace; }
 
 #map {
-  height: 430px !important;
-  min-height: 430px !important;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  background: #02060e;
 }
 
-.map-layer-switcher {
-  padding: 11px 16px !important;
-  background: rgba(255,255,255,.82) !important;
-  border-top: 1px solid rgba(35,55,90,.06) !important;
-}
-
-.map-layer-btn {
-  border: 1px solid rgba(35,55,90,.08) !important;
-  background: rgba(255,255,255,.92) !important;
-  color: var(--ui-soft) !important;
-  border-radius: 999px !important;
-}
-
-.map-layer-btn.active {
-  background: var(--ui-blue-soft) !important;
-  border-color: rgba(43,120,239,.20) !important;
-  color: var(--ui-blue) !important;
-}
-
-.map-legend { background: rgba(255,255,255,.86) !important; color: var(--ui-soft) !important; }
-
-.point-card,
-.segment-card,
-.risk-card,
-.official-alert,
-.source-row,
-.saved-trip,
-.recommendation-item {
-  border-color: rgba(35,55,90,.07) !important;
-  background: rgba(248,250,253,.86) !important;
-  color: var(--ui-text) !important;
-  box-shadow: var(--ui-shadow-soft) !important;
-  border-radius: 18px !important;
-}
-
-.point-top,
-.point-body { border-color: rgba(35,55,90,.06) !important; }
-.weather-item { background: #fff !important; border: 1px solid rgba(35,55,90,.05); }
-.weather-label { color: var(--ui-soft) !important; }
-.weather-value { color: var(--ui-text) !important; }
-
-/* Contraste de riesgos: tramos y principales riesgos */
-.segment {
-  background: rgba(248,250,253,.96) !important;
-  color: var(--ui-text) !important;
-  border-color: rgba(35,55,90,.09) !important;
-}
-.segment-route { color: var(--ui-text) !important; }
-.segment-meta .segment-chip {
-  background: #fff !important;
-  color: var(--ui-text) !important;
-  border-color: rgba(35,55,90,.08) !important;
-}
-.risk-item {
-  background: rgba(248,250,253,.96) !important;
-  color: var(--ui-text) !important;
-  border-color: rgba(35,55,90,.09) !important;
-}
-.risk-item strong { color: var(--ui-text) !important; }
-.risk-item span { color: var(--ui-soft) !important; }
-.risk-item.interactive { color: var(--ui-text) !important; }
-.phenomenon-points {
-  background: rgba(248,250,253,.98) !important;
-  border-color: rgba(35,55,90,.09) !important;
-}
-.phenomenon-point {
-  background: #fff !important;
-  color: var(--ui-text) !important;
-  border-color: rgba(35,55,90,.08) !important;
-}
-.phenomenon-point span { color: var(--ui-soft) !important; }
-
-.footer {
-  padding-bottom: 12px !important;
-}
-
-/* Login */
-.auth-screen {
-  background:
-    radial-gradient(circle at 90% 5%, rgba(76,139,255,.13), transparent 32%),
-    radial-gradient(circle at 0% 60%, rgba(94,184,255,.08), transparent 28%),
-    #f5f7fb !important;
-}
-
-.auth-card {
-  border: 1px solid rgba(255,255,255,.92) !important;
-  border-radius: 28px !important;
-  background: rgba(255,255,255,.82) !important;
-  box-shadow: 0 24px 70px rgba(35,55,90,.12), inset 1px 1px 0 rgba(255,255,255,.95) !important;
-  backdrop-filter: blur(22px) !important;
-  -webkit-backdrop-filter: blur(22px) !important;
-}
-
-.auth-logo { color: var(--ui-text) !important; letter-spacing: -.04em !important; }
-.auth-logo span { color: var(--ui-blue) !important; }
-.auth-subtitle { color: var(--ui-soft) !important; }
-.auth-form label { color: var(--ui-soft) !important; }
-.auth-submit {
-  border-radius: 17px !important;
-  background: linear-gradient(135deg,#3a8cff,#2169dd) !important;
-  box-shadow: 0 12px 28px rgba(43,120,239,.20) !important;
-}
-
-/* Desktop: retain the same visual language while using available width. */
-@media (min-width:760px) {
-  .travel-pill-nav { margin-bottom: 18px; }
-  .search-panel,
-  .risk-panel,
-  .trip-header,
-  .section,
-  .sources { padding: 24px !important; }
-}
-
-/* Small phones */
-@media (max-width:500px) {
-  .app { padding-left: 9px !important; padding-right: 9px !important; padding-bottom: 102px !important; }
-  .header { padding-left: 2px !important; padding-right: 2px !important; }
-  .auth-user-email { display:none !important; }
-  .logout-btn { padding: 9px 11px !important; }
-  .travel-pill-nav {
-    left: 50%;
-    bottom: max(10px, env(safe-area-inset-bottom));
-    width: calc(100% - 18px);
-    border-radius: 22px;
-  }
-  .travel-nav-item { min-height: 48px; border-radius: 17px; }
-  .travel-nav-item span:last-child { font-size: 8px; }
-  .travel-nav-icon { font-size: 16px; }
-  .panel { border-radius: 22px !important; }
-}
-
-
-/* =========================================================
-   PREVISIÓN VIAJES — ACABADO VISUAL REFINADO
-   Solo presentación: no modifica JavaScript ni eventos.
-   ========================================================= */
-:root {
-  --ui-bg: #f3f6fb;
-  --ui-panel: rgba(255,255,255,.90);
-  --ui-text: #172338;
-  --ui-soft: #53647b;
-  --ui-muted: #718096;
-  --ui-border: rgba(38,62,99,.12);
-  --ui-blue: #246fe5;
-  --ui-blue-soft: #eaf2ff;
-  --ui-green: #16845b;
-  --ui-shadow: 0 14px 36px rgba(31,55,92,.10), inset 0 1px 0 rgba(255,255,255,.95);
-  --ui-shadow-soft: 0 5px 18px rgba(31,55,92,.07), inset 0 1px 0 rgba(255,255,255,.92);
-}
-html, body {
-  background: #f3f6fb !important;
-  color: var(--ui-text) !important;
-}
-body {
-  background-image: radial-gradient(ellipse at 8% 0%, rgba(93,151,255,.10), transparent 34%),
-                    radial-gradient(ellipse at 95% 18%, rgba(95,206,190,.08), transparent 28%) !important;
-}
-.header { padding-top: 20px !important; padding-bottom: 20px !important; }
-.logo-icon {
-  border: 1px solid rgba(255,255,255,.95) !important;
-  border-radius: 18px !important;
-  background: linear-gradient(145deg,#fff,#eaf1fb) !important;
-  color: #246fe5 !important;
-  box-shadow: 7px 7px 18px rgba(37,61,97,.10), -5px -5px 14px rgba(255,255,255,.9) !important;
-}
-.logo-title { color: #172338 !important; letter-spacing: -.035em !important; }
-.logo-title span { color: #246fe5 !important; }
-.logo-subtitle { color: #66768d !important; letter-spacing: .09em !important; }
-.panel, .search-panel, .risk-panel, .trip-header, .section, .sources {
-  border: 1px solid rgba(255,255,255,.96) !important;
-  border-radius: 23px !important;
-  background: rgba(255,255,255,.88) !important;
-  color: var(--ui-text) !important;
-  box-shadow: var(--ui-shadow) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-.panel-title, .section-title, .map-heading-title { color: #172338 !important; }
-.panel-title, .section-title { letter-spacing: -.025em !important; }
-.field label, .status-detail, .trip-meta, .source-row, .footer,
-.risk-description, .data-state span, .point-time, .point-risks {
-  color: #53647b !important;
-}
-.field input, .field select, .field textarea, .auth-form input, input, select, textarea {
-  color: #172338;
-}
-.field input, .auth-form input, .field select, .field textarea {
-  border: 1px solid #dfe7f1 !important;
-  border-radius: 15px !important;
-  background: #f9fbfe !important;
-  box-shadow: inset 0 1px 2px rgba(28,52,88,.025) !important;
-}
-button { touch-action: manipulation; }
-.analyze-btn {
-  border: 0 !important;
-  border-radius: 17px !important;
-  background: linear-gradient(135deg,#438fff,#2469dc) !important;
-  box-shadow: 0 9px 22px rgba(36,111,229,.22) !important;
-}
-.report-btn, .map-layer-btn, .travel-nav-item { transition: background-color .16s ease, box-shadow .16s ease, transform .16s ease; }
-.report-btn { border-radius: 15px !important; }
-.map-container, .map-panel, .map-card { border-radius: 22px !important; overflow: hidden; }
-#map {
-  border-radius: 0 !important;
-  background: #e8eef5 !important;
-  min-height: 320px;
-}
-.map-heading { background: rgba(255,255,255,.94) !important; }
 .map-layer-switcher {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px !important;
-  background: rgba(255,255,255,.94) !important;
+  gap: 8px;
+  padding: 8px 14px;
+  background: rgba(3, 7, 15, 0.95);
+  border-top: 1px solid var(--border-subtle);
 }
+
 .map-layer-btn {
-  min-height: 36px;
-  padding: 8px 13px !important;
-  background: #f7f9fd !important;
-  color: #53647b !important;
-  border: 1px solid #dfe7f1 !important;
-  font-weight: 750 !important;
+  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-muted);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
+
 .map-layer-btn.active {
-  background: #eaf2ff !important;
-  color: #1f66d4 !important;
-  border-color: #c7dcff !important;
-  box-shadow: inset 0 1px 2px rgba(255,255,255,.95) !important;
+  background: rgba(0, 240, 255, 0.18);
+  border-color: var(--cyan);
+  color: var(--cyan);
 }
-.map-legend { border: 1px solid rgba(220,229,241,.95) !important; border-radius: 14px !important; color: #43536a !important; }
-.point-card, .segment-card, .risk-card, .official-alert, .saved-trip,
-.recommendation-item, .risk-item, .weather-item, .meta-item, .data-state,
-.status, .confidence, .risk-method, .recommendation {
-  border-radius: 17px !important;
-  border-color: #e1e8f1 !important;
-  color: #26364d !important;
+
+.map-legend {
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(2, 5, 10, 0.98);
+  border-top: 1px solid var(--border-subtle);
+  font-size: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-muted);
 }
-.risk-item strong, .segment-route, .risk-name, .weather-value, .meta-item strong { color: #1b2b43 !important; }
-.risk-item span, .segment-meta, .weather-label { color: #53647b !important; }
-.score-circle { filter: drop-shadow(0 5px 8px rgba(31,55,92,.08)); }
-.leaflet-popup-content-wrapper { border-radius: 15px !important; box-shadow: 0 12px 34px rgba(20,35,55,.22) !important; }
-.leaflet-popup-content { color: #172338 !important; }
-.leaflet-control-zoom a { color: #24344a !important; }
-/* Navegación inferior tipo píldora: se conserva el posicionamiento original. */
-.travel-nav-item { color: #627189 !important; border-radius: 16px !important; }
-.travel-nav-item.active {
-  color: #1f66d4 !important;
-  background: linear-gradient(145deg,#f1f6ff,#e7f0ff) !important;
-  box-shadow: inset 0 1px 1px rgba(255,255,255,.98), 0 4px 12px rgba(36,111,229,.09) !important;
+
+.legend-item { display: flex; align-items: center; gap: 6px; }
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+/* RIGHT TELEMETRY DRAWER */
+.hud-drawer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  padding-right: 2px;
 }
-.travel-nav-item span:last-child { font-weight: 800 !important; }
-@media (max-width: 600px) {
-  body { padding-bottom: calc(96px + env(safe-area-inset-bottom)) !important; }
-  .header { padding: 14px 2px 17px !important; }
-  .logo-icon { width: 44px !important; height: 44px !important; }
-  .panel, .search-panel, .risk-panel, .trip-header, .section, .sources {
-    border-radius: 19px !important;
+
+/* RADAR TARGET HUD SCORE DISPLAY */
+.radar-target-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 14px;
+  position: relative;
+  background: rgba(2, 6, 14, 0.9);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-cyan);
+}
+
+.radar-hud-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: 
+    radial-gradient(circle at center, #02060e 55%, transparent 56%),
+    conic-gradient(var(--risk-color, var(--green)) var(--risk-angle, 0deg), rgba(255,255,255,0.06) 0deg);
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 240, 255, 0.1);
+  position: relative;
+}
+
+.radar-hud-circle::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px dashed var(--border-cyan);
+  animation: radarSweep 10s linear infinite;
+}
+
+@keyframes radarSweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.score-number {
+  font-size: 38px;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  text-align: center;
+  line-height: 1;
+}
+
+.score-label {
+  color: var(--text-muted);
+  font-size: 9px;
+  font-family: 'JetBrains Mono', monospace;
+  text-align: center;
+  margin-top: 2px;
+}
+
+.risk-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--risk-color, var(--green));
+  letter-spacing: 0.08em;
+  margin-top: 14px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.risk-description {
+  color: var(--text-muted);
+  margin-top: 6px;
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.confidence, .risk-method, .recommendation, .data-state {
+  border-radius: 8px;
+  padding: 12px;
+  background: rgba(3, 8, 16, 0.85);
+  border: 1px solid var(--border-subtle);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+/* TRIP SUMMARY STRIP */
+.trip-route {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.trip-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin-top: 10px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.report-btn {
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-main);
+  padding: 8px 14px;
+  font-size: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.2s ease;
+}
+
+.report-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+
+/* TELEMETRY CARDS FOR WEATHER POINTS */
+.points-list { display: flex; flex-direction: column; gap: 10px; }
+
+.point-card {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: rgba(4, 9, 18, 0.85);
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.point-card:hover { border-color: var(--border-cyan); }
+.point-top { padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); background: rgba(255,255,255,0.02); }
+.point-name { font-weight: 800; font-size: 12px; font-family: 'JetBrains Mono', monospace; }
+.point-time { color: var(--text-muted); font-size: 10px; font-family: 'JetBrains Mono', monospace; }
+.point-risk { font-size: 9px; font-weight: 800; padding: 4px 8px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; }
+
+.point-body { padding: 12px; }
+.weather-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.weather-item { padding: 8px; border-radius: 6px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.03); }
+.weather-label { color: var(--text-muted); font-size: 9px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; }
+.weather-value { margin-top: 2px; font-weight: 800; font-size: 13px; color: var(--cyan); font-family: 'JetBrains Mono', monospace; }
+.point-risks { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-subtle); color: var(--text-main); font-size: 11px; line-height: 1.4; }
+
+/* SEGMENTS & PHENOMENA */
+.segments { display: flex; flex-direction: column; gap: 8px; }
+.segment {
+  border-left: 3px solid var(--segment-color, var(--green));
+  border-radius: 8px;
+  padding: 12px;
+  background: rgba(4, 9, 18, 0.85);
+  border-top: 1px solid var(--border-subtle);
+  border-right: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.segment-head { display: flex; justify-content: space-between; align-items: center; }
+.segment-route { font-weight: 800; font-size: 12px; font-family: 'JetBrains Mono', monospace; }
+.segment-risk { color: var(--segment-color, var(--green)); font-weight: 800; font-size: 10px; font-family: 'JetBrains Mono', monospace; }
+.segment-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.segment-chip { background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-subtle); border-radius: 4px; padding: 3px 8px; color: var(--text-muted); font-size: 9px; font-family: 'JetBrains Mono', monospace; }
+
+.risks-list { display: flex; flex-direction: column; gap: 8px; }
+.risk-item { padding: 12px; border-radius: 8px; background: rgba(4, 9, 18, 0.85); border: 1px solid var(--border-subtle); }
+.risk-item.interactive { cursor: pointer; transition: all 0.2s ease; width: 100%; text-align: left; color: inherit; }
+.risk-item.interactive:hover { border-color: var(--cyan); background: rgba(0, 240, 255, 0.05); }
+.risk-click-hint { display: block; margin-top: 6px; color: var(--cyan); font-size: 10px; font-family: 'JetBrains Mono', monospace; }
+
+.phenomenon-points { display: none; margin-top: 10px; padding: 10px; border-radius: 8px; background: rgba(1, 4, 10, 0.95); border: 1px solid var(--border-subtle); }
+.phenomenon-points.open { display: grid; gap: 6px; }
+.phenomenon-point { width: 100%; text-align: left; padding: 10px; border: 1px solid var(--border-subtle); border-radius: 6px; background: rgba(255, 255, 255, 0.02); color: var(--text-main); cursor: pointer; }
+.phenomenon-point:hover { border-color: var(--cyan); background: rgba(0, 240, 255, 0.1); }
+.phenomenon-point strong { display: block; font-size: 11px; font-family: 'JetBrains Mono', monospace; }
+.phenomenon-point span { display: block; color: var(--text-muted); font-size: 10px; }
+
+/* OFFICIAL ALERTS & SOURCES */
+.official-alert, .official-item {
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(4, 9, 18, 0.85);
+  border: 1px solid var(--border-subtle);
+  margin-top: 8px;
+}
+.official-alert strong, .official-item strong { display: block; margin-bottom: 4px; color: var(--cyan); font-size: 11px; }
+.official-alert span, .official-item span { color: var(--text-muted); font-size: 10px; line-height: 1.4; }
+
+.etraffic-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 10px 0;
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border-cyan);
+  background: rgba(0, 240, 255, 0.1);
+  color: var(--cyan);
+  font-size: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  text-decoration: none;
+}
+
+.source-list { display: grid; gap: 6px; }
+.source-row { padding: 10px; border-radius: 6px; background: rgba(4, 9, 18, 0.85); border: 1px solid var(--border-subtle); font-size: 10px; font-family: 'JetBrains Mono', monospace; }
+.source-row strong { color: var(--cyan); }
+.source-row span { color: var(--text-muted); }
+
+.saved-list { display: grid; gap: 8px; }
+.saved-trip { padding: 12px; background: rgba(4, 9, 18, 0.85); border: 1px solid var(--border-subtle); border-radius: 8px; display: flex; justify-content: space-between; align-items: center; }
+.saved-info strong { display: block; font-size: 12px; }
+.saved-info span { color: var(--text-muted); font-size: 10px; font-family: 'JetBrains Mono', monospace; }
+.saved-actions { display: flex; gap: 6px; }
+.small-btn { border: 1px solid var(--border-subtle); background: rgba(255, 255, 255, 0.04); color: var(--text-main); border-radius: 6px; padding: 6px 10px; font-size: 10px; font-family: 'JetBrains Mono', monospace; cursor: pointer; }
+.small-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+
+/* FLOATING NAV PILL FOR MOBILE */
+.travel-pill-nav { display: none; }
+
+/* LEAFLET OVERRIDES */
+.dgt-map-marker { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; border: 2px solid var(--cyan); background: rgba(2, 6, 14, 0.95); box-shadow: 0 0 15px rgba(0, 240, 255, 0.6); font-size: 14px; }
+.leaflet-container { background: #02050c !important; }
+.leaflet-popup-content-wrapper { background: rgba(6, 14, 27, 0.96) !important; color: var(--text-main) !important; border: 1px solid var(--border-cyan) !important; border-radius: 12px !important; backdrop-filter: blur(16px) !important; }
+.leaflet-popup-tip { background: rgba(6, 14, 27, 0.96) !important; }
+/* Popups Leaflet: el panel no captura clics fuera de la propia ficha.
+   No se cambia el comportamiento de eventos del resto del mapa. */
+.leaflet-popup-pane { pointer-events: none !important; z-index: 700 !important; }
+.leaflet-popup-pane .leaflet-popup { pointer-events: auto !important; max-width: min(320px, calc(100vw - 36px)) !important; }
+.leaflet-popup-pane .leaflet-popup-content-wrapper,
+.leaflet-popup-pane .leaflet-popup-tip-container { pointer-events: auto !important; }
+.leaflet-popup-content { max-height: min(220px, 32vh); overflow-y:auto; overflow-x:hidden; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
+.leaflet-control-container { pointer-events:none; }
+.leaflet-control-container .leaflet-control { pointer-events:auto; }
+
+/* =========================================================
+   MOBILE & RESPONSIVE TACTICAL OVERRIDES
+   ========================================================= */
+@media (max-width: 1024px) {
+  body { overflow-y: auto; }
+  .app { height: auto; min-height: 100vh; overflow-y: auto; padding-bottom: 90px; }
+  .top-telemetry-dock { display: none; }
+  
+  .cockpit-workspace {
+    grid-template-columns: 1fr;
+    height: auto;
   }
-  #map { min-height: 300px; }
-  .map-layer-switcher { gap: 6px !important; padding: 10px !important; }
-  .map-layer-btn { flex: 1 1 auto; font-size: 11px !important; }
-  .travel-nav-item { min-height: 46px !important; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .report-btn, .map-layer-btn, .travel-nav-item { transition: none !important; }
+
+  .center-canvas {
+    height: 400px;
+    min-height: 400px;
+  }
+
+  /* FLOATING TACTICAL NAV DOCK FOR MOBILE */
+  .travel-pill-nav {
+    position: fixed;
+    left: 50%;
+    bottom: max(14px, env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    z-index: 99990;
+    width: min(540px, calc(100% - 20px));
+    padding: 4px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 4px;
+    border: 1px solid var(--border-cyan);
+    border-radius: 24px;
+    background: rgba(3, 8, 18, 0.92);
+    backdrop-filter: blur(24px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+  }
+
+  .travel-nav-item {
+    min-height: 44px;
+    border: 0;
+    border-radius: 18px;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  .travel-nav-item.active {
+    color: #010408;
+    background: linear-gradient(135deg, var(--cyan), var(--blue-neon));
+    font-weight: 800;
+  }
+
+  .travel-nav-icon { font-size: 15px; }
+  .travel-nav-item span:last-child { font-size: 8px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; }
 }
 
+
+/* RECUPERACIÓN DE VISIBILIDAD Y DESPLAZAMIENTO DE RESULTADOS */
+html, body { min-height:100%; }
+.app { min-height:100vh; }
+.cockpit-workspace { min-height:0; align-items:stretch; }
+.command-sidebar, .hud-drawer { min-height:0; overscroll-behavior:contain; }
+.hud-drawer { max-height:calc(100vh - 105px); overflow-y:auto; scrollbar-gutter:stable; }
+#results { min-width:0; width:100%; }
+#section-route { min-height:420px; min-width:0; }
+#map { display:block; min-height:360px; height:100%; }
+#pointsList, #segmentsList, #dgtList, #alertsList, #risksList, #floodList { min-width:0; overflow-wrap:anywhere; }
+.official-list:empty::before { content:"Sin incidencias disponibles para mostrar."; display:block; color:var(--text-muted); font-size:11px; padding:8px 0; }
+@media (min-width:1025px) { .app { height:100vh; overflow:hidden; } .cockpit-workspace { height:calc(100vh - 105px); } .center-canvas { min-height:0; } #map { min-height:0; } }
+
+/* Marcadores visibles de salida, destino y puntos de análisis */
+.risk-marker {
+  display: block !important;
+  width: 16px; height: 16px; box-sizing: border-box;
+  border: 3px solid #ffffff; border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(0,0,0,.72), 0 0 12px currentColor;
+  background: #22d3ee;
+}
+.risk-marker.start { width: 22px; height: 22px; border-color: #fff; background: #35e28a !important; }
+.risk-marker.end { width: 22px; height: 22px; border-color: #fff; background: #ff4d5f !important; }
+.leaflet-div-icon { background: transparent !important; border: 0 !important; }
 </style>
-</head>
-
+<style id="final-header-risk-placement-fix">
+/* Ajuste final solicitado: planificar ruta primero, riesgo global justo después. */
+.cockpit-workspace { display:flex !important; flex-direction:column !important; align-items:stretch; gap:12px; }
+.command-sidebar { display:flex !important; flex-direction:column !important; width:100%; max-height:none; overflow:visible; order:0 !important; }
+#section-analyze { order:0 !important; width:100%; box-sizing:border-box; }
+#section-risks { order:1 !important; width:100% !important; box-sizing:border-box; margin:0 !important; }
+#section-route { order:2 !important; width:100%; box-sizing:border-box; }
+/* La identidad de sesión y el botón permanecen dentro de la cabecera, sin desbordarse. */
+.header { box-sizing:border-box; width:100%; display:flex !important; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px 14px; padding:12px 16px; }
+.header .logo-row { flex:0 1 auto; min-width:0; }
+.header .top-telemetry-dock { flex:1 1 260px; min-width:0; display:flex; flex-wrap:wrap; justify-content:center; gap:6px 12px; }
+.header .auth-userbar { flex:0 1 auto; min-width:0; max-width:100%; margin:0 0 0 auto !important; display:flex !important; align-items:center; justify-content:flex-end; flex-wrap:wrap; gap:8px; position:static !important; float:none !important; box-sizing:border-box; }
+.header .auth-user-email { display:block; min-width:0; max-width:min(42vw, 300px); overflow-wrap:anywhere; }
+.header .logout-btn { flex:0 0 auto; white-space:nowrap; }
+@media (max-width:1024px) {
+ .cockpit-workspace { display:flex !important; flex-direction:column !important; }
+ .command-sidebar { width:100% !important; order:0 !important; }
+ #section-analyze { order:0 !important; }
+ #section-risks { order:1 !important; }
+ #section-route { order:2 !important; }
+ .header { align-items:flex-start; gap:10px; }
+ .header .logo-row { flex:1 1 100%; }
+ .header .top-telemetry-dock { flex:1 1 100%; justify-content:flex-start; }
+ .header .auth-userbar { flex:1 1 100%; width:100%; margin:0 !important; justify-content:space-between; }
+ .header .auth-user-email { max-width:calc(100% - 120px); }
+}
+</style></head>
 <body>
-
-<!-- =====================================================
-     LOGIN / ACCESO PRIVADO
-     ===================================================== -->
-<div id="authScreen" class="auth-screen" aria-live="polite">
-  <div class="auth-card">
-    <div class="auth-brand">
-      <div class="auth-logo">PREVISIÓN <span>VIAJES</span></div>
-      <div class="auth-subtitle">Acceso privado</div>
-    </div>
-
-    <form id="authForm" class="auth-form" autocomplete="on">
-      <label>
+<!-- AUTHENTICATION GATEWAY -->
+<div aria-live="polite" class="auth-screen" id="authScreen">
+<div class="auth-card">
+<div class="auth-brand">
+<div class="auth-logo">PREVISIÓN <span>VIAJES</span></div>
+<div class="auth-subtitle">FLIGHT COMMAND CENTER ACCESS</div>
+</div>
+<form autocomplete="on" class="auth-form" id="authForm">
+<label>
         Correo electrónico
-        <input id="authEmail" type="email" autocomplete="username" required>
-      </label>
-
-      <label>
+        <input autocomplete="username" id="authEmail" placeholder="piloto@comando.com" required="" type="email"/>
+</label>
+<label>
         Contraseña
-        <input id="authPassword" type="password" autocomplete="current-password" required>
-      </label>
-
-      <div id="authError" class="auth-error"></div>
-
-      <button id="authSubmit" class="auth-submit" type="submit">Entrar</button>
-    </form>
-  </div>
+        <input autocomplete="current-password" id="authPassword" placeholder="••••••••" required="" type="password"/>
+</label>
+<div class="auth-error" id="authError"></div>
+<button class="auth-submit" id="authSubmit" type="submit">Iniciar Sesión</button>
+</form>
 </div>
-
+</div>
 <div class="app auth-locked">
-
-  <div class="container">
-
-    <!-- =====================================================
-         HEADER
-         ===================================================== -->
-
-    <header class="header">
-
-      <div class="logo-row">
-
-        <div class="logo-icon">🚗</div>
-
-        <div>
-          <div class="logo-title">
-            PREVISIÓN<span> VIAJES</span>
-          </div>
-
-          <div class="logo-subtitle">
-            análisis meteorológico de rutas
-          </div>
-        </div>
-
-      </div>
-
-      <div class="auth-userbar">
-        <span id="authUserEmail" class="auth-user-email"></span>
-        <button id="logoutBtn" class="logout-btn" type="button">Cerrar sesión</button>
-      </div>
-
-    </header>
-
-
-    <!-- =====================================================
-         MOBILE / PILL NAVIGATION
-         ===================================================== -->
-
-    <nav class="travel-pill-nav" aria-label="Navegación rápida">
-
-      <button type="button" class="travel-nav-item active" data-target="section-analyze">
-        <span class="travel-nav-icon">⌂</span>
-        <span>Inicio</span>
-      </button>
-
-      <button type="button" class="travel-nav-item" data-target="section-route">
-        <span class="travel-nav-icon">⌖</span>
-        <span>Ruta</span>
-      </button>
-
-      <button type="button" class="travel-nav-item" data-target="section-weather">
-        <span class="travel-nav-icon">☁</span>
-        <span>Tiempo</span>
-      </button>
-
-      <button type="button" class="travel-nav-item" data-target="section-risks">
-        <span class="travel-nav-icon">⚠</span>
-        <span>Riesgos</span>
-      </button>
-
-      <button type="button" class="travel-nav-item" data-target="section-trips">
-        <span class="travel-nav-icon">♡</span>
-        <span>Viajes</span>
-      </button>
-
-      <a class="travel-nav-item etraffic-nav-item" href="https://etraffic.dgt.es/etrafficWEB/" target="_blank" rel="noopener noreferrer" aria-label="Abrir el mapa oficial eTraffic de la DGT en una pestaña nueva">
-        <span class="travel-nav-icon">🗺️</span>
-        <span>eTraffic ↗</span>
-      </a>
-
-    </nav>
-
-
-    <!-- =====================================================
-         SEARCH
-         ===================================================== -->
-
-    <section id="section-analyze" class="panel search-panel">
-
-      <div class="panel-title">
-        Analiza tu viaje
-      </div>
-
-      <form id="travelForm">
-
-        <div class="form-grid">
-
-          <div class="field">
-
-            <label for="origin">
-              Origen
-            </label>
-
-            <input
-              id="origin"
-              type="text"
-              autocomplete="off"
-              placeholder="Ej. Alcorcón, Madrid"
-              required
-            >
-
-          </div>
-
-
-          <div class="field">
-
-            <label for="destination">
-              Destino
-            </label>
-
-            <input
-              id="destination"
-              type="text"
-              autocomplete="off"
-              placeholder="Ej. Molina de Aragón"
-              required
-            >
-
-          </div>
-
-
-          <div class="field">
-
-            <label for="travelDate">
-              Fecha
-            </label>
-
-            <div class="date-time-picker-row">
-              <input
-                id="travelDate"
-                type="date"
-                required
-              >
-              <button class="native-picker-button" type="button" data-picker-target="travelDate" aria-label="Abrir calendario para elegir la fecha" title="Elegir fecha">📅</button>
-            </div>
-
-          </div>
-
-
-          <div class="field">
-
-            <label for="departureTime">
-              Salida
-            </label>
-
-            <div class="date-time-picker-row">
-              <input
-                id="departureTime"
-                type="time"
-                value="08:00"
-                required
-              >
-              <button class="native-picker-button" type="button" data-picker-target="departureTime" aria-label="Abrir selector para elegir la hora de salida" title="Elegir hora">🕒</button>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <button
-          id="analyzeBtn"
-          class="analyze-btn"
-          type="submit"
-        >
-          🔍 ANALIZAR VIAJE
-        </button>
-
-      </form>
-
-
-      <div
-        id="status"
-        class="status"
-        aria-live="polite"
-      >
-
-        <div
-          id="statusMain"
-          class="status-main"
-        >
-          Preparando análisis...
-        </div>
-
-        <div
-          id="statusDetail"
-          class="status-detail"
-        ></div>
-
-      </div>
-
-
-      <div
-        id="error"
-        class="error"
-        aria-live="assertive"
-      ></div>
-
-    </section>
-
-
-    <!-- =====================================================
-         RESULTS
-         ===================================================== -->
-
-    <main id="results">
-
-
-      <!-- ===================================================
-           TRIP HEADER
-           =================================================== -->
-
-      <section id="section-summary" class="panel trip-header">
-
-        <div
-          id="tripRoute"
-          class="trip-route"
-        >
-          —
-        </div>
-
-        <div
-          id="tripMeta"
-          class="trip-meta"
-        ></div>
-
-        <div class="analysis-toolbar">
-          <button
-            id="printReportBtn"
-            class="report-btn"
-            type="button"
-          >
-            🖨️ Imprimir / PDF
-          </button>
-        </div>
-
-      </section>
-
-
-      <!-- ===================================================
-           GLOBAL RISK
-           =================================================== -->
-
-      <section id="section-risks" class="panel risk-panel">
-
-        <div class="panel-title">
-          ⚠️ Riesgo global
-        </div>
-
-        <div class="risk-layout">
-
-          <div class="risk-score-box">
-
-            <div
-              id="scoreCircle"
-              class="score-circle"
-            >
-
-              <div>
-                <div
-                  id="scoreNumber"
-                  class="score-number"
-                >
-                  —
-                </div>
-
-                <div class="score-label">
-                  / 100
-                </div>
-              </div>
-
-            </div>
-
-
-            <div>
-
-              <div
-                id="riskName"
-                class="risk-name"
-              >
-                —
-              </div>
-
-              <div
-                id="riskDescription"
-                class="risk-description"
-              >
-                —
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <div
-            id="confidence"
-            class="confidence"
-          ></div>
-
-          <div
-            id="riskMethod"
-            class="risk-method"
-          ></div>
-
-        </div>
-
-      </section>
-
-
-      <!-- ===================================================
-           MAP
-           =================================================== -->
-
-      <section id="section-route" class="panel map-panel">
-
-        <div class="map-heading">
-
-          <div>
-            <div class="map-heading-title">
-              🗺️ Ruta completa
-            </div>
-          </div>
-
-          <div
-            id="mapInfo"
-            class="map-heading-info"
-          >
-            Esperando ruta...
-          </div>
-
-        </div>
-
-
-        <!--
-          ESTE ES EL MAPA REAL.
-          NO ES UNA IMAGEN.
-          LEAFLET SE INICIALIZA EN JAVASCRIPT.
-        -->
-
-        <div id="map"></div>
-
-        <div class="map-layer-switcher" role="group" aria-label="Información visible en el mapa">
-          <button type="button" class="map-layer-btn active" data-map-mode="weather" onclick="setMapMode('weather')">🌦️ Tiempo / Riesgo</button>
-          <button type="button" class="map-layer-btn" data-map-mode="dgt" onclick="setMapMode('dgt')">🚧 DGT / Incidencias</button>
-          <button type="button" class="map-layer-btn" data-map-mode="all" onclick="setMapMode('all')">🗺️ Todo</button>
-        </div>
-
-        <div class="map-legend">
-
-          <div class="legend-item">
-            <span
-              class="legend-dot"
-              style="background:#35e28a"
-            ></span>
-            Normal
-          </div>
-
-          <div class="legend-item">
-            <span
-              class="legend-dot"
-              style="background:#ffd34d"
-            ></span>
-            Precaución
-          </div>
-
-          <div class="legend-item">
-            <span
-              class="legend-dot"
-              style="background:#ff9f43"
-            ></span>
-            Riesgo
-          </div>
-
-          <div class="legend-item">
-            <span
-              class="legend-dot"
-              style="background:#ff4d5f"
-            ></span>
-            Riesgo elevado
-          </div>
-
-          <div class="legend-item">
-            <span
-              class="legend-dot"
-              style="background:#ff2e88"
-            ></span>
-            Extremo
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- ===================================================
-           WEATHER POINTS
-           =================================================== -->
-
-      <section id="section-weather" class="panel section">
-
-        <div class="section-title">
-          🌦️ Condiciones durante el recorrido
-        </div>
-
-        <div
-          id="pointsList"
-          class="points-list"
-        ></div>
-
-      </section>
-
-
-      <!-- ===================================================
-           SEGMENTS
-           =================================================== -->
-
-      <section class="panel section">
-
-        <div class="section-title">
-          🛣️ Riesgo por tramos
-        </div>
-
-        <div
-          id="segmentsList"
-          class="segments"
-        ></div>
-
-      </section>
-
-
-      <!-- ===================================================
-           MAIN RISKS
-           =================================================== -->
-
-      <section class="panel section">
-
-        <div class="section-title">
-          ⚠️ Principales riesgos
-        </div>
-
-        <div
-          id="risksList"
-          class="risks-list"
-        ></div>
-
-      </section>
-
-
-      <!-- ===================================================
-           FLOODING
-           =================================================== -->
-
-      <section class="panel section">
-
-        <div class="section-title">
-          🌊 Inundaciones
-        </div>
-
-        <div
-          id="floodStatus"
-          class="data-state warning"
-        >
-
-          <strong>
-            🌊 Estado: datos insuficientes
-          </strong>
-
-          <span>
-            No se dispone todavía de una fuente hidrológica oficial
-            georreferenciada conectada a PREVISIÓN VIAJES. Esto no significa
-            que no exista riesgo de inundación.
-          </span>
-
-        </div>
-
-        <div
-          id="floodList"
-          class="official-list"
-        ></div>
-
-      </section>
-
-
-      <!-- ===================================================
-           ALERTS
-           =================================================== -->
-
-      <section class="panel section">
-
-        <div class="section-title">
-          🚨 Avisos oficiales
-        </div>
-
-        <div
-          id="alertsStatus"
-          class="data-state warning"
-        >
-
-          <strong>
-            🚨 Estado: avisos no consultados
-          </strong>
-
-          <span>
-            PREVISIÓN VIAJES consulta el archivo público aemet-alerts.json,
-            actualizado mediante GitHub Actions. Si el archivo no está disponible,
-            no se puede confirmar si existen avisos; ausencia de datos no significa ausencia de riesgo.
-          </span>
-
-        </div>
-
-        <div
-          id="alertsList"
-          class="official-list"
-        ></div>
-
-      </section>
-
-
-      <!-- ===================================================
-           DGT TRAFFIC INCIDENTS
-           =================================================== -->
-
-      <section class="panel section">
-
-        <div class="section-title">
-          🚧 Incidencias DGT
-        </div>
-
-        <span class="etraffic-note">Consulta también el mapa oficial de tráfico de la DGT para contrastar las incidencias y el estado actual de la carretera. Se abrirá en una pestaña nueva; no modifica ni sustituye el análisis de esta aplicación.</span>
-        <a class="etraffic-link" href="https://etraffic.dgt.es/etrafficWEB/" target="_blank" rel="noopener noreferrer" aria-label="Abrir el mapa oficial eTraffic de la DGT en una pestaña nueva">
-          🗺️ Consultar tráfico en eTraffic <span aria-hidden="true">↗</span>
-        </a>
-
-        <div id="dgtStatus" class="data-state">
-          <strong>🚧 Estado: esperando consulta</strong>
-          <span>Las incidencias DGT se mostrarán al analizar la ruta.</span>
-        </div>
-
-        <div id="dgtList" class="official-list"></div>
-      </section>
-
-
-      <!-- ===================================================
-           RECOMMENDATION
-           =================================================== -->
-
-      <section class="panel section">
-
-        <div class="section-title">
-          🚗 Recomendación
-        </div>
-
-        <div
-          id="recommendation"
-          class="recommendation"
-        ></div>
-
-      </section>
-
-
-      <!-- ===================================================
-           SOURCES
-           =================================================== -->
-
-      <section class="panel sources">
-
-        <div class="section-title">
-          📚 Fuentes utilizadas
-        </div>
-
-        <div class="source-list">
-
-          <div class="source-row">
-            <strong>Mapa:</strong>
-            <span>
-              OpenStreetMap + Leaflet
-            </span>
-          </div>
-
-          <div class="source-row">
-            <strong>Ruta:</strong>
-            <span>
-              OSRM
-            </span>
-          </div>
-
-          <div class="source-row">
-            <strong>Geocodificación:</strong>
-            <span>
-              Nominatim / OpenStreetMap
-            </span>
-          </div>
-
-          <div class="source-row">
-            <strong>Meteorología:</strong>
-            <span>
-              Open-Meteo
-            </span>
-          </div>
-
-          <div class="source-row">
-            <strong>Avisos:</strong>
-            <span>
-              Consulta automática de aemet-alerts.json y filtrado por proximidad a la ruta; depende de que la fuente esté disponible.
-            </span>
-          </div>
-
-          <div class="source-row">
-            <strong>Inundaciones:</strong>
-            <span>
-              Datos insuficientes / sin simulación
-            </span>
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- ===================================================
-           SAVED TRIPS
-           =================================================== -->
-
-      <section id="section-trips" class="panel section">
-
-        <div class="section-title">
-          💾 Mis viajes
-        </div>
-
-        <div
-          id="savedTrips"
-          class="saved-list"
-        ></div>
-
-      </section>
-
-
-    </main>
-
-
-    <!-- =====================================================
-         FOOTER
-         ===================================================== -->
-
-    <footer class="footer">
-
-      PREVISIÓN VIAJES· Herramienta preventiva de planificación.
-
-      <br>
-
-      La información meteorológica es una previsión y puede cambiar.
-
-      <br>
-
-      No sustituye a los avisos oficiales ni a las condiciones
-      observadas durante el viaje.
-
-    </footer>
-
-  </div>
-
+<!-- TOP TELEMETRY DOCK -->
+<header class="header">
+<div class="logo-row">
+<div class="logo-icon">🛰️</div>
+<div>
+<div class="logo-title">PREVISIÓN<span> VIAJES</span></div>
 </div>
-
-
+</div>
+<div class="top-telemetry-dock">
+<div class="telemetry-tag">STATUS: <strong>ONLINE</strong></div>
+<div class="telemetry-tag">SYS: <strong>OSRM v1.8</strong></div>
+<div class="telemetry-tag">RADAR: <strong>OPEN-METEO</strong></div>
+</div>
+<div class="auth-userbar">
+<span class="auth-user-email" id="authUserEmail"></span>
+<button class="logout-btn" id="logoutBtn" type="button">Desconectar</button>
+</div></header>
+<!-- SPLIT COCKPIT WORKSPACE -->
+<main class="cockpit-workspace">
+<!-- LEFT COMMAND SIDEBAR -->
+<aside class="command-sidebar">
+<section class="panel search-panel" id="section-analyze">
+<div class="panel-title">
+<span>⚡ PLANIFICAR RUTA</span>
+<span style="font-size:9px; opacity:0.6;">SYS.INPUT</span>
+</div>
+<form id="travelForm">
+<div class="form-grid">
+<div class="field">
+<label for="origin">Origen</label>
+<input autocomplete="off" id="origin" placeholder="Ej. Alcorcón, Madrid" required="" type="text"/>
+</div>
+<div class="field">
+<label for="destination">Destino</label>
+<input autocomplete="off" id="destination" placeholder="Ej. Molina de Aragón" required="" type="text"/>
+</div>
+<div class="field">
+<label for="travelDate">Fecha Despegue</label>
+<div class="date-time-picker-row">
+<input id="travelDate" required="" type="date"/>
+<button class="native-picker-button" data-picker-target="travelDate" title="Elegir fecha" type="button">📅</button>
+</div>
+</div>
+<div class="field">
+<label for="departureTime">Hora Salida</label>
+<div class="date-time-picker-row">
+<input id="departureTime" required="" type="time" value="08:00"/>
+<button class="native-picker-button" data-picker-target="departureTime" title="Elegir hora" type="button">🕒</button>
+</div>
+</div>
+</div>
+<button class="analyze-btn" id="analyzeBtn" type="submit">🔍 EJECUTAR TELEMETRÍA</button>
+</form>
+<div aria-live="polite" class="status" id="status">
+<div class="status-main" id="statusMain">Iniciando sistemas...</div>
+<div class="status-detail" id="statusDetail"></div>
+</div>
+<div aria-live="assertive" class="error" id="error"></div>
+</section><section class="panel section" id="section-risks">
+<div class="panel-title">Riesgo global</div>
+<div class="radar-target-box">
+<div class="radar-hud-circle" id="scoreCircle">
+<div>
+<div class="score-number" id="scoreNumber">—</div>
+<div class="score-label">INDEX / 100</div>
+</div>
+</div>
+<div class="risk-name" id="riskName">—</div>
+<div class="risk-description" id="riskDescription">—</div>
+</div>
+<div class="confidence" id="confidence" style="margin-top:10px;"></div>
+<div class="risk-method" id="riskMethod" style="margin-top:8px;"></div>
+</section>
+<!-- SAVED TRIPS PANEL -->
+<section class="panel" id="section-trips">
+<div class="panel-title">
+<span>💾 RUTAS GUARDADAS</span>
+<span style="font-size:9px; opacity:0.6;">MEMORY</span>
+</div>
+<div class="saved-list" id="savedTrips"></div>
+</section>
+</aside>
+<!-- CENTER CANVAS MAP -->
+<section class="center-canvas map-panel" id="section-route">
+<div class="map-heading">
+<div class="map-heading-title">Ruta</div>
+<div class="map-heading-info" id="mapInfo">Esperando datos de ruta...</div>
+</div>
+<div id="map"></div>
+<div aria-label="Modo de capa" class="map-layer-switcher" role="group">
+<button class="map-layer-btn active" data-map-mode="weather" onclick="setMapMode('weather')" type="button">🌦️ Tiempo / Riesgo</button>
+<button class="map-layer-btn" data-map-mode="dgt" onclick="setMapMode('dgt')" type="button">🚧 DGT / Incidencias</button>
+<button class="map-layer-btn" data-map-mode="all" onclick="setMapMode('all')" type="button">🗺️ Modo Completo</button>
+</div>
+<div class="map-legend">
+<div class="legend-item"><span class="legend-dot" style="background:#10b981"></span> Normal</div>
+<div class="legend-item"><span class="legend-dot" style="background:#f59e0b"></span> Precaución</div>
+<div class="legend-item"><span class="legend-dot" style="background:#f97316"></span> Riesgo</div>
+<div class="legend-item"><span class="legend-dot" style="background:#ef4444"></span> Elevado</div>
+<div class="legend-item"><span class="legend-dot" style="background:#ec4899"></span> Extremo</div>
+</div>
+</section>
+<!-- RIGHT TELEMETRY DRAWER -->
+<aside class="hud-drawer">
+<!-- RESULTS WRAPPER CONTAINER -->
+<div id="results" style="display:flex; flex-direction:column; gap:12px; min-width:0;">
+<!-- SUMMARY STRIP -->
+<section class="panel section" id="section-summary">
+<div class="trip-route" id="tripRoute">—</div>
+<div class="trip-meta" id="tripMeta"></div>
+<button class="report-btn" id="printReportBtn" type="button">🖨️ Exportar Informe PDF</button>
+</section>
+<!-- RADAR TARGET RISK HUD -->
+<!-- WEATHER POINTS -->
+<section class="panel section" id="section-weather">
+<div class="panel-title">🌦️ PUNTOS METEOROLÓGICOS</div>
+<div class="points-list" id="pointsList"></div>
+</section>
+<!-- SEGMENTS -->
+<section class="panel">
+<div class="panel-title">🛣️ DESGLOSE POR TRAMOS</div>
+<div class="segments" id="segmentsList"></div>
+</section>
+<!-- DETECTED PHENOMENA -->
+<section class="panel">
+<div class="panel-title">⚠️ FENÓMENOS Y AMENAZAS</div>
+<div class="risks-list" id="risksList"></div>
+</section>
+<!-- OFFICIAL ALERTS & DGT -->
+<section class="panel">
+<div class="panel-title">🚨 AVISOS AEMET &amp; DGT</div>
+<div class="data-state" id="alertsStatus"></div>
+<div class="official-list" id="alertsList"></div>
+<div style="margin-top:12px;">
+<a class="etraffic-link" href="https://etraffic.dgt.es/etrafficWEB/" rel="noopener" target="_blank">
+              🗺️ Consultar eTraffic DGT ↗
+            </a>
+</div>
+<div class="data-state" id="dgtStatus" style="margin-top:8px;"></div>
+<div class="official-list" id="dgtList"></div>
+</section>
+<!-- HYDROLOGY -->
+<section class="panel">
+<div class="panel-title">🌊 INUNDACIONES &amp; HIDROLOGÍA</div>
+<div class="data-state" id="floodStatus"></div>
+<div id="floodList"></div>
+</section>
+<!-- RECOMMENDATION -->
+<section class="panel">
+<div class="panel-title">🚗 EVALUACIÓN TÁCTICA</div>
+<div class="recommendation" id="recommendation"></div>
+</section>
+<!-- SOURCES -->
+<section class="panel">
+<div class="panel-title">📚 FUENTES CONECTADAS</div>
+<div class="source-list">
+<div class="source-row"><strong>Mapa:</strong> <span>OpenStreetMap + Leaflet</span></div>
+<div class="source-row"><strong>Ruta:</strong> <span>OSRM Engine</span></div>
+<div class="source-row"><strong>Meteo:</strong> <span>Open-Meteo High-Res API</span></div>
+<div class="source-row"><strong>Avisos:</strong> <span>AEMET JSON GitHub Action</span></div>
+<div class="source-row"><strong>Tráfico:</strong> <span>DGT Incidents JSON Feed</span></div>
+</div>
+</section>
+</div>
+</aside>
+</main>
+<!-- FLOATING NAVIGATION DOCK FOR MOBILE DEVICES -->
+<nav aria-label="Navegación Táctica" class="travel-pill-nav">
+<button class="travel-nav-item active" data-target="section-analyze" type="button">
+<span class="travel-nav-icon">⌂</span>
+<span>Ruta</span>
+</button>
+<button class="travel-nav-item" data-target="section-route" type="button">
+<span class="travel-nav-icon">⌖</span>
+<span>Mapa</span>
+</button>
+<button class="travel-nav-item" data-target="section-weather" type="button">
+<span class="travel-nav-icon">☁</span>
+<span>Meteo</span>
+</button>
+<button class="travel-nav-item" data-target="section-risks" type="button">
+<span class="travel-nav-icon">⚠</span>
+<span>Target</span>
+</button>
+<button class="travel-nav-item" data-target="section-trips" type="button">
+<span class="travel-nav-icon">♡</span>
+<span>Memorias</span>
+</button>
+<button class="travel-nav-item" data-target="dgtList" type="button">
+<span class="travel-nav-icon">🚧</span>
+<span>DGT</span>
+</button>
+</nav>
+</div>
 <script>
 "use strict";
 
@@ -2855,15 +1542,21 @@ function translateDgtEvent(value) {
 function renderDgtMapMarkers(incidents) {
   if (!dgtLayer) return;
   dgtLayer.clearLayers();
-  (incidents || []).forEach(incident => {
-    if (!Number.isFinite(incident.lat) || !Number.isFinite(incident.lon)) return;
-    const eventName = translateDgtEvent(incident.event);
-    const location = [incident.road,incident.direction,incident.municipality,incident.province].filter(Boolean).join(" · ");
-    const distance = Number.isFinite(incident.distanceKm) ? `${incident.distanceKm.toFixed(1)} km de la ruta` : "";
-    const detail = [incident.description,location,distance].filter(Boolean).join(" · ");
-    L.marker([incident.lat,incident.lon],{icon:L.divIcon({className:"",html:`<div class="dgt-map-marker">🚧</div>`,iconSize:[30,30],iconAnchor:[15,15]})})
-      .bindPopup(`<div style="min-width:220px"><strong>🚧 ${escapeHtml(eventName)}</strong>${location ? `<br><br>🛣️ ${escapeHtml(location)}` : ""}${detail ? `<br><br>${escapeHtml(detail)}` : ""}</div>`)
-      .addTo(dgtLayer);
+  (Array.isArray(incidents) ? incidents : []).forEach(incident => {
+    try {
+      if (!incident || !Number.isFinite(Number(incident.lat)) || !Number.isFinite(Number(incident.lon))) return;
+      const lat = Number(incident.lat), lon = Number(incident.lon);
+      if (lat < -90 || lat > 90 || lon < -180 || lon > 180) return;
+      const eventName = translateDgtEvent(incident.event);
+      const location = [incident.road,incident.direction,incident.municipality,incident.province].filter(Boolean).map(String).join(" · ");
+      const distance = Number.isFinite(Number(incident.distanceKm)) ? `${Number(incident.distanceKm).toFixed(1)} km de la ruta` : "";
+      const detail = [incident.description,location,distance].filter(Boolean).map(String).join(" · ");
+      L.marker([lat,lon],{icon:L.divIcon({className:"",html:`<div class="dgt-map-marker">🚧</div>`,iconSize:[30,30],iconAnchor:[15,15]})})
+        .bindPopup(`<div style="min-width:220px;max-width:280px;overflow-wrap:anywhere"><strong>🚧 ${escapeHtml(String(eventName))}</strong>${location ? `<br><br>🛣️ ${escapeHtml(location)}` : ""}${detail ? `<br><br>${escapeHtml(detail)}` : ""}</div>`, { maxWidth: 320, maxHeight: 240, autoPan: false, closeButton: true, autoClose: true, closeOnClick: true })
+        .addTo(dgtLayer);
+    } catch (error) {
+      console.warn("No se pudo dibujar una incidencia DGT; se omite este registro.", error);
+    }
   });
 }
 
@@ -5478,15 +4171,11 @@ function renderRoute(
     .forEach(
       (point, index) => {
 
-        if (!point.weather) {
-          return;
-        }
-
-
-        const risk =
-          getRiskLevel(
-            point.risk.score
-          );
+        // Los puntos deben verse aunque la fuente meteorológica no devuelva datos.
+        const score = Number(point.risk?.score ?? 0);
+        const risk = point.weather
+          ? getRiskLevel(score)
+          : { color: "#a8b3c7", label: "Datos insuficientes" };
 
 
         const marker =
@@ -5496,6 +4185,8 @@ function renderRoute(
               point.lon
             ],
             {
+
+              
 
               icon:
                 L.divIcon({
@@ -5520,15 +4211,10 @@ function renderRoute(
 
         marker
           .bindPopup(
-            createPointPopup(
-              point,
-              risk,
-              index
-            )
+            createPointPopup(point, risk, index),
+            { maxWidth: 320, maxHeight: 240, autoPan: false, closeButton: true, autoClose: true, closeOnClick: true }
           )
-          .addTo(
-            pointLayer
-          );
+          .addTo(pointLayer);
 
         pointMarkers[index] = marker;
 
@@ -5589,94 +4275,35 @@ function renderRoute(
    POPUP MAPA
    =========================================================== */
 
-function createPointPopup(
-  point,
-  risk,
-  index
-) {
-
-  const w =
-    point.weather;
-
-
-  const risks =
-    point.risk.risks.length
-      ? point.risk.risks
-          .map(
-            x =>
-              `• ${escapeHtml(x)}`
-          )
-          .join("<br>")
-      : "No se han detectado riesgos meteorológicos relevantes";
-
-
-  return `
-
-    <div style="min-width:220px">
-
-      <strong>
-        Punto de análisis ${index + 1}
-      </strong>
-
-      <br>
-
-      <span style="color:#666">
-        Hora estimada:
-      </span>
-
-      <strong>
-        ${point.passTime}
-      </strong>
-
-      <br><br>
-
-      <strong style="color:${risk.color}">
-        ${risk.name}
-      </strong>
-
-      · ${point.risk.score}/100
-
-      <hr>
-
-      🌡️ ${fmt(w.temperature," °C",1)}
-      <br>
-
-      🌧️ ${fmt(w.precipitationProbability," %")}
-      <br>
-
-      💧 ${fmt(w.precipitation," mm",1)}
-      <br>
-
-      💨 ${fmt(w.wind," km/h")}
-      <br>
-
-      💨 Rachas ${fmt(w.gusts," km/h")}
-      <br>
-
-      👁️ ${formatVisibility(w.visibility)}
-      <br>
-
-      ☁️ ${fmt(w.cloudCover," %")}
-      <br>
-
-      ${escapeHtml(
-        weatherDescription(w.weatherCode)
-      )}
-
-      <hr>
-
-      ${risks}
-
-      <br><br>
-
-      <small>
-        Fuente: Open-Meteo
-      </small>
-
-    </div>
-
-  `;
-
+function createPointPopup(point, risk, index) {
+  // Los puntos pueden existir aunque Open-Meteo no devuelva datos.
+  const w = point && point.weather ? point.weather : null;
+  const pointRisk = point && point.risk ? point.risk : {};
+  const riskItems = Array.isArray(pointRisk.risks) ? pointRisk.risks : [];
+  const score = Number.isFinite(Number(pointRisk.score)) ? Number(pointRisk.score) : null;
+  const risks = riskItems.length
+    ? riskItems.map(x => `• ${escapeHtml(String(x))}`).join("<br>")
+    : (w ? "No se han detectado riesgos meteorológicos relevantes" : "No hay datos suficientes para evaluar el riesgo de este punto.");
+  const safeRisk = risk || { color: "#a8b3c7", name: "Datos insuficientes" };
+  const weatherRows = w ? `
+    🌡️ ${fmt(w.temperature," °C",1)}<br>
+    🌧️ ${fmt(w.precipitationProbability," %")}<br>
+    💧 ${fmt(w.precipitation," mm",1)}<br>
+    💨 ${fmt(w.wind," km/h")}<br>
+    💨 Rachas ${fmt(w.gusts," km/h")}<br>
+    👁️ ${formatVisibility(w.visibility)}<br>
+    ☁️ ${fmt(w.cloudCover," %")}<br>
+    ${escapeHtml(weatherDescription(w.weatherCode))}
+  ` : `<div style="padding:8px;background:#f1f5f9;border-radius:6px;color:#475569">No hay datos meteorológicos disponibles para este punto. Esto no significa que no exista riesgo.</div>`;
+  return `<div style="min-width:220px;max-width:280px;overflow-wrap:anywhere">
+    <strong>Punto de análisis ${Number(index) + 1}</strong><br>
+    <span style="color:#666">Hora estimada:</span>
+    <strong>${escapeHtml(String(point?.passTime || "No disponible"))}</strong><br><br>
+    <strong style="color:${safeRisk.color}">${escapeHtml(String(safeRisk.name || "Datos insuficientes"))}</strong>
+    ${score === null ? "" : ` · ${score}/100`}
+    <hr>${weatherRows}<hr>${risks}<br><br>
+    <small>${w ? "Fuente: Open-Meteo" : "Fuente meteorológica: sin datos para este punto"}</small>
+  </div>`;
 }
 
 
@@ -7897,8 +6524,6 @@ window.addEventListener(
 
 
 </script>
-
-
 <script>
 (function(){
   document.querySelectorAll('[data-picker-target]').forEach(button => {
@@ -7952,6 +6577,61 @@ window.addEventListener(
   }
 })();
 </script>
+<style id="risk-map-order-and-controls-fix">
+/* Ajustes puntuales: orden, título y controles del mapa */
+#section-risks { order: 0; min-width: 0; margin:0 0 10px 0; }
+#section-route { order: 2; min-width: 0; }
+.map-heading-title { text-transform: none !important; letter-spacing: .01em !important; }
+#section-route.center-canvas { height: auto; min-height: 0; overflow: visible; }
+#section-route #map { display:block; width:100%; height: min(48vh, 360px); min-height: 250px; flex: 0 0 auto; }
+#section-route .map-layer-switcher { display:flex; flex-wrap:wrap; align-items:stretch; gap:8px; padding:10px; width:100%; box-sizing:border-box; }
+#section-route .map-layer-btn { flex:1 1 145px; min-width:0; min-height:42px; white-space:normal; line-height:1.25; overflow-wrap:anywhere; touch-action:manipulation; }
+#section-route .map-legend { display:flex; flex-wrap:wrap; justify-content:flex-start; gap:8px 14px; padding:10px; box-sizing:border-box; }
+@media (max-width: 1024px) {
+  #section-risks { order: 1; }
+  #section-route { order: 2; }
+  #section-route.center-canvas { height:auto !important; min-height:0 !important; }
+  #section-route #map { height: min(45vh, 330px) !important; min-height:250px !important; flex:none !important; }
+  #section-route .map-layer-switcher { position:relative; z-index:5; }
+  #section-route .map-layer-btn { flex:1 1 140px; font-size:11px !important; }
+}
 
+#section-route { display:flex; flex-direction:column; }
+#section-route > #section-risks { width:100%; box-sizing:border-box; }
+</style><style id="final-layout-menu-fix">
+/* Corrección de orden y cabecera: riesgo global al inicio */
+.cockpit-workspace { display:flex; flex-direction:column; gap:12px; }
+#section-risks { order:0 !important; width:100%; margin:0 !important; }
+.command-sidebar { order:1; }
+#section-route { order:2; }
+.hud-drawer { order:3; }
+.header { display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; }
+.header .auth-userbar { margin-left:auto; display:flex; align-items:center; gap:10px; position:static !important; float:none !important; }
+.logo-subtitle { display:none !important; }
+@media (max-width:1024px) {
+ .cockpit-workspace { display:flex !important; flex-direction:column !important; }
+ #section-risks { order:0 !important; }
+ .command-sidebar { order:1 !important; }
+ #section-route { order:2 !important; }
+ .hud-drawer { order:3 !important; }
+ .header .auth-userbar { width:100%; margin-left:0; justify-content:flex-end; }
+}
+</style>
 </body>
 </html>
+<style id="mobile-map-navigation-repair">
+@media (max-width: 1024px) {
+  html, body { width:100%; min-height:100%; overflow-x:hidden !important; overflow-y:auto !important; }
+  .app { display:flex !important; flex-direction:column !important; height:auto !important; min-height:100dvh !important; overflow:visible !important; padding-bottom:100px !important; }
+  .cockpit-workspace { display:flex !important; flex-direction:column !important; height:auto !important; min-height:0 !important; overflow:visible !important; }
+  .command-sidebar, .hud-drawer { display:flex !important; flex-direction:column !important; width:100% !important; max-height:none !important; height:auto !important; overflow:visible !important; }
+  #section-route.center-canvas { display:flex !important; flex-direction:column !important; width:100% !important; height: min(62dvh, 520px) !important; min-height:380px !important; flex:0 0 auto !important; visibility:visible !important; opacity:1 !important; }
+  #section-route #map, #map { display:block !important; position:relative !important; width:100% !important; height:100% !important; min-height:320px !important; flex:1 1 auto !important; z-index:1; }
+  .travel-pill-nav { z-index:1000000 !important; pointer-events:auto !important; }
+  .travel-pill-nav .travel-nav-item { position:relative; z-index:1000001; }
+  #section-route .map-layer-switcher { position:relative; z-index:1000 !important; pointer-events:auto !important; }
+  #section-route .map-layer-btn { position:relative; z-index:1001; pointer-events:auto !important; }
+  .travel-pill-nav .travel-nav-item { pointer-events:auto !important; touch-action:manipulation; }
+}
+</style>
+
