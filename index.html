@@ -1064,6 +1064,68 @@ html, body { width:100%; min-height:100%; overflow-x:hidden; }
   }
 }
 </style>
+
+<style id="desktop-map-space-and-mobile-alerts-refinement">
+/* Escritorio: recuperar el reparto en tres columnas y dar al mapa todo el alto disponible. */
+@media (min-width: 1025px) {
+  .cockpit-workspace {
+    display: grid !important;
+    grid-template-columns: minmax(285px, 320px) minmax(420px, 1fr) minmax(300px, 360px) !important;
+    grid-template-rows: minmax(0, 1fr) !important;
+    grid-template-areas: "sidebar map results" !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    min-height: 0 !important;
+    height: auto !important;
+    overflow: hidden !important;
+  }
+  .command-sidebar { grid-area: sidebar !important; min-height: 0 !important; overflow-y: auto !important; }
+  #section-route {
+    grid-area: map !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding-bottom: 0 !important;
+    overflow: hidden !important;
+  }
+  #section-route #map { flex: 1 1 0 !important; min-height: 320px !important; height: auto !important; }
+  #section-route .map-legend { flex: 0 0 auto !important; margin-bottom: 0 !important; padding-bottom: 7px !important; }
+  .hud-drawer { grid-area: results !important; min-height: 0 !important; height: 100% !important; overflow-y: auto !important; }
+  /* Elimina el hueco sobrante que dejaba la escala de riesgo debajo del mapa. */
+  #section-route > :last-child { margin-bottom: 0 !important; }
+}
+/* Móvil: compactar las tarjetas de avisos para que el texto se lea mejor. */
+@media (max-width: 767px) {
+  .official-alert, .official-item {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 9px 10px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    border-radius: 9px !important;
+  }
+  .official-alert strong, .official-item strong {
+    font-size: 10px !important;
+    line-height: 1.3 !important;
+    overflow-wrap: anywhere !important;
+  }
+  .official-alert span, .official-item span {
+    display: block !important;
+    font-size: 9px !important;
+    line-height: 1.35 !important;
+    overflow-wrap: anywhere !important;
+  }
+  #aemetAlerts, #dgtAlerts, #officialAlerts, #floodStatus {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+</style>
+
 </head>
 <body>
 <!-- AUTHENTICATION GATEWAY -->
