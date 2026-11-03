@@ -1,6 +1,6 @@
 {
   "source": "AEMET OpenData",
-  "generatedAt": "2026-11-02T23:44:00.269498+00:00",
+  "generatedAt": "2026-11-03T04:30:04.435894+00:00",
   "status": "ok",
   "count": 278,
   "alerts": [
@@ -2120,256 +2120,6 @@
               [
                 28.27,
                 -16.85
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261102102407.659001PRP102191793615047",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-02T10:24:07+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-02T10:24:07+00:00",
-      "onset": "2026-11-02T12:00:00+00:00",
-      "expires": "2026-11-02T18:59:59+00:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel amarillo. Norte de Gran Canaria",
-      "description": "Precipitación acumulada en una hora: 15 mm. Afectando principalmente a zonas de interior.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Norte de Gran Canaria",
-          "zoneCode": "659001",
-          "polygons": [
-            [
-              [
-                28.05,
-                -15.74
-              ],
-              [
-                28.09,
-                -15.71
-              ],
-              [
-                28.16,
-                -15.7
-              ],
-              [
-                28.17,
-                -15.63
-              ],
-              [
-                28.15,
-                -15.61
-              ],
-              [
-                28.14,
-                -15.54
-              ],
-              [
-                28.15,
-                -15.52
-              ],
-              [
-                28.13,
-                -15.48
-              ],
-              [
-                28.13,
-                -15.43
-              ],
-              [
-                28.1,
-                -15.41
-              ],
-              [
-                28.06,
-                -15.42
-              ],
-              [
-                28.04,
-                -15.41
-              ],
-              [
-                28.03,
-                -15.39
-              ],
-              [
-                28.04,
-                -15.42
-              ],
-              [
-                28.01,
-                -15.51
-              ],
-              [
-                28.04,
-                -15.54
-              ],
-              [
-                28.01,
-                -15.6
-              ],
-              [
-                28.02,
-                -15.61
-              ],
-              [
-                28.04,
-                -15.65
-              ],
-              [
-                28.05,
-                -15.69
-              ],
-              [
-                28.03,
-                -15.72
-              ],
-              [
-                28.05,
-                -15.74
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261102102407.659001TOTO02191793615047",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-02T10:24:07+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de tormentas de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-02T10:24:07+00:00",
-      "onset": "2026-11-02T12:00:00+00:00",
-      "expires": "2026-11-02T18:59:59+00:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de tormentas de nivel amarillo. Norte de Gran Canaria",
-      "description": null,
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Norte de Gran Canaria",
-          "zoneCode": "659001",
-          "polygons": [
-            [
-              [
-                28.05,
-                -15.74
-              ],
-              [
-                28.09,
-                -15.71
-              ],
-              [
-                28.16,
-                -15.7
-              ],
-              [
-                28.17,
-                -15.63
-              ],
-              [
-                28.15,
-                -15.61
-              ],
-              [
-                28.14,
-                -15.54
-              ],
-              [
-                28.15,
-                -15.52
-              ],
-              [
-                28.13,
-                -15.48
-              ],
-              [
-                28.13,
-                -15.43
-              ],
-              [
-                28.1,
-                -15.41
-              ],
-              [
-                28.06,
-                -15.42
-              ],
-              [
-                28.04,
-                -15.41
-              ],
-              [
-                28.03,
-                -15.39
-              ],
-              [
-                28.04,
-                -15.42
-              ],
-              [
-                28.01,
-                -15.51
-              ],
-              [
-                28.04,
-                -15.54
-              ],
-              [
-                28.01,
-                -15.6
-              ],
-              [
-                28.02,
-                -15.61
-              ],
-              [
-                28.04,
-                -15.65
-              ],
-              [
-                28.05,
-                -15.69
-              ],
-              [
-                28.03,
-                -15.72
-              ],
-              [
-                28.05,
-                -15.74
               ]
             ]
           ]
@@ -4756,6 +4506,591 @@
       ]
     },
     {
+      "id": "2.49.0.0.724.0.ES.20261103001658.694304PRP103201793665018",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-03T00:16:58+00:00",
+      "status": "Actual",
+      "messageType": "Update",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel amarillo",
+      "urgency": "Immediate",
+      "severity": "Moderate",
+      "certainty": "Observed",
+      "effective": "2026-11-03T01:16:58+01:00",
+      "onset": "2026-11-03T01:00:00+01:00",
+      "expires": "2026-11-03T20:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel amarillo. Litoral sur de Tarragona",
+      "description": "Precipitación acumulada en una hora: 30 mm. Afectarán más a la mitad norte. Los chubascos pueden ir acompañados de tormenta.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Litoral sur de Tarragona",
+          "zoneCode": "694304",
+          "polygons": [
+            [
+              [
+                41.18,
+                1.04
+              ],
+              [
+                41.18,
+                1.06
+              ],
+              [
+                41.14,
+                1.09
+              ],
+              [
+                41.09,
+                1.1
+              ],
+              [
+                41.07,
+                1.12
+              ],
+              [
+                41.06,
+                1.05
+              ],
+              [
+                41.03,
+                0.97
+              ],
+              [
+                40.92,
+                0.84
+              ],
+              [
+                40.87,
+                0.79
+              ],
+              [
+                40.85,
+                0.75
+              ],
+              [
+                40.8,
+                0.7
+              ],
+              [
+                40.77,
+                0.73
+              ],
+              [
+                40.78,
+                0.78
+              ],
+              [
+                40.7,
+                0.88
+              ],
+              [
+                40.68,
+                0.84
+              ],
+              [
+                40.65,
+                0.77
+              ],
+              [
+                40.59,
+                0.71
+              ],
+              [
+                40.64,
+                0.74
+              ],
+              [
+                40.64,
+                0.73
+              ],
+              [
+                40.62,
+                0.6
+              ],
+              [
+                40.57,
+                0.54
+              ],
+              [
+                40.52,
+                0.52
+              ],
+              [
+                40.55,
+                0.44
+              ],
+              [
+                40.58,
+                0.43
+              ],
+              [
+                40.61,
+                0.39
+              ],
+              [
+                40.61,
+                0.33
+              ],
+              [
+                40.66,
+                0.35
+              ],
+              [
+                40.74,
+                0.44
+              ],
+              [
+                40.74,
+                0.51
+              ],
+              [
+                40.76,
+                0.61
+              ],
+              [
+                40.81,
+                0.61
+              ],
+              [
+                40.87,
+                0.67
+              ],
+              [
+                40.9,
+                0.61
+              ],
+              [
+                40.93,
+                0.61
+              ],
+              [
+                40.95,
+                0.67
+              ],
+              [
+                40.93,
+                0.75
+              ],
+              [
+                40.94,
+                0.82
+              ],
+              [
+                41.0,
+                0.78
+              ],
+              [
+                41.05,
+                0.81
+              ],
+              [
+                41.03,
+                0.85
+              ],
+              [
+                41.03,
+                0.91
+              ],
+              [
+                41.06,
+                0.92
+              ],
+              [
+                41.1,
+                0.9
+              ],
+              [
+                41.13,
+                0.92
+              ],
+              [
+                41.11,
+                0.95
+              ],
+              [
+                41.14,
+                1.02
+              ],
+              [
+                41.18,
+                1.04
+              ]
+            ],
+            [
+              [
+                40.59,
+                0.71
+              ],
+              [
+                40.56,
+                0.65
+              ],
+              [
+                40.57,
+                0.6
+              ],
+              [
+                40.59,
+                0.67
+              ],
+              [
+                40.59,
+                0.71
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261103033948.659004PRP103061793677188",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-03T03:39:48+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel amarillo",
+      "urgency": "Immediate",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-03T03:39:48+00:00",
+      "onset": "2026-11-03T03:00:00+00:00",
+      "expires": "2026-11-03T05:59:59+00:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel amarillo. Este, sur y oeste de Gran Canaria",
+      "description": "Precipitación acumulada en una hora: 20 mm. No se descarta que los chubascos vayan acompañados de granizo menudo y/o rachas muy fuertes de viento.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Este, sur y oeste de Gran Canaria",
+          "zoneCode": "659004",
+          "polygons": [
+            [
+              [
+                28.05,
+                -15.74
+              ],
+              [
+                28.03,
+                -15.72
+              ],
+              [
+                28.05,
+                -15.69
+              ],
+              [
+                28.04,
+                -15.65
+              ],
+              [
+                28.02,
+                -15.61
+              ],
+              [
+                28.0,
+                -15.64
+              ],
+              [
+                27.99,
+                -15.71
+              ],
+              [
+                27.96,
+                -15.75
+              ],
+              [
+                27.92,
+                -15.69
+              ],
+              [
+                27.92,
+                -15.65
+              ],
+              [
+                27.97,
+                -15.6
+              ],
+              [
+                27.95,
+                -15.59
+              ],
+              [
+                27.96,
+                -15.55
+              ],
+              [
+                27.99,
+                -15.55
+              ],
+              [
+                28.01,
+                -15.51
+              ],
+              [
+                28.04,
+                -15.42
+              ],
+              [
+                28.03,
+                -15.39
+              ],
+              [
+                27.99,
+                -15.37
+              ],
+              [
+                27.97,
+                -15.38
+              ],
+              [
+                27.89,
+                -15.39
+              ],
+              [
+                27.86,
+                -15.38
+              ],
+              [
+                27.85,
+                -15.41
+              ],
+              [
+                27.81,
+                -15.42
+              ],
+              [
+                27.79,
+                -15.49
+              ],
+              [
+                27.76,
+                -15.56
+              ],
+              [
+                27.73,
+                -15.6
+              ],
+              [
+                27.75,
+                -15.67
+              ],
+              [
+                27.83,
+                -15.79
+              ],
+              [
+                27.91,
+                -15.83
+              ],
+              [
+                27.97,
+                -15.83
+              ],
+              [
+                28.02,
+                -15.81
+              ],
+              [
+                28.02,
+                -15.79
+              ],
+              [
+                28.05,
+                -15.74
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261103033948.659004TOTO03061793677188",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-03T03:39:48+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de tormentas de nivel amarillo",
+      "urgency": "Immediate",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-03T03:39:48+00:00",
+      "onset": "2026-11-03T03:00:00+00:00",
+      "expires": "2026-11-03T05:59:59+00:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de tormentas de nivel amarillo. Este, sur y oeste de Gran Canaria",
+      "description": null,
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Este, sur y oeste de Gran Canaria",
+          "zoneCode": "659004",
+          "polygons": [
+            [
+              [
+                28.05,
+                -15.74
+              ],
+              [
+                28.03,
+                -15.72
+              ],
+              [
+                28.05,
+                -15.69
+              ],
+              [
+                28.04,
+                -15.65
+              ],
+              [
+                28.02,
+                -15.61
+              ],
+              [
+                28.0,
+                -15.64
+              ],
+              [
+                27.99,
+                -15.71
+              ],
+              [
+                27.96,
+                -15.75
+              ],
+              [
+                27.92,
+                -15.69
+              ],
+              [
+                27.92,
+                -15.65
+              ],
+              [
+                27.97,
+                -15.6
+              ],
+              [
+                27.95,
+                -15.59
+              ],
+              [
+                27.96,
+                -15.55
+              ],
+              [
+                27.99,
+                -15.55
+              ],
+              [
+                28.01,
+                -15.51
+              ],
+              [
+                28.04,
+                -15.42
+              ],
+              [
+                28.03,
+                -15.39
+              ],
+              [
+                27.99,
+                -15.37
+              ],
+              [
+                27.97,
+                -15.38
+              ],
+              [
+                27.89,
+                -15.39
+              ],
+              [
+                27.86,
+                -15.38
+              ],
+              [
+                27.85,
+                -15.41
+              ],
+              [
+                27.81,
+                -15.42
+              ],
+              [
+                27.79,
+                -15.49
+              ],
+              [
+                27.76,
+                -15.56
+              ],
+              [
+                27.73,
+                -15.6
+              ],
+              [
+                27.75,
+                -15.67
+              ],
+              [
+                27.83,
+                -15.79
+              ],
+              [
+                27.91,
+                -15.83
+              ],
+              [
+                27.97,
+                -15.83
+              ],
+              [
+                28.02,
+                -15.81
+              ],
+              [
+                28.02,
+                -15.79
+              ],
+              [
+                28.05,
+                -15.74
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
       "id": "2.49.0.0.724.0.ES.20261102175816.690804PRP103201793642296",
       "sender": "http://www.aemet.es",
       "sent": "2026-11-02T17:58:16+00:00",
@@ -5095,253 +5430,6 @@
               [
                 41.18,
                 1.06
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261102175816.694304PRP103201793642296",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-02T17:58:16+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-02T18:58:16+01:00",
-      "onset": "2026-11-03T07:00:00+01:00",
-      "expires": "2026-11-03T20:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel amarillo. Litoral sur de Tarragona",
-      "description": "Precipitación acumulada en una hora: 20 mm. Afectarán más a la mitad norte. Los chubascos pueden ir acompañados de tormenta.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Litoral sur de Tarragona",
-          "zoneCode": "694304",
-          "polygons": [
-            [
-              [
-                41.18,
-                1.04
-              ],
-              [
-                41.18,
-                1.06
-              ],
-              [
-                41.14,
-                1.09
-              ],
-              [
-                41.09,
-                1.1
-              ],
-              [
-                41.07,
-                1.12
-              ],
-              [
-                41.06,
-                1.05
-              ],
-              [
-                41.03,
-                0.97
-              ],
-              [
-                40.92,
-                0.84
-              ],
-              [
-                40.87,
-                0.79
-              ],
-              [
-                40.85,
-                0.75
-              ],
-              [
-                40.8,
-                0.7
-              ],
-              [
-                40.77,
-                0.73
-              ],
-              [
-                40.78,
-                0.78
-              ],
-              [
-                40.7,
-                0.88
-              ],
-              [
-                40.68,
-                0.84
-              ],
-              [
-                40.65,
-                0.77
-              ],
-              [
-                40.59,
-                0.71
-              ],
-              [
-                40.64,
-                0.74
-              ],
-              [
-                40.64,
-                0.73
-              ],
-              [
-                40.62,
-                0.6
-              ],
-              [
-                40.57,
-                0.54
-              ],
-              [
-                40.52,
-                0.52
-              ],
-              [
-                40.55,
-                0.44
-              ],
-              [
-                40.58,
-                0.43
-              ],
-              [
-                40.61,
-                0.39
-              ],
-              [
-                40.61,
-                0.33
-              ],
-              [
-                40.66,
-                0.35
-              ],
-              [
-                40.74,
-                0.44
-              ],
-              [
-                40.74,
-                0.51
-              ],
-              [
-                40.76,
-                0.61
-              ],
-              [
-                40.81,
-                0.61
-              ],
-              [
-                40.87,
-                0.67
-              ],
-              [
-                40.9,
-                0.61
-              ],
-              [
-                40.93,
-                0.61
-              ],
-              [
-                40.95,
-                0.67
-              ],
-              [
-                40.93,
-                0.75
-              ],
-              [
-                40.94,
-                0.82
-              ],
-              [
-                41.0,
-                0.78
-              ],
-              [
-                41.05,
-                0.81
-              ],
-              [
-                41.03,
-                0.85
-              ],
-              [
-                41.03,
-                0.91
-              ],
-              [
-                41.06,
-                0.92
-              ],
-              [
-                41.1,
-                0.9
-              ],
-              [
-                41.13,
-                0.92
-              ],
-              [
-                41.11,
-                0.95
-              ],
-              [
-                41.14,
-                1.02
-              ],
-              [
-                41.18,
-                1.04
-              ]
-            ],
-            [
-              [
-                40.59,
-                0.71
-              ],
-              [
-                40.56,
-                0.65
-              ],
-              [
-                40.57,
-                0.6
-              ],
-              [
-                40.59,
-                0.67
-              ],
-              [
-                40.59,
-                0.71
               ]
             ]
           ]
