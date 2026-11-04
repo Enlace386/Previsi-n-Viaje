@@ -1,379 +1,9 @@
 {
   "source": "AEMET OpenData",
-  "generatedAt": "2026-11-04T00:16:16.046186+00:00",
+  "generatedAt": "2026-11-04T06:46:16.529508+00:00",
   "status": "ok",
-  "count": 261,
+  "count": 257,
   "alerts": [
-    {
-      "id": "2.49.0.0.724.0.ES.20261103204224.770301PRP104031793738544",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-03T20:42:24+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel naranja",
-      "urgency": "Immediate",
-      "severity": "Severe",
-      "certainty": "Likely",
-      "effective": "2026-11-03T21:42:24+01:00",
-      "onset": "2026-11-03T21:00:00+01:00",
-      "expires": "2026-11-04T03:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel naranja. Litoral norte de Alicante",
-      "description": "Precipitación acumulada en una hora: 40 mm. El aviso se refiere a las comarcas de la Safor y la Marina Alta.",
-      "instruction": "Esté preparado. Tome precauciones y manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños graves a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "naranja",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Litoral norte de Alicante",
-          "zoneCode": "770301",
-          "polygons": [
-            [
-              [
-                38.88,
-                -0.3
-              ],
-              [
-                38.86,
-                -0.26
-              ],
-              [
-                38.86,
-                -0.15
-              ],
-              [
-                38.89,
-                -0.07
-              ],
-              [
-                38.89,
-                -0.04
-              ],
-              [
-                38.87,
-                -0.01
-              ],
-              [
-                38.85,
-                0.09
-              ],
-              [
-                38.81,
-                0.17
-              ],
-              [
-                38.77,
-                0.2
-              ],
-              [
-                38.76,
-                0.22
-              ],
-              [
-                38.73,
-                0.2
-              ],
-              [
-                38.64,
-                0.07
-              ],
-              [
-                38.63,
-                0.03
-              ],
-              [
-                38.63,
-                -0.02
-              ],
-              [
-                38.58,
-                -0.06
-              ],
-              [
-                38.62,
-                -0.08
-              ],
-              [
-                38.65,
-                -0.16
-              ],
-              [
-                38.61,
-                -0.19
-              ],
-              [
-                38.61,
-                -0.21
-              ],
-              [
-                38.59,
-                -0.27
-              ],
-              [
-                38.62,
-                -0.33
-              ],
-              [
-                38.65,
-                -0.33
-              ],
-              [
-                38.7,
-                -0.36
-              ],
-              [
-                38.69,
-                -0.44
-              ],
-              [
-                38.74,
-                -0.51
-              ],
-              [
-                38.77,
-                -0.53
-              ],
-              [
-                38.76,
-                -0.56
-              ],
-              [
-                38.8,
-                -0.59
-              ],
-              [
-                38.81,
-                -0.53
-              ],
-              [
-                38.8,
-                -0.47
-              ],
-              [
-                38.83,
-                -0.43
-              ],
-              [
-                38.83,
-                -0.38
-              ],
-              [
-                38.88,
-                -0.3
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261103204224.774604PRP104031793738544",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-03T20:42:24+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel naranja",
-      "urgency": "Immediate",
-      "severity": "Severe",
-      "certainty": "Likely",
-      "effective": "2026-11-03T21:42:24+01:00",
-      "onset": "2026-11-03T21:00:00+01:00",
-      "expires": "2026-11-04T03:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel naranja. Litoral sur de Valencia",
-      "description": "Precipitación acumulada en una hora: 40 mm. El aviso se refiere a las comarcas de la Safor y la Marina Alta.",
-      "instruction": "Esté preparado. Tome precauciones y manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños graves a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "naranja",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Litoral sur de Valencia",
-          "zoneCode": "774604",
-          "polygons": [
-            [
-              [
-                39.28,
-                -0.27
-              ],
-              [
-                39.19,
-                -0.22
-              ],
-              [
-                39.16,
-                -0.24
-              ],
-              [
-                39.14,
-                -0.23
-              ],
-              [
-                39.06,
-                -0.2
-              ],
-              [
-                38.97,
-                -0.13
-              ],
-              [
-                38.89,
-                -0.04
-              ],
-              [
-                38.89,
-                -0.07
-              ],
-              [
-                38.86,
-                -0.15
-              ],
-              [
-                38.86,
-                -0.26
-              ],
-              [
-                38.88,
-                -0.3
-              ],
-              [
-                38.93,
-                -0.3
-              ],
-              [
-                38.99,
-                -0.29
-              ],
-              [
-                38.98,
-                -0.35
-              ],
-              [
-                39.04,
-                -0.38
-              ],
-              [
-                39.03,
-                -0.47
-              ],
-              [
-                39.05,
-                -0.51
-              ],
-              [
-                39.05,
-                -0.62
-              ],
-              [
-                39.09,
-                -0.66
-              ],
-              [
-                39.12,
-                -0.67
-              ],
-              [
-                39.16,
-                -0.72
-              ],
-              [
-                39.19,
-                -0.73
-              ],
-              [
-                39.21,
-                -0.7
-              ],
-              [
-                39.27,
-                -0.78
-              ],
-              [
-                39.28,
-                -0.89
-              ],
-              [
-                39.31,
-                -0.9
-              ],
-              [
-                39.32,
-                -0.85
-              ],
-              [
-                39.37,
-                -0.8
-              ],
-              [
-                39.38,
-                -0.76
-              ],
-              [
-                39.32,
-                -0.76
-              ],
-              [
-                39.32,
-                -0.69
-              ],
-              [
-                39.37,
-                -0.64
-              ],
-              [
-                39.32,
-                -0.58
-              ],
-              [
-                39.34,
-                -0.55
-              ],
-              [
-                39.3,
-                -0.49
-              ],
-              [
-                39.3,
-                -0.43
-              ],
-              [
-                39.33,
-                -0.42
-              ],
-              [
-                39.31,
-                -0.38
-              ],
-              [
-                39.31,
-                -0.32
-              ],
-              [
-                39.28,
-                -0.29
-              ],
-              [
-                39.28,
-                -0.27
-              ]
-            ]
-          ]
-        }
-      ]
-    },
     {
       "id": "2.49.0.0.724.0.ES.20261103103341.733005PRP104011793702021",
       "sender": "http://www.aemet.es",
@@ -589,6 +219,207 @@
               [
                 37.85,
                 -1.27
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261104040107.774604PRP204111793764867",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-04T04:01:07+00:00",
+      "status": "Actual",
+      "messageType": "Update",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel naranja",
+      "urgency": "Immediate",
+      "severity": "Severe",
+      "certainty": "Observed",
+      "effective": "2026-11-04T05:01:07+01:00",
+      "onset": "2026-11-04T05:00:00+01:00",
+      "expires": "2026-11-04T11:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel naranja. Litoral sur de Valencia",
+      "description": "Precipitación acumulada en 12 horas: 100 mm. Los chubascos pueden ir acompañados de tormenta. Se registran acumulados de más de 100 litros entre Gandía y Oliva.",
+      "instruction": "Esté preparado. Tome precauciones y manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños graves a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "naranja",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Litoral sur de Valencia",
+          "zoneCode": "774604",
+          "polygons": [
+            [
+              [
+                39.28,
+                -0.27
+              ],
+              [
+                39.19,
+                -0.22
+              ],
+              [
+                39.16,
+                -0.24
+              ],
+              [
+                39.14,
+                -0.23
+              ],
+              [
+                39.06,
+                -0.2
+              ],
+              [
+                38.97,
+                -0.13
+              ],
+              [
+                38.89,
+                -0.04
+              ],
+              [
+                38.89,
+                -0.07
+              ],
+              [
+                38.86,
+                -0.15
+              ],
+              [
+                38.86,
+                -0.26
+              ],
+              [
+                38.88,
+                -0.3
+              ],
+              [
+                38.93,
+                -0.3
+              ],
+              [
+                38.99,
+                -0.29
+              ],
+              [
+                38.98,
+                -0.35
+              ],
+              [
+                39.04,
+                -0.38
+              ],
+              [
+                39.03,
+                -0.47
+              ],
+              [
+                39.05,
+                -0.51
+              ],
+              [
+                39.05,
+                -0.62
+              ],
+              [
+                39.09,
+                -0.66
+              ],
+              [
+                39.12,
+                -0.67
+              ],
+              [
+                39.16,
+                -0.72
+              ],
+              [
+                39.19,
+                -0.73
+              ],
+              [
+                39.21,
+                -0.7
+              ],
+              [
+                39.27,
+                -0.78
+              ],
+              [
+                39.28,
+                -0.89
+              ],
+              [
+                39.31,
+                -0.9
+              ],
+              [
+                39.32,
+                -0.85
+              ],
+              [
+                39.37,
+                -0.8
+              ],
+              [
+                39.38,
+                -0.76
+              ],
+              [
+                39.32,
+                -0.76
+              ],
+              [
+                39.32,
+                -0.69
+              ],
+              [
+                39.37,
+                -0.64
+              ],
+              [
+                39.32,
+                -0.58
+              ],
+              [
+                39.34,
+                -0.55
+              ],
+              [
+                39.3,
+                -0.49
+              ],
+              [
+                39.3,
+                -0.43
+              ],
+              [
+                39.33,
+                -0.42
+              ],
+              [
+                39.31,
+                -0.38
+              ],
+              [
+                39.31,
+                -0.32
+              ],
+              [
+                39.28,
+                -0.29
+              ],
+              [
+                39.28,
+                -0.27
               ]
             ]
           ]
@@ -5808,199 +5639,6 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261103074558.770302PRP103231793691958",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-03T07:45:58+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-03T08:45:58+01:00",
-      "onset": "2026-11-03T15:00:00+01:00",
-      "expires": "2026-11-03T23:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel amarillo. Interior de Alicante",
-      "description": "Precipitación acumulada en una hora: 20 mm.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Interior de Alicante",
-          "zoneCode": "770302",
-          "polygons": [
-            [
-              [
-                38.35,
-                -1.08
-              ],
-              [
-                38.44,
-                -1.08
-              ],
-              [
-                38.5,
-                -1.01
-              ],
-              [
-                38.52,
-                -1.02
-              ],
-              [
-                38.57,
-                -1.0
-              ],
-              [
-                38.66,
-                -1.03
-              ],
-              [
-                38.66,
-                -0.96
-              ],
-              [
-                38.7,
-                -0.91
-              ],
-              [
-                38.78,
-                -0.96
-              ],
-              [
-                38.78,
-                -0.93
-              ],
-              [
-                38.77,
-                -0.9
-              ],
-              [
-                38.77,
-                -0.86
-              ],
-              [
-                38.74,
-                -0.83
-              ],
-              [
-                38.74,
-                -0.79
-              ],
-              [
-                38.75,
-                -0.72
-              ],
-              [
-                38.73,
-                -0.64
-              ],
-              [
-                38.69,
-                -0.62
-              ],
-              [
-                38.74,
-                -0.51
-              ],
-              [
-                38.69,
-                -0.44
-              ],
-              [
-                38.7,
-                -0.36
-              ],
-              [
-                38.65,
-                -0.33
-              ],
-              [
-                38.62,
-                -0.33
-              ],
-              [
-                38.57,
-                -0.41
-              ],
-              [
-                38.54,
-                -0.4
-              ],
-              [
-                38.53,
-                -0.43
-              ],
-              [
-                38.49,
-                -0.45
-              ],
-              [
-                38.48,
-                -0.5
-              ],
-              [
-                38.48,
-                -0.61
-              ],
-              [
-                38.5,
-                -0.63
-              ],
-              [
-                38.47,
-                -0.67
-              ],
-              [
-                38.44,
-                -0.73
-              ],
-              [
-                38.43,
-                -0.81
-              ],
-              [
-                38.4,
-                -0.83
-              ],
-              [
-                38.39,
-                -0.86
-              ],
-              [
-                38.36,
-                -0.83
-              ],
-              [
-                38.33,
-                -0.92
-              ],
-              [
-                38.32,
-                -0.99
-              ],
-              [
-                38.34,
-                -1.03
-              ],
-              [
-                38.35,
-                -1.08
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
       "id": "2.49.0.0.724.0.ES.20261103173307.770301PRP204111793727187",
       "sender": "http://www.aemet.es",
       "sent": "2026-11-03T17:33:07+00:00",
@@ -6163,207 +5801,6 @@
               [
                 38.88,
                 -0.3
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261103173307.774604PRP204111793727187",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-03T17:33:07+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-03T18:33:07+01:00",
-      "onset": "2026-11-03T20:00:00+01:00",
-      "expires": "2026-11-04T11:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel amarillo. Litoral sur de Valencia",
-      "description": "Precipitación acumulada en 12 horas: 60 mm. Los chubascos pueden ir acompañados de tormenta.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Litoral sur de Valencia",
-          "zoneCode": "774604",
-          "polygons": [
-            [
-              [
-                39.28,
-                -0.27
-              ],
-              [
-                39.19,
-                -0.22
-              ],
-              [
-                39.16,
-                -0.24
-              ],
-              [
-                39.14,
-                -0.23
-              ],
-              [
-                39.06,
-                -0.2
-              ],
-              [
-                38.97,
-                -0.13
-              ],
-              [
-                38.89,
-                -0.04
-              ],
-              [
-                38.89,
-                -0.07
-              ],
-              [
-                38.86,
-                -0.15
-              ],
-              [
-                38.86,
-                -0.26
-              ],
-              [
-                38.88,
-                -0.3
-              ],
-              [
-                38.93,
-                -0.3
-              ],
-              [
-                38.99,
-                -0.29
-              ],
-              [
-                38.98,
-                -0.35
-              ],
-              [
-                39.04,
-                -0.38
-              ],
-              [
-                39.03,
-                -0.47
-              ],
-              [
-                39.05,
-                -0.51
-              ],
-              [
-                39.05,
-                -0.62
-              ],
-              [
-                39.09,
-                -0.66
-              ],
-              [
-                39.12,
-                -0.67
-              ],
-              [
-                39.16,
-                -0.72
-              ],
-              [
-                39.19,
-                -0.73
-              ],
-              [
-                39.21,
-                -0.7
-              ],
-              [
-                39.27,
-                -0.78
-              ],
-              [
-                39.28,
-                -0.89
-              ],
-              [
-                39.31,
-                -0.9
-              ],
-              [
-                39.32,
-                -0.85
-              ],
-              [
-                39.37,
-                -0.8
-              ],
-              [
-                39.38,
-                -0.76
-              ],
-              [
-                39.32,
-                -0.76
-              ],
-              [
-                39.32,
-                -0.69
-              ],
-              [
-                39.37,
-                -0.64
-              ],
-              [
-                39.32,
-                -0.58
-              ],
-              [
-                39.34,
-                -0.55
-              ],
-              [
-                39.3,
-                -0.49
-              ],
-              [
-                39.3,
-                -0.43
-              ],
-              [
-                39.33,
-                -0.42
-              ],
-              [
-                39.31,
-                -0.38
-              ],
-              [
-                39.31,
-                -0.32
-              ],
-              [
-                39.28,
-                -0.29
-              ],
-              [
-                39.28,
-                -0.27
               ]
             ]
           ]
@@ -6587,243 +6024,6 @@
               [
                 37.76,
                 -1.06
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261103225306.770303PRP104011793746386",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-03T22:53:06+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel amarillo",
-      "urgency": "Immediate",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-03T23:53:06+01:00",
-      "onset": "2026-11-03T23:00:00+01:00",
-      "expires": "2026-11-04T01:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel amarillo. Litoral sur de Alicante",
-      "description": "Precipitación acumulada en una hora: 30 mm. Los chubascos pueden ir acompañados de tormenta.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Litoral sur de Alicante",
-          "zoneCode": "770303",
-          "polygons": [
-            [
-              [
-                38.32,
-                -0.99
-              ],
-              [
-                38.33,
-                -0.92
-              ],
-              [
-                38.36,
-                -0.83
-              ],
-              [
-                38.39,
-                -0.86
-              ],
-              [
-                38.4,
-                -0.83
-              ],
-              [
-                38.43,
-                -0.81
-              ],
-              [
-                38.44,
-                -0.73
-              ],
-              [
-                38.47,
-                -0.67
-              ],
-              [
-                38.5,
-                -0.63
-              ],
-              [
-                38.48,
-                -0.61
-              ],
-              [
-                38.48,
-                -0.5
-              ],
-              [
-                38.49,
-                -0.45
-              ],
-              [
-                38.53,
-                -0.43
-              ],
-              [
-                38.54,
-                -0.4
-              ],
-              [
-                38.57,
-                -0.41
-              ],
-              [
-                38.62,
-                -0.33
-              ],
-              [
-                38.59,
-                -0.27
-              ],
-              [
-                38.61,
-                -0.21
-              ],
-              [
-                38.61,
-                -0.19
-              ],
-              [
-                38.65,
-                -0.16
-              ],
-              [
-                38.62,
-                -0.08
-              ],
-              [
-                38.58,
-                -0.06
-              ],
-              [
-                38.54,
-                -0.07
-              ],
-              [
-                38.54,
-                -0.15
-              ],
-              [
-                38.48,
-                -0.32
-              ],
-              [
-                38.44,
-                -0.37
-              ],
-              [
-                38.41,
-                -0.4
-              ],
-              [
-                38.35,
-                -0.41
-              ],
-              [
-                38.36,
-                -0.44
-              ],
-              [
-                38.33,
-                -0.51
-              ],
-              [
-                38.3,
-                -0.52
-              ],
-              [
-                38.2,
-                -0.51
-              ],
-              [
-                38.19,
-                -0.54
-              ],
-              [
-                38.19,
-                -0.59
-              ],
-              [
-                38.14,
-                -0.63
-              ],
-              [
-                38.09,
-                -0.64
-              ],
-              [
-                37.99,
-                -0.65
-              ],
-              [
-                37.97,
-                -0.69
-              ],
-              [
-                37.94,
-                -0.7
-              ],
-              [
-                37.9,
-                -0.75
-              ],
-              [
-                37.85,
-                -0.76
-              ],
-              [
-                37.85,
-                -0.78
-              ],
-              [
-                37.88,
-                -0.85
-              ],
-              [
-                37.95,
-                -0.92
-              ],
-              [
-                38.01,
-                -0.96
-              ],
-              [
-                38.08,
-                -1.02
-              ],
-              [
-                38.14,
-                -1.04
-              ],
-              [
-                38.2,
-                -0.99
-              ],
-              [
-                38.26,
-                -0.97
-              ],
-              [
-                38.32,
-                -0.99
               ]
             ]
           ]
