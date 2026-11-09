@@ -1,8 +1,8 @@
 {
   "source": "AEMET OpenData",
-  "generatedAt": "2026-11-09T00:17:15.285469+00:00",
+  "generatedAt": "2026-11-09T06:56:49.869887+00:00",
   "status": "ok",
-  "count": 396,
+  "count": 398,
   "alerts": [
     {
       "id": "2.49.0.0.724.0.ES.20261107170516.659302VIRM09001794071116",
@@ -22906,6 +22906,808 @@
       ]
     },
     {
+      "id": "2.49.0.0.724.0.ES.20261109054300.701003PRP109111794202980",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-09T05:43:00+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel amarillo",
+      "urgency": "Immediate",
+      "severity": "Moderate",
+      "certainty": "Observed",
+      "effective": "2026-11-09T06:43:00+01:00",
+      "onset": "2026-11-09T06:00:00+01:00",
+      "expires": "2026-11-09T11:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel amarillo. Meseta cacereña",
+      "description": "Precipitación acumulada en una hora: 20 mm.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Meseta cacereña",
+          "zoneCode": "701003",
+          "polygons": [
+            [
+              [
+                39.86,
+                -6.91
+              ],
+              [
+                39.83,
+                -6.83
+              ],
+              [
+                39.79,
+                -6.84
+              ],
+              [
+                39.76,
+                -6.81
+              ],
+              [
+                39.76,
+                -6.67
+              ],
+              [
+                39.74,
+                -6.63
+              ],
+              [
+                39.73,
+                -6.58
+              ],
+              [
+                39.76,
+                -6.52
+              ],
+              [
+                39.76,
+                -6.45
+              ],
+              [
+                39.72,
+                -6.43
+              ],
+              [
+                39.74,
+                -6.35
+              ],
+              [
+                39.75,
+                -6.27
+              ],
+              [
+                39.76,
+                -6.23
+              ],
+              [
+                39.72,
+                -6.2
+              ],
+              [
+                39.72,
+                -6.17
+              ],
+              [
+                39.74,
+                -6.14
+              ],
+              [
+                39.66,
+                -6.12
+              ],
+              [
+                39.68,
+                -6.07
+              ],
+              [
+                39.71,
+                -6.04
+              ],
+              [
+                39.66,
+                -6.0
+              ],
+              [
+                39.66,
+                -5.94
+              ],
+              [
+                39.65,
+                -5.83
+              ],
+              [
+                39.59,
+                -5.83
+              ],
+              [
+                39.54,
+                -5.8
+              ],
+              [
+                39.51,
+                -5.76
+              ],
+              [
+                39.47,
+                -5.8
+              ],
+              [
+                39.45,
+                -5.79
+              ],
+              [
+                39.41,
+                -5.82
+              ],
+              [
+                39.38,
+                -5.78
+              ],
+              [
+                39.37,
+                -5.85
+              ],
+              [
+                39.4,
+                -5.91
+              ],
+              [
+                39.36,
+                -5.95
+              ],
+              [
+                39.3,
+                -5.95
+              ],
+              [
+                39.27,
+                -6.01
+              ],
+              [
+                39.28,
+                -6.09
+              ],
+              [
+                39.27,
+                -6.14
+              ],
+              [
+                39.23,
+                -6.2
+              ],
+              [
+                39.24,
+                -6.25
+              ],
+              [
+                39.21,
+                -6.27
+              ],
+              [
+                39.18,
+                -6.32
+              ],
+              [
+                39.16,
+                -6.37
+              ],
+              [
+                39.18,
+                -6.43
+              ],
+              [
+                39.17,
+                -6.49
+              ],
+              [
+                39.18,
+                -6.58
+              ],
+              [
+                39.2,
+                -6.66
+              ],
+              [
+                39.18,
+                -6.68
+              ],
+              [
+                39.19,
+                -6.75
+              ],
+              [
+                39.19,
+                -6.77
+              ],
+              [
+                39.24,
+                -6.8
+              ],
+              [
+                39.28,
+                -6.76
+              ],
+              [
+                39.32,
+                -6.75
+              ],
+              [
+                39.34,
+                -6.8
+              ],
+              [
+                39.39,
+                -6.81
+              ],
+              [
+                39.38,
+                -6.87
+              ],
+              [
+                39.39,
+                -6.91
+              ],
+              [
+                39.42,
+                -6.99
+              ],
+              [
+                39.44,
+                -7.05
+              ],
+              [
+                39.41,
+                -7.07
+              ],
+              [
+                39.39,
+                -7.01
+              ],
+              [
+                39.32,
+                -7.05
+              ],
+              [
+                39.34,
+                -7.08
+              ],
+              [
+                39.38,
+                -7.07
+              ],
+              [
+                39.38,
+                -7.14
+              ],
+              [
+                39.34,
+                -7.18
+              ],
+              [
+                39.31,
+                -7.15
+              ],
+              [
+                39.27,
+                -7.2
+              ],
+              [
+                39.28,
+                -7.23
+              ],
+              [
+                39.34,
+                -7.31
+              ],
+              [
+                39.38,
+                -7.32
+              ],
+              [
+                39.4,
+                -7.31
+              ],
+              [
+                39.46,
+                -7.3
+              ],
+              [
+                39.49,
+                -7.35
+              ],
+              [
+                39.49,
+                -7.38
+              ],
+              [
+                39.53,
+                -7.39
+              ],
+              [
+                39.53,
+                -7.43
+              ],
+              [
+                39.57,
+                -7.46
+              ],
+              [
+                39.59,
+                -7.5
+              ],
+              [
+                39.63,
+                -7.53
+              ],
+              [
+                39.67,
+                -7.53
+              ],
+              [
+                39.66,
+                -7.45
+              ],
+              [
+                39.65,
+                -7.4
+              ],
+              [
+                39.64,
+                -7.33
+              ],
+              [
+                39.67,
+                -7.25
+              ],
+              [
+                39.65,
+                -7.15
+              ],
+              [
+                39.66,
+                -7.12
+              ],
+              [
+                39.66,
+                -7.06
+              ],
+              [
+                39.67,
+                -7.01
+              ],
+              [
+                39.76,
+                -6.99
+              ],
+              [
+                39.81,
+                -6.99
+              ],
+              [
+                39.83,
+                -6.95
+              ],
+              [
+                39.86,
+                -6.91
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261109054300.701003TOTO09111794202980",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-09T05:43:00+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de tormentas de nivel amarillo",
+      "urgency": "Immediate",
+      "severity": "Moderate",
+      "certainty": "Observed",
+      "effective": "2026-11-09T06:43:00+01:00",
+      "onset": "2026-11-09T06:00:00+01:00",
+      "expires": "2026-11-09T11:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de tormentas de nivel amarillo. Meseta cacereña",
+      "description": null,
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Meseta cacereña",
+          "zoneCode": "701003",
+          "polygons": [
+            [
+              [
+                39.86,
+                -6.91
+              ],
+              [
+                39.83,
+                -6.83
+              ],
+              [
+                39.79,
+                -6.84
+              ],
+              [
+                39.76,
+                -6.81
+              ],
+              [
+                39.76,
+                -6.67
+              ],
+              [
+                39.74,
+                -6.63
+              ],
+              [
+                39.73,
+                -6.58
+              ],
+              [
+                39.76,
+                -6.52
+              ],
+              [
+                39.76,
+                -6.45
+              ],
+              [
+                39.72,
+                -6.43
+              ],
+              [
+                39.74,
+                -6.35
+              ],
+              [
+                39.75,
+                -6.27
+              ],
+              [
+                39.76,
+                -6.23
+              ],
+              [
+                39.72,
+                -6.2
+              ],
+              [
+                39.72,
+                -6.17
+              ],
+              [
+                39.74,
+                -6.14
+              ],
+              [
+                39.66,
+                -6.12
+              ],
+              [
+                39.68,
+                -6.07
+              ],
+              [
+                39.71,
+                -6.04
+              ],
+              [
+                39.66,
+                -6.0
+              ],
+              [
+                39.66,
+                -5.94
+              ],
+              [
+                39.65,
+                -5.83
+              ],
+              [
+                39.59,
+                -5.83
+              ],
+              [
+                39.54,
+                -5.8
+              ],
+              [
+                39.51,
+                -5.76
+              ],
+              [
+                39.47,
+                -5.8
+              ],
+              [
+                39.45,
+                -5.79
+              ],
+              [
+                39.41,
+                -5.82
+              ],
+              [
+                39.38,
+                -5.78
+              ],
+              [
+                39.37,
+                -5.85
+              ],
+              [
+                39.4,
+                -5.91
+              ],
+              [
+                39.36,
+                -5.95
+              ],
+              [
+                39.3,
+                -5.95
+              ],
+              [
+                39.27,
+                -6.01
+              ],
+              [
+                39.28,
+                -6.09
+              ],
+              [
+                39.27,
+                -6.14
+              ],
+              [
+                39.23,
+                -6.2
+              ],
+              [
+                39.24,
+                -6.25
+              ],
+              [
+                39.21,
+                -6.27
+              ],
+              [
+                39.18,
+                -6.32
+              ],
+              [
+                39.16,
+                -6.37
+              ],
+              [
+                39.18,
+                -6.43
+              ],
+              [
+                39.17,
+                -6.49
+              ],
+              [
+                39.18,
+                -6.58
+              ],
+              [
+                39.2,
+                -6.66
+              ],
+              [
+                39.18,
+                -6.68
+              ],
+              [
+                39.19,
+                -6.75
+              ],
+              [
+                39.19,
+                -6.77
+              ],
+              [
+                39.24,
+                -6.8
+              ],
+              [
+                39.28,
+                -6.76
+              ],
+              [
+                39.32,
+                -6.75
+              ],
+              [
+                39.34,
+                -6.8
+              ],
+              [
+                39.39,
+                -6.81
+              ],
+              [
+                39.38,
+                -6.87
+              ],
+              [
+                39.39,
+                -6.91
+              ],
+              [
+                39.42,
+                -6.99
+              ],
+              [
+                39.44,
+                -7.05
+              ],
+              [
+                39.41,
+                -7.07
+              ],
+              [
+                39.39,
+                -7.01
+              ],
+              [
+                39.32,
+                -7.05
+              ],
+              [
+                39.34,
+                -7.08
+              ],
+              [
+                39.38,
+                -7.07
+              ],
+              [
+                39.38,
+                -7.14
+              ],
+              [
+                39.34,
+                -7.18
+              ],
+              [
+                39.31,
+                -7.15
+              ],
+              [
+                39.27,
+                -7.2
+              ],
+              [
+                39.28,
+                -7.23
+              ],
+              [
+                39.34,
+                -7.31
+              ],
+              [
+                39.38,
+                -7.32
+              ],
+              [
+                39.4,
+                -7.31
+              ],
+              [
+                39.46,
+                -7.3
+              ],
+              [
+                39.49,
+                -7.35
+              ],
+              [
+                39.49,
+                -7.38
+              ],
+              [
+                39.53,
+                -7.39
+              ],
+              [
+                39.53,
+                -7.43
+              ],
+              [
+                39.57,
+                -7.46
+              ],
+              [
+                39.59,
+                -7.5
+              ],
+              [
+                39.63,
+                -7.53
+              ],
+              [
+                39.67,
+                -7.53
+              ],
+              [
+                39.66,
+                -7.45
+              ],
+              [
+                39.65,
+                -7.4
+              ],
+              [
+                39.64,
+                -7.33
+              ],
+              [
+                39.67,
+                -7.25
+              ],
+              [
+                39.65,
+                -7.15
+              ],
+              [
+                39.66,
+                -7.12
+              ],
+              [
+                39.66,
+                -7.06
+              ],
+              [
+                39.67,
+                -7.01
+              ],
+              [
+                39.76,
+                -6.99
+              ],
+              [
+                39.81,
+                -6.99
+              ],
+              [
+                39.83,
+                -6.95
+              ],
+              [
+                39.86,
+                -6.91
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
       "id": "2.49.0.0.724.0.ES.20261108101452.711502VIRM09201794132892",
       "sender": "http://www.aemet.es",
       "sent": "2026-11-08T10:14:52+00:00",
@@ -38472,252 +39274,6 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261108225001.659001COCO11221794178201",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-08T22:50:01+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de costeros de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-08T22:50:01+00:00",
-      "onset": "2026-11-11T00:00:00+00:00",
-      "expires": "2026-11-11T21:59:59+00:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel amarillo. Costa - Norte de Gran Canaria",
-      "description": "Viento del Suroeste de 50 a 61 km/h (fuerza 7).",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Costa - Norte de Gran Canaria",
-          "zoneCode": "659001C",
-          "polygons": [
-            [
-              [
-                28.05,
-                -15.74
-              ],
-              [
-                28.279494505494505,
-                -15.989450549450549
-              ],
-              [
-                28.28,
-                -15.99
-              ],
-              [
-                28.36,
-                -15.9
-              ],
-              [
-                28.49,
-                -15.76
-              ],
-              [
-                28.49,
-                -15.72
-              ],
-              [
-                28.49,
-                -15.64
-              ],
-              [
-                28.47,
-                -15.56
-              ],
-              [
-                28.5,
-                -15.47
-              ],
-              [
-                28.5,
-                -15.4
-              ],
-              [
-                28.5,
-                -15.33
-              ],
-              [
-                28.48,
-                -15.26
-              ],
-              [
-                28.45,
-                -15.19
-              ],
-              [
-                28.4,
-                -15.14
-              ],
-              [
-                28.35,
-                -15.09
-              ],
-              [
-                28.32,
-                -15.07
-              ],
-              [
-                28.03,
-                -15.39
-              ],
-              [
-                28.04,
-                -15.41
-              ],
-              [
-                28.06,
-                -15.42
-              ],
-              [
-                28.1,
-                -15.41
-              ],
-              [
-                28.13,
-                -15.43
-              ],
-              [
-                28.13,
-                -15.48
-              ],
-              [
-                28.15,
-                -15.52
-              ],
-              [
-                28.14,
-                -15.54
-              ],
-              [
-                28.15,
-                -15.61
-              ],
-              [
-                28.17,
-                -15.63
-              ],
-              [
-                28.16,
-                -15.7
-              ],
-              [
-                28.09,
-                -15.71
-              ],
-              [
-                28.05,
-                -15.74
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261108225001.659003VIRM11181794178201",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-08T22:50:01+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de vientos de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-08T22:50:01+00:00",
-      "onset": "2026-11-11T00:00:00+00:00",
-      "expires": "2026-11-11T17:59:59+00:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de vientos de nivel amarillo. Cumbres de Gran Canaria",
-      "description": "Rachas máximas: 80 km/h. Afectando a cumbres, vertientes noroeste y sureste. En zonas altas y cumbres es probable que se superen los 90 km/h localmente. En cumbres de La Palma y Tenerife, no se descarta que se alcancen los 120 km/h localmente.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Cumbres de Gran Canaria",
-          "zoneCode": "659003",
-          "polygons": [
-            [
-              [
-                28.02,
-                -15.61
-              ],
-              [
-                28.01,
-                -15.6
-              ],
-              [
-                28.04,
-                -15.54
-              ],
-              [
-                28.01,
-                -15.51
-              ],
-              [
-                27.99,
-                -15.55
-              ],
-              [
-                27.96,
-                -15.55
-              ],
-              [
-                27.95,
-                -15.59
-              ],
-              [
-                27.97,
-                -15.6
-              ],
-              [
-                27.92,
-                -15.65
-              ],
-              [
-                27.92,
-                -15.69
-              ],
-              [
-                27.96,
-                -15.75
-              ],
-              [
-                27.99,
-                -15.71
-              ],
-              [
-                28.0,
-                -15.64
-              ],
-              [
-                28.02,
-                -15.61
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
       "id": "2.49.0.0.724.0.ES.20261108225001.659004PRP111151794178201",
       "sender": "http://www.aemet.es",
       "sent": "2026-11-08T22:50:01+00:00",
@@ -38734,344 +39290,6 @@
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel amarillo. Este, sur y oeste de Gran Canaria",
       "description": "Precipitación acumulada en una hora: 20 mm. Principalmente en vertientes orientadas al sur y oeste.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Este, sur y oeste de Gran Canaria",
-          "zoneCode": "659004",
-          "polygons": [
-            [
-              [
-                28.05,
-                -15.74
-              ],
-              [
-                28.03,
-                -15.72
-              ],
-              [
-                28.05,
-                -15.69
-              ],
-              [
-                28.04,
-                -15.65
-              ],
-              [
-                28.02,
-                -15.61
-              ],
-              [
-                28.0,
-                -15.64
-              ],
-              [
-                27.99,
-                -15.71
-              ],
-              [
-                27.96,
-                -15.75
-              ],
-              [
-                27.92,
-                -15.69
-              ],
-              [
-                27.92,
-                -15.65
-              ],
-              [
-                27.97,
-                -15.6
-              ],
-              [
-                27.95,
-                -15.59
-              ],
-              [
-                27.96,
-                -15.55
-              ],
-              [
-                27.99,
-                -15.55
-              ],
-              [
-                28.01,
-                -15.51
-              ],
-              [
-                28.04,
-                -15.42
-              ],
-              [
-                28.03,
-                -15.39
-              ],
-              [
-                27.99,
-                -15.37
-              ],
-              [
-                27.97,
-                -15.38
-              ],
-              [
-                27.89,
-                -15.39
-              ],
-              [
-                27.86,
-                -15.38
-              ],
-              [
-                27.85,
-                -15.41
-              ],
-              [
-                27.81,
-                -15.42
-              ],
-              [
-                27.79,
-                -15.49
-              ],
-              [
-                27.76,
-                -15.56
-              ],
-              [
-                27.73,
-                -15.6
-              ],
-              [
-                27.75,
-                -15.67
-              ],
-              [
-                27.83,
-                -15.79
-              ],
-              [
-                27.91,
-                -15.83
-              ],
-              [
-                27.97,
-                -15.83
-              ],
-              [
-                28.02,
-                -15.81
-              ],
-              [
-                28.02,
-                -15.79
-              ],
-              [
-                28.05,
-                -15.74
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261108225001.659004PRP211151794178201",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-08T22:50:01+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-08T22:50:01+00:00",
-      "onset": "2026-11-11T00:00:00+00:00",
-      "expires": "2026-11-11T14:59:59+00:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel amarillo. Este, sur y oeste de Gran Canaria",
-      "description": "Precipitación acumulada en 12 horas: 60 mm. Principalmente en vertientes orientadas al sur y oeste.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Este, sur y oeste de Gran Canaria",
-          "zoneCode": "659004",
-          "polygons": [
-            [
-              [
-                28.05,
-                -15.74
-              ],
-              [
-                28.03,
-                -15.72
-              ],
-              [
-                28.05,
-                -15.69
-              ],
-              [
-                28.04,
-                -15.65
-              ],
-              [
-                28.02,
-                -15.61
-              ],
-              [
-                28.0,
-                -15.64
-              ],
-              [
-                27.99,
-                -15.71
-              ],
-              [
-                27.96,
-                -15.75
-              ],
-              [
-                27.92,
-                -15.69
-              ],
-              [
-                27.92,
-                -15.65
-              ],
-              [
-                27.97,
-                -15.6
-              ],
-              [
-                27.95,
-                -15.59
-              ],
-              [
-                27.96,
-                -15.55
-              ],
-              [
-                27.99,
-                -15.55
-              ],
-              [
-                28.01,
-                -15.51
-              ],
-              [
-                28.04,
-                -15.42
-              ],
-              [
-                28.03,
-                -15.39
-              ],
-              [
-                27.99,
-                -15.37
-              ],
-              [
-                27.97,
-                -15.38
-              ],
-              [
-                27.89,
-                -15.39
-              ],
-              [
-                27.86,
-                -15.38
-              ],
-              [
-                27.85,
-                -15.41
-              ],
-              [
-                27.81,
-                -15.42
-              ],
-              [
-                27.79,
-                -15.49
-              ],
-              [
-                27.76,
-                -15.56
-              ],
-              [
-                27.73,
-                -15.6
-              ],
-              [
-                27.75,
-                -15.67
-              ],
-              [
-                27.83,
-                -15.79
-              ],
-              [
-                27.91,
-                -15.83
-              ],
-              [
-                27.97,
-                -15.83
-              ],
-              [
-                28.02,
-                -15.81
-              ],
-              [
-                28.02,
-                -15.79
-              ],
-              [
-                28.05,
-                -15.74
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261108225001.659004VIRM11181794178201",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-08T22:50:01+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de vientos de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-08T22:50:01+00:00",
-      "onset": "2026-11-11T00:00:00+00:00",
-      "expires": "2026-11-11T17:59:59+00:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de vientos de nivel amarillo. Este, sur y oeste de Gran Canaria",
-      "description": "Rachas máximas: 80 km/h. Afectando a cumbres, vertientes noroeste y sureste. En zonas altas y cumbres es probable que se superen los 90 km/h localmente. En cumbres de La Palma y Tenerife, no se descarta que se alcancen los 120 km/h localmente.",
       "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
       "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
       "level": "amarillo",
@@ -39310,176 +39528,6 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261108225001.659302PRP211151794178201",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-08T22:50:01+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-08T22:50:01+00:00",
-      "onset": "2026-11-11T00:00:00+00:00",
-      "expires": "2026-11-11T14:59:59+00:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel amarillo. Cumbres de La Palma",
-      "description": "Precipitación acumulada en 12 horas: 80 mm. Principalmente en vertientes orientadas al sur y oeste.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Cumbres de La Palma",
-          "zoneCode": "659302",
-          "polygons": [
-            [
-              [
-                28.76,
-                -17.86
-              ],
-              [
-                28.74,
-                -17.83
-              ],
-              [
-                28.7,
-                -17.84
-              ],
-              [
-                28.68,
-                -17.83
-              ],
-              [
-                28.64,
-                -17.82
-              ],
-              [
-                28.61,
-                -17.84
-              ],
-              [
-                28.56,
-                -17.84
-              ],
-              [
-                28.55,
-                -17.87
-              ],
-              [
-                28.59,
-                -17.88
-              ],
-              [
-                28.69,
-                -17.92
-              ],
-              [
-                28.74,
-                -17.9
-              ],
-              [
-                28.76,
-                -17.86
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261108225001.659302VIRM11181794178201",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-08T22:50:01+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de vientos de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-08T22:50:01+00:00",
-      "onset": "2026-11-11T00:00:00+00:00",
-      "expires": "2026-11-11T17:59:59+00:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de vientos de nivel amarillo. Cumbres de La Palma",
-      "description": "Rachas máximas: 80 km/h. Afectando a cumbres, vertientes noroeste y sureste. En zonas altas y cumbres es probable que se superen los 90 km/h localmente. En cumbres de La Palma y Tenerife, no se descarta que se alcancen los 120 km/h localmente.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Cumbres de La Palma",
-          "zoneCode": "659302",
-          "polygons": [
-            [
-              [
-                28.76,
-                -17.86
-              ],
-              [
-                28.74,
-                -17.83
-              ],
-              [
-                28.7,
-                -17.84
-              ],
-              [
-                28.68,
-                -17.83
-              ],
-              [
-                28.64,
-                -17.82
-              ],
-              [
-                28.61,
-                -17.84
-              ],
-              [
-                28.56,
-                -17.84
-              ],
-              [
-                28.55,
-                -17.87
-              ],
-              [
-                28.59,
-                -17.88
-              ],
-              [
-                28.69,
-                -17.92
-              ],
-              [
-                28.74,
-                -17.9
-              ],
-              [
-                28.76,
-                -17.86
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
       "id": "2.49.0.0.724.0.ES.20261108225001.659303PRP111151794178201",
       "sender": "http://www.aemet.es",
       "sent": "2026-11-08T22:50:01+00:00",
@@ -39496,216 +39544,6 @@
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel amarillo. Este de La Palma",
       "description": "Precipitación acumulada en una hora: 20 mm. Principalmente en vertientes orientadas al sur y oeste.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Este de La Palma",
-          "zoneCode": "659303",
-          "polygons": [
-            [
-              [
-                28.56,
-                -17.84
-              ],
-              [
-                28.61,
-                -17.84
-              ],
-              [
-                28.64,
-                -17.82
-              ],
-              [
-                28.68,
-                -17.83
-              ],
-              [
-                28.7,
-                -17.84
-              ],
-              [
-                28.74,
-                -17.83
-              ],
-              [
-                28.76,
-                -17.86
-              ],
-              [
-                28.83,
-                -17.85
-              ],
-              [
-                28.84,
-                -17.78
-              ],
-              [
-                28.79,
-                -17.76
-              ],
-              [
-                28.73,
-                -17.72
-              ],
-              [
-                28.67,
-                -17.77
-              ],
-              [
-                28.62,
-                -17.75
-              ],
-              [
-                28.59,
-                -17.75
-              ],
-              [
-                28.52,
-                -17.79
-              ],
-              [
-                28.54,
-                -17.84
-              ],
-              [
-                28.56,
-                -17.84
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261108225001.659303PRP211151794178201",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-08T22:50:01+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-08T22:50:01+00:00",
-      "onset": "2026-11-11T00:00:00+00:00",
-      "expires": "2026-11-11T14:59:59+00:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel amarillo. Este de La Palma",
-      "description": "Precipitación acumulada en 12 horas: 80 mm. Principalmente en vertientes orientadas al sur y oeste.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Este de La Palma",
-          "zoneCode": "659303",
-          "polygons": [
-            [
-              [
-                28.56,
-                -17.84
-              ],
-              [
-                28.61,
-                -17.84
-              ],
-              [
-                28.64,
-                -17.82
-              ],
-              [
-                28.68,
-                -17.83
-              ],
-              [
-                28.7,
-                -17.84
-              ],
-              [
-                28.74,
-                -17.83
-              ],
-              [
-                28.76,
-                -17.86
-              ],
-              [
-                28.83,
-                -17.85
-              ],
-              [
-                28.84,
-                -17.78
-              ],
-              [
-                28.79,
-                -17.76
-              ],
-              [
-                28.73,
-                -17.72
-              ],
-              [
-                28.67,
-                -17.77
-              ],
-              [
-                28.62,
-                -17.75
-              ],
-              [
-                28.59,
-                -17.75
-              ],
-              [
-                28.52,
-                -17.79
-              ],
-              [
-                28.54,
-                -17.84
-              ],
-              [
-                28.56,
-                -17.84
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261108225001.659303VIRM11181794178201",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-08T22:50:01+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de vientos de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-08T22:50:01+00:00",
-      "onset": "2026-11-11T00:00:00+00:00",
-      "expires": "2026-11-11T17:59:59+00:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de vientos de nivel amarillo. Este de La Palma",
-      "description": "Rachas máximas: 80 km/h. Afectando a cumbres, vertientes noroeste y sureste. En zonas altas y cumbres es probable que se superen los 90 km/h localmente. En cumbres de La Palma y Tenerife, no se descarta que se alcancen los 120 km/h localmente.",
       "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
       "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
       "level": "amarillo",
@@ -39912,240 +39750,6 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261108225001.659304PRP211151794178201",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-08T22:50:01+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-08T22:50:01+00:00",
-      "onset": "2026-11-11T00:00:00+00:00",
-      "expires": "2026-11-11T14:59:59+00:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel amarillo. Oeste de La Palma",
-      "description": "Precipitación acumulada en 12 horas: 80 mm. Principalmente en vertientes orientadas al sur y oeste.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Oeste de La Palma",
-          "zoneCode": "659304",
-          "polygons": [
-            [
-              [
-                28.83,
-                -17.85
-              ],
-              [
-                28.76,
-                -17.86
-              ],
-              [
-                28.74,
-                -17.9
-              ],
-              [
-                28.69,
-                -17.92
-              ],
-              [
-                28.59,
-                -17.88
-              ],
-              [
-                28.55,
-                -17.87
-              ],
-              [
-                28.56,
-                -17.84
-              ],
-              [
-                28.54,
-                -17.84
-              ],
-              [
-                28.52,
-                -17.79
-              ],
-              [
-                28.46,
-                -17.83
-              ],
-              [
-                28.46,
-                -17.85
-              ],
-              [
-                28.49,
-                -17.87
-              ],
-              [
-                28.55,
-                -17.88
-              ],
-              [
-                28.67,
-                -17.96
-              ],
-              [
-                28.73,
-                -17.98
-              ],
-              [
-                28.76,
-                -18.01
-              ],
-              [
-                28.78,
-                -18.0
-              ],
-              [
-                28.83,
-                -17.96
-              ],
-              [
-                28.85,
-                -17.92
-              ],
-              [
-                28.83,
-                -17.85
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261108225001.659304VIRM11181794178201",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-08T22:50:01+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de vientos de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-08T22:50:01+00:00",
-      "onset": "2026-11-11T00:00:00+00:00",
-      "expires": "2026-11-11T17:59:59+00:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de vientos de nivel amarillo. Oeste de La Palma",
-      "description": "Rachas máximas: 80 km/h. Afectando a cumbres, vertientes noroeste y sureste. En zonas altas y cumbres es probable que se superen los 90 km/h localmente. En cumbres de La Palma y Tenerife, no se descarta que se alcancen los 120 km/h localmente.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Oeste de La Palma",
-          "zoneCode": "659304",
-          "polygons": [
-            [
-              [
-                28.83,
-                -17.85
-              ],
-              [
-                28.76,
-                -17.86
-              ],
-              [
-                28.74,
-                -17.9
-              ],
-              [
-                28.69,
-                -17.92
-              ],
-              [
-                28.59,
-                -17.88
-              ],
-              [
-                28.55,
-                -17.87
-              ],
-              [
-                28.56,
-                -17.84
-              ],
-              [
-                28.54,
-                -17.84
-              ],
-              [
-                28.52,
-                -17.79
-              ],
-              [
-                28.46,
-                -17.83
-              ],
-              [
-                28.46,
-                -17.85
-              ],
-              [
-                28.49,
-                -17.87
-              ],
-              [
-                28.55,
-                -17.88
-              ],
-              [
-                28.67,
-                -17.96
-              ],
-              [
-                28.73,
-                -17.98
-              ],
-              [
-                28.76,
-                -18.01
-              ],
-              [
-                28.78,
-                -18.0
-              ],
-              [
-                28.83,
-                -17.96
-              ],
-              [
-                28.85,
-                -17.92
-              ],
-              [
-                28.83,
-                -17.85
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
       "id": "2.49.0.0.724.0.ES.20261108225001.659401PRP111151794178201",
       "sender": "http://www.aemet.es",
       "sent": "2026-11-08T22:50:01+00:00",
@@ -40162,184 +39766,6 @@
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel amarillo. La Gomera",
       "description": "Precipitación acumulada en una hora: 20 mm. Principalmente en vertientes orientadas al sur y oeste.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "La Gomera",
-          "zoneCode": "659401",
-          "polygons": [
-            [
-              [
-                28.15,
-                -17.34
-              ],
-              [
-                28.2,
-                -17.31
-              ],
-              [
-                28.22,
-                -17.27
-              ],
-              [
-                28.2,
-                -17.24
-              ],
-              [
-                28.2,
-                -17.19
-              ],
-              [
-                28.18,
-                -17.17
-              ],
-              [
-                28.15,
-                -17.12
-              ],
-              [
-                28.09,
-                -17.1
-              ],
-              [
-                28.03,
-                -17.18
-              ],
-              [
-                28.02,
-                -17.24
-              ],
-              [
-                28.05,
-                -17.31
-              ],
-              [
-                28.1,
-                -17.35
-              ],
-              [
-                28.15,
-                -17.34
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261108225001.659401PRP211151794178201",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-08T22:50:01+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-08T22:50:01+00:00",
-      "onset": "2026-11-11T00:00:00+00:00",
-      "expires": "2026-11-11T14:59:59+00:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel amarillo. La Gomera",
-      "description": "Precipitación acumulada en 12 horas: 80 mm. Principalmente en vertientes orientadas al sur y oeste.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "La Gomera",
-          "zoneCode": "659401",
-          "polygons": [
-            [
-              [
-                28.15,
-                -17.34
-              ],
-              [
-                28.2,
-                -17.31
-              ],
-              [
-                28.22,
-                -17.27
-              ],
-              [
-                28.2,
-                -17.24
-              ],
-              [
-                28.2,
-                -17.19
-              ],
-              [
-                28.18,
-                -17.17
-              ],
-              [
-                28.15,
-                -17.12
-              ],
-              [
-                28.09,
-                -17.1
-              ],
-              [
-                28.03,
-                -17.18
-              ],
-              [
-                28.02,
-                -17.24
-              ],
-              [
-                28.05,
-                -17.31
-              ],
-              [
-                28.1,
-                -17.35
-              ],
-              [
-                28.15,
-                -17.34
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261108225001.659401VIRM11181794178201",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-08T22:50:01+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de vientos de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-08T22:50:01+00:00",
-      "onset": "2026-11-11T00:00:00+00:00",
-      "expires": "2026-11-11T17:59:59+00:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de vientos de nivel amarillo. La Gomera",
-      "description": "Rachas máximas: 80 km/h. Afectando a cumbres, vertientes noroeste y sureste. En zonas altas y cumbres es probable que se superen los 90 km/h localmente. En cumbres de La Palma y Tenerife, no se descarta que se alcancen los 120 km/h localmente.",
       "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
       "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
       "level": "amarillo",
@@ -40514,6 +39940,716 @@
       ]
     },
     {
+      "id": "2.49.0.0.724.0.ES.20261108225001.659603PRP111151794178201",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-08T22:50:01+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-08T22:50:01+00:00",
+      "onset": "2026-11-11T00:00:00+00:00",
+      "expires": "2026-11-11T14:59:59+00:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel amarillo. Este, sur y oeste de Tenerife",
+      "description": "Precipitación acumulada en una hora: 20 mm. Principalmente en vertientes orientadas al sur y oeste.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Este, sur y oeste de Tenerife",
+          "zoneCode": "659603",
+          "polygons": [
+            [
+              [
+                28.27,
+                -16.85
+              ],
+              [
+                28.31,
+                -16.79
+              ],
+              [
+                28.27,
+                -16.7
+              ],
+              [
+                28.21,
+                -16.68
+              ],
+              [
+                28.2,
+                -16.64
+              ],
+              [
+                28.25,
+                -16.55
+              ],
+              [
+                28.28,
+                -16.54
+              ],
+              [
+                28.31,
+                -16.5
+              ],
+              [
+                28.35,
+                -16.48
+              ],
+              [
+                28.39,
+                -16.44
+              ],
+              [
+                28.34,
+                -16.39
+              ],
+              [
+                28.34,
+                -16.36
+              ],
+              [
+                28.31,
+                -16.36
+              ],
+              [
+                28.2,
+                -16.42
+              ],
+              [
+                28.14,
+                -16.44
+              ],
+              [
+                28.08,
+                -16.49
+              ],
+              [
+                28.03,
+                -16.55
+              ],
+              [
+                28.03,
+                -16.6
+              ],
+              [
+                28.0,
+                -16.64
+              ],
+              [
+                28.0,
+                -16.68
+              ],
+              [
+                28.01,
+                -16.71
+              ],
+              [
+                28.05,
+                -16.71
+              ],
+              [
+                28.05,
+                -16.74
+              ],
+              [
+                28.09,
+                -16.74
+              ],
+              [
+                28.11,
+                -16.77
+              ],
+              [
+                28.21,
+                -16.84
+              ],
+              [
+                28.27,
+                -16.85
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261108225001.659004PRP211151794178201",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-08T22:50:01+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-08T22:50:01+00:00",
+      "onset": "2026-11-11T00:00:00+00:00",
+      "expires": "2026-11-11T14:59:59+00:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel amarillo. Este, sur y oeste de Gran Canaria",
+      "description": "Precipitación acumulada en 12 horas: 60 mm. Principalmente en vertientes orientadas al sur y oeste.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Este, sur y oeste de Gran Canaria",
+          "zoneCode": "659004",
+          "polygons": [
+            [
+              [
+                28.05,
+                -15.74
+              ],
+              [
+                28.03,
+                -15.72
+              ],
+              [
+                28.05,
+                -15.69
+              ],
+              [
+                28.04,
+                -15.65
+              ],
+              [
+                28.02,
+                -15.61
+              ],
+              [
+                28.0,
+                -15.64
+              ],
+              [
+                27.99,
+                -15.71
+              ],
+              [
+                27.96,
+                -15.75
+              ],
+              [
+                27.92,
+                -15.69
+              ],
+              [
+                27.92,
+                -15.65
+              ],
+              [
+                27.97,
+                -15.6
+              ],
+              [
+                27.95,
+                -15.59
+              ],
+              [
+                27.96,
+                -15.55
+              ],
+              [
+                27.99,
+                -15.55
+              ],
+              [
+                28.01,
+                -15.51
+              ],
+              [
+                28.04,
+                -15.42
+              ],
+              [
+                28.03,
+                -15.39
+              ],
+              [
+                27.99,
+                -15.37
+              ],
+              [
+                27.97,
+                -15.38
+              ],
+              [
+                27.89,
+                -15.39
+              ],
+              [
+                27.86,
+                -15.38
+              ],
+              [
+                27.85,
+                -15.41
+              ],
+              [
+                27.81,
+                -15.42
+              ],
+              [
+                27.79,
+                -15.49
+              ],
+              [
+                27.76,
+                -15.56
+              ],
+              [
+                27.73,
+                -15.6
+              ],
+              [
+                27.75,
+                -15.67
+              ],
+              [
+                27.83,
+                -15.79
+              ],
+              [
+                27.91,
+                -15.83
+              ],
+              [
+                27.97,
+                -15.83
+              ],
+              [
+                28.02,
+                -15.81
+              ],
+              [
+                28.02,
+                -15.79
+              ],
+              [
+                28.05,
+                -15.74
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261108225001.659302PRP211151794178201",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-08T22:50:01+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-08T22:50:01+00:00",
+      "onset": "2026-11-11T00:00:00+00:00",
+      "expires": "2026-11-11T14:59:59+00:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel amarillo. Cumbres de La Palma",
+      "description": "Precipitación acumulada en 12 horas: 80 mm. Principalmente en vertientes orientadas al sur y oeste.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Cumbres de La Palma",
+          "zoneCode": "659302",
+          "polygons": [
+            [
+              [
+                28.76,
+                -17.86
+              ],
+              [
+                28.74,
+                -17.83
+              ],
+              [
+                28.7,
+                -17.84
+              ],
+              [
+                28.68,
+                -17.83
+              ],
+              [
+                28.64,
+                -17.82
+              ],
+              [
+                28.61,
+                -17.84
+              ],
+              [
+                28.56,
+                -17.84
+              ],
+              [
+                28.55,
+                -17.87
+              ],
+              [
+                28.59,
+                -17.88
+              ],
+              [
+                28.69,
+                -17.92
+              ],
+              [
+                28.74,
+                -17.9
+              ],
+              [
+                28.76,
+                -17.86
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261108225001.659303PRP211151794178201",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-08T22:50:01+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-08T22:50:01+00:00",
+      "onset": "2026-11-11T00:00:00+00:00",
+      "expires": "2026-11-11T14:59:59+00:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel amarillo. Este de La Palma",
+      "description": "Precipitación acumulada en 12 horas: 80 mm. Principalmente en vertientes orientadas al sur y oeste.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Este de La Palma",
+          "zoneCode": "659303",
+          "polygons": [
+            [
+              [
+                28.56,
+                -17.84
+              ],
+              [
+                28.61,
+                -17.84
+              ],
+              [
+                28.64,
+                -17.82
+              ],
+              [
+                28.68,
+                -17.83
+              ],
+              [
+                28.7,
+                -17.84
+              ],
+              [
+                28.74,
+                -17.83
+              ],
+              [
+                28.76,
+                -17.86
+              ],
+              [
+                28.83,
+                -17.85
+              ],
+              [
+                28.84,
+                -17.78
+              ],
+              [
+                28.79,
+                -17.76
+              ],
+              [
+                28.73,
+                -17.72
+              ],
+              [
+                28.67,
+                -17.77
+              ],
+              [
+                28.62,
+                -17.75
+              ],
+              [
+                28.59,
+                -17.75
+              ],
+              [
+                28.52,
+                -17.79
+              ],
+              [
+                28.54,
+                -17.84
+              ],
+              [
+                28.56,
+                -17.84
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261108225001.659304PRP211151794178201",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-08T22:50:01+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-08T22:50:01+00:00",
+      "onset": "2026-11-11T00:00:00+00:00",
+      "expires": "2026-11-11T14:59:59+00:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel amarillo. Oeste de La Palma",
+      "description": "Precipitación acumulada en 12 horas: 80 mm. Principalmente en vertientes orientadas al sur y oeste.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Oeste de La Palma",
+          "zoneCode": "659304",
+          "polygons": [
+            [
+              [
+                28.83,
+                -17.85
+              ],
+              [
+                28.76,
+                -17.86
+              ],
+              [
+                28.74,
+                -17.9
+              ],
+              [
+                28.69,
+                -17.92
+              ],
+              [
+                28.59,
+                -17.88
+              ],
+              [
+                28.55,
+                -17.87
+              ],
+              [
+                28.56,
+                -17.84
+              ],
+              [
+                28.54,
+                -17.84
+              ],
+              [
+                28.52,
+                -17.79
+              ],
+              [
+                28.46,
+                -17.83
+              ],
+              [
+                28.46,
+                -17.85
+              ],
+              [
+                28.49,
+                -17.87
+              ],
+              [
+                28.55,
+                -17.88
+              ],
+              [
+                28.67,
+                -17.96
+              ],
+              [
+                28.73,
+                -17.98
+              ],
+              [
+                28.76,
+                -18.01
+              ],
+              [
+                28.78,
+                -18.0
+              ],
+              [
+                28.83,
+                -17.96
+              ],
+              [
+                28.85,
+                -17.92
+              ],
+              [
+                28.83,
+                -17.85
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261108225001.659401PRP211151794178201",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-08T22:50:01+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-08T22:50:01+00:00",
+      "onset": "2026-11-11T00:00:00+00:00",
+      "expires": "2026-11-11T14:59:59+00:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel amarillo. La Gomera",
+      "description": "Precipitación acumulada en 12 horas: 80 mm. Principalmente en vertientes orientadas al sur y oeste.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "La Gomera",
+          "zoneCode": "659401",
+          "polygons": [
+            [
+              [
+                28.15,
+                -17.34
+              ],
+              [
+                28.2,
+                -17.31
+              ],
+              [
+                28.22,
+                -17.27
+              ],
+              [
+                28.2,
+                -17.24
+              ],
+              [
+                28.2,
+                -17.19
+              ],
+              [
+                28.18,
+                -17.17
+              ],
+              [
+                28.15,
+                -17.12
+              ],
+              [
+                28.09,
+                -17.1
+              ],
+              [
+                28.03,
+                -17.18
+              ],
+              [
+                28.02,
+                -17.24
+              ],
+              [
+                28.05,
+                -17.31
+              ],
+              [
+                28.1,
+                -17.35
+              ],
+              [
+                28.15,
+                -17.34
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
       "id": "2.49.0.0.724.0.ES.20261108225001.659501PRP211151794178201",
       "sender": "http://www.aemet.es",
       "sent": "2026-11-08T22:50:01+00:00",
@@ -40608,6 +40744,809 @@
               [
                 27.69,
                 -18.05
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261108225001.659603PRP211151794178201",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-08T22:50:01+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-08T22:50:01+00:00",
+      "onset": "2026-11-11T00:00:00+00:00",
+      "expires": "2026-11-11T14:59:59+00:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel amarillo. Este, sur y oeste de Tenerife",
+      "description": "Precipitación acumulada en 12 horas: 80 mm. Principalmente en vertientes orientadas al sur y oeste.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Este, sur y oeste de Tenerife",
+          "zoneCode": "659603",
+          "polygons": [
+            [
+              [
+                28.27,
+                -16.85
+              ],
+              [
+                28.31,
+                -16.79
+              ],
+              [
+                28.27,
+                -16.7
+              ],
+              [
+                28.21,
+                -16.68
+              ],
+              [
+                28.2,
+                -16.64
+              ],
+              [
+                28.25,
+                -16.55
+              ],
+              [
+                28.28,
+                -16.54
+              ],
+              [
+                28.31,
+                -16.5
+              ],
+              [
+                28.35,
+                -16.48
+              ],
+              [
+                28.39,
+                -16.44
+              ],
+              [
+                28.34,
+                -16.39
+              ],
+              [
+                28.34,
+                -16.36
+              ],
+              [
+                28.31,
+                -16.36
+              ],
+              [
+                28.2,
+                -16.42
+              ],
+              [
+                28.14,
+                -16.44
+              ],
+              [
+                28.08,
+                -16.49
+              ],
+              [
+                28.03,
+                -16.55
+              ],
+              [
+                28.03,
+                -16.6
+              ],
+              [
+                28.0,
+                -16.64
+              ],
+              [
+                28.0,
+                -16.68
+              ],
+              [
+                28.01,
+                -16.71
+              ],
+              [
+                28.05,
+                -16.71
+              ],
+              [
+                28.05,
+                -16.74
+              ],
+              [
+                28.09,
+                -16.74
+              ],
+              [
+                28.11,
+                -16.77
+              ],
+              [
+                28.21,
+                -16.84
+              ],
+              [
+                28.27,
+                -16.85
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261108225001.659003VIRM11181794178201",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-08T22:50:01+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de vientos de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-08T22:50:01+00:00",
+      "onset": "2026-11-11T00:00:00+00:00",
+      "expires": "2026-11-11T17:59:59+00:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de vientos de nivel amarillo. Cumbres de Gran Canaria",
+      "description": "Rachas máximas: 80 km/h. Afectando a cumbres, vertientes noroeste y sureste. En zonas altas y cumbres es probable que se superen los 90 km/h localmente. En cumbres de La Palma y Tenerife, no se descarta que se alcancen los 120 km/h localmente.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Cumbres de Gran Canaria",
+          "zoneCode": "659003",
+          "polygons": [
+            [
+              [
+                28.02,
+                -15.61
+              ],
+              [
+                28.01,
+                -15.6
+              ],
+              [
+                28.04,
+                -15.54
+              ],
+              [
+                28.01,
+                -15.51
+              ],
+              [
+                27.99,
+                -15.55
+              ],
+              [
+                27.96,
+                -15.55
+              ],
+              [
+                27.95,
+                -15.59
+              ],
+              [
+                27.97,
+                -15.6
+              ],
+              [
+                27.92,
+                -15.65
+              ],
+              [
+                27.92,
+                -15.69
+              ],
+              [
+                27.96,
+                -15.75
+              ],
+              [
+                27.99,
+                -15.71
+              ],
+              [
+                28.0,
+                -15.64
+              ],
+              [
+                28.02,
+                -15.61
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261108225001.659004VIRM11181794178201",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-08T22:50:01+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de vientos de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-08T22:50:01+00:00",
+      "onset": "2026-11-11T00:00:00+00:00",
+      "expires": "2026-11-11T17:59:59+00:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de vientos de nivel amarillo. Este, sur y oeste de Gran Canaria",
+      "description": "Rachas máximas: 80 km/h. Afectando a cumbres, vertientes noroeste y sureste. En zonas altas y cumbres es probable que se superen los 90 km/h localmente. En cumbres de La Palma y Tenerife, no se descarta que se alcancen los 120 km/h localmente.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Este, sur y oeste de Gran Canaria",
+          "zoneCode": "659004",
+          "polygons": [
+            [
+              [
+                28.05,
+                -15.74
+              ],
+              [
+                28.03,
+                -15.72
+              ],
+              [
+                28.05,
+                -15.69
+              ],
+              [
+                28.04,
+                -15.65
+              ],
+              [
+                28.02,
+                -15.61
+              ],
+              [
+                28.0,
+                -15.64
+              ],
+              [
+                27.99,
+                -15.71
+              ],
+              [
+                27.96,
+                -15.75
+              ],
+              [
+                27.92,
+                -15.69
+              ],
+              [
+                27.92,
+                -15.65
+              ],
+              [
+                27.97,
+                -15.6
+              ],
+              [
+                27.95,
+                -15.59
+              ],
+              [
+                27.96,
+                -15.55
+              ],
+              [
+                27.99,
+                -15.55
+              ],
+              [
+                28.01,
+                -15.51
+              ],
+              [
+                28.04,
+                -15.42
+              ],
+              [
+                28.03,
+                -15.39
+              ],
+              [
+                27.99,
+                -15.37
+              ],
+              [
+                27.97,
+                -15.38
+              ],
+              [
+                27.89,
+                -15.39
+              ],
+              [
+                27.86,
+                -15.38
+              ],
+              [
+                27.85,
+                -15.41
+              ],
+              [
+                27.81,
+                -15.42
+              ],
+              [
+                27.79,
+                -15.49
+              ],
+              [
+                27.76,
+                -15.56
+              ],
+              [
+                27.73,
+                -15.6
+              ],
+              [
+                27.75,
+                -15.67
+              ],
+              [
+                27.83,
+                -15.79
+              ],
+              [
+                27.91,
+                -15.83
+              ],
+              [
+                27.97,
+                -15.83
+              ],
+              [
+                28.02,
+                -15.81
+              ],
+              [
+                28.02,
+                -15.79
+              ],
+              [
+                28.05,
+                -15.74
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261108225001.659302VIRM11181794178201",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-08T22:50:01+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de vientos de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-08T22:50:01+00:00",
+      "onset": "2026-11-11T00:00:00+00:00",
+      "expires": "2026-11-11T17:59:59+00:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de vientos de nivel amarillo. Cumbres de La Palma",
+      "description": "Rachas máximas: 80 km/h. Afectando a cumbres, vertientes noroeste y sureste. En zonas altas y cumbres es probable que se superen los 90 km/h localmente. En cumbres de La Palma y Tenerife, no se descarta que se alcancen los 120 km/h localmente.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Cumbres de La Palma",
+          "zoneCode": "659302",
+          "polygons": [
+            [
+              [
+                28.76,
+                -17.86
+              ],
+              [
+                28.74,
+                -17.83
+              ],
+              [
+                28.7,
+                -17.84
+              ],
+              [
+                28.68,
+                -17.83
+              ],
+              [
+                28.64,
+                -17.82
+              ],
+              [
+                28.61,
+                -17.84
+              ],
+              [
+                28.56,
+                -17.84
+              ],
+              [
+                28.55,
+                -17.87
+              ],
+              [
+                28.59,
+                -17.88
+              ],
+              [
+                28.69,
+                -17.92
+              ],
+              [
+                28.74,
+                -17.9
+              ],
+              [
+                28.76,
+                -17.86
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261108225001.659303VIRM11181794178201",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-08T22:50:01+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de vientos de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-08T22:50:01+00:00",
+      "onset": "2026-11-11T00:00:00+00:00",
+      "expires": "2026-11-11T17:59:59+00:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de vientos de nivel amarillo. Este de La Palma",
+      "description": "Rachas máximas: 80 km/h. Afectando a cumbres, vertientes noroeste y sureste. En zonas altas y cumbres es probable que se superen los 90 km/h localmente. En cumbres de La Palma y Tenerife, no se descarta que se alcancen los 120 km/h localmente.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Este de La Palma",
+          "zoneCode": "659303",
+          "polygons": [
+            [
+              [
+                28.56,
+                -17.84
+              ],
+              [
+                28.61,
+                -17.84
+              ],
+              [
+                28.64,
+                -17.82
+              ],
+              [
+                28.68,
+                -17.83
+              ],
+              [
+                28.7,
+                -17.84
+              ],
+              [
+                28.74,
+                -17.83
+              ],
+              [
+                28.76,
+                -17.86
+              ],
+              [
+                28.83,
+                -17.85
+              ],
+              [
+                28.84,
+                -17.78
+              ],
+              [
+                28.79,
+                -17.76
+              ],
+              [
+                28.73,
+                -17.72
+              ],
+              [
+                28.67,
+                -17.77
+              ],
+              [
+                28.62,
+                -17.75
+              ],
+              [
+                28.59,
+                -17.75
+              ],
+              [
+                28.52,
+                -17.79
+              ],
+              [
+                28.54,
+                -17.84
+              ],
+              [
+                28.56,
+                -17.84
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261108225001.659304VIRM11181794178201",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-08T22:50:01+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de vientos de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-08T22:50:01+00:00",
+      "onset": "2026-11-11T00:00:00+00:00",
+      "expires": "2026-11-11T17:59:59+00:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de vientos de nivel amarillo. Oeste de La Palma",
+      "description": "Rachas máximas: 80 km/h. Afectando a cumbres, vertientes noroeste y sureste. En zonas altas y cumbres es probable que se superen los 90 km/h localmente. En cumbres de La Palma y Tenerife, no se descarta que se alcancen los 120 km/h localmente.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Oeste de La Palma",
+          "zoneCode": "659304",
+          "polygons": [
+            [
+              [
+                28.83,
+                -17.85
+              ],
+              [
+                28.76,
+                -17.86
+              ],
+              [
+                28.74,
+                -17.9
+              ],
+              [
+                28.69,
+                -17.92
+              ],
+              [
+                28.59,
+                -17.88
+              ],
+              [
+                28.55,
+                -17.87
+              ],
+              [
+                28.56,
+                -17.84
+              ],
+              [
+                28.54,
+                -17.84
+              ],
+              [
+                28.52,
+                -17.79
+              ],
+              [
+                28.46,
+                -17.83
+              ],
+              [
+                28.46,
+                -17.85
+              ],
+              [
+                28.49,
+                -17.87
+              ],
+              [
+                28.55,
+                -17.88
+              ],
+              [
+                28.67,
+                -17.96
+              ],
+              [
+                28.73,
+                -17.98
+              ],
+              [
+                28.76,
+                -18.01
+              ],
+              [
+                28.78,
+                -18.0
+              ],
+              [
+                28.83,
+                -17.96
+              ],
+              [
+                28.85,
+                -17.92
+              ],
+              [
+                28.83,
+                -17.85
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261108225001.659401VIRM11181794178201",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-08T22:50:01+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de vientos de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-08T22:50:01+00:00",
+      "onset": "2026-11-11T00:00:00+00:00",
+      "expires": "2026-11-11T17:59:59+00:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de vientos de nivel amarillo. La Gomera",
+      "description": "Rachas máximas: 80 km/h. Afectando a cumbres, vertientes noroeste y sureste. En zonas altas y cumbres es probable que se superen los 90 km/h localmente. En cumbres de La Palma y Tenerife, no se descarta que se alcancen los 120 km/h localmente.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "La Gomera",
+          "zoneCode": "659401",
+          "polygons": [
+            [
+              [
+                28.15,
+                -17.34
+              ],
+              [
+                28.2,
+                -17.31
+              ],
+              [
+                28.22,
+                -17.27
+              ],
+              [
+                28.2,
+                -17.24
+              ],
+              [
+                28.2,
+                -17.19
+              ],
+              [
+                28.18,
+                -17.17
+              ],
+              [
+                28.15,
+                -17.12
+              ],
+              [
+                28.09,
+                -17.1
+              ],
+              [
+                28.03,
+                -17.18
+              ],
+              [
+                28.02,
+                -17.24
+              ],
+              [
+                28.05,
+                -17.31
+              ],
+              [
+                28.1,
+                -17.35
+              ],
+              [
+                28.15,
+                -17.34
               ]
             ]
           ]
@@ -40850,6 +41789,304 @@
               [
                 28.49,
                 -16.43
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261108225001.659603VIRM11181794178201",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-08T22:50:01+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de vientos de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-08T22:50:01+00:00",
+      "onset": "2026-11-11T00:00:00+00:00",
+      "expires": "2026-11-11T17:59:59+00:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de vientos de nivel amarillo. Este, sur y oeste de Tenerife",
+      "description": "Rachas máximas: 80 km/h. Afectando a cumbres, vertientes noroeste y sureste. En zonas altas y cumbres es probable que se superen los 90 km/h localmente. En cumbres de La Palma y Tenerife, no se descarta que se alcancen los 120 km/h localmente.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Este, sur y oeste de Tenerife",
+          "zoneCode": "659603",
+          "polygons": [
+            [
+              [
+                28.27,
+                -16.85
+              ],
+              [
+                28.31,
+                -16.79
+              ],
+              [
+                28.27,
+                -16.7
+              ],
+              [
+                28.21,
+                -16.68
+              ],
+              [
+                28.2,
+                -16.64
+              ],
+              [
+                28.25,
+                -16.55
+              ],
+              [
+                28.28,
+                -16.54
+              ],
+              [
+                28.31,
+                -16.5
+              ],
+              [
+                28.35,
+                -16.48
+              ],
+              [
+                28.39,
+                -16.44
+              ],
+              [
+                28.34,
+                -16.39
+              ],
+              [
+                28.34,
+                -16.36
+              ],
+              [
+                28.31,
+                -16.36
+              ],
+              [
+                28.2,
+                -16.42
+              ],
+              [
+                28.14,
+                -16.44
+              ],
+              [
+                28.08,
+                -16.49
+              ],
+              [
+                28.03,
+                -16.55
+              ],
+              [
+                28.03,
+                -16.6
+              ],
+              [
+                28.0,
+                -16.64
+              ],
+              [
+                28.0,
+                -16.68
+              ],
+              [
+                28.01,
+                -16.71
+              ],
+              [
+                28.05,
+                -16.71
+              ],
+              [
+                28.05,
+                -16.74
+              ],
+              [
+                28.09,
+                -16.74
+              ],
+              [
+                28.11,
+                -16.77
+              ],
+              [
+                28.21,
+                -16.84
+              ],
+              [
+                28.27,
+                -16.85
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261108225001.659001COCO11221794178201",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-08T22:50:01+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de costeros de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-08T22:50:01+00:00",
+      "onset": "2026-11-11T00:00:00+00:00",
+      "expires": "2026-11-11T21:59:59+00:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de costeros de nivel amarillo. Costa - Norte de Gran Canaria",
+      "description": "Viento del Suroeste de 50 a 61 km/h (fuerza 7).",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Costa - Norte de Gran Canaria",
+          "zoneCode": "659001C",
+          "polygons": [
+            [
+              [
+                28.05,
+                -15.74
+              ],
+              [
+                28.279494505494505,
+                -15.989450549450549
+              ],
+              [
+                28.28,
+                -15.99
+              ],
+              [
+                28.36,
+                -15.9
+              ],
+              [
+                28.49,
+                -15.76
+              ],
+              [
+                28.49,
+                -15.72
+              ],
+              [
+                28.49,
+                -15.64
+              ],
+              [
+                28.47,
+                -15.56
+              ],
+              [
+                28.5,
+                -15.47
+              ],
+              [
+                28.5,
+                -15.4
+              ],
+              [
+                28.5,
+                -15.33
+              ],
+              [
+                28.48,
+                -15.26
+              ],
+              [
+                28.45,
+                -15.19
+              ],
+              [
+                28.4,
+                -15.14
+              ],
+              [
+                28.35,
+                -15.09
+              ],
+              [
+                28.32,
+                -15.07
+              ],
+              [
+                28.03,
+                -15.39
+              ],
+              [
+                28.04,
+                -15.41
+              ],
+              [
+                28.06,
+                -15.42
+              ],
+              [
+                28.1,
+                -15.41
+              ],
+              [
+                28.13,
+                -15.43
+              ],
+              [
+                28.13,
+                -15.48
+              ],
+              [
+                28.15,
+                -15.52
+              ],
+              [
+                28.14,
+                -15.54
+              ],
+              [
+                28.15,
+                -15.61
+              ],
+              [
+                28.17,
+                -15.63
+              ],
+              [
+                28.16,
+                -15.7
+              ],
+              [
+                28.09,
+                -15.71
+              ],
+              [
+                28.05,
+                -15.74
               ]
             ]
           ]
@@ -41228,441 +42465,6 @@
               [
                 28.21,
                 -17.01
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261108225001.659603PRP111151794178201",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-08T22:50:01+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-08T22:50:01+00:00",
-      "onset": "2026-11-11T00:00:00+00:00",
-      "expires": "2026-11-11T14:59:59+00:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel amarillo. Este, sur y oeste de Tenerife",
-      "description": "Precipitación acumulada en una hora: 20 mm. Principalmente en vertientes orientadas al sur y oeste.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Este, sur y oeste de Tenerife",
-          "zoneCode": "659603",
-          "polygons": [
-            [
-              [
-                28.27,
-                -16.85
-              ],
-              [
-                28.31,
-                -16.79
-              ],
-              [
-                28.27,
-                -16.7
-              ],
-              [
-                28.21,
-                -16.68
-              ],
-              [
-                28.2,
-                -16.64
-              ],
-              [
-                28.25,
-                -16.55
-              ],
-              [
-                28.28,
-                -16.54
-              ],
-              [
-                28.31,
-                -16.5
-              ],
-              [
-                28.35,
-                -16.48
-              ],
-              [
-                28.39,
-                -16.44
-              ],
-              [
-                28.34,
-                -16.39
-              ],
-              [
-                28.34,
-                -16.36
-              ],
-              [
-                28.31,
-                -16.36
-              ],
-              [
-                28.2,
-                -16.42
-              ],
-              [
-                28.14,
-                -16.44
-              ],
-              [
-                28.08,
-                -16.49
-              ],
-              [
-                28.03,
-                -16.55
-              ],
-              [
-                28.03,
-                -16.6
-              ],
-              [
-                28.0,
-                -16.64
-              ],
-              [
-                28.0,
-                -16.68
-              ],
-              [
-                28.01,
-                -16.71
-              ],
-              [
-                28.05,
-                -16.71
-              ],
-              [
-                28.05,
-                -16.74
-              ],
-              [
-                28.09,
-                -16.74
-              ],
-              [
-                28.11,
-                -16.77
-              ],
-              [
-                28.21,
-                -16.84
-              ],
-              [
-                28.27,
-                -16.85
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261108225001.659603PRP211151794178201",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-08T22:50:01+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-08T22:50:01+00:00",
-      "onset": "2026-11-11T00:00:00+00:00",
-      "expires": "2026-11-11T14:59:59+00:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel amarillo. Este, sur y oeste de Tenerife",
-      "description": "Precipitación acumulada en 12 horas: 80 mm. Principalmente en vertientes orientadas al sur y oeste.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Este, sur y oeste de Tenerife",
-          "zoneCode": "659603",
-          "polygons": [
-            [
-              [
-                28.27,
-                -16.85
-              ],
-              [
-                28.31,
-                -16.79
-              ],
-              [
-                28.27,
-                -16.7
-              ],
-              [
-                28.21,
-                -16.68
-              ],
-              [
-                28.2,
-                -16.64
-              ],
-              [
-                28.25,
-                -16.55
-              ],
-              [
-                28.28,
-                -16.54
-              ],
-              [
-                28.31,
-                -16.5
-              ],
-              [
-                28.35,
-                -16.48
-              ],
-              [
-                28.39,
-                -16.44
-              ],
-              [
-                28.34,
-                -16.39
-              ],
-              [
-                28.34,
-                -16.36
-              ],
-              [
-                28.31,
-                -16.36
-              ],
-              [
-                28.2,
-                -16.42
-              ],
-              [
-                28.14,
-                -16.44
-              ],
-              [
-                28.08,
-                -16.49
-              ],
-              [
-                28.03,
-                -16.55
-              ],
-              [
-                28.03,
-                -16.6
-              ],
-              [
-                28.0,
-                -16.64
-              ],
-              [
-                28.0,
-                -16.68
-              ],
-              [
-                28.01,
-                -16.71
-              ],
-              [
-                28.05,
-                -16.71
-              ],
-              [
-                28.05,
-                -16.74
-              ],
-              [
-                28.09,
-                -16.74
-              ],
-              [
-                28.11,
-                -16.77
-              ],
-              [
-                28.21,
-                -16.84
-              ],
-              [
-                28.27,
-                -16.85
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261108225001.659603VIRM11181794178201",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-08T22:50:01+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de vientos de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-08T22:50:01+00:00",
-      "onset": "2026-11-11T00:00:00+00:00",
-      "expires": "2026-11-11T17:59:59+00:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de vientos de nivel amarillo. Este, sur y oeste de Tenerife",
-      "description": "Rachas máximas: 80 km/h. Afectando a cumbres, vertientes noroeste y sureste. En zonas altas y cumbres es probable que se superen los 90 km/h localmente. En cumbres de La Palma y Tenerife, no se descarta que se alcancen los 120 km/h localmente.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Este, sur y oeste de Tenerife",
-          "zoneCode": "659603",
-          "polygons": [
-            [
-              [
-                28.27,
-                -16.85
-              ],
-              [
-                28.31,
-                -16.79
-              ],
-              [
-                28.27,
-                -16.7
-              ],
-              [
-                28.21,
-                -16.68
-              ],
-              [
-                28.2,
-                -16.64
-              ],
-              [
-                28.25,
-                -16.55
-              ],
-              [
-                28.28,
-                -16.54
-              ],
-              [
-                28.31,
-                -16.5
-              ],
-              [
-                28.35,
-                -16.48
-              ],
-              [
-                28.39,
-                -16.44
-              ],
-              [
-                28.34,
-                -16.39
-              ],
-              [
-                28.34,
-                -16.36
-              ],
-              [
-                28.31,
-                -16.36
-              ],
-              [
-                28.2,
-                -16.42
-              ],
-              [
-                28.14,
-                -16.44
-              ],
-              [
-                28.08,
-                -16.49
-              ],
-              [
-                28.03,
-                -16.55
-              ],
-              [
-                28.03,
-                -16.6
-              ],
-              [
-                28.0,
-                -16.64
-              ],
-              [
-                28.0,
-                -16.68
-              ],
-              [
-                28.01,
-                -16.71
-              ],
-              [
-                28.05,
-                -16.71
-              ],
-              [
-                28.05,
-                -16.74
-              ],
-              [
-                28.09,
-                -16.74
-              ],
-              [
-                28.11,
-                -16.77
-              ],
-              [
-                28.21,
-                -16.84
-              ],
-              [
-                28.27,
-                -16.85
               ]
             ]
           ]
