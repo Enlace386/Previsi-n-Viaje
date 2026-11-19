@@ -1,8 +1,8 @@
 {
   "source": "AEMET OpenData",
-  "generatedAt": "2026-11-18T23:27:34.846950+00:00",
+  "generatedAt": "2026-11-19T04:20:42.568378+00:00",
   "status": "ok",
-  "count": 304,
+  "count": 305,
   "alerts": [
     {
       "id": "2.49.0.0.724.0.ES.20261118082936.633301COCO19231794990576",
@@ -27484,6 +27484,267 @@
               [
                 39.64,
                 3.41
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261119001043.774602VIRM19051795047043",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-19T00:10:43+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de vientos de nivel amarillo",
+      "urgency": "Immediate",
+      "severity": "Moderate",
+      "certainty": "Observed",
+      "effective": "2026-11-19T01:10:43+01:00",
+      "onset": "2026-11-19T01:00:00+01:00",
+      "expires": "2026-11-19T05:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de vientos de nivel amarillo. Litoral norte de Valencia",
+      "description": "Rachas máximas: 70 km/h. Viento del oeste.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Litoral norte de Valencia",
+          "zoneCode": "774602",
+          "polygons": [
+            [
+              [
+                39.34,
+                -0.98
+              ],
+              [
+                39.43,
+                -0.98
+              ],
+              [
+                39.42,
+                -0.93
+              ],
+              [
+                39.44,
+                -0.88
+              ],
+              [
+                39.49,
+                -0.85
+              ],
+              [
+                39.51,
+                -0.87
+              ],
+              [
+                39.54,
+                -0.92
+              ],
+              [
+                39.55,
+                -0.89
+              ],
+              [
+                39.54,
+                -0.83
+              ],
+              [
+                39.55,
+                -0.77
+              ],
+              [
+                39.66,
+                -0.73
+              ],
+              [
+                39.69,
+                -0.7
+              ],
+              [
+                39.73,
+                -0.71
+              ],
+              [
+                39.74,
+                -0.79
+              ],
+              [
+                39.78,
+                -0.74
+              ],
+              [
+                39.79,
+                -0.71
+              ],
+              [
+                39.82,
+                -0.71
+              ],
+              [
+                39.85,
+                -0.69
+              ],
+              [
+                39.84,
+                -0.65
+              ],
+              [
+                39.79,
+                -0.64
+              ],
+              [
+                39.75,
+                -0.65
+              ],
+              [
+                39.74,
+                -0.59
+              ],
+              [
+                39.77,
+                -0.58
+              ],
+              [
+                39.8,
+                -0.55
+              ],
+              [
+                39.78,
+                -0.51
+              ],
+              [
+                39.75,
+                -0.5
+              ],
+              [
+                39.72,
+                -0.46
+              ],
+              [
+                39.75,
+                -0.41
+              ],
+              [
+                39.8,
+                -0.38
+              ],
+              [
+                39.8,
+                -0.31
+              ],
+              [
+                39.77,
+                -0.28
+              ],
+              [
+                39.75,
+                -0.27
+              ],
+              [
+                39.72,
+                -0.19
+              ],
+              [
+                39.65,
+                -0.22
+              ],
+              [
+                39.62,
+                -0.26
+              ],
+              [
+                39.58,
+                -0.27
+              ],
+              [
+                39.53,
+                -0.31
+              ],
+              [
+                39.42,
+                -0.33
+              ],
+              [
+                39.36,
+                -0.31
+              ],
+              [
+                39.28,
+                -0.27
+              ],
+              [
+                39.28,
+                -0.29
+              ],
+              [
+                39.31,
+                -0.32
+              ],
+              [
+                39.31,
+                -0.38
+              ],
+              [
+                39.33,
+                -0.42
+              ],
+              [
+                39.3,
+                -0.43
+              ],
+              [
+                39.3,
+                -0.49
+              ],
+              [
+                39.34,
+                -0.55
+              ],
+              [
+                39.32,
+                -0.58
+              ],
+              [
+                39.37,
+                -0.64
+              ],
+              [
+                39.32,
+                -0.69
+              ],
+              [
+                39.32,
+                -0.76
+              ],
+              [
+                39.38,
+                -0.76
+              ],
+              [
+                39.37,
+                -0.8
+              ],
+              [
+                39.32,
+                -0.85
+              ],
+              [
+                39.31,
+                -0.9
+              ],
+              [
+                39.34,
+                -0.98
               ]
             ]
           ]
