@@ -1,492 +1,9 @@
 {
   "source": "AEMET OpenData",
-  "generatedAt": "2026-11-20T10:42:20.749166+00:00",
+  "generatedAt": "2026-11-20T18:54:44.217470+00:00",
   "status": "ok",
-  "count": 254,
+  "count": 248,
   "alerts": [
-    {
-      "id": "2.49.0.0.724.0.ES.20261120100118.663901COCO20131795168878",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T10:01:18+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de costeros de nivel naranja",
-      "urgency": "Immediate",
-      "severity": "Severe",
-      "certainty": "Likely",
-      "effective": "2026-11-20T11:01:18+01:00",
-      "onset": "2026-11-20T11:00:00+01:00",
-      "expires": "2026-11-20T13:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel naranja. Costa - Litoral cántabro",
-      "description": "Mar combinado del Noroeste de 5 a 6 m.",
-      "instruction": "Esté preparado. Tome precauciones y manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños graves a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "naranja",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Costa - Litoral cántabro",
-          "zoneCode": "663901C",
-          "polygons": [
-            [
-              [
-                43.35,
-                -3.15
-              ],
-              [
-                43.36,
-                -3.19
-              ],
-              [
-                43.39,
-                -3.22
-              ],
-              [
-                43.42,
-                -3.33
-              ],
-              [
-                43.41,
-                -3.43
-              ],
-              [
-                43.47,
-                -3.43
-              ],
-              [
-                43.47,
-                -3.49
-              ],
-              [
-                43.51,
-                -3.55
-              ],
-              [
-                43.51,
-                -3.6
-              ],
-              [
-                43.48,
-                -3.69
-              ],
-              [
-                43.45,
-                -3.77
-              ],
-              [
-                43.41,
-                -3.81
-              ],
-              [
-                43.4,
-                -3.81
-              ],
-              [
-                43.44,
-                -3.83
-              ],
-              [
-                43.46,
-                -3.78
-              ],
-              [
-                43.5,
-                -3.81
-              ],
-              [
-                43.48,
-                -3.86
-              ],
-              [
-                43.47,
-                -3.94
-              ],
-              [
-                43.44,
-                -3.98
-              ],
-              [
-                43.44,
-                -4.05
-              ],
-              [
-                43.43,
-                -4.05
-              ],
-              [
-                43.4,
-                -4.22
-              ],
-              [
-                43.39,
-                -4.28
-              ],
-              [
-                43.4,
-                -4.41
-              ],
-              [
-                43.4,
-                -4.5
-              ],
-              [
-                43.39,
-                -4.51
-              ],
-              [
-                43.51,
-                -4.51
-              ],
-              [
-                43.73,
-                -4.52
-              ],
-              [
-                43.73,
-                -4.3
-              ],
-              [
-                43.76,
-                -4.21
-              ],
-              [
-                43.82,
-                -3.94
-              ],
-              [
-                43.83,
-                -3.85
-              ],
-              [
-                43.82,
-                -3.75
-              ],
-              [
-                43.84,
-                -3.66
-              ],
-              [
-                43.85,
-                -3.56
-              ],
-              [
-                43.84,
-                -3.47
-              ],
-              [
-                43.81,
-                -3.38
-              ],
-              [
-                43.74,
-                -3.19
-              ],
-              [
-                43.63,
-                -3.17
-              ],
-              [
-                43.39,
-                -3.15
-              ],
-              [
-                43.35,
-                -3.15
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261120100118.752001COCO20131795168878",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T10:01:18+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de costeros de nivel naranja",
-      "urgency": "Immediate",
-      "severity": "Severe",
-      "certainty": "Likely",
-      "effective": "2026-11-20T11:01:18+01:00",
-      "onset": "2026-11-20T11:00:00+01:00",
-      "expires": "2026-11-20T13:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel naranja. Costa - Gipuzkoa litoral",
-      "description": "Mar combinado del Noroeste de 5 a 6 m.",
-      "instruction": "Esté preparado. Tome precauciones y manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños graves a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "naranja",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Costa - Gipuzkoa litoral",
-          "zoneCode": "752001C",
-          "polygons": [
-            [
-              [
-                43.69,
-                -2.39
-              ],
-              [
-                43.67,
-                -2.3
-              ],
-              [
-                43.63,
-                -2.21
-              ],
-              [
-                43.7,
-                -1.96
-              ],
-              [
-                43.72,
-                -1.88
-              ],
-              [
-                43.73,
-                -1.74
-              ],
-              [
-                43.65,
-                -1.72
-              ],
-              [
-                43.48,
-                -1.73
-              ],
-              [
-                43.44,
-                -1.74
-              ],
-              [
-                43.37,
-                -1.79
-              ],
-              [
-                43.38,
-                -1.83
-              ],
-              [
-                43.37,
-                -1.86
-              ],
-              [
-                43.34,
-                -1.92
-              ],
-              [
-                43.34,
-                -1.96
-              ],
-              [
-                43.32,
-                -1.99
-              ],
-              [
-                43.32,
-                -2.04
-              ],
-              [
-                43.29,
-                -2.18
-              ],
-              [
-                43.31,
-                -2.21
-              ],
-              [
-                43.3,
-                -2.27
-              ],
-              [
-                43.3,
-                -2.35
-              ],
-              [
-                43.3,
-                -2.36
-              ],
-              [
-                43.32,
-                -2.41
-              ],
-              [
-                43.69,
-                -2.39
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261120100118.754801COCO20131795168878",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T10:01:18+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de costeros de nivel naranja",
-      "urgency": "Immediate",
-      "severity": "Severe",
-      "certainty": "Likely",
-      "effective": "2026-11-20T11:01:18+01:00",
-      "onset": "2026-11-20T11:00:00+01:00",
-      "expires": "2026-11-20T13:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel naranja. Costa - Bizkaia litoral",
-      "description": "Mar combinado del Noroeste de 5 a 6 m.",
-      "instruction": "Esté preparado. Tome precauciones y manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños graves a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "naranja",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Costa - Bizkaia litoral",
-          "zoneCode": "754801C",
-          "polygons": [
-            [
-              [
-                43.37,
-                -2.49
-              ],
-              [
-                43.37,
-                -2.54
-              ],
-              [
-                43.39,
-                -2.56
-              ],
-              [
-                43.39,
-                -2.62
-              ],
-              [
-                43.42,
-                -2.72
-              ],
-              [
-                43.46,
-                -2.75
-              ],
-              [
-                43.43,
-                -2.81
-              ],
-              [
-                43.44,
-                -2.94
-              ],
-              [
-                43.39,
-                -2.99
-              ],
-              [
-                43.37,
-                -3.03
-              ],
-              [
-                43.34,
-                -3.01
-              ],
-              [
-                43.36,
-                -3.11
-              ],
-              [
-                43.35,
-                -3.11
-              ],
-              [
-                43.35,
-                -3.15
-              ],
-              [
-                43.39,
-                -3.15
-              ],
-              [
-                43.63,
-                -3.17
-              ],
-              [
-                43.74,
-                -3.19
-              ],
-              [
-                43.73,
-                -3.16
-              ],
-              [
-                43.75,
-                -3.1
-              ],
-              [
-                43.77,
-                -3.01
-              ],
-              [
-                43.79,
-                -2.82
-              ],
-              [
-                43.79,
-                -2.72
-              ],
-              [
-                43.78,
-                -2.62
-              ],
-              [
-                43.75,
-                -2.53
-              ],
-              [
-                43.69,
-                -2.39
-              ],
-              [
-                43.32,
-                -2.41
-              ],
-              [
-                43.33,
-                -2.42
-              ],
-              [
-                43.33,
-                -2.43
-              ],
-              [
-                43.37,
-                -2.49
-              ]
-            ]
-          ]
-        }
-      ]
-    },
     {
       "id": "2.49.0.0.724.0.ES.20261120103114.663901COCO22111795170674",
       "sender": "http://www.aemet.es",
@@ -1294,1076 +811,6 @@
               [
                 43.73,
                 -4.52
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261120101326.711501COCO20171795169606",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T10:13:26+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de costeros de nivel amarillo",
-      "urgency": "Immediate",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-20T11:13:26+01:00",
-      "onset": "2026-11-20T11:00:00+01:00",
-      "expires": "2026-11-20T17:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel amarillo. Costa - Noroeste de A Coruña",
-      "description": "Mar combinado del NW de 4 a 5 m.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 70,
-        "max": 70,
-        "text": "mayor 70%"
-      },
-      "areas": [
-        {
-          "name": "Costa - Noroeste de A Coruña",
-          "zoneCode": "711501C",
-          "polygons": [
-            [
-              [
-                43.46,
-                -9.42
-              ],
-              [
-                43.48,
-                -9.34
-              ],
-              [
-                43.51,
-                -9.31
-              ],
-              [
-                43.63,
-                -9.12
-              ],
-              [
-                43.66,
-                -9.04
-              ],
-              [
-                43.69,
-                -8.96
-              ],
-              [
-                43.69,
-                -8.87
-              ],
-              [
-                43.69,
-                -8.74
-              ],
-              [
-                43.73,
-                -8.71
-              ],
-              [
-                43.79,
-                -8.66
-              ],
-              [
-                43.84,
-                -8.59
-              ],
-              [
-                43.89,
-                -8.44
-              ],
-              [
-                43.96,
-                -8.36
-              ],
-              [
-                43.99,
-                -8.29
-              ],
-              [
-                44.06,
-                -8.13
-              ],
-              [
-                44.09,
-                -8.04
-              ],
-              [
-                44.1,
-                -7.95
-              ],
-              [
-                44.1,
-                -7.85
-              ],
-              [
-                44.11,
-                -7.79
-              ],
-              [
-                44.12,
-                -7.7
-              ],
-              [
-                44.12,
-                -7.6
-              ],
-              [
-                43.83,
-                -7.61
-              ],
-              [
-                43.77,
-                -7.65
-              ],
-              [
-                43.74,
-                -7.7
-              ],
-              [
-                43.75,
-                -7.73
-              ],
-              [
-                43.73,
-                -7.79
-              ],
-              [
-                43.67,
-                -7.84
-              ],
-              [
-                43.66,
-                -7.88
-              ],
-              [
-                43.76,
-                -7.86
-              ],
-              [
-                43.77,
-                -7.9
-              ],
-              [
-                43.74,
-                -7.92
-              ],
-              [
-                43.7,
-                -8.0
-              ],
-              [
-                43.71,
-                -8.06
-              ],
-              [
-                43.66,
-                -8.07
-              ],
-              [
-                43.62,
-                -8.15
-              ],
-              [
-                43.53,
-                -8.32
-              ],
-              [
-                43.48,
-                -8.33
-              ],
-              [
-                43.42,
-                -8.26
-              ],
-              [
-                43.42,
-                -8.21
-              ],
-              [
-                43.33,
-                -8.21
-              ],
-              [
-                43.4,
-                -8.3
-              ],
-              [
-                43.4,
-                -8.34
-              ],
-              [
-                43.35,
-                -8.35
-              ],
-              [
-                43.34,
-                -8.38
-              ],
-              [
-                43.38,
-                -8.44
-              ],
-              [
-                43.33,
-                -8.51
-              ],
-              [
-                43.31,
-                -8.56
-              ],
-              [
-                43.32,
-                -8.59
-              ],
-              [
-                43.29,
-                -8.71
-              ],
-              [
-                43.3,
-                -8.77
-              ],
-              [
-                43.33,
-                -8.8
-              ],
-              [
-                43.32,
-                -8.91
-              ],
-              [
-                43.29,
-                -8.91
-              ],
-              [
-                43.27,
-                -8.96
-              ],
-              [
-                43.23,
-                -8.94
-              ],
-              [
-                43.23,
-                -8.98
-              ],
-              [
-                43.22,
-                -9.03
-              ],
-              [
-                43.18,
-                -9.08
-              ],
-              [
-                43.39,
-                -9.35
-              ],
-              [
-                43.46,
-                -9.42
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261120101326.711502COCO20171795169606",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T10:13:26+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de costeros de nivel amarillo",
-      "urgency": "Immediate",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-20T11:13:26+01:00",
-      "onset": "2026-11-20T11:00:00+01:00",
-      "expires": "2026-11-20T17:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel amarillo. Costa - Oeste de A Coruña",
-      "description": "Mar combinado del NW de 4 a 5 m.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 70,
-        "max": 70,
-        "text": "mayor 70%"
-      },
-      "areas": [
-        {
-          "name": "Costa - Oeste de A Coruña",
-          "zoneCode": "711502C",
-          "polygons": [
-            [
-              [
-                43.46,
-                -9.42
-              ],
-              [
-                43.39,
-                -9.35
-              ],
-              [
-                43.18,
-                -9.08
-              ],
-              [
-                43.2,
-                -9.12
-              ],
-              [
-                43.15,
-                -9.2
-              ],
-              [
-                43.13,
-                -9.2
-              ],
-              [
-                43.12,
-                -9.16
-              ],
-              [
-                43.09,
-                -9.18
-              ],
-              [
-                43.11,
-                -9.22
-              ],
-              [
-                43.05,
-                -9.26
-              ],
-              [
-                43.05,
-                -9.29
-              ],
-              [
-                42.97,
-                -9.26
-              ],
-              [
-                42.93,
-                -9.29
-              ],
-              [
-                42.92,
-                -9.18
-              ],
-              [
-                42.9,
-                -9.13
-              ],
-              [
-                42.87,
-                -9.15
-              ],
-              [
-                42.84,
-                -9.11
-              ],
-              [
-                42.79,
-                -9.13
-              ],
-              [
-                42.77,
-                -9.12
-              ],
-              [
-                42.76,
-                -9.11
-              ],
-              [
-                42.6,
-                -9.54
-              ],
-              [
-                42.62,
-                -9.55
-              ],
-              [
-                42.66,
-                -9.61
-              ],
-              [
-                42.72,
-                -9.67
-              ],
-              [
-                42.78,
-                -9.7
-              ],
-              [
-                42.84,
-                -9.72
-              ],
-              [
-                42.93,
-                -9.72
-              ],
-              [
-                43.01,
-                -9.74
-              ],
-              [
-                43.07,
-                -9.75
-              ],
-              [
-                43.13,
-                -9.74
-              ],
-              [
-                43.19,
-                -9.71
-              ],
-              [
-                43.24,
-                -9.67
-              ],
-              [
-                43.28,
-                -9.64
-              ],
-              [
-                43.36,
-                -9.58
-              ],
-              [
-                43.41,
-                -9.52
-              ],
-              [
-                43.46,
-                -9.42
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261120101326.711504COCO20151795169606",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T10:13:26+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de costeros de nivel amarillo",
-      "urgency": "Immediate",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-20T11:13:26+01:00",
-      "onset": "2026-11-20T11:00:00+01:00",
-      "expires": "2026-11-20T15:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel amarillo. Costa - Suroeste de A Coruña",
-      "description": "Mar combinado del NW de 4 a 5 m.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 70,
-        "max": 70,
-        "text": "mayor 70%"
-      },
-      "areas": [
-        {
-          "name": "Costa - Suroeste de A Coruña",
-          "zoneCode": "711504C",
-          "polygons": [
-            [
-              [
-                42.76,
-                -9.11
-              ],
-              [
-                42.76,
-                -9.06
-              ],
-              [
-                42.79,
-                -9.03
-              ],
-              [
-                42.78,
-                -8.98
-              ],
-              [
-                42.74,
-                -8.99
-              ],
-              [
-                42.7,
-                -9.03
-              ],
-              [
-                42.64,
-                -9.04
-              ],
-              [
-                42.6,
-                -9.07
-              ],
-              [
-                42.6,
-                -9.08
-              ],
-              [
-                42.58,
-                -9.08
-              ],
-              [
-                42.58,
-                -9.09
-              ],
-              [
-                42.57,
-                -9.05
-              ],
-              [
-                42.52,
-                -9.02
-              ],
-              [
-                42.56,
-                -8.99
-              ],
-              [
-                42.64,
-                -8.89
-              ],
-              [
-                42.61,
-                -8.87
-              ],
-              [
-                42.67,
-                -8.85
-              ],
-              [
-                42.66,
-                -8.81
-              ],
-              [
-                42.64,
-                -8.79
-              ],
-              [
-                42.65,
-                -8.75
-              ],
-              [
-                42.69,
-                -8.73
-              ],
-              [
-                42.66,
-                -8.74
-              ],
-              [
-                42.65,
-                -8.74
-              ],
-              [
-                42.61,
-                -8.82
-              ],
-              [
-                42.57,
-                -8.91
-              ],
-              [
-                42.47,
-                -8.98
-              ],
-              [
-                42.44,
-                -9.04
-              ],
-              [
-                42.41,
-                -9.19
-              ],
-              [
-                42.37,
-                -9.46
-              ],
-              [
-                42.48,
-                -9.52
-              ],
-              [
-                42.55,
-                -9.54
-              ],
-              [
-                42.6,
-                -9.54
-              ],
-              [
-                42.76,
-                -9.11
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261120101326.712701COCO20171795169606",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T10:13:26+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de costeros de nivel amarillo",
-      "urgency": "Immediate",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-20T11:13:26+01:00",
-      "onset": "2026-11-20T11:00:00+01:00",
-      "expires": "2026-11-20T17:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel amarillo. Costa - A Mariña",
-      "description": "Mar combinado del NW de 4 a 5 m.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 70,
-        "max": 70,
-        "text": "mayor 70%"
-      },
-      "areas": [
-        {
-          "name": "Costa - A Mariña",
-          "zoneCode": "712701C",
-          "polygons": [
-            [
-              [
-                43.55,
-                -7.03
-              ],
-              [
-                43.56,
-                -7.06
-              ],
-              [
-                43.55,
-                -7.16
-              ],
-              [
-                43.56,
-                -7.22
-              ],
-              [
-                43.6,
-                -7.29
-              ],
-              [
-                43.63,
-                -7.33
-              ],
-              [
-                43.67,
-                -7.36
-              ],
-              [
-                43.7,
-                -7.47
-              ],
-              [
-                43.73,
-                -7.49
-              ],
-              [
-                43.73,
-                -7.54
-              ],
-              [
-                43.68,
-                -7.59
-              ],
-              [
-                43.73,
-                -7.63
-              ],
-              [
-                43.75,
-                -7.67
-              ],
-              [
-                43.74,
-                -7.7
-              ],
-              [
-                43.77,
-                -7.65
-              ],
-              [
-                43.83,
-                -7.61
-              ],
-              [
-                44.12,
-                -7.6
-              ],
-              [
-                44.1,
-                -7.52
-              ],
-              [
-                44.06,
-                -7.42
-              ],
-              [
-                44.05,
-                -7.36
-              ],
-              [
-                44.02,
-                -7.25
-              ],
-              [
-                43.99,
-                -7.17
-              ],
-              [
-                43.95,
-                -7.1
-              ],
-              [
-                43.9,
-                -7.05
-              ],
-              [
-                43.88,
-                -7.01
-              ],
-              [
-                43.61,
-                -7.03
-              ],
-              [
-                43.55,
-                -7.03
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261120101326.713601COCO20151795169606",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T10:13:26+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de costeros de nivel amarillo",
-      "urgency": "Immediate",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-20T11:13:26+01:00",
-      "onset": "2026-11-20T11:00:00+01:00",
-      "expires": "2026-11-20T15:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel amarillo. Costa - Rias Baixas",
-      "description": "Mar combinado del NW de 4 a 5 m.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 70,
-        "max": 70,
-        "text": "mayor 70%"
-      },
-      "areas": [
-        {
-          "name": "Costa - Rias Baixas",
-          "zoneCode": "713601C",
-          "polygons": [
-            [
-              [
-                42.37,
-                -9.46
-              ],
-              [
-                42.41,
-                -9.19
-              ],
-              [
-                42.44,
-                -9.04
-              ],
-              [
-                42.47,
-                -8.98
-              ],
-              [
-                42.57,
-                -8.91
-              ],
-              [
-                42.61,
-                -8.82
-              ],
-              [
-                42.65,
-                -8.74
-              ],
-              [
-                42.62,
-                -8.77
-              ],
-              [
-                42.6,
-                -8.76
-              ],
-              [
-                42.55,
-                -8.83
-              ],
-              [
-                42.53,
-                -8.82
-              ],
-              [
-                42.48,
-                -8.83
-              ],
-              [
-                42.5,
-                -8.86
-              ],
-              [
-                42.48,
-                -8.91
-              ],
-              [
-                42.46,
-                -8.88
-              ],
-              [
-                42.41,
-                -8.86
-              ],
-              [
-                42.4,
-                -8.76
-              ],
-              [
-                42.41,
-                -8.74
-              ],
-              [
-                42.4,
-                -8.69
-              ],
-              [
-                42.38,
-                -8.74
-              ],
-              [
-                42.34,
-                -8.75
-              ],
-              [
-                42.33,
-                -8.83
-              ],
-              [
-                42.31,
-                -8.82
-              ],
-              [
-                42.26,
-                -8.85
-              ],
-              [
-                42.25,
-                -8.79
-              ],
-              [
-                42.27,
-                -8.74
-              ],
-              [
-                42.28,
-                -8.69
-              ],
-              [
-                42.35,
-                -8.64
-              ],
-              [
-                42.34,
-                -8.61
-              ],
-              [
-                42.3,
-                -8.61
-              ],
-              [
-                42.28,
-                -8.67
-              ],
-              [
-                42.23,
-                -8.74
-              ],
-              [
-                42.23,
-                -8.77
-              ],
-              [
-                42.15,
-                -8.83
-              ],
-              [
-                42.13,
-                -8.82
-              ],
-              [
-                42.11,
-                -8.9
-              ],
-              [
-                42.0,
-                -8.88
-              ],
-              [
-                41.96,
-                -8.88
-              ],
-              [
-                41.92,
-                -9.21
-              ],
-              [
-                41.9,
-                -9.32
-              ],
-              [
-                42.24,
-                -9.36
-              ],
-              [
-                42.27,
-                -9.38
-              ],
-              [
-                42.37,
-                -9.46
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261120101326.713603COCO20151795169606",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T10:13:26+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de costeros de nivel amarillo",
-      "urgency": "Immediate",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-20T11:13:26+01:00",
-      "onset": "2026-11-20T11:00:00+01:00",
-      "expires": "2026-11-20T15:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel amarillo. Costa - Miño de Pontevedra",
-      "description": "Mar combinado del NW de 4 a 5 m.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 70,
-        "max": 70,
-        "text": "mayor 70%"
-      },
-      "areas": [
-        {
-          "name": "Costa - Miño de Pontevedra",
-          "zoneCode": "713603C",
-          "polygons": [
-            [
-              [
-                41.96,
-                -8.88
-              ],
-              [
-                41.88,
-                -8.88
-              ],
-              [
-                41.88,
-                -8.85
-              ],
-              [
-                41.9,
-                -8.83
-              ],
-              [
-                41.87,
-                -8.85
-              ],
-              [
-                41.85,
-                -8.92
-              ],
-              [
-                41.83,
-                -9.04
-              ],
-              [
-                41.83,
-                -9.12
-              ],
-              [
-                41.83,
-                -9.29
-              ],
-              [
-                41.83,
-                -9.31
-              ],
-              [
-                41.9,
-                -9.32
-              ],
-              [
-                41.92,
-                -9.21
-              ],
-              [
-                41.96,
-                -8.88
               ]
             ]
           ]
@@ -7458,325 +5905,19 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261120101326.712704PRP221211795169606",
+      "id": "2.49.0.0.724.0.ES.20261120174133.711502VIRM21071795196493",
       "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T10:13:26+00:00",
+      "sent": "2026-11-20T17:41:33+00:00",
       "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-20T11:13:26+01:00",
-      "onset": "2026-11-21T00:00:00+01:00",
-      "expires": "2026-11-21T21:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel amarillo. Sur de Lugo",
-      "description": "Precipitación acumulada en 12 horas: 40 mm.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Sur de Lugo",
-          "zoneCode": "712704",
-          "polygons": [
-            [
-              [
-                42.58,
-                -7.93
-              ],
-              [
-                42.63,
-                -7.89
-              ],
-              [
-                42.68,
-                -7.89
-              ],
-              [
-                42.72,
-                -7.86
-              ],
-              [
-                42.72,
-                -7.81
-              ],
-              [
-                42.76,
-                -7.79
-              ],
-              [
-                42.79,
-                -7.76
-              ],
-              [
-                42.77,
-                -7.72
-              ],
-              [
-                42.79,
-                -7.69
-              ],
-              [
-                42.73,
-                -7.65
-              ],
-              [
-                42.67,
-                -7.57
-              ],
-              [
-                42.69,
-                -7.51
-              ],
-              [
-                42.67,
-                -7.45
-              ],
-              [
-                42.63,
-                -7.41
-              ],
-              [
-                42.65,
-                -7.38
-              ],
-              [
-                42.62,
-                -7.34
-              ],
-              [
-                42.62,
-                -7.31
-              ],
-              [
-                42.58,
-                -7.26
-              ],
-              [
-                42.55,
-                -7.29
-              ],
-              [
-                42.52,
-                -7.27
-              ],
-              [
-                42.53,
-                -7.24
-              ],
-              [
-                42.58,
-                -7.17
-              ],
-              [
-                42.58,
-                -7.14
-              ],
-              [
-                42.61,
-                -7.09
-              ],
-              [
-                42.55,
-                -7.06
-              ],
-              [
-                42.51,
-                -7.08
-              ],
-              [
-                42.46,
-                -7.1
-              ],
-              [
-                42.44,
-                -7.15
-              ],
-              [
-                42.33,
-                -7.2
-              ],
-              [
-                42.42,
-                -7.27
-              ],
-              [
-                42.43,
-                -7.31
-              ],
-              [
-                42.42,
-                -7.37
-              ],
-              [
-                42.43,
-                -7.39
-              ],
-              [
-                42.38,
-                -7.53
-              ],
-              [
-                42.41,
-                -7.57
-              ],
-              [
-                42.38,
-                -7.62
-              ],
-              [
-                42.41,
-                -7.63
-              ],
-              [
-                42.43,
-                -7.7
-              ],
-              [
-                42.45,
-                -7.73
-              ],
-              [
-                42.45,
-                -7.75
-              ],
-              [
-                42.49,
-                -7.81
-              ],
-              [
-                42.51,
-                -7.87
-              ],
-              [
-                42.58,
-                -7.93
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261120101326.713205PRP221211795169606",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T10:13:26+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de lluvias de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-20T11:13:26+01:00",
-      "onset": "2026-11-21T00:00:00+01:00",
-      "expires": "2026-11-21T21:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de lluvias de nivel amarillo. Valdeorras",
-      "description": "Precipitación acumulada en 12 horas: 40 mm.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Valdeorras",
-          "zoneCode": "713205",
-          "polygons": [
-            [
-              [
-                42.33,
-                -7.2
-              ],
-              [
-                42.44,
-                -7.15
-              ],
-              [
-                42.46,
-                -7.1
-              ],
-              [
-                42.51,
-                -7.08
-              ],
-              [
-                42.5,
-                -7.03
-              ],
-              [
-                42.52,
-                -6.92
-              ],
-              [
-                42.47,
-                -6.81
-              ],
-              [
-                42.41,
-                -6.83
-              ],
-              [
-                42.44,
-                -6.87
-              ],
-              [
-                42.42,
-                -6.92
-              ],
-              [
-                42.36,
-                -6.97
-              ],
-              [
-                42.36,
-                -7.02
-              ],
-              [
-                42.36,
-                -7.1
-              ],
-              [
-                42.34,
-                -7.12
-              ],
-              [
-                42.33,
-                -7.2
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261120101326.711502VIRM21051795169606",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T10:13:26+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
+      "messageType": "Update",
       "language": "es-ES",
       "event": "Aviso de vientos de nivel amarillo",
       "urgency": "Future",
       "severity": "Moderate",
       "certainty": "Likely",
-      "effective": "2026-11-20T11:13:26+01:00",
+      "effective": "2026-11-20T18:41:33+01:00",
       "onset": "2026-11-21T00:00:00+01:00",
-      "expires": "2026-11-21T05:59:59+01:00",
+      "expires": "2026-11-21T07:59:59+01:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel amarillo. Oeste de A Coruña",
       "description": "Rachas máximas: 80 km/h. Serán más probables en litorales.",
@@ -7925,19 +6066,19 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261120101326.711504VIRM21051795169606",
+      "id": "2.49.0.0.724.0.ES.20261120174133.711504VIRM21071795196493",
       "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T10:13:26+00:00",
+      "sent": "2026-11-20T17:41:33+00:00",
       "status": "Actual",
-      "messageType": "Alert",
+      "messageType": "Update",
       "language": "es-ES",
       "event": "Aviso de vientos de nivel amarillo",
       "urgency": "Future",
       "severity": "Moderate",
       "certainty": "Likely",
-      "effective": "2026-11-20T11:13:26+01:00",
+      "effective": "2026-11-20T18:41:33+01:00",
       "onset": "2026-11-21T00:00:00+01:00",
-      "expires": "2026-11-21T05:59:59+01:00",
+      "expires": "2026-11-21T07:59:59+01:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel amarillo. Suroeste de A Coruña",
       "description": "Rachas máximas: 80 km/h. Serán más probables en litorales.",
@@ -8126,19 +6267,19 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261120101326.713601VIRM21051795169606",
+      "id": "2.49.0.0.724.0.ES.20261120174133.713601VIRM21071795196493",
       "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T10:13:26+00:00",
+      "sent": "2026-11-20T17:41:33+00:00",
       "status": "Actual",
-      "messageType": "Alert",
+      "messageType": "Update",
       "language": "es-ES",
       "event": "Aviso de vientos de nivel amarillo",
       "urgency": "Future",
       "severity": "Moderate",
       "certainty": "Likely",
-      "effective": "2026-11-20T11:13:26+01:00",
+      "effective": "2026-11-20T18:41:33+01:00",
       "onset": "2026-11-21T00:00:00+01:00",
-      "expires": "2026-11-21T05:59:59+01:00",
+      "expires": "2026-11-21T07:59:59+01:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel amarillo. Rias Baixas",
       "description": "Rachas máximas: 80 km/h. Serán más probables en litorales.",
@@ -8411,19 +6552,19 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261120101326.713603VIRM21051795169606",
+      "id": "2.49.0.0.724.0.ES.20261120174133.713603VIRM21071795196493",
       "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T10:13:26+00:00",
+      "sent": "2026-11-20T17:41:33+00:00",
       "status": "Actual",
-      "messageType": "Alert",
+      "messageType": "Update",
       "language": "es-ES",
       "event": "Aviso de vientos de nivel amarillo",
       "urgency": "Future",
       "severity": "Moderate",
       "certainty": "Likely",
-      "effective": "2026-11-20T11:13:26+01:00",
+      "effective": "2026-11-20T18:41:33+01:00",
       "onset": "2026-11-21T00:00:00+01:00",
-      "expires": "2026-11-21T05:59:59+01:00",
+      "expires": "2026-11-21T07:59:59+01:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de vientos de nivel amarillo. Miño de Pontevedra",
       "description": "Rachas máximas: 80 km/h. Serán más probables en litorales.",
@@ -8608,19 +6749,19 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261120093745.672402PRP221211795167465",
+      "id": "2.49.0.0.724.0.ES.20261120172727.672402PRP221231795195647",
       "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T09:37:45+00:00",
+      "sent": "2026-11-20T17:27:27+00:00",
       "status": "Actual",
-      "messageType": "Alert",
+      "messageType": "Update",
       "language": "es-ES",
       "event": "Aviso de lluvias de nivel amarillo",
       "urgency": "Future",
       "severity": "Moderate",
       "certainty": "Likely",
-      "effective": "2026-11-20T10:37:45+01:00",
+      "effective": "2026-11-20T18:27:27+01:00",
       "onset": "2026-11-21T00:00:00+01:00",
-      "expires": "2026-11-21T21:59:59+01:00",
+      "expires": "2026-11-21T23:59:59+01:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel amarillo. Bierzo de León",
       "description": "Precipitación acumulada en 12 horas: 40 mm. El aviso en la meseta afectará principalmente a la parte más occidental.",
@@ -8817,9 +6958,9 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261120093745.674901PRP221211795167465",
+      "id": "2.49.0.0.724.0.ES.20261120172727.674901PRP221231795195647",
       "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T09:37:45+00:00",
+      "sent": "2026-11-20T17:27:27+00:00",
       "status": "Actual",
       "messageType": "Update",
       "language": "es-ES",
@@ -8827,9 +6968,9 @@
       "urgency": "Future",
       "severity": "Moderate",
       "certainty": "Likely",
-      "effective": "2026-11-20T10:37:45+01:00",
+      "effective": "2026-11-20T18:27:27+01:00",
       "onset": "2026-11-21T00:00:00+01:00",
-      "expires": "2026-11-21T21:59:59+01:00",
+      "expires": "2026-11-21T23:59:59+01:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel amarillo. Sanabria",
       "description": "Precipitación acumulada en 12 horas: 40 mm. El aviso en la meseta afectará principalmente a la parte más occidental.",
@@ -9024,19 +7165,19 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261120093745.674902PRP221211795167465",
+      "id": "2.49.0.0.724.0.ES.20261120172727.674902PRP221231795195647",
       "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T09:37:45+00:00",
+      "sent": "2026-11-20T17:27:27+00:00",
       "status": "Actual",
-      "messageType": "Alert",
+      "messageType": "Update",
       "language": "es-ES",
       "event": "Aviso de lluvias de nivel amarillo",
       "urgency": "Future",
       "severity": "Moderate",
       "certainty": "Likely",
-      "effective": "2026-11-20T10:37:45+01:00",
+      "effective": "2026-11-20T18:27:27+01:00",
       "onset": "2026-11-21T00:00:00+01:00",
-      "expires": "2026-11-21T21:59:59+01:00",
+      "expires": "2026-11-21T23:59:59+01:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel amarillo. Meseta de Zamora",
       "description": "Precipitación acumulada en 12 horas: 40 mm. El aviso en la meseta afectará principalmente a la parte más occidental.",
@@ -9494,6 +7635,312 @@
               [
                 42.12,
                 -6.29
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261120101326.712704PRP221211795169606",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-20T10:13:26+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-20T11:13:26+01:00",
+      "onset": "2026-11-21T00:00:00+01:00",
+      "expires": "2026-11-21T21:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel amarillo. Sur de Lugo",
+      "description": "Precipitación acumulada en 12 horas: 40 mm.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Sur de Lugo",
+          "zoneCode": "712704",
+          "polygons": [
+            [
+              [
+                42.58,
+                -7.93
+              ],
+              [
+                42.63,
+                -7.89
+              ],
+              [
+                42.68,
+                -7.89
+              ],
+              [
+                42.72,
+                -7.86
+              ],
+              [
+                42.72,
+                -7.81
+              ],
+              [
+                42.76,
+                -7.79
+              ],
+              [
+                42.79,
+                -7.76
+              ],
+              [
+                42.77,
+                -7.72
+              ],
+              [
+                42.79,
+                -7.69
+              ],
+              [
+                42.73,
+                -7.65
+              ],
+              [
+                42.67,
+                -7.57
+              ],
+              [
+                42.69,
+                -7.51
+              ],
+              [
+                42.67,
+                -7.45
+              ],
+              [
+                42.63,
+                -7.41
+              ],
+              [
+                42.65,
+                -7.38
+              ],
+              [
+                42.62,
+                -7.34
+              ],
+              [
+                42.62,
+                -7.31
+              ],
+              [
+                42.58,
+                -7.26
+              ],
+              [
+                42.55,
+                -7.29
+              ],
+              [
+                42.52,
+                -7.27
+              ],
+              [
+                42.53,
+                -7.24
+              ],
+              [
+                42.58,
+                -7.17
+              ],
+              [
+                42.58,
+                -7.14
+              ],
+              [
+                42.61,
+                -7.09
+              ],
+              [
+                42.55,
+                -7.06
+              ],
+              [
+                42.51,
+                -7.08
+              ],
+              [
+                42.46,
+                -7.1
+              ],
+              [
+                42.44,
+                -7.15
+              ],
+              [
+                42.33,
+                -7.2
+              ],
+              [
+                42.42,
+                -7.27
+              ],
+              [
+                42.43,
+                -7.31
+              ],
+              [
+                42.42,
+                -7.37
+              ],
+              [
+                42.43,
+                -7.39
+              ],
+              [
+                42.38,
+                -7.53
+              ],
+              [
+                42.41,
+                -7.57
+              ],
+              [
+                42.38,
+                -7.62
+              ],
+              [
+                42.41,
+                -7.63
+              ],
+              [
+                42.43,
+                -7.7
+              ],
+              [
+                42.45,
+                -7.73
+              ],
+              [
+                42.45,
+                -7.75
+              ],
+              [
+                42.49,
+                -7.81
+              ],
+              [
+                42.51,
+                -7.87
+              ],
+              [
+                42.58,
+                -7.93
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261120101326.713205PRP221211795169606",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-20T10:13:26+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-20T11:13:26+01:00",
+      "onset": "2026-11-21T00:00:00+01:00",
+      "expires": "2026-11-21T21:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel amarillo. Valdeorras",
+      "description": "Precipitación acumulada en 12 horas: 40 mm.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Valdeorras",
+          "zoneCode": "713205",
+          "polygons": [
+            [
+              [
+                42.33,
+                -7.2
+              ],
+              [
+                42.44,
+                -7.15
+              ],
+              [
+                42.46,
+                -7.1
+              ],
+              [
+                42.51,
+                -7.08
+              ],
+              [
+                42.5,
+                -7.03
+              ],
+              [
+                42.52,
+                -6.92
+              ],
+              [
+                42.47,
+                -6.81
+              ],
+              [
+                42.41,
+                -6.83
+              ],
+              [
+                42.44,
+                -6.87
+              ],
+              [
+                42.42,
+                -6.92
+              ],
+              [
+                42.36,
+                -6.97
+              ],
+              [
+                42.36,
+                -7.02
+              ],
+              [
+                42.36,
+                -7.1
+              ],
+              [
+                42.34,
+                -7.12
+              ],
+              [
+                42.33,
+                -7.2
               ]
             ]
           ]
@@ -10149,19 +8596,19 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261120093802.701001PRP221211795167482",
+      "id": "2.49.0.0.724.0.ES.20261120172756.701001PRP221231795195676",
       "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T09:38:02+00:00",
+      "sent": "2026-11-20T17:27:56+00:00",
       "status": "Actual",
-      "messageType": "Alert",
+      "messageType": "Update",
       "language": "es-ES",
       "event": "Aviso de lluvias de nivel amarillo",
       "urgency": "Future",
       "severity": "Moderate",
       "certainty": "Likely",
-      "effective": "2026-11-20T10:38:02+01:00",
+      "effective": "2026-11-20T18:27:56+01:00",
       "onset": "2026-11-21T06:00:00+01:00",
-      "expires": "2026-11-21T21:59:59+01:00",
+      "expires": "2026-11-21T23:59:59+01:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel amarillo. Norte de Cáceres",
       "description": "Precipitación acumulada en 12 horas: 40 mm. Afectará principalmente a la mitad occidental.",
@@ -10522,19 +8969,19 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261120093745.673701PRP221211795167465",
+      "id": "2.49.0.0.724.0.ES.20261120172727.673701PRP221231795195647",
       "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T09:37:45+00:00",
+      "sent": "2026-11-20T17:27:27+00:00",
       "status": "Actual",
-      "messageType": "Alert",
+      "messageType": "Update",
       "language": "es-ES",
       "event": "Aviso de lluvias de nivel amarillo",
       "urgency": "Future",
       "severity": "Moderate",
       "certainty": "Likely",
-      "effective": "2026-11-20T10:37:45+01:00",
+      "effective": "2026-11-20T18:27:27+01:00",
       "onset": "2026-11-21T06:00:00+01:00",
-      "expires": "2026-11-21T21:59:59+01:00",
+      "expires": "2026-11-21T23:59:59+01:00",
       "senderName": "AEMET. Agencia Estatal de Meteorología",
       "headline": "Aviso de lluvias de nivel amarillo. Meseta de Salamanca",
       "description": "Precipitación acumulada en 12 horas: 40 mm. Afectará principalmente a la parte más occidental.",
@@ -11036,6 +9483,591 @@
               [
                 40.27,
                 -6.86
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261120172727.673702PRP221231795195647",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-20T17:27:27+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-20T18:27:27+01:00",
+      "onset": "2026-11-21T06:00:00+01:00",
+      "expires": "2026-11-21T23:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel amarillo. Sistema Central de Salamanca",
+      "description": "Precipitación acumulada en 12 horas: 40 mm. Afectará principalmente a la parte más occidental.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Sistema Central de Salamanca",
+          "zoneCode": "673702",
+          "polygons": [
+            [
+              [
+                40.53,
+                -5.72
+              ],
+              [
+                40.52,
+                -5.77
+              ],
+              [
+                40.6,
+                -5.77
+              ],
+              [
+                40.6,
+                -5.79
+              ],
+              [
+                40.66,
+                -5.82
+              ],
+              [
+                40.66,
+                -5.88
+              ],
+              [
+                40.59,
+                -5.9
+              ],
+              [
+                40.56,
+                -5.89
+              ],
+              [
+                40.59,
+                -6.01
+              ],
+              [
+                40.53,
+                -6.01
+              ],
+              [
+                40.51,
+                -6.07
+              ],
+              [
+                40.46,
+                -6.07
+              ],
+              [
+                40.44,
+                -6.11
+              ],
+              [
+                40.48,
+                -6.2
+              ],
+              [
+                40.49,
+                -6.24
+              ],
+              [
+                40.45,
+                -6.29
+              ],
+              [
+                40.44,
+                -6.34
+              ],
+              [
+                40.4,
+                -6.37
+              ],
+              [
+                40.4,
+                -6.42
+              ],
+              [
+                40.37,
+                -6.45
+              ],
+              [
+                40.46,
+                -6.45
+              ],
+              [
+                40.47,
+                -6.43
+              ],
+              [
+                40.47,
+                -6.38
+              ],
+              [
+                40.54,
+                -6.39
+              ],
+              [
+                40.56,
+                -6.37
+              ],
+              [
+                40.57,
+                -6.32
+              ],
+              [
+                40.55,
+                -6.29
+              ],
+              [
+                40.59,
+                -6.24
+              ],
+              [
+                40.6,
+                -6.16
+              ],
+              [
+                40.63,
+                -6.12
+              ],
+              [
+                40.63,
+                -6.02
+              ],
+              [
+                40.62,
+                -5.98
+              ],
+              [
+                40.64,
+                -5.96
+              ],
+              [
+                40.68,
+                -5.97
+              ],
+              [
+                40.7,
+                -5.95
+              ],
+              [
+                40.72,
+                -5.98
+              ],
+              [
+                40.75,
+                -5.92
+              ],
+              [
+                40.75,
+                -5.87
+              ],
+              [
+                40.78,
+                -5.79
+              ],
+              [
+                40.74,
+                -5.78
+              ],
+              [
+                40.69,
+                -5.77
+              ],
+              [
+                40.65,
+                -5.72
+              ],
+              [
+                40.58,
+                -5.74
+              ],
+              [
+                40.57,
+                -5.71
+              ],
+              [
+                40.53,
+                -5.72
+              ]
+            ],
+            [
+              [
+                40.53,
+                -5.72
+              ],
+              [
+                40.52,
+                -5.67
+              ],
+              [
+                40.54,
+                -5.64
+              ],
+              [
+                40.52,
+                -5.6
+              ],
+              [
+                40.5,
+                -5.63
+              ],
+              [
+                40.47,
+                -5.62
+              ],
+              [
+                40.42,
+                -5.69
+              ],
+              [
+                40.39,
+                -5.68
+              ],
+              [
+                40.36,
+                -5.68
+              ],
+              [
+                40.29,
+                -5.74
+              ],
+              [
+                40.28,
+                -5.76
+              ],
+              [
+                40.35,
+                -5.79
+              ],
+              [
+                40.33,
+                -5.85
+              ],
+              [
+                40.33,
+                -5.88
+              ],
+              [
+                40.4,
+                -5.83
+              ],
+              [
+                40.41,
+                -5.8
+              ],
+              [
+                40.53,
+                -5.72
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261120172727.673703PRP221231795195647",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-20T17:27:27+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de lluvias de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-20T18:27:27+01:00",
+      "onset": "2026-11-21T06:00:00+01:00",
+      "expires": "2026-11-21T23:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de lluvias de nivel amarillo. Sur de Salamanca",
+      "description": "Precipitación acumulada en 12 horas: 40 mm. Afectará principalmente a la parte más occidental.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Sur de Salamanca",
+          "zoneCode": "673703",
+          "polygons": [
+            [
+              [
+                40.44,
+                -6.11
+              ],
+              [
+                40.46,
+                -6.07
+              ],
+              [
+                40.51,
+                -6.07
+              ],
+              [
+                40.53,
+                -6.01
+              ],
+              [
+                40.59,
+                -6.01
+              ],
+              [
+                40.56,
+                -5.89
+              ],
+              [
+                40.59,
+                -5.9
+              ],
+              [
+                40.66,
+                -5.88
+              ],
+              [
+                40.66,
+                -5.82
+              ],
+              [
+                40.6,
+                -5.79
+              ],
+              [
+                40.6,
+                -5.77
+              ],
+              [
+                40.52,
+                -5.77
+              ],
+              [
+                40.53,
+                -5.72
+              ],
+              [
+                40.41,
+                -5.8
+              ],
+              [
+                40.4,
+                -5.83
+              ],
+              [
+                40.33,
+                -5.88
+              ],
+              [
+                40.29,
+                -5.91
+              ],
+              [
+                40.28,
+                -5.94
+              ],
+              [
+                40.31,
+                -6.0
+              ],
+              [
+                40.34,
+                -6.01
+              ],
+              [
+                40.34,
+                -6.05
+              ],
+              [
+                40.36,
+                -6.08
+              ],
+              [
+                40.4,
+                -6.07
+              ],
+              [
+                40.42,
+                -6.13
+              ],
+              [
+                40.44,
+                -6.11
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261120174154.743101VIRM21231795196514",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-20T17:41:54+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de vientos de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-20T18:41:54+01:00",
+      "onset": "2026-11-21T07:00:00+01:00",
+      "expires": "2026-11-21T23:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de vientos de nivel amarillo. Vertiente cantábrica de Navarra",
+      "description": "Rachas máximas: 70 km/h.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Vertiente cantábrica de Navarra",
+          "zoneCode": "743101",
+          "polygons": [
+            [
+              [
+                43.1,
+                -1.95
+              ],
+              [
+                43.13,
+                -1.92
+              ],
+              [
+                43.17,
+                -1.92
+              ],
+              [
+                43.2,
+                -1.91
+              ],
+              [
+                43.23,
+                -1.82
+              ],
+              [
+                43.25,
+                -1.79
+              ],
+              [
+                43.29,
+                -1.78
+              ],
+              [
+                43.3,
+                -1.73
+              ],
+              [
+                43.32,
+                -1.67
+              ],
+              [
+                43.3,
+                -1.62
+              ],
+              [
+                43.26,
+                -1.62
+              ],
+              [
+                43.25,
+                -1.57
+              ],
+              [
+                43.29,
+                -1.55
+              ],
+              [
+                43.29,
+                -1.5
+              ],
+              [
+                43.25,
+                -1.38
+              ],
+              [
+                43.19,
+                -1.38
+              ],
+              [
+                43.18,
+                -1.4
+              ],
+              [
+                43.13,
+                -1.41
+              ],
+              [
+                43.09,
+                -1.47
+              ],
+              [
+                43.05,
+                -1.45
+              ],
+              [
+                43.03,
+                -1.47
+              ],
+              [
+                43.06,
+                -1.5
+              ],
+              [
+                43.04,
+                -1.55
+              ],
+              [
+                43.04,
+                -1.63
+              ],
+              [
+                43.06,
+                -1.67
+              ],
+              [
+                43.05,
+                -1.71
+              ],
+              [
+                43.06,
+                -1.8
+              ],
+              [
+                43.08,
+                -1.86
+              ],
+              [
+                43.06,
+                -1.88
+              ],
+              [
+                43.06,
+                -1.93
+              ],
+              [
+                43.1,
+                -1.95
               ]
             ]
           ]
@@ -13556,268 +12588,6 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261120103114.645401COCO22191795170674",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T10:31:14+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de costeros de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-20T11:31:14+01:00",
-      "onset": "2026-11-22T06:00:00+01:00",
-      "expires": "2026-11-22T19:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel amarillo. Costa - Sierra Tramontana",
-      "description": "Viento del oeste y noroeste de 50 a 60 km/h (fuerza 7) y olas de 2 a 3 m.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Costa - Sierra Tramontana",
-          "zoneCode": "645401C",
-          "polygons": [
-            [
-              [
-                40.2,
-                2.74
-              ],
-              [
-                39.9,
-                2.93
-              ],
-              [
-                39.9,
-                2.92
-              ],
-              [
-                39.89,
-                2.89
-              ],
-              [
-                39.86,
-                2.83
-              ],
-              [
-                39.86,
-                2.78
-              ],
-              [
-                39.7,
-                2.56
-              ],
-              [
-                39.7,
-                2.53
-              ],
-              [
-                39.65,
-                2.46
-              ],
-              [
-                39.64,
-                2.44
-              ],
-              [
-                39.86,
-                2.26
-              ],
-              [
-                39.93,
-                2.2
-              ],
-              [
-                40.12,
-                2.52
-              ],
-              [
-                40.15,
-                2.57
-              ],
-              [
-                40.2,
-                2.74
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261120103114.645402COCO22191795170674",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-20T10:31:14+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de costeros de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-20T11:31:14+01:00",
-      "onset": "2026-11-22T06:00:00+01:00",
-      "expires": "2026-11-22T19:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de costeros de nivel amarillo. Costa - Norte y nordeste de Mallorca",
-      "description": "Viento del oeste y noroeste de 50 a 60 km/h (fuerza 7) y olas de 2 a 3 m.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Costa - Norte y nordeste de Mallorca",
-          "zoneCode": "645402C",
-          "polygons": [
-            [
-              [
-                40.2,
-                2.74
-              ],
-              [
-                40.28,
-                3.04
-              ],
-              [
-                40.29,
-                3.12
-              ],
-              [
-                40.29,
-                3.21
-              ],
-              [
-                40.28,
-                3.29
-              ],
-              [
-                40.26,
-                3.37
-              ],
-              [
-                40.22,
-                3.45
-              ],
-              [
-                40.1,
-                3.49
-              ],
-              [
-                39.99,
-                3.53
-              ],
-              [
-                39.68,
-                3.8
-              ],
-              [
-                39.59,
-                3.88
-              ],
-              [
-                39.44,
-                3.78
-              ],
-              [
-                39.63,
-                3.44
-              ],
-              [
-                39.64,
-                3.44
-              ],
-              [
-                39.69,
-                3.46
-              ],
-              [
-                39.72,
-                3.45
-              ],
-              [
-                39.76,
-                3.41
-              ],
-              [
-                39.79,
-                3.35
-              ],
-              [
-                39.76,
-                3.33
-              ],
-              [
-                39.73,
-                3.26
-              ],
-              [
-                39.77,
-                3.15
-              ],
-              [
-                39.82,
-                3.12
-              ],
-              [
-                39.86,
-                3.2
-              ],
-              [
-                39.88,
-                3.17
-              ],
-              [
-                39.86,
-                3.11
-              ],
-              [
-                39.89,
-                3.08
-              ],
-              [
-                39.91,
-                3.09
-              ],
-              [
-                39.94,
-                3.03
-              ],
-              [
-                39.91,
-                2.99
-              ],
-              [
-                39.92,
-                2.95
-              ],
-              [
-                39.9,
-                2.93
-              ],
-              [
-                40.2,
-                2.74
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
       "id": "2.49.0.0.724.0.ES.20261120103114.690803VIRM22171795170674",
       "sender": "http://www.aemet.es",
       "sent": "2026-11-20T10:31:14+00:00",
@@ -15553,6 +14323,268 @@
               [
                 40.72,
                 -0.24
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261120103114.645401COCO22191795170674",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-20T10:31:14+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de costeros de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-20T11:31:14+01:00",
+      "onset": "2026-11-22T06:00:00+01:00",
+      "expires": "2026-11-22T19:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de costeros de nivel amarillo. Costa - Sierra Tramontana",
+      "description": "Viento del oeste y noroeste de 50 a 60 km/h (fuerza 7) y olas de 2 a 3 m.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Costa - Sierra Tramontana",
+          "zoneCode": "645401C",
+          "polygons": [
+            [
+              [
+                40.2,
+                2.74
+              ],
+              [
+                39.9,
+                2.93
+              ],
+              [
+                39.9,
+                2.92
+              ],
+              [
+                39.89,
+                2.89
+              ],
+              [
+                39.86,
+                2.83
+              ],
+              [
+                39.86,
+                2.78
+              ],
+              [
+                39.7,
+                2.56
+              ],
+              [
+                39.7,
+                2.53
+              ],
+              [
+                39.65,
+                2.46
+              ],
+              [
+                39.64,
+                2.44
+              ],
+              [
+                39.86,
+                2.26
+              ],
+              [
+                39.93,
+                2.2
+              ],
+              [
+                40.12,
+                2.52
+              ],
+              [
+                40.15,
+                2.57
+              ],
+              [
+                40.2,
+                2.74
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261120103114.645402COCO22191795170674",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-20T10:31:14+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de costeros de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-20T11:31:14+01:00",
+      "onset": "2026-11-22T06:00:00+01:00",
+      "expires": "2026-11-22T19:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de costeros de nivel amarillo. Costa - Norte y nordeste de Mallorca",
+      "description": "Viento del oeste y noroeste de 50 a 60 km/h (fuerza 7) y olas de 2 a 3 m.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Costa - Norte y nordeste de Mallorca",
+          "zoneCode": "645402C",
+          "polygons": [
+            [
+              [
+                40.2,
+                2.74
+              ],
+              [
+                40.28,
+                3.04
+              ],
+              [
+                40.29,
+                3.12
+              ],
+              [
+                40.29,
+                3.21
+              ],
+              [
+                40.28,
+                3.29
+              ],
+              [
+                40.26,
+                3.37
+              ],
+              [
+                40.22,
+                3.45
+              ],
+              [
+                40.1,
+                3.49
+              ],
+              [
+                39.99,
+                3.53
+              ],
+              [
+                39.68,
+                3.8
+              ],
+              [
+                39.59,
+                3.88
+              ],
+              [
+                39.44,
+                3.78
+              ],
+              [
+                39.63,
+                3.44
+              ],
+              [
+                39.64,
+                3.44
+              ],
+              [
+                39.69,
+                3.46
+              ],
+              [
+                39.72,
+                3.45
+              ],
+              [
+                39.76,
+                3.41
+              ],
+              [
+                39.79,
+                3.35
+              ],
+              [
+                39.76,
+                3.33
+              ],
+              [
+                39.73,
+                3.26
+              ],
+              [
+                39.77,
+                3.15
+              ],
+              [
+                39.82,
+                3.12
+              ],
+              [
+                39.86,
+                3.2
+              ],
+              [
+                39.88,
+                3.17
+              ],
+              [
+                39.86,
+                3.11
+              ],
+              [
+                39.89,
+                3.08
+              ],
+              [
+                39.91,
+                3.09
+              ],
+              [
+                39.94,
+                3.03
+              ],
+              [
+                39.91,
+                2.99
+              ],
+              [
+                39.92,
+                2.95
+              ],
+              [
+                39.9,
+                2.93
+              ],
+              [
+                40.2,
+                2.74
               ]
             ]
           ]
