@@ -1936,7 +1936,10 @@ async function geocode(place) {
    LOCALIDADES CERCANAS A LA RUTA (OPENSTREETMAP / OVERPASS)
    =========================================================== */
 
-async function enrichPointsWithNearbyLocalities(points) {
+// Caché en memoria: evita repetir las mismas consultas durante esta sesión.
+const nearbyLocalityReverseCache = new Map();
+
+async function enrichPointsWithNearbyLocalities(points, route) {
   const validPoints = Array.isArray(points)
     ? points.filter(point =>
         Number.isFinite(Number(point?.lat)) &&
@@ -1946,104 +1949,145 @@ async function enrichPointsWithNearbyLocalities(points) {
 
   if (!validPoints.length) return;
 
-  // Una sola consulta compacta por el rectángulo que contiene la ruta.
-  // Evita las decenas de cláusulas around() que hacían pesada la consulta.
-  const lats = validPoints.map(point => Number(point.lat));
-  const lons = validPoints.map(point => Number(point.lon));
-  const margin = 0.30; // aprox. 30–33 km de margen alrededor de la ruta
-  const south = Math.min(...lats) - margin;
-  const north = Math.max(...lats) + margin;
-  const west = Math.min(...lons) - margin;
-  const east = Math.max(...lons) + margin;
+  // Usamos la geometría real de OSRM y consultamos solo unos pocos
+  // lugares repartidos a lo largo de la ruta, no cada punto meteorológico.
+  const coordinates = route?.geometry?.coordinates;
+  const routeCoordinates = Array.isArray(coordinates) && coordinates.length >= 2
+    ? coordinates
+    : validPoints.map(point => [Number(point.lon), Number(point.lat)]);
 
-  const bbox = `${south.toFixed(5)},${west.toFixed(5)},${north.toFixed(5)},${east.toFixed(5)}`;
-  const query =
-    `[out:json][timeout:12];node["place"~"^(city|town|village|hamlet|isolated_dwelling)$"]["name"](${bbox});out tags;`;
+  if (routeCoordinates.length < 2) return;
+
+  const metrics = buildRouteMetrics(routeCoordinates);
+  const totalKm = metrics.total;
+  if (!Number.isFinite(totalKm) || totalKm <= 0) return;
+
+  // Entre 3 y 6 consultas por ruta. Aproximadamente una cada 65 km.
+  const sampleCount = Math.min(6, Math.max(3, Math.ceil(totalKm / 65) + 1));
+  const samples = [];
+  for (let i = 0; i < sampleCount; i++) {
+    const distanceKm = totalKm * (i / (sampleCount - 1));
+    const [lon, lat] = coordinateAtDistance(
+      routeCoordinates,
+      metrics.distances,
+      distanceKm
+    );
+    samples.push({ lat: Number(lat), lon: Number(lon), distanceKm });
+  }
 
   setStatus(
-    "📍 LOCALIZANDO POBLACIONES DEL RECORRIDO...",
-    "Buscando poblaciones en una única consulta del área de la ruta."
+    '📍 LOCALIZANDO POBLACIONES...',
+    `Consultando ${sampleCount} puntos representativos del recorrido.`
   );
 
-  try {
-    const response = await fetchWithTimeout(
-      CONFIG.OVERPASS,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-        },
-        body: new URLSearchParams({ data: query }).toString(),
-        cache: "no-store"
-      },
-      15000
-    );
+  const localities = [];
+  let lastRequestStartedAt = 0;
+  let consecutiveFailures = 0;
+  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-    const payload = await response.json();
-    const elements = Array.isArray(payload?.elements) ? payload.elements : [];
-    const seen = new Set();
-    const localities = [];
+  for (let i = 0; i < samples.length; i++) {
+    const sample = samples[i];
+    const cacheKey = `${sample.lat.toFixed(3)},${sample.lon.toFixed(3)}`;
+    let locality = nearbyLocalityReverseCache.get(cacheKey) || null;
 
-    for (const element of elements) {
-      const tags = element?.tags || {};
-      const name = String(tags.name || tags["name:es"] || "").trim();
-      const place = String(tags.place || "").toLowerCase();
-      const lat = Number(element.lat);
-      const lon = Number(element.lon);
-      const key = `${element.type || "node"}/${element.id || ""}`;
+    if (!locality) {
+      // Nominatim solicita un máximo aproximado de una petición por segundo.
+      const waitMs = Math.max(0, 1100 - (Date.now() - lastRequestStartedAt));
+      if (waitMs) await sleep(waitMs);
 
-      if (!name ||
-          !["city", "town", "village", "hamlet", "isolated_dwelling"].includes(place)) continue;
-      if (!Number.isFinite(lat) || !Number.isFinite(lon) || seen.has(key)) continue;
-
-      seen.add(key);
-      localities.push({
-        name,
-        lat,
-        lon,
-        province: String(
-          tags["addr:province"] || tags["addr:state"] || ""
-        ).trim()
+      const params = new URLSearchParams({
+        format: 'jsonv2',
+        lat: sample.lat.toFixed(6),
+        lon: sample.lon.toFixed(6),
+        zoom: '12',
+        addressdetails: '1',
+        'accept-language': 'es'
       });
-    }
+      const url = `https://nominatim.openstreetmap.org/reverse?${params}`;
+      lastRequestStartedAt = Date.now();
 
-    if (!localities.length) {
-      console.warn("OpenStreetMap no devolvió poblaciones dentro del área de la ruta.");
-      return;
-    }
-
-    // Asignación local, sin nuevas peticiones de red.
-    for (const point of validPoints) {
-      let nearest = null;
-      let nearestDistance = Infinity;
-
-      for (const locality of localities) {
-        const distance = haversineKm(
-          Number(point.lat),
-          Number(point.lon),
-          locality.lat,
-          locality.lon
+      try {
+        const response = await fetchWithTimeout(
+          url,
+          { headers: { Accept: 'application/json' }, cache: 'no-store' },
+          4500
         );
-        if (distance < nearestDistance) {
-          nearestDistance = distance;
-          nearest = locality;
-        }
-      }
+        const data = await response.json();
+        const address = data?.address || {};
 
-      if (nearest && nearestDistance <= 40) {
-        point.nearbyLocality = nearest.name;
-        point.nearbyProvince = nearest.province;
-        point.nearbyLocalityDistanceKm = Math.round(nearestDistance * 10) / 10;
-        point.nearbyLocalityLabel = `Cerca de ${nearest.name}`;
+        // Preferimos una población. County/state_district solo se usan
+        // como último recurso si Nominatim no devuelve ciudad o municipio.
+        const name = String(
+          address.city ||
+          address.town ||
+          address.village ||
+          address.municipality ||
+          address.hamlet ||
+          address.locality ||
+          address.county ||
+          address.state_district ||
+          ''
+        ).trim();
+
+        if (name) {
+          locality = {
+            name,
+            province: String(
+              address.province || address.state_district || address.state || ''
+            ).trim()
+          };
+          nearbyLocalityReverseCache.set(cacheKey, locality);
+          consecutiveFailures = 0;
+        }
+      } catch (error) {
+        consecutiveFailures++;
+        console.warn(`No se pudo resolver la localidad del punto ${i + 1}/${sampleCount}.`, error);
+        // Si el servicio no responde dos veces seguidas, no retrasamos
+        // innecesariamente el resto del análisis.
+        if (consecutiveFailures >= 2) break;
       }
     }
 
-    console.info(
-      `Localidades OSM: ${localities.length}; consulta única del área de ruta.`
-    );
-  } catch (error) {
-    console.warn("No se pudieron descargar las poblaciones de OpenStreetMap.", error);
+    if (locality) {
+      localities.push({ ...sample, ...locality });
+    }
   }
+
+  if (!localities.length) {
+    console.warn('Nominatim no devolvió nombres de poblaciones para los puntos de la ruta.');
+    return;
+  }
+
+  // Asignamos cada punto meteorológico al punto de ruta geocodificado
+  // más cercano. La distancia es sobre la ruta, no al centro urbano.
+  for (const point of validPoints) {
+    let nearest = null;
+    let nearestDistance = Infinity;
+
+    for (const locality of localities) {
+      const distance = haversineKm(
+        Number(point.lat),
+        Number(point.lon),
+        locality.lat,
+        locality.lon
+      );
+      if (distance < nearestDistance) {
+        nearestDistance = distance;
+        nearest = locality;
+      }
+    }
+
+    if (nearest) {
+      point.nearbyLocality = nearest.name;
+      point.nearbyProvince = nearest.province;
+      point.nearbyLocalityDistanceKm = Math.round(nearestDistance * 10) / 10;
+      point.nearbyLocalityLabel = `Cerca de ${nearest.name}`;
+    }
+  }
+
+  console.info(
+    `Localidades identificadas: ${localities.length}/${sampleCount} consultas Nominatim; ruta ${totalKm.toFixed(0)} km.`
+  );
 }
 /* ===========================================================
    RUTA OSRM
@@ -6455,7 +6499,7 @@ async function analyzeTravel() {
       "Buscando el municipio o población más próxima a cada punto meteorológico."
     );
 
-    await enrichPointsWithNearbyLocalities(points);
+    await enrichPointsWithNearbyLocalities(points, route);
 
     /* -------------------------------------------------------
        9. SCORE
