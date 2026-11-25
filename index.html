@@ -1482,6 +1482,9 @@ const CONFIG = {
   PHOTON_REVERSE:
     "https://photon.komoot.io/reverse",
 
+  OVERPASS:
+    "https://overpass-api.de/api/interpreter",
+
   OSRM:
     "https://router.project-osrm.org/route/v1/driving",
 
@@ -1930,110 +1933,97 @@ async function geocode(place) {
 
 
 /* ===========================================================
-   LOCALIDAD PRÓXIMA A CADA PUNTO METEOROLÓGICO
+   LOCALIDADES CERCANAS A LA RUTA (OPENSTREETMAP / OVERPASS)
    =========================================================== */
-
-async function reverseGeocodeLocality(point) {
-  if (!point || !Number.isFinite(Number(point.lat)) || !Number.isFinite(Number(point.lon))) {
-    return null;
-  }
-
-  const normalizeLocality = (name, province = "") => {
-    if (!name || typeof name !== "string") return null;
-    const cleanName = name.trim();
-    const cleanProvince = typeof province === "string" ? province.trim() : "";
-    if (!cleanName) return null;
-    return {
-      name: cleanName,
-      province: cleanProvince,
-      label: cleanProvince && cleanProvince.toLowerCase() !== cleanName.toLowerCase()
-        ? `Cerca de ${cleanName} (${cleanProvince})`
-        : `Cerca de ${cleanName}`
-    };
-  };
-
-  // Primera opción: Photon. Su respuesta puede variar según el elemento OSM
-  // más cercano, por lo que contemplamos tanto campos de población como address.
-  try {
-    const params = new URLSearchParams({
-      lat: String(point.lat),
-      lon: String(point.lon),
-      lang: "es"
-    });
-    const response = await fetchWithTimeout(
-      `${CONFIG.PHOTON_REVERSE}?${params}`,
-      { cache: "no-store" },
-      9000
-    );
-    const payload = await response.json();
-    const features = Array.isArray(payload?.features) ? payload.features : [];
-
-    for (const feature of features) {
-      const properties = feature?.properties || {};
-      const address = properties.address || {};
-      const placeFeatureName =
-        properties.osm_key === "place" &&
-        /^(city|town|village|hamlet|locality|isolated_dwelling)$/i.test(String(properties.osm_value || ""))
-          ? properties.name
-          : "";
-      const locality =
-        placeFeatureName || properties.city || properties.town || properties.village ||
-        properties.municipality || properties.locality || properties.hamlet ||
-        address.city || address.town || address.village || address.municipality ||
-        address.locality || address.hamlet || "";
-      const province = properties.county || properties.state_district ||
-        properties.province || address.county || address.state_district || "";
-      const result = normalizeLocality(locality, province);
-      if (result) return result;
-    }
-  } catch (error) {
-    console.warn("Photon no ha podido identificar la localidad; se probará el servicio alternativo.", error);
-  }
-
-  // Respaldo: Nominatim (OpenStreetMap). Es especialmente útil cuando Photon
-  // devuelve una carretera o un elemento sin datos de población.
-  try {
-    const params = new URLSearchParams({
-      lat: String(point.lat),
-      lon: String(point.lon),
-      format: "jsonv2",
-      addressdetails: "1",
-      zoom: "10",
-      "accept-language": "es"
-    });
-    const response = await fetchWithTimeout(
-      `${CONFIG.NOMINATIM}/reverse?${params}`,
-      { cache: "no-store" },
-      10000
-    );
-    const payload = await response.json();
-    const address = payload?.address || {};
-    const locality = address.city || address.town || address.village ||
-      address.municipality || address.hamlet || address.locality ||
-      address.suburb || address.county || "";
-    const province = address.state_district || address.province || address.county || "";
-    return normalizeLocality(locality, province);
-  } catch (error) {
-    console.warn("Tampoco se ha podido identificar la localidad con Nominatim.", error);
-    return null;
-  }
-}
 
 async function enrichPointsWithNearbyLocalities(points) {
   const validPoints = Array.isArray(points) ? points : [];
-  // Procesamos de uno en uno para respetar el límite de uso de Nominatim,
-  // que actúa como respaldo si Photon no devuelve una población.
-  for (const point of validPoints) {
-    try {
-      const locality = await reverseGeocodeLocality(point);
-      if (locality) {
-        point.nearbyLocality = locality.name;
-        point.nearbyProvince = locality.province;
-        point.nearbyLocalityLabel = locality.label;
-      }
-    } catch (error) {
-      console.warn("No se pudo identificar la localidad próxima a un punto meteorológico.", error);
+  if (!validPoints.length) return;
+
+  // En vez de geocodificar cada punto meteorológico por separado,
+  // consultamos las poblaciones cartografiadas alrededor de la ruta.
+  // Una sola consulta Overpass devuelve pueblos/ciudades cercanos y
+  // después asociamos localmente cada punto con la población más próxima.
+  const centers = validPoints
+    .filter(point => Number.isFinite(Number(point.lat)) && Number.isFinite(Number(point.lon)))
+    .map(point => ({ lat: Number(point.lat), lon: Number(point.lon) }));
+
+  if (!centers.length) return;
+
+  const aroundClauses = centers.map(({ lat, lon }) =>
+    `nwr(around:25000,${lat.toFixed(5)},${lon.toFixed(5)})["place"~"^(city|town|village|hamlet|isolated_dwelling)$"]["name"];`
+  );
+  const query = `[out:json][timeout:40];(${aroundClauses.join('')});out center tags;`;
+
+  setStatus(
+    "📍 LOCALIZANDO POBLACIONES DEL RECORRIDO...",
+    "Consultando el mapa de OpenStreetMap para asociar cada punto meteorológico con la población más cercana."
+  );
+
+  try {
+    const response = await fetchWithTimeout(
+      CONFIG.OVERPASS,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+        body: new URLSearchParams({ data: query }).toString(),
+        cache: "no-store"
+      },
+      50000
+    );
+    const payload = await response.json();
+    const elements = Array.isArray(payload?.elements) ? payload.elements : [];
+    const seen = new Set();
+    const localities = [];
+
+    for (const element of elements) {
+      const tags = element?.tags || {};
+      const name = String(tags.name || tags["name:es"] || "").trim();
+      const place = String(tags.place || "").toLowerCase();
+      const lat = Number(element.lat ?? element.center?.lat);
+      const lon = Number(element.lon ?? element.center?.lon);
+      const key = `${element.type || ""}/${element.id || ""}`;
+      if (!name || !["city", "town", "village", "hamlet", "isolated_dwelling"].includes(place)) continue;
+      if (!Number.isFinite(lat) || !Number.isFinite(lon) || seen.has(key)) continue;
+      seen.add(key);
+      localities.push({
+        name,
+        lat,
+        lon,
+        province: String(tags["addr:province"] || tags["addr:state"] || "").trim()
+      });
     }
+
+    if (!localities.length) {
+      console.warn("OpenStreetMap no devolvió poblaciones para esta ruta.");
+      return;
+    }
+
+    for (const point of validPoints) {
+      let nearest = null;
+      let nearestDistance = Infinity;
+      for (const locality of localities) {
+        const distance = haversineKm(
+          Number(point.lat), Number(point.lon), locality.lat, locality.lon
+        );
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          nearest = locality;
+        }
+      }
+
+      // Evitamos asociar una población demasiado lejana a un punto aislado.
+      if (nearest && nearestDistance <= 30) {
+        point.nearbyLocality = nearest.name;
+        point.nearbyProvince = nearest.province;
+        point.nearbyLocalityDistanceKm = Math.round(nearestDistance * 10) / 10;
+        point.nearbyLocalityLabel = `Cerca de ${nearest.name}`;
+      }
+    }
+
+    console.info(`Localidades de OpenStreetMap encontradas: ${localities.length}`);
+  } catch (error) {
+    console.warn("No se pudieron descargar las poblaciones de OpenStreetMap para esta ruta.", error);
   }
 }
 
