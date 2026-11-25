@@ -1938,81 +1938,102 @@ async function reverseGeocodeLocality(point) {
     return null;
   }
 
-  const params = new URLSearchParams({
-    lat: String(point.lat),
-    lon: String(point.lon),
-    lang: "es"
-  });
-
-  const response = await fetchWithTimeout(
-    `${CONFIG.PHOTON_REVERSE}?${params}`,
-    { cache: "no-store" },
-    9000
-  );
-
-  const payload = await response.json();
-  const properties = payload?.features?.[0]?.properties || {};
-
-  // Preferimos una población (ciudad, pueblo o aldea), no el nombre
-  // de una carretera, edificio o punto de interés aislado.
-  const placeFeatureName =
-    properties.osm_key === "place" &&
-    /^(city|town|village|hamlet|locality|isolated_dwelling)$/i.test(String(properties.osm_value || ""))
-      ? properties.name
-      : "";
-
-  const locality =
-    placeFeatureName ||
-    properties.town ||
-    properties.village ||
-    properties.city ||
-    properties.municipality ||
-    properties.locality ||
-    properties.hamlet ||
-    properties.suburb ||
-    "";
-
-  if (!locality) return null;
-
-  const province =
-    properties.county ||
-    properties.state_district ||
-    properties.province ||
-    "";
-
-  return {
-    name: String(locality),
-    province: String(province),
-    label: province && String(province).toLowerCase() !== String(locality).toLowerCase()
-      ? `Cerca de ${locality} (${province})`
-      : `Cerca de ${locality}`
+  const normalizeLocality = (name, province = "") => {
+    if (!name || typeof name !== "string") return null;
+    const cleanName = name.trim();
+    const cleanProvince = typeof province === "string" ? province.trim() : "";
+    if (!cleanName) return null;
+    return {
+      name: cleanName,
+      province: cleanProvince,
+      label: cleanProvince && cleanProvince.toLowerCase() !== cleanName.toLowerCase()
+        ? `Cerca de ${cleanName} (${cleanProvince})`
+        : `Cerca de ${cleanName}`
+    };
   };
+
+  // Primera opción: Photon. Su respuesta puede variar según el elemento OSM
+  // más cercano, por lo que contemplamos tanto campos de población como address.
+  try {
+    const params = new URLSearchParams({
+      lat: String(point.lat),
+      lon: String(point.lon),
+      lang: "es"
+    });
+    const response = await fetchWithTimeout(
+      `${CONFIG.PHOTON_REVERSE}?${params}`,
+      { cache: "no-store" },
+      9000
+    );
+    const payload = await response.json();
+    const features = Array.isArray(payload?.features) ? payload.features : [];
+
+    for (const feature of features) {
+      const properties = feature?.properties || {};
+      const address = properties.address || {};
+      const placeFeatureName =
+        properties.osm_key === "place" &&
+        /^(city|town|village|hamlet|locality|isolated_dwelling)$/i.test(String(properties.osm_value || ""))
+          ? properties.name
+          : "";
+      const locality =
+        placeFeatureName || properties.city || properties.town || properties.village ||
+        properties.municipality || properties.locality || properties.hamlet ||
+        address.city || address.town || address.village || address.municipality ||
+        address.locality || address.hamlet || "";
+      const province = properties.county || properties.state_district ||
+        properties.province || address.county || address.state_district || "";
+      const result = normalizeLocality(locality, province);
+      if (result) return result;
+    }
+  } catch (error) {
+    console.warn("Photon no ha podido identificar la localidad; se probará el servicio alternativo.", error);
+  }
+
+  // Respaldo: Nominatim (OpenStreetMap). Es especialmente útil cuando Photon
+  // devuelve una carretera o un elemento sin datos de población.
+  try {
+    const params = new URLSearchParams({
+      lat: String(point.lat),
+      lon: String(point.lon),
+      format: "jsonv2",
+      addressdetails: "1",
+      zoom: "10",
+      "accept-language": "es"
+    });
+    const response = await fetchWithTimeout(
+      `${CONFIG.NOMINATIM}/reverse?${params}`,
+      { cache: "no-store" },
+      10000
+    );
+    const payload = await response.json();
+    const address = payload?.address || {};
+    const locality = address.city || address.town || address.village ||
+      address.municipality || address.hamlet || address.locality ||
+      address.suburb || address.county || "";
+    const province = address.state_district || address.province || address.county || "";
+    return normalizeLocality(locality, province);
+  } catch (error) {
+    console.warn("Tampoco se ha podido identificar la localidad con Nominatim.", error);
+    return null;
+  }
 }
 
 async function enrichPointsWithNearbyLocalities(points) {
   const validPoints = Array.isArray(points) ? points : [];
-  const batchSize = 3;
-
-  // Consultas en pequeños lotes para no saturar el servicio de geocodificación.
-  for (let start = 0; start < validPoints.length; start += batchSize) {
-    const batch = validPoints.slice(start, start + batchSize);
-    const results = await Promise.all(batch.map(async point => {
-      try {
-        return await reverseGeocodeLocality(point);
-      } catch (error) {
-        console.warn("No se pudo identificar la localidad próxima a un punto meteorológico.", error);
-        return null;
-      }
-    }));
-
-    batch.forEach((point, index) => {
-      const locality = results[index];
+  // Procesamos de uno en uno para respetar el límite de uso de Nominatim,
+  // que actúa como respaldo si Photon no devuelve una población.
+  for (const point of validPoints) {
+    try {
+      const locality = await reverseGeocodeLocality(point);
       if (locality) {
         point.nearbyLocality = locality.name;
         point.nearbyProvince = locality.province;
         point.nearbyLocalityLabel = locality.label;
       }
-    });
+    } catch (error) {
+      console.warn("No se pudo identificar la localidad próxima a un punto meteorológico.", error);
+    }
   }
 }
 
