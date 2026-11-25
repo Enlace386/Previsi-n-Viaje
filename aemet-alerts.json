@@ -1,8 +1,8 @@
 {
   "source": "AEMET OpenData",
-  "generatedAt": "2026-11-25T11:52:16.462113+00:00",
+  "generatedAt": "2026-11-25T20:49:38.227270+00:00",
   "status": "ok",
-  "count": 244,
+  "count": 245,
   "alerts": [
     {
       "id": "2.49.0.0.724.0.ES.20261125080132.633302COCO25171795593692",
@@ -11614,6 +11614,386 @@
       ]
     },
     {
+      "id": "2.49.0.0.724.0.ES.20261125161950.694303VIRM26111795623590",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-25T16:19:50+00:00",
+      "status": "Actual",
+      "messageType": "Update",
+      "language": "es-ES",
+      "event": "Aviso de vientos de nivel amarillo",
+      "urgency": "Immediate",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-25T17:19:50+01:00",
+      "onset": "2026-11-25T17:00:00+01:00",
+      "expires": "2026-11-26T11:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de vientos de nivel amarillo. Litoral norte de Tarragona",
+      "description": "Rachas máximas: 70 km/h. Viento del oeste y noroeste.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Litoral norte de Tarragona",
+          "zoneCode": "694303",
+          "polygons": [
+            [
+              [
+                41.18,
+                1.06
+              ],
+              [
+                41.18,
+                1.16
+              ],
+              [
+                41.22,
+                1.22
+              ],
+              [
+                41.21,
+                1.3
+              ],
+              [
+                41.2,
+                1.33
+              ],
+              [
+                41.25,
+                1.36
+              ],
+              [
+                41.28,
+                1.35
+              ],
+              [
+                41.29,
+                1.4
+              ],
+              [
+                41.29,
+                1.44
+              ],
+              [
+                41.32,
+                1.54
+              ],
+              [
+                41.34,
+                1.56
+              ],
+              [
+                41.31,
+                1.6
+              ],
+              [
+                41.26,
+                1.62
+              ],
+              [
+                41.22,
+                1.62
+              ],
+              [
+                41.2,
+                1.65
+              ],
+              [
+                41.18,
+                1.53
+              ],
+              [
+                41.13,
+                1.36
+              ],
+              [
+                41.13,
+                1.3
+              ],
+              [
+                41.09,
+                1.2
+              ],
+              [
+                41.06,
+                1.16
+              ],
+              [
+                41.07,
+                1.12
+              ],
+              [
+                41.09,
+                1.1
+              ],
+              [
+                41.14,
+                1.09
+              ],
+              [
+                41.18,
+                1.06
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261125161950.694304VIRM26111795623590",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-25T16:19:50+00:00",
+      "status": "Actual",
+      "messageType": "Update",
+      "language": "es-ES",
+      "event": "Aviso de vientos de nivel amarillo",
+      "urgency": "Immediate",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-25T17:19:50+01:00",
+      "onset": "2026-11-25T17:00:00+01:00",
+      "expires": "2026-11-26T11:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de vientos de nivel amarillo. Litoral sur de Tarragona",
+      "description": "Rachas máximas: 80 km/h. Viento del noroeste.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Litoral sur de Tarragona",
+          "zoneCode": "694304",
+          "polygons": [
+            [
+              [
+                41.18,
+                1.04
+              ],
+              [
+                41.18,
+                1.06
+              ],
+              [
+                41.14,
+                1.09
+              ],
+              [
+                41.09,
+                1.1
+              ],
+              [
+                41.07,
+                1.12
+              ],
+              [
+                41.06,
+                1.05
+              ],
+              [
+                41.03,
+                0.97
+              ],
+              [
+                40.92,
+                0.84
+              ],
+              [
+                40.87,
+                0.79
+              ],
+              [
+                40.85,
+                0.75
+              ],
+              [
+                40.8,
+                0.7
+              ],
+              [
+                40.77,
+                0.73
+              ],
+              [
+                40.78,
+                0.78
+              ],
+              [
+                40.7,
+                0.88
+              ],
+              [
+                40.68,
+                0.84
+              ],
+              [
+                40.65,
+                0.77
+              ],
+              [
+                40.59,
+                0.71
+              ],
+              [
+                40.64,
+                0.74
+              ],
+              [
+                40.64,
+                0.73
+              ],
+              [
+                40.62,
+                0.6
+              ],
+              [
+                40.57,
+                0.54
+              ],
+              [
+                40.52,
+                0.52
+              ],
+              [
+                40.55,
+                0.44
+              ],
+              [
+                40.58,
+                0.43
+              ],
+              [
+                40.61,
+                0.39
+              ],
+              [
+                40.61,
+                0.33
+              ],
+              [
+                40.66,
+                0.35
+              ],
+              [
+                40.74,
+                0.44
+              ],
+              [
+                40.74,
+                0.51
+              ],
+              [
+                40.76,
+                0.61
+              ],
+              [
+                40.81,
+                0.61
+              ],
+              [
+                40.87,
+                0.67
+              ],
+              [
+                40.9,
+                0.61
+              ],
+              [
+                40.93,
+                0.61
+              ],
+              [
+                40.95,
+                0.67
+              ],
+              [
+                40.93,
+                0.75
+              ],
+              [
+                40.94,
+                0.82
+              ],
+              [
+                41.0,
+                0.78
+              ],
+              [
+                41.05,
+                0.81
+              ],
+              [
+                41.03,
+                0.85
+              ],
+              [
+                41.03,
+                0.91
+              ],
+              [
+                41.06,
+                0.92
+              ],
+              [
+                41.1,
+                0.9
+              ],
+              [
+                41.13,
+                0.92
+              ],
+              [
+                41.11,
+                0.95
+              ],
+              [
+                41.14,
+                1.02
+              ],
+              [
+                41.18,
+                1.04
+              ]
+            ],
+            [
+              [
+                40.59,
+                0.71
+              ],
+              [
+                40.56,
+                0.65
+              ],
+              [
+                40.57,
+                0.6
+              ],
+              [
+                40.59,
+                0.67
+              ],
+              [
+                40.59,
+                0.71
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
       "id": "2.49.0.0.724.0.ES.20261125094243.692501NENV26111795599763",
       "sender": "http://www.aemet.es",
       "sent": "2026-11-25T09:42:43+00:00",
@@ -12728,386 +13108,6 @@
       ]
     },
     {
-      "id": "2.49.0.0.724.0.ES.20261125094243.694303VIRM26111795599763",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-25T09:42:43+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de vientos de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-25T10:42:43+01:00",
-      "onset": "2026-11-25T22:00:00+01:00",
-      "expires": "2026-11-26T11:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de vientos de nivel amarillo. Litoral norte de Tarragona",
-      "description": "Rachas máximas: 70 km/h. Viento del noroeste.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Litoral norte de Tarragona",
-          "zoneCode": "694303",
-          "polygons": [
-            [
-              [
-                41.18,
-                1.06
-              ],
-              [
-                41.18,
-                1.16
-              ],
-              [
-                41.22,
-                1.22
-              ],
-              [
-                41.21,
-                1.3
-              ],
-              [
-                41.2,
-                1.33
-              ],
-              [
-                41.25,
-                1.36
-              ],
-              [
-                41.28,
-                1.35
-              ],
-              [
-                41.29,
-                1.4
-              ],
-              [
-                41.29,
-                1.44
-              ],
-              [
-                41.32,
-                1.54
-              ],
-              [
-                41.34,
-                1.56
-              ],
-              [
-                41.31,
-                1.6
-              ],
-              [
-                41.26,
-                1.62
-              ],
-              [
-                41.22,
-                1.62
-              ],
-              [
-                41.2,
-                1.65
-              ],
-              [
-                41.18,
-                1.53
-              ],
-              [
-                41.13,
-                1.36
-              ],
-              [
-                41.13,
-                1.3
-              ],
-              [
-                41.09,
-                1.2
-              ],
-              [
-                41.06,
-                1.16
-              ],
-              [
-                41.07,
-                1.12
-              ],
-              [
-                41.09,
-                1.1
-              ],
-              [
-                41.14,
-                1.09
-              ],
-              [
-                41.18,
-                1.06
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261125094243.694304VIRM26111795599763",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-25T09:42:43+00:00",
-      "status": "Actual",
-      "messageType": "Update",
-      "language": "es-ES",
-      "event": "Aviso de vientos de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-25T10:42:43+01:00",
-      "onset": "2026-11-25T22:00:00+01:00",
-      "expires": "2026-11-26T11:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de vientos de nivel amarillo. Litoral sur de Tarragona",
-      "description": "Rachas máximas: 80 km/h. Viento del noroeste.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Litoral sur de Tarragona",
-          "zoneCode": "694304",
-          "polygons": [
-            [
-              [
-                41.18,
-                1.04
-              ],
-              [
-                41.18,
-                1.06
-              ],
-              [
-                41.14,
-                1.09
-              ],
-              [
-                41.09,
-                1.1
-              ],
-              [
-                41.07,
-                1.12
-              ],
-              [
-                41.06,
-                1.05
-              ],
-              [
-                41.03,
-                0.97
-              ],
-              [
-                40.92,
-                0.84
-              ],
-              [
-                40.87,
-                0.79
-              ],
-              [
-                40.85,
-                0.75
-              ],
-              [
-                40.8,
-                0.7
-              ],
-              [
-                40.77,
-                0.73
-              ],
-              [
-                40.78,
-                0.78
-              ],
-              [
-                40.7,
-                0.88
-              ],
-              [
-                40.68,
-                0.84
-              ],
-              [
-                40.65,
-                0.77
-              ],
-              [
-                40.59,
-                0.71
-              ],
-              [
-                40.64,
-                0.74
-              ],
-              [
-                40.64,
-                0.73
-              ],
-              [
-                40.62,
-                0.6
-              ],
-              [
-                40.57,
-                0.54
-              ],
-              [
-                40.52,
-                0.52
-              ],
-              [
-                40.55,
-                0.44
-              ],
-              [
-                40.58,
-                0.43
-              ],
-              [
-                40.61,
-                0.39
-              ],
-              [
-                40.61,
-                0.33
-              ],
-              [
-                40.66,
-                0.35
-              ],
-              [
-                40.74,
-                0.44
-              ],
-              [
-                40.74,
-                0.51
-              ],
-              [
-                40.76,
-                0.61
-              ],
-              [
-                40.81,
-                0.61
-              ],
-              [
-                40.87,
-                0.67
-              ],
-              [
-                40.9,
-                0.61
-              ],
-              [
-                40.93,
-                0.61
-              ],
-              [
-                40.95,
-                0.67
-              ],
-              [
-                40.93,
-                0.75
-              ],
-              [
-                40.94,
-                0.82
-              ],
-              [
-                41.0,
-                0.78
-              ],
-              [
-                41.05,
-                0.81
-              ],
-              [
-                41.03,
-                0.85
-              ],
-              [
-                41.03,
-                0.91
-              ],
-              [
-                41.06,
-                0.92
-              ],
-              [
-                41.1,
-                0.9
-              ],
-              [
-                41.13,
-                0.92
-              ],
-              [
-                41.11,
-                0.95
-              ],
-              [
-                41.14,
-                1.02
-              ],
-              [
-                41.18,
-                1.04
-              ]
-            ],
-            [
-              [
-                40.59,
-                0.71
-              ],
-              [
-                40.56,
-                0.65
-              ],
-              [
-                40.57,
-                0.6
-              ],
-              [
-                40.59,
-                0.67
-              ],
-              [
-                40.59,
-                0.71
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
       "id": "2.49.0.0.724.0.ES.20261125094302.771201VIRM26111795599782",
       "sender": "http://www.aemet.es",
       "sent": "2026-11-25T09:43:02+00:00",
@@ -13616,6 +13616,267 @@
               [
                 40.64,
                 0.73
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.49.0.0.724.0.ES.20261125165450.771203VIRM26111795625690",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-25T16:54:50+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de vientos de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-25T17:54:50+01:00",
+      "onset": "2026-11-26T00:00:00+01:00",
+      "expires": "2026-11-26T11:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de vientos de nivel amarillo. Interior sur de Castellón",
+      "description": "Rachas máximas: 80 km/h. Viento del noroeste.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Interior sur de Castellón",
+          "zoneCode": "771203",
+          "polygons": [
+            [
+              [
+                40.37,
+                -0.28
+              ],
+              [
+                40.38,
+                -0.25
+              ],
+              [
+                40.36,
+                -0.18
+              ],
+              [
+                40.35,
+                -0.09
+              ],
+              [
+                40.31,
+                -0.1
+              ],
+              [
+                40.3,
+                -0.08
+              ],
+              [
+                40.36,
+                -0.03
+              ],
+              [
+                40.35,
+                -0.01
+              ],
+              [
+                40.28,
+                -0.07
+              ],
+              [
+                40.22,
+                -0.08
+              ],
+              [
+                40.19,
+                -0.07
+              ],
+              [
+                40.13,
+                -0.11
+              ],
+              [
+                40.12,
+                -0.14
+              ],
+              [
+                40.07,
+                -0.16
+              ],
+              [
+                40.06,
+                -0.15
+              ],
+              [
+                40.02,
+                -0.17
+              ],
+              [
+                40.02,
+                -0.26
+              ],
+              [
+                39.98,
+                -0.31
+              ],
+              [
+                39.93,
+                -0.27
+              ],
+              [
+                39.91,
+                -0.28
+              ],
+              [
+                39.9,
+                -0.33
+              ],
+              [
+                39.83,
+                -0.35
+              ],
+              [
+                39.8,
+                -0.31
+              ],
+              [
+                39.8,
+                -0.38
+              ],
+              [
+                39.75,
+                -0.41
+              ],
+              [
+                39.72,
+                -0.46
+              ],
+              [
+                39.75,
+                -0.5
+              ],
+              [
+                39.78,
+                -0.51
+              ],
+              [
+                39.8,
+                -0.55
+              ],
+              [
+                39.77,
+                -0.58
+              ],
+              [
+                39.74,
+                -0.59
+              ],
+              [
+                39.75,
+                -0.65
+              ],
+              [
+                39.79,
+                -0.64
+              ],
+              [
+                39.84,
+                -0.65
+              ],
+              [
+                39.85,
+                -0.69
+              ],
+              [
+                39.82,
+                -0.71
+              ],
+              [
+                39.82,
+                -0.74
+              ],
+              [
+                39.87,
+                -0.77
+              ],
+              [
+                39.88,
+                -0.8
+              ],
+              [
+                39.91,
+                -0.83
+              ],
+              [
+                39.98,
+                -0.83
+              ],
+              [
+                39.99,
+                -0.79
+              ],
+              [
+                40.04,
+                -0.76
+              ],
+              [
+                40.04,
+                -0.72
+              ],
+              [
+                40.05,
+                -0.66
+              ],
+              [
+                40.08,
+                -0.63
+              ],
+              [
+                40.1,
+                -0.63
+              ],
+              [
+                40.13,
+                -0.59
+              ],
+              [
+                40.25,
+                -0.54
+              ],
+              [
+                40.23,
+                -0.51
+              ],
+              [
+                40.24,
+                -0.45
+              ],
+              [
+                40.27,
+                -0.38
+              ],
+              [
+                40.3,
+                -0.4
+              ],
+              [
+                40.32,
+                -0.35
+              ],
+              [
+                40.36,
+                -0.31
+              ],
+              [
+                40.37,
+                -0.28
               ]
             ]
           ]
@@ -14213,6 +14474,135 @@
       ]
     },
     {
+      "id": "2.49.0.0.724.0.ES.20261125102054.692501BTTI27081795602054",
+      "sender": "http://www.aemet.es",
+      "sent": "2026-11-25T10:20:54+00:00",
+      "status": "Actual",
+      "messageType": "Alert",
+      "language": "es-ES",
+      "event": "Aviso de temperaturas mínimas de nivel amarillo",
+      "urgency": "Future",
+      "severity": "Moderate",
+      "certainty": "Likely",
+      "effective": "2026-11-25T11:20:54+01:00",
+      "onset": "2026-11-27T00:00:00+01:00",
+      "expires": "2026-11-27T08:59:59+01:00",
+      "senderName": "AEMET. Agencia Estatal de Meteorología",
+      "headline": "Aviso de temperaturas mínimas de nivel amarillo. Valle de Arán",
+      "description": "Temperatura mínima: -6 ºC.",
+      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
+      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
+      "level": "amarillo",
+      "phenomenon": null,
+      "probability": {
+        "min": 40,
+        "max": 70,
+        "text": "40%-70%"
+      },
+      "areas": [
+        {
+          "name": "Valle de Arán",
+          "zoneCode": "692501",
+          "polygons": [
+            [
+              [
+                42.79,
+                1.04
+              ],
+              [
+                42.73,
+                1.02
+              ],
+              [
+                42.69,
+                0.98
+              ],
+              [
+                42.59,
+                0.94
+              ],
+              [
+                42.59,
+                0.92
+              ],
+              [
+                42.63,
+                0.89
+              ],
+              [
+                42.61,
+                0.84
+              ],
+              [
+                42.62,
+                0.81
+              ],
+              [
+                42.61,
+                0.77
+              ],
+              [
+                42.62,
+                0.71
+              ],
+              [
+                42.66,
+                0.7
+              ],
+              [
+                42.69,
+                0.66
+              ],
+              [
+                42.71,
+                0.68
+              ],
+              [
+                42.77,
+                0.65
+              ],
+              [
+                42.81,
+                0.67
+              ],
+              [
+                42.84,
+                0.66
+              ],
+              [
+                42.86,
+                0.71
+              ],
+              [
+                42.84,
+                0.78
+              ],
+              [
+                42.83,
+                0.86
+              ],
+              [
+                42.79,
+                0.93
+              ],
+              [
+                42.81,
+                0.96
+              ],
+              [
+                42.79,
+                0.99
+              ],
+              [
+                42.79,
+                1.04
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
       "id": "2.49.0.0.724.0.ES.20261125102054.691703COCO27071795602054",
       "sender": "http://www.aemet.es",
       "sent": "2026-11-25T10:20:54+00:00",
@@ -14391,135 +14781,6 @@
               [
                 41.82,
                 3.08
-              ]
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "id": "2.49.0.0.724.0.ES.20261125102054.692501BTTI27081795602054",
-      "sender": "http://www.aemet.es",
-      "sent": "2026-11-25T10:20:54+00:00",
-      "status": "Actual",
-      "messageType": "Alert",
-      "language": "es-ES",
-      "event": "Aviso de temperaturas mínimas de nivel amarillo",
-      "urgency": "Future",
-      "severity": "Moderate",
-      "certainty": "Likely",
-      "effective": "2026-11-25T11:20:54+01:00",
-      "onset": "2026-11-27T00:00:00+01:00",
-      "expires": "2026-11-27T08:59:59+01:00",
-      "senderName": "AEMET. Agencia Estatal de Meteorología",
-      "headline": "Aviso de temperaturas mínimas de nivel amarillo. Valle de Arán",
-      "description": "Temperatura mínima: -6 ºC.",
-      "instruction": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.",
-      "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos",
-      "level": "amarillo",
-      "phenomenon": null,
-      "probability": {
-        "min": 40,
-        "max": 70,
-        "text": "40%-70%"
-      },
-      "areas": [
-        {
-          "name": "Valle de Arán",
-          "zoneCode": "692501",
-          "polygons": [
-            [
-              [
-                42.79,
-                1.04
-              ],
-              [
-                42.73,
-                1.02
-              ],
-              [
-                42.69,
-                0.98
-              ],
-              [
-                42.59,
-                0.94
-              ],
-              [
-                42.59,
-                0.92
-              ],
-              [
-                42.63,
-                0.89
-              ],
-              [
-                42.61,
-                0.84
-              ],
-              [
-                42.62,
-                0.81
-              ],
-              [
-                42.61,
-                0.77
-              ],
-              [
-                42.62,
-                0.71
-              ],
-              [
-                42.66,
-                0.7
-              ],
-              [
-                42.69,
-                0.66
-              ],
-              [
-                42.71,
-                0.68
-              ],
-              [
-                42.77,
-                0.65
-              ],
-              [
-                42.81,
-                0.67
-              ],
-              [
-                42.84,
-                0.66
-              ],
-              [
-                42.86,
-                0.71
-              ],
-              [
-                42.84,
-                0.78
-              ],
-              [
-                42.83,
-                0.86
-              ],
-              [
-                42.79,
-                0.93
-              ],
-              [
-                42.81,
-                0.96
-              ],
-              [
-                42.79,
-                0.99
-              ],
-              [
-                42.79,
-                1.04
               ]
             ]
           ]
