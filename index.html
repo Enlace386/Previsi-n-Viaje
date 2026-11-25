@@ -1946,67 +1946,23 @@ async function enrichPointsWithNearbyLocalities(points) {
 
   if (!validPoints.length) return;
 
-  /*
-   * OPTIMIZACIÓN:
-   * No hacemos una búsqueda alrededor de cada punto meteorológico.
-   * Seleccionamos centros separados aproximadamente 45 km y limitamos
-   * la consulta a un máximo de 24 zonas. Después asignamos la localidad
-   * más próxima a todos los puntos mediante cálculo local.
-   */
-  const centers = [];
-  let lastCenter = null;
+  // Una sola consulta compacta por el rectángulo que contiene la ruta.
+  // Evita las decenas de cláusulas around() que hacían pesada la consulta.
+  const lats = validPoints.map(point => Number(point.lat));
+  const lons = validPoints.map(point => Number(point.lon));
+  const margin = 0.30; // aprox. 30–33 km de margen alrededor de la ruta
+  const south = Math.min(...lats) - margin;
+  const north = Math.max(...lats) + margin;
+  const west = Math.min(...lons) - margin;
+  const east = Math.max(...lons) + margin;
 
-  for (const point of validPoints) {
-    const candidate = {
-      lat: Number(point.lat),
-      lon: Number(point.lon)
-    };
-
-    if (!lastCenter ||
-        haversineKm(lastCenter.lat, lastCenter.lon, candidate.lat, candidate.lon) >= 32) {
-      centers.push(candidate);
-      lastCenter = candidate;
-    }
-  }
-
-  // Asegura que también se cubra el extremo final de la ruta.
-  const lastPoint = validPoints[validPoints.length - 1];
-  const finalCenter = {
-    lat: Number(lastPoint.lat),
-    lon: Number(lastPoint.lon)
-  };
-
-  if (!centers.length ||
-      haversineKm(
-        centers[centers.length - 1].lat,
-        centers[centers.length - 1].lon,
-        finalCenter.lat,
-        finalCenter.lon
-      ) > 12) {
-    centers.push(finalCenter);
-  }
-
-  // Si la ruta es muy larga, distribuimos los centros uniformemente.
-  const maxCenters = 32;
-  let sampledCenters = centers;
-  if (centers.length > maxCenters) {
-    sampledCenters = [];
-    for (let i = 0; i < maxCenters; i++) {
-      const index = Math.round(i * (centers.length - 1) / (maxCenters - 1));
-      sampledCenters.push(centers[index]);
-    }
-  }
-
-  const aroundClauses = sampledCenters.map(({ lat, lon }) =>
-    `nwr(around:45000,${lat.toFixed(5)},${lon.toFixed(5)})["place"~"^(city|town|village|hamlet|isolated_dwelling)$"]["name"];`
-  );
-
+  const bbox = `${south.toFixed(5)},${west.toFixed(5)},${north.toFixed(5)},${east.toFixed(5)}`;
   const query =
-    `[out:json][timeout:20];(${aroundClauses.join("")});out center tags;`;
+    `[out:json][timeout:12];node["place"~"^(city|town|village|hamlet|isolated_dwelling)$"]["name"](${bbox});out tags;`;
 
   setStatus(
     "📍 LOCALIZANDO POBLACIONES DEL RECORRIDO...",
-    "Consultando poblaciones cercanas a varios puntos de la ruta."
+    "Buscando poblaciones en una única consulta del área de la ruta."
   );
 
   try {
@@ -2020,12 +1976,8 @@ async function enrichPointsWithNearbyLocalities(points) {
         body: new URLSearchParams({ data: query }).toString(),
         cache: "no-store"
       },
-      24000
+      15000
     );
-
-    if (!response.ok) {
-      throw new Error(`OpenStreetMap respondió con HTTP ${response.status}`);
-    }
 
     const payload = await response.json();
     const elements = Array.isArray(payload?.elements) ? payload.elements : [];
@@ -2036,14 +1988,12 @@ async function enrichPointsWithNearbyLocalities(points) {
       const tags = element?.tags || {};
       const name = String(tags.name || tags["name:es"] || "").trim();
       const place = String(tags.place || "").toLowerCase();
-      const lat = Number(element.lat ?? element.center?.lat);
-      const lon = Number(element.lon ?? element.center?.lon);
-      const key = `${element.type || ""}/${element.id || ""}`;
+      const lat = Number(element.lat);
+      const lon = Number(element.lon);
+      const key = `${element.type || "node"}/${element.id || ""}`;
 
       if (!name ||
-          !["city", "town", "village", "hamlet", "isolated_dwelling"].includes(place)) {
-        continue;
-      }
+          !["city", "town", "village", "hamlet", "isolated_dwelling"].includes(place)) continue;
       if (!Number.isFinite(lat) || !Number.isFinite(lon) || seen.has(key)) continue;
 
       seen.add(key);
@@ -2058,11 +2008,11 @@ async function enrichPointsWithNearbyLocalities(points) {
     }
 
     if (!localities.length) {
-      console.warn("OpenStreetMap no devolvió poblaciones para esta ruta.");
+      console.warn("OpenStreetMap no devolvió poblaciones dentro del área de la ruta.");
       return;
     }
 
-    // La asociación es local: no genera más peticiones de red.
+    // Asignación local, sin nuevas peticiones de red.
     for (const point of validPoints) {
       let nearest = null;
       let nearestDistance = Infinity;
@@ -2074,14 +2024,13 @@ async function enrichPointsWithNearbyLocalities(points) {
           locality.lat,
           locality.lon
         );
-
         if (distance < nearestDistance) {
           nearestDistance = distance;
           nearest = locality;
         }
       }
 
-      if (nearest && nearestDistance <= 50) {
+      if (nearest && nearestDistance <= 40) {
         point.nearbyLocality = nearest.name;
         point.nearbyProvince = nearest.province;
         point.nearbyLocalityDistanceKm = Math.round(nearestDistance * 10) / 10;
@@ -2090,16 +2039,12 @@ async function enrichPointsWithNearbyLocalities(points) {
     }
 
     console.info(
-      `Localidades OSM: ${localities.length}; zonas consultadas: ${sampledCenters.length}.`
+      `Localidades OSM: ${localities.length}; consulta única del área de ruta.`
     );
   } catch (error) {
-    console.warn(
-      "No se pudieron descargar las poblaciones de OpenStreetMap.",
-      error
-    );
+    console.warn("No se pudieron descargar las poblaciones de OpenStreetMap.", error);
   }
 }
-
 /* ===========================================================
    RUTA OSRM
    =========================================================== */
