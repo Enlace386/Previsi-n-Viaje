@@ -1963,7 +1963,7 @@ async function enrichPointsWithNearbyLocalities(points) {
     };
 
     if (!lastCenter ||
-        haversineKm(lastCenter.lat, lastCenter.lon, candidate.lat, candidate.lon) >= 45) {
+        haversineKm(lastCenter.lat, lastCenter.lon, candidate.lat, candidate.lon) >= 32) {
       centers.push(candidate);
       lastCenter = candidate;
     }
@@ -1987,7 +1987,7 @@ async function enrichPointsWithNearbyLocalities(points) {
   }
 
   // Si la ruta es muy larga, distribuimos los centros uniformemente.
-  const maxCenters = 24;
+  const maxCenters = 32;
   let sampledCenters = centers;
   if (centers.length > maxCenters) {
     sampledCenters = [];
@@ -1998,11 +1998,11 @@ async function enrichPointsWithNearbyLocalities(points) {
   }
 
   const aroundClauses = sampledCenters.map(({ lat, lon }) =>
-    `nwr(around:28000,${lat.toFixed(5)},${lon.toFixed(5)})["place"~"^(city|town|village|hamlet|isolated_dwelling)$"]["name"];`
+    `nwr(around:45000,${lat.toFixed(5)},${lon.toFixed(5)})["place"~"^(city|town|village|hamlet|isolated_dwelling)$"]["name"];`
   );
 
   const query =
-    `[out:json][timeout:15];(${aroundClauses.join("")});out center tags;`;
+    `[out:json][timeout:20];(${aroundClauses.join("")});out center tags;`;
 
   setStatus(
     "📍 LOCALIZANDO POBLACIONES DEL RECORRIDO...",
@@ -2020,7 +2020,7 @@ async function enrichPointsWithNearbyLocalities(points) {
         body: new URLSearchParams({ data: query }).toString(),
         cache: "no-store"
       },
-      18000
+      24000
     );
 
     if (!response.ok) {
@@ -2081,7 +2081,7 @@ async function enrichPointsWithNearbyLocalities(points) {
         }
       }
 
-      if (nearest && nearestDistance <= 30) {
+      if (nearest && nearestDistance <= 50) {
         point.nearbyLocality = nearest.name;
         point.nearbyProvince = nearest.province;
         point.nearbyLocalityDistanceKm = Math.round(nearestDistance * 10) / 10;
