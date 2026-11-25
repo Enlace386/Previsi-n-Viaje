@@ -1937,27 +1937,76 @@ async function geocode(place) {
    =========================================================== */
 
 async function enrichPointsWithNearbyLocalities(points) {
-  const validPoints = Array.isArray(points) ? points : [];
+  const validPoints = Array.isArray(points)
+    ? points.filter(point =>
+        Number.isFinite(Number(point?.lat)) &&
+        Number.isFinite(Number(point?.lon))
+      )
+    : [];
+
   if (!validPoints.length) return;
 
-  // En vez de geocodificar cada punto meteorológico por separado,
-  // consultamos las poblaciones cartografiadas alrededor de la ruta.
-  // Una sola consulta Overpass devuelve pueblos/ciudades cercanos y
-  // después asociamos localmente cada punto con la población más próxima.
-  const centers = validPoints
-    .filter(point => Number.isFinite(Number(point.lat)) && Number.isFinite(Number(point.lon)))
-    .map(point => ({ lat: Number(point.lat), lon: Number(point.lon) }));
+  /*
+   * OPTIMIZACIÓN:
+   * No hacemos una búsqueda alrededor de cada punto meteorológico.
+   * Seleccionamos centros separados aproximadamente 45 km y limitamos
+   * la consulta a un máximo de 24 zonas. Después asignamos la localidad
+   * más próxima a todos los puntos mediante cálculo local.
+   */
+  const centers = [];
+  let lastCenter = null;
 
-  if (!centers.length) return;
+  for (const point of validPoints) {
+    const candidate = {
+      lat: Number(point.lat),
+      lon: Number(point.lon)
+    };
 
-  const aroundClauses = centers.map(({ lat, lon }) =>
-    `nwr(around:25000,${lat.toFixed(5)},${lon.toFixed(5)})["place"~"^(city|town|village|hamlet|isolated_dwelling)$"]["name"];`
+    if (!lastCenter ||
+        haversineKm(lastCenter.lat, lastCenter.lon, candidate.lat, candidate.lon) >= 45) {
+      centers.push(candidate);
+      lastCenter = candidate;
+    }
+  }
+
+  // Asegura que también se cubra el extremo final de la ruta.
+  const lastPoint = validPoints[validPoints.length - 1];
+  const finalCenter = {
+    lat: Number(lastPoint.lat),
+    lon: Number(lastPoint.lon)
+  };
+
+  if (!centers.length ||
+      haversineKm(
+        centers[centers.length - 1].lat,
+        centers[centers.length - 1].lon,
+        finalCenter.lat,
+        finalCenter.lon
+      ) > 12) {
+    centers.push(finalCenter);
+  }
+
+  // Si la ruta es muy larga, distribuimos los centros uniformemente.
+  const maxCenters = 24;
+  let sampledCenters = centers;
+  if (centers.length > maxCenters) {
+    sampledCenters = [];
+    for (let i = 0; i < maxCenters; i++) {
+      const index = Math.round(i * (centers.length - 1) / (maxCenters - 1));
+      sampledCenters.push(centers[index]);
+    }
+  }
+
+  const aroundClauses = sampledCenters.map(({ lat, lon }) =>
+    `nwr(around:28000,${lat.toFixed(5)},${lon.toFixed(5)})["place"~"^(city|town|village|hamlet|isolated_dwelling)$"]["name"];`
   );
-  const query = `[out:json][timeout:40];(${aroundClauses.join('')});out center tags;`;
+
+  const query =
+    `[out:json][timeout:15];(${aroundClauses.join("")});out center tags;`;
 
   setStatus(
     "📍 LOCALIZANDO POBLACIONES DEL RECORRIDO...",
-    "Consultando el mapa de OpenStreetMap para asociar cada punto meteorológico con la población más cercana."
+    "Consultando poblaciones cercanas a varios puntos de la ruta."
   );
 
   try {
@@ -1965,12 +2014,19 @@ async function enrichPointsWithNearbyLocalities(points) {
       CONFIG.OVERPASS,
       {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+        },
         body: new URLSearchParams({ data: query }).toString(),
         cache: "no-store"
       },
-      50000
+      18000
     );
+
+    if (!response.ok) {
+      throw new Error(`OpenStreetMap respondió con HTTP ${response.status}`);
+    }
+
     const payload = await response.json();
     const elements = Array.isArray(payload?.elements) ? payload.elements : [];
     const seen = new Set();
@@ -1983,14 +2039,21 @@ async function enrichPointsWithNearbyLocalities(points) {
       const lat = Number(element.lat ?? element.center?.lat);
       const lon = Number(element.lon ?? element.center?.lon);
       const key = `${element.type || ""}/${element.id || ""}`;
-      if (!name || !["city", "town", "village", "hamlet", "isolated_dwelling"].includes(place)) continue;
+
+      if (!name ||
+          !["city", "town", "village", "hamlet", "isolated_dwelling"].includes(place)) {
+        continue;
+      }
       if (!Number.isFinite(lat) || !Number.isFinite(lon) || seen.has(key)) continue;
+
       seen.add(key);
       localities.push({
         name,
         lat,
         lon,
-        province: String(tags["addr:province"] || tags["addr:state"] || "").trim()
+        province: String(
+          tags["addr:province"] || tags["addr:state"] || ""
+        ).trim()
       });
     }
 
@@ -1999,20 +2062,25 @@ async function enrichPointsWithNearbyLocalities(points) {
       return;
     }
 
+    // La asociación es local: no genera más peticiones de red.
     for (const point of validPoints) {
       let nearest = null;
       let nearestDistance = Infinity;
+
       for (const locality of localities) {
         const distance = haversineKm(
-          Number(point.lat), Number(point.lon), locality.lat, locality.lon
+          Number(point.lat),
+          Number(point.lon),
+          locality.lat,
+          locality.lon
         );
+
         if (distance < nearestDistance) {
           nearestDistance = distance;
           nearest = locality;
         }
       }
 
-      // Evitamos asociar una población demasiado lejana a un punto aislado.
       if (nearest && nearestDistance <= 30) {
         point.nearbyLocality = nearest.name;
         point.nearbyProvince = nearest.province;
@@ -2021,12 +2089,16 @@ async function enrichPointsWithNearbyLocalities(points) {
       }
     }
 
-    console.info(`Localidades de OpenStreetMap encontradas: ${localities.length}`);
+    console.info(
+      `Localidades OSM: ${localities.length}; zonas consultadas: ${sampledCenters.length}.`
+    );
   } catch (error) {
-    console.warn("No se pudieron descargar las poblaciones de OpenStreetMap para esta ruta.", error);
+    console.warn(
+      "No se pudieron descargar las poblaciones de OpenStreetMap.",
+      error
+    );
   }
 }
-
 
 /* ===========================================================
    RUTA OSRM
