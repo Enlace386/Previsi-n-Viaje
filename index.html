@@ -705,6 +705,7 @@ button, input {
 .point-card:hover { border-color: var(--border-cyan); }
 .point-top { padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); background: rgba(255,255,255,0.02); }
 .point-name { font-weight: 800; font-size: 12px; font-family: 'JetBrains Mono', monospace; }
+.point-locality { margin-top:3px; color:#7dd3fc; font-size:10px; font-weight:700; line-height:1.35; }
 .point-time { color: var(--text-muted); font-size: 10px; font-family: 'JetBrains Mono', monospace; }
 .point-risk { font-size: 9px; font-weight: 800; padding: 4px 8px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; }
 
@@ -1478,6 +1479,9 @@ const CONFIG = {
   NOMINATIM:
     "https://nominatim.openstreetmap.org/search",
 
+  PHOTON_REVERSE:
+    "https://photon.komoot.io/reverse",
+
   OSRM:
     "https://router.project-osrm.org/route/v1/driving",
 
@@ -1922,6 +1926,94 @@ async function geocode(place) {
 
   };
 
+}
+
+
+/* ===========================================================
+   LOCALIDAD PRÓXIMA A CADA PUNTO METEOROLÓGICO
+   =========================================================== */
+
+async function reverseGeocodeLocality(point) {
+  if (!point || !Number.isFinite(Number(point.lat)) || !Number.isFinite(Number(point.lon))) {
+    return null;
+  }
+
+  const params = new URLSearchParams({
+    lat: String(point.lat),
+    lon: String(point.lon),
+    lang: "es"
+  });
+
+  const response = await fetchWithTimeout(
+    `${CONFIG.PHOTON_REVERSE}?${params}`,
+    { cache: "no-store" },
+    9000
+  );
+
+  const payload = await response.json();
+  const properties = payload?.features?.[0]?.properties || {};
+
+  // Preferimos una población (ciudad, pueblo o aldea), no el nombre
+  // de una carretera, edificio o punto de interés aislado.
+  const placeFeatureName =
+    properties.osm_key === "place" &&
+    /^(city|town|village|hamlet|locality|isolated_dwelling)$/i.test(String(properties.osm_value || ""))
+      ? properties.name
+      : "";
+
+  const locality =
+    placeFeatureName ||
+    properties.town ||
+    properties.village ||
+    properties.city ||
+    properties.municipality ||
+    properties.locality ||
+    properties.hamlet ||
+    properties.suburb ||
+    "";
+
+  if (!locality) return null;
+
+  const province =
+    properties.county ||
+    properties.state_district ||
+    properties.province ||
+    "";
+
+  return {
+    name: String(locality),
+    province: String(province),
+    label: province && String(province).toLowerCase() !== String(locality).toLowerCase()
+      ? `Cerca de ${locality} (${province})`
+      : `Cerca de ${locality}`
+  };
+}
+
+async function enrichPointsWithNearbyLocalities(points) {
+  const validPoints = Array.isArray(points) ? points : [];
+  const batchSize = 3;
+
+  // Consultas en pequeños lotes para no saturar el servicio de geocodificación.
+  for (let start = 0; start < validPoints.length; start += batchSize) {
+    const batch = validPoints.slice(start, start + batchSize);
+    const results = await Promise.all(batch.map(async point => {
+      try {
+        return await reverseGeocodeLocality(point);
+      } catch (error) {
+        console.warn("No se pudo identificar la localidad próxima a un punto meteorológico.", error);
+        return null;
+      }
+    }));
+
+    batch.forEach((point, index) => {
+      const locality = results[index];
+      if (locality) {
+        point.nearbyLocality = locality.name;
+        point.nearbyProvince = locality.province;
+        point.nearbyLocalityLabel = locality.label;
+      }
+    });
+  }
 }
 
 
@@ -4500,6 +4592,7 @@ function createPointPopup(point, risk, index) {
   ` : `<div style="padding:8px;background:#f1f5f9;border-radius:6px;color:#475569">No hay datos meteorológicos disponibles para este punto. Esto no significa que no exista riesgo.</div>`;
   return `<div style="min-width:220px;max-width:280px;overflow-wrap:anywhere">
     <strong>Punto de análisis ${Number(index) + 1}</strong><br>
+    ${point?.nearbyLocalityLabel ? `<strong style="color:#087f5b">📍 ${escapeHtml(point.nearbyLocalityLabel)}</strong><br>` : `<span style="color:#777">📍 Localidad próxima no identificada</span><br>`}
     <span style="color:#666">Hora estimada:</span>
     <strong>${escapeHtml(String(point?.passTime || "No disponible"))}</strong><br><br>
     <strong style="color:${safeRisk.color}">${escapeHtml(String(safeRisk.name || "Datos insuficientes"))}</strong>
@@ -4779,6 +4872,10 @@ function renderPoints(
                   Punto ${index + 1}
                 </div>
 
+                <div class="point-locality">
+                  ${point.nearbyLocalityLabel ? `📍 ${escapeHtml(point.nearbyLocalityLabel)}` : "📍 Localidad próxima no identificada"}
+                </div>
+
                 <div class="point-time">
                   ${point.passTime}
                 </div>
@@ -4853,6 +4950,10 @@ function renderPoints(
 
               <div class="point-name">
                 Punto ${index + 1}
+              </div>
+
+              <div class="point-locality">
+                ${point.nearbyLocalityLabel ? `📍 ${escapeHtml(point.nearbyLocalityLabel)}` : "📍 Localidad próxima no identificada"}
               </div>
 
               <div class="point-time">
@@ -5284,7 +5385,7 @@ function formatPhenomenonPoint(item, index, phenomenon) {
         Punto ${index + 1} · ${escapeHtml(point.passTime)} · km ${formatDistance(point.distanceKm)}
       </strong>
       <span>
-        ${escapeHtml(phenomenon.detail(w, point))} · riesgo ${escapeHtml(risk.name)} (${point.risk.score}/100)
+        ${point.nearbyLocalityLabel ? `📍 ${escapeHtml(point.nearbyLocalityLabel)} · ` : ""}${escapeHtml(phenomenon.detail(w, point))} · riesgo ${escapeHtml(risk.name)} (${point.risk.score}/100)
       </span>
     </button>
   `;
@@ -6318,7 +6419,18 @@ async function analyzeTravel() {
     );
 
     /* -------------------------------------------------------
-       8. SCORE
+       8. LOCALIDADES PRÓXIMAS
+       ------------------------------------------------------- */
+
+    setStatus(
+      "📍 IDENTIFICANDO LOCALIDADES...",
+      "Buscando el municipio o población más próxima a cada punto meteorológico."
+    );
+
+    await enrichPointsWithNearbyLocalities(points);
+
+    /* -------------------------------------------------------
+       9. SCORE
        ------------------------------------------------------- */
 
     setStatus(
